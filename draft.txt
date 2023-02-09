@@ -1,0 +1,420 @@
+
+const { Sequelize, DataTypes } = require("sequelize");
+const sequelize = require("../database/db");
+
+
+const conversations = sequelize.define("conversations", {
+    id: {
+        type: DataTypes.INTEGER,
+        primaryKey: true,
+        autoIncrement: true
+    },
+    subject: {
+        type: DataTypes.STRING,
+        allowNull: false
+    },
+    createdAt: {
+        type: DataTypes.DATE,
+        defaultValue: Sequelize.literal('NOW()')
+    },
+    updatedAt: {
+        type: DataTypes.DATE,
+        defaultValue: Sequelize.literal('NOW()')
+    },
+},
+{
+    freezeTableName: true
+});
+
+
+
+sequelize
+    .sync({ force: true})
+    .then(() => {
+        console.log("Conversations table created successfully");
+    })
+    .catch(error => {
+        console.error("Error creating Conversations table:", error);
+    });
+
+
+module.exports = conversations;
+
+const User = require('./other');
+const { Sequelize, DataTypes } = require('sequelize');
+const sequelize = require('../database/db');
+const createTableIfNotExists = require('../utils/createTableIfNotExists');
+
+const matches = sequelize.define("matches", {
+    id: {
+        type: DataTypes.INTEGER,
+        primaryKey: true,
+        autoIncrement: true
+    },
+    user1Id: {
+        type: DataTypes.INTEGER,
+        references: {
+            model: "User",
+            key: "id"
+        }
+    },
+    user2Id: {
+        type: DataTypes.INTEGER,
+        references: {
+            model: "User",
+            key: "id"
+        }
+    },
+    status: {
+        type: DataTypes.ENUM,
+        values: ["pending", "accepted", "rejected"]
+    },
+    createdAt: {
+        type: DataTypes.DATE,
+        defaultValue: Sequelize.literal('NOW()')
+    },
+    updatedAt: {
+        type: DataTypes.DATE,
+        defaultValue: Sequelize.literal('NOW()')
+    },
+},
+{ freezeTableName: true });
+
+
+matches.belongsTo(User, {
+    foreignKey: "user1Id",
+    as: "user1"
+});
+
+matches.belongsTo(User, {
+    foreignKey: "user2Id",
+    as: "user2"
+});
+
+sequelize
+    .sync({ force: true})
+    .then(() => {
+        console.log("Matches table created successfully");
+    })
+    .catch(error => {
+        console.error("Error creating Matches table:", error);
+    });
+
+//createTableIfNotExists("Matches", Matches);
+
+module.exports = matches;
+
+const { Sequelize, DataTypes } = require("sequelize");
+const sequelize = require("../database/db");
+const createTableIfNotExists = require("../utils/createTableIfNotExists");
+
+
+const media = sequelize.define("media", {
+    id: {
+        type: DataTypes.INTEGER,
+        primaryKey: true,
+        autoIncrement: true
+    },
+    type: {
+        type: DataTypes.ENUM,
+        values: ["text", "image", "file", "location", "camera selfie", "audio"],
+        allowNull: false
+    },
+    url: {
+        type: DataTypes.STRING
+    },
+    createdAt: {
+        type: DataTypes.DATE,
+        defaultValue: Sequelize.literal("NOW()")
+    },
+    updatedAt: {
+        type: DataTypes.DATE,
+        defaultValue: Sequelize.literal("NOW()")
+    },
+},
+    { freezeTableName: true
+});
+
+sequelize
+    .sync({ force: true})
+    .then(() => {
+        console.log("Media table created successfully");
+    })
+    .catch(error => {
+        console.error("Error creating Media table:", error);
+    });
+
+//createTableIfNotExists("Media", Media);
+
+module.exports = media;
+
+const user = require("./other");
+const { Sequelize, DataTypes } = require("sequelize");
+const sequelize = require("../database/db");
+const createTableIfNotExists = require("../utils/createTableIfNotExists");
+const media = require("./media");
+
+
+const message = sequelize.define("message", {
+    id: {
+        type: DataTypes.INTEGER,
+        primaryKey: true,
+        autoIncrement: true
+    },
+    content: {
+        type: DataTypes.TEXT,
+        allowNull: false
+    },
+    type: {
+        type: DataTypes.ENUM,
+        values: ["text", "image", "file", "location", "camera_selfie", "audio"],
+        allowNull: false
+    },
+    createdAt: {
+        type: DataTypes.DATE,
+        defaultValue: Sequelize.literal('NOW()')
+    },
+    updatedAt: {
+        type: DataTypes.DATE,
+        defaultValue: Sequelize.literal('NOW()')
+    }
+
+},
+{
+    freezeTableName: true
+});
+
+
+
+sequelize
+    .sync({ force: true})
+    .then(() => {
+        console.log("Message table created successfully");
+    })
+    .catch(error => {
+        console.error("Error creating Message table:", error);
+    });
+
+//createTableIfNotExists('Message', Message);
+
+module.exports = message;
+
+const { Sequelize, DataTypes } = require("sequelize");
+const sequelize = require("../database/db");
+const bcrypt = require("bcrypt");
+
+
+const other = sequelize.define("user", {
+        id: {
+            type: DataTypes.INTEGER,
+            primaryKey: true,
+            autoIncrement: true
+        },
+        name: {
+            type: DataTypes.STRING,
+            allowNull: false
+        },
+        email: {
+            type: DataTypes.STRING,
+            unique: true,
+            allowNull: false
+        },
+        password: {
+            type: DataTypes.STRING,
+            allowNull: false,
+            set(value) {
+                this.setDataValue('password', bcrypt.hashSync(value, 10));
+            }
+        },
+        profilePictureId: {
+            type: DataTypes.INTEGER,
+            references: {
+                model: "Picture",
+                key: "id"
+            }
+        },
+        dateOfBirth: {
+            type: DataTypes.DATEONLY
+        },
+
+        gender: {
+            type: DataTypes.STRING,
+            value: [
+                'male',
+                'female',
+                'other'
+            ],
+            validate: {
+                isIn: {
+                    args: [[
+                        'male',
+                        'female',
+                        'other'
+                    ]],
+                    msg: 'Invalid gender'
+                }
+            }
+        },
+
+        occupation: {
+            type: DataTypes.STRING
+        },
+        aboutMe: {
+            type: DataTypes.TEXT
+        },
+        smokingStatus: {
+            type: DataTypes.STRING,
+            value: [
+                'smoker',
+                'non-smoker',
+                'occasional smoker',
+                'social smoker'
+            ],
+            validate: {
+                isIn: {
+                    args: [['smoker', 'non-smoker', 'occasional smoker', 'social smoker']],
+                    msg: 'Invalid smoking status'
+                }
+            }
+        },
+
+        drinkingStatus: {
+            type: DataTypes.STRING,
+            value: [
+                'drinker',
+                'non-drinker',
+                'occasional drinker',
+                'social drinker',
+                'light drinker',
+                'heavy drinker'
+            ],
+
+            validate: {
+                isIn: {
+                    args: [['drinker', 'non-drinker', 'occasional drinker', 'social drinker', 'light drinker', 'heavy drinker']],
+                    msg: 'Invalid drinking status'
+                }
+            }
+        },
+
+        housingStatus: {
+            type: DataTypes.STRING,
+            value: [
+                'have a place',
+                'don\'t have a place',
+            ]
+        },
+        moveInDate: {
+            type: DataTypes.DATEONLY
+        },
+        budget: {
+            type: DataTypes.INTEGER
+        },
+        createdAt: {
+            type: DataTypes.DATE,
+            defaultValue: Sequelize.literal('NOW()')
+        },
+        updatedAt: {
+            type: DataTypes.DATE,
+            defaultValue: Sequelize.literal('NOW()')
+        },
+    },
+
+    {
+        freezeTableName: true
+    });
+
+/*const Matches = require("./matches");
+const Media = require("./media");
+const Message = require("./message");
+const Picture = require("./picture");
+
+
+other.hasMany(Matches, {
+    foreignKey: 'userId',
+    as: 'matches',
+});
+
+other.hasMany(Media, {
+    foreignKey: 'userId',
+    as: 'media',
+});
+
+other.hasOne(Message, {
+    foreignKey: 'userId',
+    as: 'message',
+});
+
+other.hasMany(Picture, {
+    foreignKey: 'userId',
+    as: 'picture',
+});*/
+
+sequelize
+    .sync({ force: true})
+    .then(() => {
+        console.log("User table created successfully");
+    })
+    .catch(error => {
+        console.error("Error creating User table:", error);
+    });
+
+module.exports = other;
+
+const User = require("./other");
+const { DataTypes, Sequelize } = require("sequelize");
+const sequelize = require("../database/db");
+const createTableIfNotExists = require("../utils/createTableIfNotExists");
+
+const picture = sequelize.define("picture", {
+    id: {
+        type: DataTypes.INTEGER,
+        primaryKey: true,
+        autoIncrement: true
+    },
+    userId: {
+        type: DataTypes.INTEGER,
+        references: {
+            model: User,
+            key: "id"
+        },
+        onUpdate: "cascade",
+        onDelete: "cascade"
+    },
+    pictureUrl: {
+        type: DataTypes.STRING,
+        allowNull: false
+    },
+    isMain: {
+        type: DataTypes.BOOLEAN,
+        defaultValue: false
+    },
+    createdAt: {
+        type: DataTypes.DATE,
+        defaultValue: Sequelize.literal('NOW()')
+    },
+    updatedAt: {
+        type: DataTypes.DATE,
+        defaultValue: Sequelize.literal('NOW()')
+    },
+},
+    {
+        freezeTableName: true
+});
+
+
+
+sequelize
+    .sync({ force: true})
+    .then(() => {
+        console.log("Picture table created successfully");
+    })
+    .catch(error => {
+        console.error("Error creating Picture table:", error);
+    });
+
+//createTableIfNotExists("Picture", Picture);
+
+
+module.exports = picture;
+

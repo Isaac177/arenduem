@@ -1,0 +1,95 @@
+/*other.hasMany(picture, {
+    foreignKey: "userId",
+    as: "userPictures"
+});
+
+other.belongsTo(drinkingStatus, {
+    foreignKey: "drinkingStatusId",
+    as: "drinkingStatus"
+});
+
+other.belongsTo(smokingStatus, {
+    foreignKey: "smokingStatusId",
+    as: "smokingStatus"
+});
+
+other.belongsTo(housingStatus, {
+    foreignKey: "housingStatusId",
+    as: "housingStatus"
+});
+
+other.belongsTo(gender, {
+    foreignKey: "genderId",
+    as: "userGender"
+});
+
+other.hasMany(conversations, {
+    foreignKey: "userId",
+    as: "conversations"
+});
+
+other.hasMany(media, {
+    foreignKey: "userId",
+    as: "userMedia"
+});
+
+other.belongsToMany(matches, {
+    as: "matches",
+    through: "Match",
+    foreignKey: "user1Id",
+    otherKey: "user2Id"
+});*/
+
+
+/*const gender = require('./gender');
+const smokingStatus = require('./smokingStatus');
+const picture = require('./picture');
+const drinkingStatus = require('./drinkingStatus');
+const conversations = require('./conversations');
+const media = require("./media");
+
+other.belongsTo(gender, {
+    foreignKey: "genderId",
+    as: 'gender'
+});
+
+other.belongsTo(smokingStatus, {
+    foreignKey: "smokingStatusId",
+    as: "useSmokingStatus"
+});
+
+other.hasMany( picture, {
+    foreignKey: "userId",
+    as: "profilePicture"
+});
+
+other.belongsTo(drinkingStatus, {
+    foreignKey: "drinkingStatusId",
+    as: "userDrinkingStatus"
+});
+
+other.hasMany(conversations, {
+    foreignKey: "userId",
+    as: "userConversations"
+});
+
+other.belongsTo(conversations, {
+    foreignKey: "userId",
+    as: "conversations1"
+});
+
+other.belongsToMany(other, {
+    as: 'matchDetails',
+    through: 'matches',
+    foreignKey: 'user1Id',
+    otherKey: 'user2Id'
+});
+
+other.belongsToMany(other, {
+    through: conversations,
+    as: 'participants' });
+
+other.hasMany(media, {
+    foreignKey: "userId",
+    as: "mediaDetails"
+});*/

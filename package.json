@@ -1,0 +1,25 @@
+{
+  "name": "arenduem",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Isaac",
+  "license": "MIT",
+  "dependencies": {
+    "bcrypt": "^5.1.0",
+    "body-parser": "^1.20.1",
+    "express": "^4.18.2",
+    "fs": "^0.0.1-security",
+    "global": "^4.4.0",
+    "path": "^0.12.7",
+    "pg": "^8.9.0",
+    "process": "^0.11.10",
+    "sequelize": "^6.28.0"
+  },
+  "devDependencies": {
+    "sequelize-cli": "^6.6.0"
+  }
+}
