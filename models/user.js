@@ -17,7 +17,7 @@ module.exports = (sequelize, DataTypes) => {
 
       User.hasOne(models.DrinkingStatus, {
         foreignKey: "userId",
-        as: "drinkingStatus"
+        as: "userDrinkingStatus"
       });
 
       User.hasMany(models.Picture, {
@@ -41,6 +41,10 @@ module.exports = (sequelize, DataTypes) => {
         foreignKey: 'userId',
         as: 'housingStatus'
       });
+    }
+
+    static async createUser(user) {
+        return await User.create(user);
     }
 
     async validatePassword(password) {
