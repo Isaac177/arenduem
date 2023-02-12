@@ -1,5 +1,6 @@
 'use strict';
-const Sequelize = require("sequelize");
+const bcrypt = require('bcrypt');
+
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
   async up(queryInterface, Sequelize) {
@@ -19,27 +20,34 @@ module.exports = {
       email: {
         type: Sequelize.STRING
       },
-      password: Sequelize.STRING,
-      dateOfBirth: Sequelize.DATE,
-      /*profilePictureId: {
-        type: Sequelize.INTEGER,
-        references: {
-          model: "Picture",
-          key: "id"
-        }
-      },*/
-      occupation: Sequelize.STRING,
-      aboutMe: Sequelize.TEXT,
-      moveInDate: Sequelize.DATEONLY,
-      budget: Sequelize.INTEGER,
-      createdAt: {
+      password: {
+        type: Sequelize.STRING(60),
         allowNull: false,
+        set(password) {
+          this.setDataValue('password', bcrypt.hashSync(password, bcrypt.genSaltSync(8), null));
+        }
+      },
+      dateOfBirth: {
+        type: Sequelize.DATE
+      },
+      occupation: {
+        type: Sequelize.STRING
+      },
+      aboutMe: {
+        type: Sequelize.STRING
+      },
+      moveInDate: {
+        type: Sequelize.DATE
+      },
+      budget: {
+        type: Sequelize.INTEGER
+      },
+      createdAt: {
         type: Sequelize.DATE
       },
       updatedAt: {
-        allowNull: false,
         type: Sequelize.DATE
-      }
+      },
     });
   },
   async down(queryInterface, Sequelize) {

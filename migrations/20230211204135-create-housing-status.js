@@ -2,19 +2,24 @@
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
   async up(queryInterface, Sequelize) {
-    await queryInterface.createTable('Pictures', {
+    await queryInterface.createTable('HousingStatuses', {
       id: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      pictureUrl: {
-        type: Sequelize.STRING
+      isOwner: {
+        type: Sequelize.BOOLEAN
       },
-      isMain: {
-        type: Sequelize.BOOLEAN,
-        defaultValue: false
+      userId: {
+        type: Sequelize.INTEGER,
+        references: {
+          model: 'Users',
+          key: 'id'
+        },
+        onUpdate: 'cascade',
+        onDelete: 'cascade'
       },
       createdAt: {
         allowNull: false,
@@ -27,6 +32,6 @@ module.exports = {
     });
   },
   async down(queryInterface, Sequelize) {
-    await queryInterface.dropTable('Pictures');
+    await queryInterface.dropTable('HousingStatuses');
   }
 };

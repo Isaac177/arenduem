@@ -5,28 +5,22 @@ const {
 const Sequelize = require('sequelize');
 
 module.exports = (sequelize, DataTypes) => {
-  class Picture extends Model {
+  class Media extends Model {
     static associate(models) {
       models.User = require("./user")(sequelize, Sequelize.DataTypes);
-      Picture.belongsTo(models.User, {
+      Media.belongsTo(models.User, {
         foreignKey: "userId",
         onDelete: "CASCADE"
       })
     }
   }
-  Picture.init({
-    userId: Sequelize.INTEGER,
+  Media.init({
     fileName: Sequelize.STRING,
     fileUrl: Sequelize.STRING,
-    isMain: {
-      type: Sequelize.BOOLEAN,
-      defaultValue: false
-    },
-    createdAt: Sequelize.DATE,
-    updatedAt: Sequelize.DATE
+    fileType: Sequelize.STRING
   }, {
     sequelize,
-    modelName: 'Picture',
+    modelName: 'Media',
   });
-  return Picture;
+  return Media;
 };

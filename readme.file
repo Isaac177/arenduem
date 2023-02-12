@@ -93,3 +93,4 @@ other.hasMany(media, {
     foreignKey: "userId",
     as: "mediaDetails"
 });*/
+
