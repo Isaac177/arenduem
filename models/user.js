@@ -42,16 +42,14 @@ module.exports = (sequelize, DataTypes) => {
         as: 'housingStatus'
       });
     }
-
-    static async createUser(user) {
-        return await User.create(user);
-    }
-
-    async validatePassword(password) {
-      return await bcrypt.compare(password, this.password);
-    }
   }
   User.init({
+    firstName: {
+        type: Sequelize.STRING,
+    },
+    lastName: {
+        type: Sequelize.STRING,
+    },
     email: {
       type: Sequelize.STRING,
       allowNull: false,
@@ -59,27 +57,27 @@ module.exports = (sequelize, DataTypes) => {
     },
     password: {
       type: Sequelize.STRING,
-      allowNull: false
+      //allowNull: false
     },
     dateOfBirth: {
       type: Sequelize.DATEONLY,
-      allowNull: false
+      //allowNull: true
     },
     occupation: {
       type: Sequelize.STRING,
-      allowNull: false
+      //allowNull: false
     },
     aboutMe: {
       type: Sequelize.TEXT,
-      allowNull: false
+      //allowNull: false
     },
     moveInDate: {
       type: Sequelize.DATEONLY,
-      allowNull: false
+      //allowNull: false
     },
     budget: {
       type: Sequelize.INTEGER,
-      allowNull: false
+      //allowNull: false
     },
   }, {
     sequelize,

@@ -1,14 +1,18 @@
 const passport = require('passport');
 const LocalStrategy = require('passport-local').Strategy;
 const bcrypt = require('bcrypt');
+const sequelize = require('../models').sequelize;
 const User = require('../models').User;
 
 
 
 
 passport.use(new LocalStrategy((username, password, done) => {
+    console.log("1");
+    console.log(username)
     User.findOne({where: {email: username}})
         .then(user => {
+
             if (!user) {
                 return done(null, false, {message: 'Incorrect username.'});
             }
@@ -69,39 +73,36 @@ exports.isNotAuthenticated = (req, res, next) => {
 };
 
 
-
 exports.register = (req, res) => {
-    const { email, password, confirmPassword } = req.body;
-
-    if (!email || !password || !confirmPassword) {
-        return res.status(400).json({ message: 'All fields are required' });
-    }
+    const { firstName, lastName, email, password, confirmPassword } = req.body;
 
     if (password !== confirmPassword) {
-        return res.status(400).json({ message: 'Passwords do not match' });
+        return res.status(400).json({ message: 'Passwords do not match.' });
     }
 
-    User.findOne({ where: { email } })
-        .then(user => {
-            if (user) {
-                return res.status(400).json({ message: 'Email already in use' });
-            }
-
-            bcrypt.hash(password, 10, (err, hash) => {
-                if (err) {
-                    return res.status(500).json({ message: 'Error hashing password' });
+    try {
+        User.findOne({where: {email: email}})
+            .then(user => {
+                if (user) {
+                    return res.status(400).json({message: 'Email is already taken'});
+                } else {
+                    const newUser = new User();
+                    newUser.firstName = firstName;
+                    newUser.lastName = lastName;
+                    newUser.email = email;
+                    newUser.password = password;
+                    newUser.role = 'user';
+                    newUser.save();
+                    return res.status(201).json({successMessage: 'Registration successful. Please sign in.'});
                 }
-
-                User.create({ email, password: hash })
-                    .then(() => {
-                        return res.status(201).json({ message: 'User created' });
-                    })
-                    .catch(error => {
-                        return res.status(500).json({ message: 'Error creating user' });
-                    });
+            })
+            .catch(err => {
+                console.log(err);
+                return res.status(500).json({error: 'Server error'});
             });
-        })
-        .catch(error => {
-            return res.status(500).json({ message: 'Error finding user' });
-        });
+    } catch (err) {
+        console.log(err);
+        return res.status(500).json({error: 'Server error'});
+    }
 };
+

@@ -1,10 +1,14 @@
 import React from 'react';
 import { Formik, Form, Field } from "formik";
 import * as Yup from "yup";
+import axios from "axios";
+import {withRouter} from 'react-router-dom';
 
 
-const HeroForm = () => {
+
+const HeroForm = ({history}) => {
     const [owner] = React.useState(false);
+
 
     const validationSchema = Yup.object().shape({
         owner: Yup.boolean().required(),
@@ -12,6 +16,22 @@ const HeroForm = () => {
         minAge: Yup.number().required(),
         maxAge: Yup.number().required(),
     });
+
+    const handleSubmit = async (values, { setSubmitting }) => {
+        try {
+            const response = await axios.post('/api/formData', values);
+
+            if (response.status !== 200) {
+                throw new Error('Network response was not ok');
+            }
+
+            setSubmitting(false);
+            history.push('/registration');
+        } catch (error) {
+            console.error('Error:', error);
+        }
+        console.log(values)
+    };
 
     return (
         <div className="backdrop-blur-lg text-white bg-primary-700 bg-opacity-50 p-12 rounded-3xl w-2/3">
@@ -24,10 +44,7 @@ const HeroForm = () => {
                     maxAge: "",
                 }}
                 validationSchema={validationSchema}
-                onSubmit={(values, { setSubmitting }) => {
-                    console.log(values);
-                    setSubmitting(false);
-                }}
+                onSubmit={handleSubmit}
             >
                 {({ errors, touched }) => (
                     <Form className="flex flex-col">
@@ -96,7 +113,7 @@ const HeroForm = () => {
                                     id="minAge"
                                     name="minAge"
                                     placeholder="Min"
-                                    value={18}
+                                    defaultValue={18}
                                     className="border-gray-400 rounded-l-lg p-2 mr-4"
                                 />
                                 <Field
@@ -104,7 +121,7 @@ const HeroForm = () => {
                                     id="maxAge"
                                     name="maxAge"
                                     placeholder="Max"
-                                    value={99}
+                                    defaultValue={99}
                                     className="border-gray-400 rounded-r-lg p-2"
                                 />
                             </div>
