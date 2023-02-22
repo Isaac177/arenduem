@@ -13,6 +13,10 @@
   backdrop-filter: blur(10px);
 }
 
+.body {
+  min-height: 100vh;
+}
+
 .header {
   backdrop-filter: blur(10px);
   color: white;

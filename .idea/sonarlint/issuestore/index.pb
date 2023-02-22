@@ -47,3 +47,17 @@ b
 models/index.js,e/4/e41453b900e7c418643d34a8cb9d68efc0b0ddd6
 Y
 )client/src/assets/img/cool-background.svg,d/a/da5a8b7d25fa93052ae2f4e7fb9c1891088d8a49
+H
+client/public/index.html,8/1/818a76598cddfc0ac5e6740251b5b4dc9ff67f2c
+B
+client/src/App.css,2/a/2a082b18bfc3afa6b25d6c4584e995e6b6c4ee3e
+<
+package.json,7/0/7030d0b2f71b999ff89a343de08c414af32fc93a
+R
+"client/src/assets/data/profiles.js,5/9/59ea551c5573132bb582035577c66d02948c34c1
+C
+client/src/index.js,7/6/76cbb38a5cef42611c7af13985f39248682f4aa1
+V
+&client/src/components/footer/Footer.js,9/b/9b17be6ab52fe509f6b03a03cc6308a2c49204d6
+O
+client/src/assets/data/steps.js,e/3/e3d9152b81a6128aca4e19be543f538f8cdb7c95

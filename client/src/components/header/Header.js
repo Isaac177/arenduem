@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import {NavLink} from "react-router-dom";
 
 const Header = () => {
     const [isOpen, setIsOpen] = useState(false);
@@ -34,24 +35,42 @@ const Header = () => {
                         } lg:block lg:flex lg:items-center lg:w-auto`}
                     >
                         <div className="text-base lg:flex-grow">
-                            <a className="block mt-4 lg:inline-block lg:mt-0 hover:text-white mr-4 hover:text-aqua-500"
-                               href="client/src/components/header/Header#">
+                            <NavLink
+                                exact
+                                to="/"
+                                activeClassName="font-bold"
+                                className="block mt-4 lg:inline-block lg:mt-0 hover:text-white mr-4 hover:text-aqua-500"
+                            >
                                 Home
-                            </a>
-                            <a className="block mt-4 lg:inline-block lg:mt-0 hover:text-white mr-4 hover:text-aqua-500"
-                               href="client/src/components/header/Header#" >
+                            </NavLink>
+                            <NavLink
+                                to="/about"
+                                activeClassName="font-bold"
+                                className="block mt-4 lg:inline-block lg:mt-0 hover:text-white mr-4 hover:text-aqua-500"
+                            >
                                 About
-                            </a>
-                            <a className="block mt-4 lg:inline-block lg:mt-0 hover:text-white mr-4 hover:text-aqua-500"
-                               href="client/src/components/header/Header#">
+                            </NavLink>
+                            <NavLink
+                                to="/contact"
+                                activeClassName="font-bold"
+                                className="block mt-4 lg:inline-block lg:mt-0 hover:text-white mr-4 hover:text-aqua-500"
+                            >
                                 Contact
-                            </a>
+                            </NavLink>
                         </div>
                         <div>
-                            <a className="inline-block text-sm px-4 py-2 mx-4 leading-none border rounded text-white border-white hover:border-transparent hover:text-primary-900 hover:bg-white mt-4 lg:mt-0"
-                               href="client/src/components/header/Header#">
+                            <NavLink
+                                to="/signin"
+                                className="inline-block text-sm px-4 py-2 mx-4 leading-none border rounded text-white border-white hover:border-transparent hover:text-primary-900 hover:bg-white mt-4 lg:mt-0"
+                            >
                                 Sign In
-                            </a>
+                            </NavLink>
+                            <NavLink
+                                to="/signup"
+                                className="inline-block text-sm px-4 py-2 mx-4 leading-none border rounded text-white border-white hover:border-transparent hover:text-primary-900 hover:bg-white mt-4 lg:mt-0"
+                            >
+                                Sign Up
+                            </NavLink>
                         </div>
                     </nav>
                 </div>
