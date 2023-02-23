@@ -36,23 +36,22 @@ const Header = () => {
                     >
                         <div className="text-base lg:flex-grow">
                             <NavLink
-                                exact
+                                exact="true"
                                 to="/"
-                                activeClassName="font-bold"
                                 className="block mt-4 lg:inline-block lg:mt-0 hover:text-white mr-4 hover:text-aqua-500"
                             >
                                 Home
                             </NavLink>
                             <NavLink
+                                exact="true"
                                 to="/about"
-                                activeClassName="font-bold"
                                 className="block mt-4 lg:inline-block lg:mt-0 hover:text-white mr-4 hover:text-aqua-500"
                             >
                                 About
                             </NavLink>
                             <NavLink
+                                exact="true"
                                 to="/contact"
-                                activeClassName="font-bold"
                                 className="block mt-4 lg:inline-block lg:mt-0 hover:text-white mr-4 hover:text-aqua-500"
                             >
                                 Contact
@@ -60,12 +59,14 @@ const Header = () => {
                         </div>
                         <div>
                             <NavLink
+                                exact="true"
                                 to="/signin"
                                 className="inline-block text-sm px-4 py-2 mx-4 leading-none border rounded text-white border-white hover:border-transparent hover:text-primary-900 hover:bg-white mt-4 lg:mt-0"
                             >
                                 Sign In
                             </NavLink>
                             <NavLink
+                                exact="true"
                                 to="/signup"
                                 className="inline-block text-sm px-4 py-2 mx-4 leading-none border rounded text-white border-white hover:border-transparent hover:text-primary-900 hover:bg-white mt-4 lg:mt-0"
                             >

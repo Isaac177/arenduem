@@ -1,10 +1,12 @@
-import React from 'react';
-import { useState } from 'react';
+import React, {useState} from 'react';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import { object, string } from 'yup';
+import * as yup from "yup";
+import api from "../../utils/api";
 
 const SignUpSchema = object().shape({
-    name: string().required('Name is required'),
+    firstName: string().required('First name is required'),
+    lastName: string().required('Last name is required'),
     email: string().email('Invalid email').required('Email is required'),
     password: string()
         .required('Password is required')
@@ -13,15 +15,26 @@ const SignUpSchema = object().shape({
             /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/,
             'Password must contain at least one uppercase letter, one lowercase letter, one number and one special character'
         ),
+    confirmPassword: string()
+        .required('Confirm password is required')
+        .oneOf([yup.ref('password'), null], 'Passwords must match'),
 });
 
 const SignUp = () => {
     const [success, setSuccess] = useState(false);
 
-    const handleSubmit = (values, { setSubmitting }) => {
-        console.log(values);
-        setSubmitting(false);
-        setSuccess(true);
+    const handleSubmit = async (values, { setSubmitting }) => {
+        try {
+            console.log('values', values);
+            const response = await api.post('/auth/signup', values);
+            if (response.status === 201) {
+                setSuccess(true);
+                setSubmitting(false);
+                console.log(values);
+            }
+        } catch (err) {
+            console.error(err);
+        }
     };
 
     return (
@@ -32,26 +45,47 @@ const SignUp = () => {
                     <p className="text-green-600 mb-4">Sign up successful!</p>
                 ) : null}
                 <Formik
-                    initialValues={{ name: '', email: '', password: '' }}
+                    initialValues={{ firstName: '', lastName: '', email: '', password: '', confirmPassword: '' }}
                     validationSchema={SignUpSchema}
                     onSubmit={handleSubmit}
                 >
-                    {({ errors, touched, isSubmitting }) => (
+                    {({ errors, touched, isSubmitting, values, setFieldValue }) => (
                         <Form>
                             <div className="mb-4">
                                 <label className="block text-gray-700 font-bold mb-2" htmlFor="name">
-                                    Name
+                                    First Name
                                 </label>
                                 <Field
                                     className={`${
-                                        errors.name ? 'border-red-500' : 'border-gray-300'
+                                        errors.firstName ? 'border-red-500' : 'border-gray-300'
                                     } appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline`}
-                                    id="name"
+                                    id="firstName"
                                     type="text"
-                                    placeholder="Your name"
-                                    name="name"
+                                    placeholder="Your first name"
+                                    name="firstName"
+                                    value={values.firstName}
+                                    onChange={(e) => setFieldValue('firstName', e.target.value)}
                                 />
-                                <ErrorMessage name="name">
+                                <ErrorMessage name="firstName">
+                                    {msg => <p className="text-red-500 text-xs italic">{msg}</p>}
+                                </ErrorMessage>
+                            </div>
+                            <div className="mb-4">
+                                <label className="block text-gray-700 font-bold mb-2" htmlFor="name">
+                                   Last Name
+                                </label>
+                                <Field
+                                    className={`${
+                                        errors.lastName ? 'border-red-500' : 'border-gray-300'
+                                    } appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline`}
+                                    id="lastName"
+                                    type="text"
+                                    placeholder="Your last name"
+                                    name="lastName"
+                                    value={values.lastName}
+                                    onChange={(e) => setFieldValue('lastName', e.target.value)}
+                                />
+                                <ErrorMessage name="lastName">
                                     {msg => <p className="text-red-500 text-xs italic">{msg}</p>}
                                 </ErrorMessage>
                             </div>
@@ -67,6 +101,8 @@ const SignUp = () => {
                                     type="email"
                                     placeholder="Your email"
                                     name="email"
+                                    values={values.email}
+                                    onChange={(e) => setFieldValue('email', e.target.value)}
                                 />
                                 <ErrorMessage name="email">
                                     {msg => <p className="text-red-500 text-xs italic">{msg}</p>}
@@ -87,8 +123,32 @@ const SignUp = () => {
                                     type="password"
                                     placeholder="Your password"
                                     name="password"
+                                    value={values.password}
+                                    onChange={(e) => setFieldValue('password', e.target.value)}
                                 />
                                 <ErrorMessage name="password">
+                                    {msg => <p className="text-red-500 text-xs italic">{msg}</p>}
+                                </ErrorMessage>
+                            </div>
+                            <div className="mb-4">
+                                <label
+                                    className="block text-gray-700 font-bold mb-2"
+                                    htmlFor="confirmPassword"
+                                >
+                                    Confirm Password
+                                </label>
+                                <Field
+                                    className={`${
+                                        errors.confirmPassword ? 'border-red-500' : 'border-gray-300'
+                                    } appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline`}
+                                    id="confirmPassword"
+                                    type="password"
+                                    placeholder="Confirm your password"
+                                    name="confirmPassword"
+                                    value={values.confirmPassword}
+                                    onChange={(e) => setFieldValue('confirmPassword', e.target.value)}
+                                />
+                                <ErrorMessage name="confirmPassword">
                                     {msg => <p className="text-red-500 text-xs italic">{msg}</p>}
                                 </ErrorMessage>
                             </div>
@@ -107,7 +167,8 @@ const SignUp = () => {
                                 <button
                                     className="bg-aqua-500 hover:bg-aqua-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
                                     type="submit"
-                                    disabled={isSubmitting}
+                                    /*disabled={isSubmitting}
+                                    onClick={handleSubmit}*/
                                 >
                                     Sign Up
                                 </button>
@@ -115,6 +176,7 @@ const SignUp = () => {
                         </Form>
                     )}
                 </Formik>
+
             </div>
         </div>
     );

@@ -1,18 +1,17 @@
+const jwt = require('jsonwebtoken');
 const passport = require('passport');
 const LocalStrategy = require('passport-local').Strategy;
 const bcrypt = require('bcrypt');
 const sequelize = require('../models').sequelize;
 const User = require('../models').User;
-
-
-
+require('dotenv').config();
+const JWT_SECRET = process.env.JWT_SECRET;
 
 passport.use(new LocalStrategy((username, password, done) => {
     console.log("1");
     console.log(username)
     User.findOne({where: {email: username}})
         .then(user => {
-
             if (!user) {
                 return done(null, false, {message: 'Incorrect username.'});
             }
@@ -43,17 +42,25 @@ passport.deserializeUser((id, done) => {
         });
 });
 
-exports.login = passport.authenticate('local', (error, user, info, req, res) => {
-    if (error) return res.status(400).json({ error });
-    if (!user) return res.status(400).json({ message: info.message });
+exports.signin = (req, res, next) => {
+    passport.authenticate('local', (err, user, info) => {
+        if (err) {
+            return next(err);
+        }
+        if (!user) {
+            return res.status(401).json({ message: info.message });
+        }
+        req.signin(user, (err) => {
+            if (err) {
+                return next(err);
+            }
+            const token = jwt.sign({ id: user.id }, JWT_SECRET, { expiresIn: '1h' });
+            return res.status(200).json({ token: token });
+        });
+    })(req, res, next);
+};
 
-    req.login(user, error => {
-        if (error) return res.status(400).json({ error });
-        return res.status(200).json({ message: 'Successful login.' });
-    });
-});
-
-exports.logout = (req, res) => {
+exports.signout = (req, res) => {
     req.logout();
     return res.status(200).json({ message: 'Successful logout.' });
 };
@@ -72,8 +79,7 @@ exports.isNotAuthenticated = (req, res, next) => {
     return res.status(400).json({ message: 'You are already logged in.' });
 };
 
-
-exports.register = (req, res) => {
+exports.signup = async (req, res) => {
     const { firstName, lastName, email, password, confirmPassword } = req.body;
 
     if (password !== confirmPassword) {
@@ -81,28 +87,45 @@ exports.register = (req, res) => {
     }
 
     try {
-        User.findOne({where: {email: email}})
-            .then(user => {
-                if (user) {
-                    return res.status(400).json({message: 'Email is already taken'});
-                } else {
-                    const newUser = new User();
-                    newUser.firstName = firstName;
-                    newUser.lastName = lastName;
-                    newUser.email = email;
-                    newUser.password = password;
-                    newUser.role = 'user';
-                    newUser.save();
-                    return res.status(201).json({successMessage: 'Registration successful. Please sign in.'});
-                }
-            })
-            .catch(err => {
+        let user = await User.findOne({ where: { email } });
+        if (user) {
+            return res.status(400).json({ message: 'Email is already taken' });
+        }
+
+        const newUser = await User.create({
+            firstName,
+            lastName,
+            email,
+            password: bcrypt.hashSync(password, 10),
+            role: 'user'
+        });
+
+        const token = jwt.sign({ id: newUser.id }, process.env.JWT_SECRET, {
+            expiresIn: process.env.JWT_EXPIRES_IN
+        }, (err, token) => {
+            if (err) {
                 console.log(err);
-                return res.status(500).json({error: 'Server error'});
-            });
-    } catch (err) {
-        console.log(err);
-        return res.status(500).json({error: 'Server error'});
+                return res.status(500).json({message: 'Server error'});
+            }
+            return res.status(201).json({ message: 'User created successfully', token: token });
+        });
+
+        return res.status(201).json({
+            message: 'User created successfully',
+            token: token,
+            user: {
+                id: newUser.id,
+                firstName: newUser.firstName,
+                lastName: newUser.lastName,
+                email: newUser.email,
+                role: newUser.role
+            }
+        });
+
+    } catch (error) {
+        console.error(error);
+        return res.status(500).json({ message: 'Server error' });
     }
 };
+
 

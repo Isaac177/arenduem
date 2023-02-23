@@ -51,8 +51,6 @@ H
 client/public/index.html,8/1/818a76598cddfc0ac5e6740251b5b4dc9ff67f2c
 B
 client/src/App.css,2/a/2a082b18bfc3afa6b25d6c4584e995e6b6c4ee3e
-<
-package.json,7/0/7030d0b2f71b999ff89a343de08c414af32fc93a
 R
 "client/src/assets/data/profiles.js,5/9/59ea551c5573132bb582035577c66d02948c34c1
 C
@@ -61,3 +59,11 @@ V
 &client/src/components/footer/Footer.js,9/b/9b17be6ab52fe509f6b03a03cc6308a2c49204d6
 O
 client/src/assets/data/steps.js,e/3/e3d9152b81a6128aca4e19be543f538f8cdb7c95
+]
+-client/src/components/highlights/Highlight.js,8/f/8ff8553f2a5478518701b26c3b8bfa346c9bff54
+a
+1client/src/components/highlights/HighlightCard.js,d/b/db81e010beaa3c6fed5ff1a998143a9c827ebdf8
+T
+$client/src/components/header/Hero.js,1/e/1e618464d759cce8d5b2e8a191c143e5e4838f63
+D
+client/src/index.css,7/5/751657f4fd5a737220a43ddd2ad7926446725c56
