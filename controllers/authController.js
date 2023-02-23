@@ -5,35 +5,37 @@ const bcrypt = require('bcrypt');
 const sequelize = require('../models').sequelize;
 const User = require('../models').User;
 require('dotenv').config();
-const JWT_SECRET = process.env.JWT_SECRET;
 
-passport.use(new LocalStrategy((username, password, done) => {
-    console.log("1");
-    console.log(username)
-    User.findOne({where: {email: username}})
-        .then(user => {
-            if (!user) {
-                return done(null, false, {message: 'Incorrect username.'});
-            }
-            bcrypt.compare(password, user.password, (err, res) => {
-                if (res) {
-                    return done(null, user);
-                } else {
-                    return done(null, false, {message: 'Incorrect password.'});
-                }
-            });
-        })
-        .catch(err => {
-            return done(err);
-        });
+
+passport.use(new LocalStrategy({ usernameField: 'email' }, async (email, password, done) => {
+    try {
+        const user = await User.findOne({ where: { email } });
+        console.log('user:', user);
+        if (!user) {
+            return done(null, false, { message: 'Incorrect email.' });
+        }
+        const passwordMatch = await bcrypt.compare(password, user.password);
+        console.log('passwordMatch:', passwordMatch);
+        if (!passwordMatch) {
+            return done(null, false, { message: 'Incorrect email or password.' });
+        }
+
+        return done(null, user);
+    } catch (error) {
+        return done(error);
+    }
 }));
+
 
 passport.serializeUser((user, done) => {
     done(null, user.id);
 });
 
 passport.deserializeUser((id, done) => {
-    User.findByPk(id)
+    User.findByPk(id, {
+        attributes: { exclude: ['password'] },
+        raw: true
+    })
         .then(user => {
             done(null, user);
         })
@@ -42,26 +44,34 @@ passport.deserializeUser((id, done) => {
         });
 });
 
-exports.signin = (req, res, next) => {
-    passport.authenticate('local', (err, user, info) => {
-        if (err) {
-            return next(err);
-        }
+exports.signin = async (req, res) => {
+    const { email, password } = req.body;
+
+    try {
+        const user = await User.findOne({ where: { email } });
         if (!user) {
-            return res.status(401).json({ message: info.message });
+            return res.status(401).json({ message: 'Incorrect email or password.' });
         }
-        req.signin(user, (err) => {
-            if (err) {
-                return next(err);
-            }
-            const token = jwt.sign({ id: user.id }, JWT_SECRET, { expiresIn: '1h' });
-            return res.status(200).json({ token: token });
+
+        const passwordMatch = await bcrypt.compare(password, user.password);
+        if (!passwordMatch) {
+            return res.status(401).json({ message: 'Incorrect email or password.' });
+        }
+
+        const token = jwt.sign({ id: user.id }, process.env.JWT_SECRET, {},{
+            expiresIn: process.env.JWT_EXPIRES_IN || '1h'
         });
-    })(req, res, next);
+
+        return res.status(200).json({ token });
+    } catch (error) {
+        console.error(error);
+        return res.status(500).json({ message: 'Server error' });
+    }
 };
 
+
 exports.signout = (req, res) => {
-    req.logout();
+    req.signout();
     return res.status(200).json({ message: 'Successful logout.' });
 };
 
@@ -96,18 +106,12 @@ exports.signup = async (req, res) => {
             firstName,
             lastName,
             email,
-            password: bcrypt.hashSync(password, 10),
+            password,
             role: 'user'
         });
 
         const token = jwt.sign({ id: newUser.id }, process.env.JWT_SECRET, {
-            expiresIn: process.env.JWT_EXPIRES_IN
-        }, (err, token) => {
-            if (err) {
-                console.log(err);
-                return res.status(500).json({message: 'Server error'});
-            }
-            return res.status(201).json({ message: 'User created successfully', token: token });
+            expiresIn: process.env.JWT_EXPIRES_IN || '1h'
         });
 
         return res.status(201).json({
@@ -121,11 +125,8 @@ exports.signup = async (req, res) => {
                 role: newUser.role
             }
         });
-
     } catch (error) {
         console.error(error);
         return res.status(500).json({ message: 'Server error' });
     }
 };
-
-

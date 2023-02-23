@@ -3,21 +3,21 @@ const bodyParser = require('body-parser');
 const authRoutes = require('./routes/auth');
 const passport = require('passport');
 const cors = require('cors');
-const {User} = require("./models");
+const { User } = require("./models");
 const authController = require("./controllers/authController");
 require('dotenv').config();
-
 
 const app = express();
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
+
+require('./config/passport')(passport);
+
 app.use(passport.initialize());
 
 app.use(cors({
     origin: 'http://localhost:3000'
 }));
-
-const jwtSecret = process.env.JWT_SECRET;
 
 app.use('/api/auth', authRoutes);
 
@@ -33,10 +33,7 @@ app.get('/', (req, res) => {
 
 app.post('/api/auth/signup', authController.signup);
 
-app.post('/api/auth/signin',
-    passport.authenticate('local', { session: false }),
-    authController.signin
-);
+app.post('/api/auth/signin', authController.signin);
 
 const PORT = 8000;
 app.listen(PORT, () => {

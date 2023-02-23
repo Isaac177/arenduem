@@ -1,29 +1,53 @@
-import React from 'react';
+import React, {useState} from 'react';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import { object, string } from 'yup';
+import api from "../../utils/api";
 
-const LoginSchema = object().shape({
+const SigninSchema = object().shape({
     email: string().email('Invalid email').required('Email is required'),
     password: string().required('Password is required'),
 });
 
-const Login = () => {
-    const handleSubmit = (values, { setSubmitting }) => {
-        console.log(values);
-        setSubmitting(false);
+const Signin = () => {
+    const [success, setSuccess] = useState(false);
+    const [error, setError] = useState(null);
+
+    const handleSubmit = async (values, { setSubmitting }) => {
+        try {
+            const response = await api.post('/auth/signin', {
+                email: values.email,
+                password: values.password,
+            });
+            const data = response.data;
+            localStorage.setItem('token', data.token);
+            setSuccess(true);
+            setError(null);
+            console.log('response', response);
+        } catch (error) {
+            console.error(error);
+            setError('Invalid email or password');
+        } finally {
+            setSubmitting(false);
+        }
+        console.log('values', values)
     };
+
 
     return (
         <div className="flex items-center justify-center h-screen">
             <div className="w-full max-w-xs bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
-                <h1 className="text-3xl text-center font-bold mb-4">Login</h1>
+                <h1 className="text-3xl text-center font-bold mb-4">SignIn</h1>
                 <Formik
                     initialValues={{ email: '', password: '' }}
-                    validationSchema={LoginSchema}
+                    validationSchema={SigninSchema}
                     onSubmit={handleSubmit}
                 >
-                    {({ errors, isSubmitting }) => (
+                    {({ errors, isSubmitting, values, setFieldValue }) => (
                         <Form>
+                            {success ? (
+                                <p className="text-green-600 mb-4">Sign in successful!</p>
+                            ) : null}
+                            {error ? <p className="text-red-600 mb-4">{error}</p> : null}
                             <div className="mb-4">
                                 <label className="block text-gray-700 font-bold mb-2" htmlFor="email">
                                     Email
@@ -36,6 +60,9 @@ const Login = () => {
                                     type="email"
                                     placeholder="Your email"
                                     name="email"
+                                    onChange={e => {
+                                        setFieldValue('email', e.target.value);
+                                    }}
                                 />
                                 <ErrorMessage name="email">
                                     {msg => <p className="text-red-500 text-xs italic">{msg}</p>}
@@ -56,6 +83,9 @@ const Login = () => {
                                     type="password"
                                     placeholder="Your password"
                                     name="password"
+                                    onChange={e => {
+                                        setFieldValue('password', e.target.value);
+                                    }}
                                 />
                                 <ErrorMessage name="password">
                                     {msg => <p className="text-red-500 text-xs italic">{msg}</p>}
@@ -99,4 +129,4 @@ const Login = () => {
     );
 };
 
-export default Login;
+export default Signin;
