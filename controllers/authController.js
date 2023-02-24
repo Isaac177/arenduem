@@ -2,9 +2,9 @@ const jwt = require('jsonwebtoken');
 const passport = require('passport');
 const LocalStrategy = require('passport-local').Strategy;
 const bcrypt = require('bcrypt');
-const sequelize = require('../models').sequelize;
 const User = require('../models').User;
 require('dotenv').config();
+const HousingStatus = require('../models').HousingStatus;
 
 
 passport.use(new LocalStrategy({ usernameField: 'email' }, async (email, password, done) => {
@@ -91,6 +91,7 @@ exports.isNotAuthenticated = (req, res, next) => {
 
 exports.signup = async (req, res) => {
     const { firstName, lastName, email, password, confirmPassword } = req.body;
+    const isOwner = req.body.isOwner || false;
 
     if (password !== confirmPassword) {
         return res.status(400).json({ message: 'Passwords do not match.' });
@@ -110,6 +111,11 @@ exports.signup = async (req, res) => {
             role: 'user'
         });
 
+        const newHousingStatus = await HousingStatus.create({
+            isOwner,
+            userId: newUser.id
+        });
+
         const token = jwt.sign({ id: newUser.id }, process.env.JWT_SECRET, {
             expiresIn: process.env.JWT_EXPIRES_IN || '1h'
         });
@@ -122,7 +128,9 @@ exports.signup = async (req, res) => {
                 firstName: newUser.firstName,
                 lastName: newUser.lastName,
                 email: newUser.email,
-                role: newUser.role
+                role: newUser.role,
+                isOwner: isOwner,
+                HousingStatusId: newHousingStatus.id
             }
         });
     } catch (error) {
@@ -130,3 +138,7 @@ exports.signup = async (req, res) => {
         return res.status(500).json({ message: 'Server error' });
     }
 };
+
+
+
+

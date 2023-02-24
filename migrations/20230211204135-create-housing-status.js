@@ -1,7 +1,10 @@
+
 'use strict';
+
+const bcrypt = require('bcrypt');
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
-  async up(queryInterface, Sequelize) {
+  up: async (queryInterface, Sequelize) => {
     await queryInterface.createTable('HousingStatuses', {
       id: {
         allowNull: false,
@@ -10,16 +13,9 @@ module.exports = {
         type: Sequelize.INTEGER
       },
       isOwner: {
-        type: Sequelize.BOOLEAN
-      },
-      userId: {
-        type: Sequelize.INTEGER,
-        references: {
-          model: 'Users',
-          key: 'id'
-        },
-        onUpdate: 'cascade',
-        onDelete: 'cascade'
+        type: Sequelize.BOOLEAN,
+        allowNull: false,
+        defaultValue: false
       },
       createdAt: {
         allowNull: false,
@@ -28,10 +24,32 @@ module.exports = {
       updatedAt: {
         allowNull: false,
         type: Sequelize.DATE
+      },
+      userId: {
+        type: Sequelize.INTEGER,
+        allowNull: false,
+        references: {
+          model: 'Users',
+          key: 'id'
+        },
+        onDelete: 'CASCADE'
       }
     });
+
+    await queryInterface.addColumn('Users', 'HousingStatusId', {
+      type: Sequelize.INTEGER,
+      allowNull: true,
+      references: {
+        model: 'HousingStatuses',
+        key: 'id'
+      },
+      onUpdate: 'CASCADE',
+      onDelete: 'SET NULL'
+    });
   },
-  async down(queryInterface, Sequelize) {
+
+  down: async (queryInterface, Sequelize) => {
+    await queryInterface.removeColumn('Users', 'HousingStatusId');
     await queryInterface.dropTable('HousingStatuses');
   }
 };

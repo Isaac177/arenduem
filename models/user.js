@@ -6,6 +6,7 @@ const Sequelize = require('sequelize');
 const bcrypt = require('bcrypt');
 
 
+
 module.exports = (sequelize, DataTypes) => {
   class User extends Model {
     static associate(models) {
@@ -43,12 +44,13 @@ module.exports = (sequelize, DataTypes) => {
       });
     }
   }
+
   User.init({
     firstName: {
-        type: Sequelize.STRING,
+      type: Sequelize.STRING,
     },
     lastName: {
-        type: Sequelize.STRING,
+      type: Sequelize.STRING,
     },
     email: {
       type: Sequelize.STRING,
@@ -88,5 +90,6 @@ module.exports = (sequelize, DataTypes) => {
       }
     }
   });
+
   return User;
 };

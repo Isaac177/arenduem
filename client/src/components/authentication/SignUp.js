@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
-import { object, string } from 'yup';
+import {boolean, object, string} from 'yup';
 import * as yup from "yup";
 import api from "../../utils/api";
 
@@ -18,6 +18,7 @@ const SignUpSchema = object().shape({
     confirmPassword: string()
         .required('Confirm password is required')
         .oneOf([yup.ref('password'), null], 'Passwords must match'),
+    isOwner: boolean()
 });
 
 const SignUp = () => {
@@ -45,7 +46,7 @@ const SignUp = () => {
                     <p className="text-green-600 mb-4">Sign up successful!</p>
                 ) : null}
                 <Formik
-                    initialValues={{ firstName: '', lastName: '', email: '', password: '', confirmPassword: '' }}
+                    initialValues={{ firstName: '', lastName: '', email: '', password: '', confirmPassword: '', isOwner: false }}
                     validationSchema={SignUpSchema}
                     onSubmit={handleSubmit}
                 >
@@ -152,6 +153,25 @@ const SignUp = () => {
                                     {msg => <p className="text-red-500 text-xs italic">{msg}</p>}
                                 </ErrorMessage>
                             </div>
+                            <div className="mb-4 flex items-center">
+                                <input
+                                    className={`${errors.isOwner ? 'border-red-500' : 'border-gray-300'}`}
+                                    id="isOwner"
+                                    type="checkbox"
+                                    name="isOwner"
+                                    checked={values.isOwner}
+                                    onChange={(e) => setFieldValue('isOwner', e.target.checked)}
+                                />
+                                <label
+                                    className="block text-gray-700 font-bold mb-2"
+                                    htmlFor="isOwner"
+                                >
+                                    Are you a room owner?
+                                </label>
+                                <ErrorMessage name="isOwner">
+                                    {msg => <p className="text-red-500 text-xs italic">{msg}</p>}
+                                </ErrorMessage>
+                            </div>
                             <div className="flex items-center justify-between">
                                 <p className="text-gray-700 text-sm">
                                     Already have an account ?{' '}
@@ -167,8 +187,6 @@ const SignUp = () => {
                                 <button
                                     className="bg-aqua-500 hover:bg-aqua-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
                                     type="submit"
-                                    /*disabled={isSubmitting}
-                                    onClick={handleSubmit}*/
                                 >
                                     Sign Up
                                 </button>

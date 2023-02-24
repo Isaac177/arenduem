@@ -7,8 +7,6 @@ O
 readme.file,6/b/6b1c066d0670e8c36425b102d8cbdfff16e4b5e4
 9
 	draft.txt,7/f/7f953c9ae7f4af451e1e86d26071444f1c29f4c0
-G
-models/housingstatus.js,8/c/8c5d7bb7270a9a30e0541188b3c742d71e790c62
 A
 models/message.js,4/a/4a441d248f1f22039321f3c42842f9d65d4dbbd8
 c
@@ -35,16 +33,10 @@ X
 models/gender.js,e/8/e885ae6c24c10ce4162d8d6bd61c2c8ae7f164e3
 M
 controllers/userController.js,e/c/ec44b050defa6855748d2a8d6ff06d33bc8bba3a
-?
-models/media.js,5/2/520d024105946b36c6cb783930621dd5a0441782
 b
 2migrations/20230211204142-create-smoking-status.js,8/d/8df7efbbd6f2565e8c8151bd960cafc8bdded51f
 Y
 )seeders/20230212073735-drinking-status.js,6/b/6bedbfd72fce872084615954f87ca0e1840df0ad
-b
-2migrations/20230211204135-create-housing-status.js,9/4/9497e3cb3556315b866b1ba5dd9d4bc1f4b17a7a
-?
-models/index.js,e/4/e41453b900e7c418643d34a8cb9d68efc0b0ddd6
 Y
 )client/src/assets/img/cool-background.svg,d/a/da5a8b7d25fa93052ae2f4e7fb9c1891088d8a49
 H
