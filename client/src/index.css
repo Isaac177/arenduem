@@ -10,7 +10,7 @@
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   background: url("./assets/img/cool-background.png");
-  backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px) brightness(70%) opacity(80%);
 }
 
 .body {

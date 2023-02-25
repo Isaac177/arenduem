@@ -2,6 +2,7 @@ import React, {useState} from 'react';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import { object, string } from 'yup';
 import api from "../../utils/api";
+import { useNavigate } from 'react-router-dom';
 
 const SigninSchema = object().shape({
     email: string().email('Invalid email').required('Email is required'),
@@ -11,6 +12,8 @@ const SigninSchema = object().shape({
 const Signin = () => {
     const [success, setSuccess] = useState(false);
     const [error, setError] = useState(null);
+    let navigate = useNavigate();
+
 
     const handleSubmit = async (values, { setSubmitting }) => {
         try {
@@ -20,16 +23,22 @@ const Signin = () => {
             });
             const data = response.data;
             localStorage.setItem('token', data.token);
+            localStorage.setItem('role', data.role);
+
+            if (data.role === 'admin') {
+                navigate('/admin/dashboard')
+            } else if (data.role === 'user') {
+                navigate('/user/dashboard')
+            }
+
             setSuccess(true);
             setError(null);
-            console.log('response', response);
         } catch (error) {
             console.error(error);
             setError('Invalid email or password');
         } finally {
             setSubmitting(false);
         }
-        console.log('values', values)
     };
 
 

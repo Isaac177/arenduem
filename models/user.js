@@ -85,7 +85,7 @@ module.exports = (sequelize, DataTypes) => {
       type: Sequelize.STRING,
       defaultValue: 'user',
       get() {
-        return this.getDataValue('isAdmin') ? 'admin' : 'user';
+        return this.getDataValue('role') === 'admin' ? 'admin' : 'user';
       }
     }
   }, {
