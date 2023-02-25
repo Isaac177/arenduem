@@ -81,6 +81,13 @@ module.exports = (sequelize, DataTypes) => {
       type: Sequelize.INTEGER,
       //allowNull: false
     },
+    role: {
+      type: Sequelize.STRING,
+      defaultValue: 'user',
+      get() {
+        return this.getDataValue('isAdmin') ? 'admin' : 'user';
+      }
+    }
   }, {
     sequelize,
     modelName: 'User',

@@ -103,21 +103,23 @@ exports.signup = async (req, res) => {
             return res.status(400).json({ message: 'Email is already taken' });
         }
 
+        const isAdmin = process.env.ADMIN_EMAILS.split(',').includes(email);
+
         const newUser = await User.create({
             firstName,
             lastName,
             email,
             password,
-            role: 'user'
+            role: isAdmin ? 'admin' : 'user',
         });
 
         const newHousingStatus = await HousingStatus.create({
             isOwner,
-            userId: newUser.id
+            userId: newUser.id,
         });
 
         const token = jwt.sign({ id: newUser.id }, process.env.JWT_SECRET, {
-            expiresIn: process.env.JWT_EXPIRES_IN || '1h'
+            expiresIn: process.env.JWT_EXPIRES_IN || '1h',
         });
 
         return res.status(201).json({
@@ -130,14 +132,16 @@ exports.signup = async (req, res) => {
                 email: newUser.email,
                 role: newUser.role,
                 isOwner: isOwner,
-                HousingStatusId: newHousingStatus.id
-            }
+                HousingStatusId: newHousingStatus.id,
+            },
         });
+
     } catch (error) {
         console.error(error);
         return res.status(500).json({ message: 'Server error' });
     }
 };
+
 
 
 
