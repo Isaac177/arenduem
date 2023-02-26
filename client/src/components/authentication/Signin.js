@@ -104,7 +104,7 @@ const Signin = () => {
                                 <p className="text-xs text-gray-700">
                                     <a
                                         className="text-aqua-500 hover:text-aqua-700 no-underline"
-                                        href="#"
+                                        href="/forgot-password"
                                     >
                                         Forgot Password?
                                     </a>
