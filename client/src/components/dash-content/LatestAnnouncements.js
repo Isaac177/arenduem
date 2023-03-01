@@ -1,12 +1,15 @@
 import React from 'react';
-import Carousel from "../utils/Carousel";
 import AnnounceCard from "./AnnounceCard";
-import ContentTitle from "../utils/ContentTitle";
+import Separator from "../utils/Separator";
+import QuickSearch from "./QuickSearch";
+
 
 
 const LatestAnnouncements = () => {
     return (
-        <div className="flex flex-col mt-24">
+        <>
+        <Separator>
+        <div className="flex flex-col mt-8 border-b">
             <div>
                 <h1 className="text-2xl font-bold px-4 flex items-start">Latest Announcements</h1>
                 <hr className="border-aqua-500 border w-1/2 ml-4" />
@@ -49,6 +52,11 @@ const LatestAnnouncements = () => {
                 />
                 </div>
         </div>
+        </Separator>
+        <Separator>
+            <QuickSearch />
+        </Separator>
+        </>
     );
 };
 

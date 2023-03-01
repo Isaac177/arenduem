@@ -11,6 +11,7 @@ const UserHeader = () => {
         try {
             await axios.get('http://localhost:8000/api/auth/signout');
             localStorage.removeItem('role');
+            localStorage.removeItem('token');
             window.location.href = '/';
         } catch (error) {
             console.error(error);
@@ -23,16 +24,14 @@ const UserHeader = () => {
                 setShowMenu(false);
             }
         };
-
         document.addEventListener('mousedown', handleClickOutside);
-
         return () => {
             document.removeEventListener('mousedown', handleClickOutside);
         };
     }, [dropdownRef]);
 
     return (
-        <header className="backdrop-blur-lg text-white bg-primary-800 bg-opacity-50 py-5">
+        <header className="backdrop-blur-lg text-white bg-primary-800 bg-opacity-50 py-5 z-100">
             <div className="container mx-auto flex flex-wrap items-center">
                 <div className="w-full lg:w-auto lg:flex-grow lg:flex lg:items-center">
                     <h1 className="text-4xl lg:text-5xl font-bold text-center text-white
@@ -72,7 +71,7 @@ const UserHeader = () => {
                         <FiChevronDown size={16} />
                     </button>
                     {showMenu && (
-                        <div className="absolute right-0 mt-2 w-48 bg-white rounded-md shadow-lg z-10">
+                        <div className="absolute right-0 mt-2 w-48 bg-white rounded-md shadow-lg z-100">
                             <NavLink
                                 exact={true}
                                 to="/user/profile"

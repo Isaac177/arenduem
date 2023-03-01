@@ -3,7 +3,7 @@ import { FiDollarSign, FiMapPin } from 'react-icons/fi';
 
 const AnnounceCard = ({ housePicture, profilePicture, address, author, budget }) => {
     return (
-        <div className="bg-white rounded-lg shadow-md p-2">
+        <div className="bg-white rounded-lg p-2 cursor-pointer hover:shadow-lg hover:scale-105 transition duration-300 ease-in-out">
             <div className="mb-4">
                 <img src={housePicture} alt="House" className="w-full h-32 object-cover rounded-lg" />
             </div>

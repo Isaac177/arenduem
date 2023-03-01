@@ -18,10 +18,10 @@ const withAuthorization = (allowedRoles, WrappedComponent) => {
             const userRole = localStorage.getItem('role');
             if (!userRole) {
                 window.location.href = '/login';
-                return null; // render nothing while redirecting
+                return null;
             } else if (!allowedRoles.includes(userRole)) {
                 window.location.href = '/unauthorized';
-                return null; // render nothing while redirecting
+                return null;
             } else {
                 return <WrappedComponent {...this.props} />;
             }

@@ -3,12 +3,13 @@ import img from "../../assets/img/img.png";
 import room from "../../assets/img/img_1.png";
 
 
-const CoverProfile = () => {
+
+const CoverSection = () => {
     return (
         <>
             <div className="relative h-40 md:h-60 lg:h-72 xl:h-80">
                 <img
-                    className="object-cover w-full h-full rounded-t-xl z-0"
+                    className="object-cover w-full h-full"
                     src={room}
                     loading="lazy"
                     alt="Profile Cover"
@@ -28,4 +29,4 @@ const CoverProfile = () => {
     );
 };
 
-export default CoverProfile;
+export default CoverSection;
