@@ -3,6 +3,7 @@ import { Formik, Form, Field, ErrorMessage } from 'formik';
 import { object, string } from 'yup';
 import api from "../../utils/api";
 import { useNavigate } from 'react-router-dom';
+import {setTokenAndRole} from "../../actions/userActions";
 
 const SigninSchema = object().shape({
     email: string().email('Invalid email').required('Email is required'),
@@ -15,15 +16,14 @@ const Signin = () => {
     let navigate = useNavigate();
 
 
-    const handleSubmit = async (values, { setSubmitting }) => {
+    const handleSubmit = async (values, { setSubmitting, dispatch }) => {
         try {
             const response = await api.post('/auth/signin', {
                 email: values.email,
                 password: values.password,
             });
             const data = response.data;
-            localStorage.setItem('token', data.token);
-            localStorage.setItem('role', data.role);
+            dispatch(setTokenAndRole(data.token, data.role));
 
             if (data.role === 'admin') {
                 navigate('/admin/dashboard')

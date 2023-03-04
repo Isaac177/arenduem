@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Link, useLocation, useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { FiImage, FiInfo, FiHeart, FiStar, FiMail } from 'react-icons/fi';
 
 function InfoSidebar() {

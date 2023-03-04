@@ -3,6 +3,8 @@ import { Formik, Form, Field, ErrorMessage } from 'formik';
 import {boolean, object, string} from 'yup';
 import * as yup from "yup";
 import api from "../../utils/api";
+import {useDispatch} from "react-redux";
+import {setUserId} from "../../actions/userActions";
 
 const SignUpSchema = object().shape({
     firstName: string().required('First name is required'),
@@ -24,6 +26,8 @@ const SignUpSchema = object().shape({
 const SignUp = () => {
     const [success, setSuccess] = useState(false);
 
+    const dispatch = useDispatch();
+
     const handleSubmit = async (values, { setSubmitting }) => {
         try {
             console.log('values', values);
@@ -31,7 +35,9 @@ const SignUp = () => {
             if (response.status === 201) {
                 setSuccess(true);
                 setSubmitting(false);
-                console.log(values);
+                const user = response.data.user;
+                dispatch(setUserId(user.id));
+                console.log(user);
             }
         } catch (err) {
             console.error(err);

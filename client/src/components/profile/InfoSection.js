@@ -1,6 +1,6 @@
 import React from 'react';
 import ContentGallery from "./ContentGallery";
-import {Route, Routes, useRoutes} from "react-router-dom";
+import {useRoutes} from "react-router-dom";
 import InfoSidebar from "./InfoSidebar";
 import PersonalData from "./PersonalData";
 
