@@ -1,32 +1,29 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
+import {useDispatch, useSelector} from 'react-redux';
+import {fetchUserData} from "../../actions/userActions";
 
 const withAuthorization = (allowedRoles, WrappedComponent) => {
-    return class WithAuthorization extends React.Component {
-        checkAuthorization() {
-            const userRole = localStorage.getItem('role');
-            if (!userRole || !allowedRoles.includes(userRole)) {
-                window.location.href = '/unauthorized';
-            }
-        }
-        componentDidMount() {
-            this.checkAuthorization();
-        }
-        componentDidUpdate() {
-            this.checkAuthorization();
-        }
-        render() {
-            const userRole = localStorage.getItem('role');
+    return (props) => {
+        const navigate = useNavigate();
+        const userRole = useSelector((state) => state.auth.role);
+        const dispatch = useDispatch();
+
+        React.useEffect(() => {
+            const fetchUser = async () => {
+                await dispatch(fetchUserData()); // dispatch the async action creator
+            };
+
             if (!userRole) {
-                window.location.href = '/login';
-                return null;
+                fetchUser().then(r => navigate('/login'));
             } else if (!allowedRoles.includes(userRole)) {
-                window.location.href = '/unauthorized';
-                return null;
-            } else {
-                return <WrappedComponent {...this.props} />;
+                navigate('/unauthorized');
             }
-        }
+        }, [dispatch, navigate, allowedRoles, userRole]);
+
+        return <WrappedComponent {...props} />;
     };
 };
+
 
 export default withAuthorization;

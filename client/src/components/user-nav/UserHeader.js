@@ -2,16 +2,18 @@ import React, { useState, useEffect, useRef } from 'react';
 import { NavLink } from 'react-router-dom';
 import {FiBell, FiChevronDown, FiLogOut, FiMessageCircle, FiUser} from 'react-icons/fi';
 import axios from "axios";
+import {useDispatch} from "react-redux";
+import {logout} from "../../actions/userActions";
 
 const UserHeader = () => {
     const [showMenu, setShowMenu] = useState(false);
     const dropdownRef = useRef(null);
+    const dispatch = useDispatch();
 
     const handleLogout = async () => {
         try {
             await axios.get('http://localhost:8000/api/auth/signout');
-            localStorage.removeItem('role');
-            localStorage.removeItem('token');
+            dispatch(logout());
             window.location.href = '/';
         } catch (error) {
             console.error(error);

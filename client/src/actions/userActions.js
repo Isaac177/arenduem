@@ -5,6 +5,7 @@ export const FETCH_USER_DATA_FAILURE = 'FETCH_USER_DATA_FAILURE';
 export const UPDATE_USER_DATA_SUCCESS = 'UPDATE_USER_DATA_SUCCESS';
 export const SET_USER_ID = 'SET_USER_ID';
 export const SET_TOKEN_AND_ROLE = 'SET_TOKEN_AND_ROLE';
+export const LOGOUT = 'LOGOUT';
 
 export const fetchUserData = () => async (dispatch, getState) => {
     try {
@@ -14,6 +15,8 @@ export const fetchUserData = () => async (dispatch, getState) => {
             type: FETCH_USER_DATA_SUCCESS,
             payload: response.data,
         });
+        const { token, role } = response.data;
+        dispatch(setTokenAndRole(token, role));
     } catch (error) {
         dispatch({
             type: FETCH_USER_DATA_FAILURE,
@@ -21,6 +24,7 @@ export const fetchUserData = () => async (dispatch, getState) => {
         });
     }
 };
+
 
 export const updateUser = (userData) => async (dispatch, getState) => {
     try {
@@ -46,3 +50,7 @@ export const setTokenAndRole = (token, role) => ({
     payload: { token, role }
 });
 
+
+export const logout = () => ({
+    type: LOGOUT,
+});

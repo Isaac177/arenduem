@@ -1,6 +1,7 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const authRoutes = require('./routes/auth');
+const userRoutes = require('./routes/userRoutes');
 const passport = require('passport');
 const cors = require('cors');
 const { User } = require("./models");
@@ -25,6 +26,8 @@ app.get('/users', (req, res) => {
         .then(users => res.json(users))
         .catch(err => res.status(500).json({ message: err.message }));
 });
+app.use("/users", userRoutes);
+
 app.post('/api/auth/signup', authController.signup);
 app.post('/api/auth/signin', authController.signin);
 app.get('/api/auth/signout', authController.signout);

@@ -13,17 +13,16 @@ import UserHeader from "./components/user-nav/UserHeader";
 import CoverProfile from "./components/profile/CoverProfile";
 import ContentGallery from "./components/profile/ContentGallery";
 import PersonalData from "./components/profile/PersonalData";
-import {Provider} from "react-redux";
-import store from "./store";
+import {useSelector} from "react-redux";
+
 
 const UserDashboardWithAuth = withAuthorization(['user'], UserDashboard);
 
 
 function App() {
-    const userRole = localStorage.getItem('role');
+    const userRole = useSelector(state => state.auth.role);
 
     return (
-        <Provider store={store}>
         <Router>
             <div className="flex flex-col min-h-screen">
                 {userRole === 'user' ? <UserHeader /> : <Header />}
@@ -44,7 +43,6 @@ function App() {
                 <Footer />
             </div>
         </Router>
-        </Provider>
     );
 }
 

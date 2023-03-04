@@ -24,6 +24,7 @@
     "react-scroll": "^1.8.9",
     "react-select": "^5.7.0",
     "redux": "^4.2.1",
+    "redux-persist": "^6.0.0",
     "redux-thunk": "^2.4.2",
     "web-vitals": "^2.1.4",
     "yup": "^1.0.0"

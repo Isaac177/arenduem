@@ -1,9 +1,20 @@
-const User = require('../models').User;
+const { User } = require("../models");
 
+const getUserById = async (req, res) => {
+    const { userId } = req.params;
 
-exports.getAllUsers = async (req, res) => {
-    User.findAll()
-        .then(users => res.status(200).send(users))
-        .catch(error => res.status(400).send(error));
+    try {
+        const user = await User.findByPk(userId);
+        if (!user) {
+            throw new Error(`User with ID ${userId} not found`);
+        }
+        res.json(user);
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ message: error.message });
+    }
 };
 
+module.exports = {
+    getUserById,
+};

@@ -4,6 +4,7 @@ import { object, string } from 'yup';
 import api from "../../utils/api";
 import { useNavigate } from 'react-router-dom';
 import {setTokenAndRole} from "../../actions/userActions";
+import {useDispatch} from "react-redux";
 
 const SigninSchema = object().shape({
     email: string().email('Invalid email').required('Email is required'),
@@ -14,21 +15,24 @@ const Signin = () => {
     const [success, setSuccess] = useState(false);
     const [error, setError] = useState(null);
     let navigate = useNavigate();
+    const dispatch = useDispatch();
 
 
-    const handleSubmit = async (values, { setSubmitting, dispatch }) => {
+    const handleSubmit = async (values, { setSubmitting }) => {
         try {
             const response = await api.post('/auth/signin', {
                 email: values.email,
                 password: values.password,
             });
-            const data = response.data;
-            dispatch(setTokenAndRole(data.token, data.role));
 
-            if (data.role === 'admin') {
-                navigate('/admin/dashboard')
-            } else if (data.role === 'user') {
-                navigate('/user/dashboard')
+            const { token, role } = response.data;
+            dispatch(setTokenAndRole(token, role));
+            console.log(response.data.token, response.data.role);
+
+            if (role === 'admin') {
+                navigate('/admin/dashboard');
+            } else if (role === 'user') {
+                navigate('/user/dashboard');
             }
 
             setSuccess(true);

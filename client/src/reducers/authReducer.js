@@ -1,14 +1,30 @@
-import { SET_USER_ID } from '../actions/userActions';
+import {FETCH_USER_DATA_SUCCESS, LOGOUT, SET_TOKEN_AND_ROLE} from "../actions/userActions";
+
 const initialState = {
-    userId: null,
+    token: null,
+    role: null,
+    user: null
 };
 
 const authReducer = (state = initialState, action) => {
     switch (action.type) {
-        case SET_USER_ID:
+        case SET_TOKEN_AND_ROLE:
             return {
                 ...state,
-                userId: action.payload,
+                token: action.payload.token,
+                role: action.payload.role
+            };
+        case FETCH_USER_DATA_SUCCESS:
+            return {
+                ...state,
+                user: action.payload
+            };
+        case LOGOUT:
+            return {
+                ...state,
+                token: null,
+                role: null,
+                user: null
             };
         default:
             return state;

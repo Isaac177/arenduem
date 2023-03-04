@@ -31,8 +31,6 @@ X
 (seeders/20230212073745-smoking-status.js,4/c/4cc09e137cc8a41e1ada49cb1c44541d3074cb55
 @
 models/gender.js,e/8/e885ae6c24c10ce4162d8d6bd61c2c8ae7f164e3
-M
-controllers/userController.js,e/c/ec44b050defa6855748d2a8d6ff06d33bc8bba3a
 b
 2migrations/20230211204142-create-smoking-status.js,8/d/8df7efbbd6f2565e8c8151bd960cafc8bdded51f
 Y
@@ -41,8 +39,6 @@ Y
 )client/src/assets/img/cool-background.svg,d/a/da5a8b7d25fa93052ae2f4e7fb9c1891088d8a49
 R
 "client/src/assets/data/profiles.js,5/9/59ea551c5573132bb582035577c66d02948c34c1
-C
-client/src/index.js,7/6/76cbb38a5cef42611c7af13985f39248682f4aa1
 V
 &client/src/components/footer/Footer.js,9/b/9b17be6ab52fe509f6b03a03cc6308a2c49204d6
 O
@@ -87,10 +83,6 @@ U
 %client/src/components/404/NotFound.js,0/6/06e48b5420c052a804f5a1610758379bab3b52c4
 B
 client/src/App.css,2/a/2a082b18bfc3afa6b25d6c4584e995e6b6c4ee3e
-D
-routes/userRoutes.js,e/9/e9eb043515685faf25833d70ef475596fc6e333d
->
-models/user.js,5/8/58952233992370efa7ea98b3ec60c43d2d227d89
 >
 routes/auth.js,8/b/8bbe7473c2ec08c224aead7ec6d668fb50f27965
 V
@@ -107,8 +99,6 @@ b
 2client/src/components/dash-content/AnnounceCard.js,3/2/324288cd343e22d8dd7d17e8470288a55a57eea0
 H
 models/drinkingstatus.js,e/4/e4f2fe0a3168beda491683c7e7d01b6089e3e49e
-i
-9client/src/components/authentication/withAuthorization.js,5/a/5af9d82aa5f3ef7402a940a3d337eb4754c38543
 ]
 -client/src/components/profile/CoverSection.js,1/1/117483e31a67c9eaaae6269c14ec2b6cabad5d9b
 _
@@ -119,8 +109,6 @@ a
 ,client/src/components/profile/InfoContent.js,f/3/f31d39be01d597291008d3e5bc7f1e836f1af430
 a
 1client/src/components/dash-content/DashContent.js,f/e/fe2b7bef1ba8ebf44d061d1a0cf30f15bdde64d8
-\
-,client/src/components/user-nav/UserHeader.js,3/9/396160d31be1e04cf4585d252b617eaf1949e487
 X
 (client/src/components/utils/Separator.js,f/9/f9a1dd61056480e1f9f11d55786c48b150fcc53e
 D
@@ -131,7 +119,5 @@ I
 client/tailwind.config.js,6/b/6b273cff573b0a837bad584f90d7d827bf358bb1
 _
 /client/src/components/profile/ContentGallery.js,4/1/412ca9cf27b663f621a2a5639be18c734f640bb2
-M
-controllers/authController.js,0/3/0337acf1f1f07013abb1b108a0023e639b60b2e0
 T
 $client/src/components/header/Hero.js,1/e/1e618464d759cce8d5b2e8a191c143e5e4838f63
