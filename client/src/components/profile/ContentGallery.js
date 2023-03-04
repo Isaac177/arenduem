@@ -1,47 +1,61 @@
-import React, {useEffect, useState} from 'react';
+import React, { useEffect, useState } from 'react';
+import ImageGallery from 'react-image-gallery';
+import {
+    FiChevronLeft,
+    FiChevronRight,
+    FiX,
+} from 'react-icons/fi';
+import 'react-image-gallery/styles/css/image-gallery.css';
+import ProfileImgCard from "./ProfileImgCard";
 
-const mockImages = [
-    {
-        id: 1,
-        url: 'https://images.unsplash.com/photo-1611781928371-8b1b0b1b1b1b?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80'
-    },
-    {
-        id: 2,
-        url: 'https://images.unsplash.com/photo-1593642702832-55a5255a1c5a?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80'
-    },
-    {
-        id: 3,
-        url: 'https://images.unsplash.com/photo-1558244663-e6e3eda3c002?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80'
-    }
-];
-
+const mockImages = [];
 
 const ContentGallery = () => {
     const [images, setImages] = useState([]);
 
     useEffect(() => {
-        fetch('https://api.unsplash.com/photos/random?count=3', {
+        fetch('https://api.unsplash.com/photos/random?count=6', {
             headers: {
-                Authorization: 'Client-ID <your_access_key>'
-            }
+                Authorization: 'Client-ID WBt_g3dIVn2XgPgedho1kRIHguNd0D7Uruwvy3K8Sis',
+            },
         })
-            .then(response => response.json())
-            .then(data => {
-                // Map the data to the mockImages array format
+            .then((response) => response.json())
+            .then((data) => {
                 const newImages = data.map((image, index) => ({
-                    id: index + 1,
-                    url: image.urls.regular
+                    original: image.urls.regular,
+                    thumbnail: image.urls.thumb,
+                    alt: image.alt_description || 'Unsplash Image',
+                    originalAlt: image.alt_description || 'Image ' + (index + 1),
+                    thumbnailAlt: image.alt_description || 'Image ' + (index + 1),
                 }));
-                // Add the new images to the existing images
-                setImages([...mockImages, ...newImages]);
+
+                const uniqueImages = newImages.filter(
+                    (newImage) =>
+                        !mockImages.some(
+                            (mockImage) => mockImage.original === newImage.original
+                        )
+                );
+
+                setImages([...mockImages, ...uniqueImages]);
             })
-            .catch(error => console.error(error));
+            .catch((error) => console.error(error));
     }, []);
 
     return (
-        <div>
-
-        </div>
+        /*<div className="flex flex-row items-center justify-center">
+            <div className="flex flex-col items-center justify-center">
+                <InfoSidebar />
+            </div>*/
+            <div className="flex flex-row items-center gap-4 flex-wrap wrap">
+                {images.map((image) => (
+                    <ProfileImgCard
+                        key={image.id}
+                        profileImg={image.original}
+                        profileAlt={image.alt}
+                    />
+                ))}
+            </div>
+        /*</div>*/
     );
 };
 

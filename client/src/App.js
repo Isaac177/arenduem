@@ -11,6 +11,8 @@ import withAuthorization from './components/authentication/withAuthorization';
 import NotFound from "./components/404/NotFound";
 import UserHeader from "./components/user-nav/UserHeader";
 import CoverProfile from "./components/profile/CoverProfile";
+import ContentGallery from "./components/profile/ContentGallery";
+import PersonalData from "./components/profile/PersonalData";
 
 const UserDashboardWithAuth = withAuthorization(['user'], UserDashboard);
 
@@ -24,12 +26,15 @@ function App() {
                 {userRole === 'user' ? <UserHeader /> : <Header />}
                 <main className="flex-1">
                     <Routes>
-                        <Route exact path="/" element={<Home />} />
+                        {userRole === 'user' ? <Route exact path="/" element={<UserDashboardWithAuth />} /> : <Route exact path="/" element={<Home />} />}
                         <Route exact path="/signup" element={<SignUp />} />
                         <Route exact path="/signin" element={<SignIn />} />
                         <Route path="*" element={<NotFound />} />
                         <Route exact path="/user/dashboard/*" element={<UserDashboardWithAuth />}>
-                            <Route path=".profile" element={<CoverProfile />} />
+                            <Route path="profile/*" element={<CoverProfile />}>
+                                <Route path="gallery/" element={<ContentGallery />} />
+                                <Route path="personaldata/" element={<PersonalData />} />
+                            </Route>
                         </Route>
                     </Routes>
                 </main>

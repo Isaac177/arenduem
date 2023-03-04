@@ -48,3 +48,9 @@
   width: 922px;
   left: 158px;
 }
+
+.show-all {
+  height: auto;
+  transition: height 0.5s ease-in-out;
+}
+

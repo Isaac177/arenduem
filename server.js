@@ -16,14 +16,14 @@ app.use(passport.initialize());
 app.use(cors({
     origin: 'http://localhost:3000'
 }));
+app.get('/', (req, res) => {
+    res.send('Hello World!');
+});
 app.use('/api/auth', authRoutes);
 app.get('/users', (req, res) => {
     User.findAll()
         .then(users => res.json(users))
         .catch(err => res.status(500).json({ message: err.message }));
-});
-app.get('/', (req, res) => {
-    res.send('Hello World!');
 });
 app.post('/api/auth/signup', authController.signup);
 app.post('/api/auth/signin', authController.signin);

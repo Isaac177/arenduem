@@ -3,6 +3,8 @@ import SidebarMenu from "../../components/side-bar/SidebarMenu";
 import CoverProfile from "../../components/profile/CoverProfile";
 import {useRoutes} from "react-router-dom";
 import LatestAnnouncements from "../../components/dash-content/LatestAnnouncements";
+import ContentGallery from "../../components/profile/ContentGallery";
+import PersonalData from "../../components/profile/PersonalData";
 
 
 const UserDashboard = () => {
@@ -12,9 +14,19 @@ const UserDashboard = () => {
             element: <LatestAnnouncements />
         },
         {
-            path: "/profile",
-            element: <CoverProfile />
-        }
+            path: "/profile/*",
+            element: <CoverProfile />,
+            children: [
+                {
+                    path: "gallery",
+                    element: <ContentGallery />
+                },
+                {
+                    path: "personaldata",
+                    element: <PersonalData />
+                }
+            ]
+        },
     ]);
 
     return (
