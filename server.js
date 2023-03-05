@@ -6,6 +6,7 @@ const passport = require('passport');
 const cors = require('cors');
 const { User } = require("./models");
 const authController = require("./controllers/authController");
+const userController = require("./controllers/userController");
 require('dotenv').config();
 require('./config/passport')(passport);
 const app = express();
@@ -27,6 +28,8 @@ app.get('/users', (req, res) => {
         .catch(err => res.status(500).json({ message: err.message }));
 });
 app.use("/users", userRoutes);
+app.get('/users/:userId', userController.getUserById);
+app.put('/users/:userId', userController.updateUserById);
 
 app.post('/api/auth/signup', authController.signup);
 app.post('/api/auth/signin', authController.signin);

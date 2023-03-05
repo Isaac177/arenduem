@@ -35,7 +35,7 @@ function App() {
                         <Route exact path="/user/dashboard/*" element={<UserDashboardWithAuth />}>
                             <Route path="profile/*" element={<CoverProfile />}>
                                 <Route path="gallery/" element={<ContentGallery />} />
-                                <Route path="personaldata/" element={<PersonalData />} />
+                                <Route path="personaldata/:userId" element={<PersonalData />} />
                             </Route>
                         </Route>
                     </Routes>

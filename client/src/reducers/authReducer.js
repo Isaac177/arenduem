@@ -1,9 +1,10 @@
-import {FETCH_USER_DATA_SUCCESS, LOGOUT, SET_TOKEN_AND_ROLE} from "../actions/userActions";
+import {FETCH_USER_DATA_SUCCESS, LOGOUT, SET_TOKEN_AND_ROLE, SET_USER_ID} from "../actions/userActions";
 
 const initialState = {
     token: null,
     role: null,
-    user: null
+    user: null,
+    userId: null,
 };
 
 const authReducer = (state = initialState, action) => {
@@ -18,6 +19,11 @@ const authReducer = (state = initialState, action) => {
             return {
                 ...state,
                 user: action.payload
+            };
+        case SET_USER_ID:
+            return {
+                ...state,
+                userId: action.payload,
             };
         case LOGOUT:
             return {

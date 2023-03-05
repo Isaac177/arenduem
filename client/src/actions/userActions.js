@@ -1,8 +1,9 @@
 import axios from "axios";
+import {initialState} from "../reducers/userReducer";
 
 export const FETCH_USER_DATA_SUCCESS = 'FETCH_USER_DATA_SUCCESS';
 export const FETCH_USER_DATA_FAILURE = 'FETCH_USER_DATA_FAILURE';
-export const UPDATE_USER_DATA_SUCCESS = 'UPDATE_USER_DATA_SUCCESS';
+export const UPDATE_USER_FIELD = 'UPDATE_USER_FIELD';
 export const SET_USER_ID = 'SET_USER_ID';
 export const SET_TOKEN_AND_ROLE = 'SET_TOKEN_AND_ROLE';
 export const LOGOUT = 'LOGOUT';
@@ -10,11 +11,17 @@ export const LOGOUT = 'LOGOUT';
 export const fetchUserData = () => async (dispatch, getState) => {
     try {
         const { userId } = getState().auth;
-        const response = await axios.get(`/users/${userId}`);
+        const response = await axios.get(`http://localhost:8000/users/${userId}`);
+        const userData = {
+            ...initialState.userData,
+            ...response.data,
+        };
+
         dispatch({
             type: FETCH_USER_DATA_SUCCESS,
-            payload: response.data,
+            payload: userData,
         });
+
         const { token, role } = response.data;
         dispatch(setTokenAndRole(token, role));
     } catch (error) {
@@ -25,19 +32,19 @@ export const fetchUserData = () => async (dispatch, getState) => {
     }
 };
 
-
 export const updateUser = (userData) => async (dispatch, getState) => {
     try {
         const { userId } = getState().auth;
-        await axios.put(`/users/${userId}`, userData);
+        await axios.put(`http://localhost:8000/users/${userId}`, userData);
         dispatch({
-            type: UPDATE_USER_DATA_SUCCESS,
+            type: UPDATE_USER_FIELD,
             payload: userData,
         });
     } catch (error) {
         console.error(error);
     }
 };
+
 
 export const setUserId = (userId) => ({
     type: SET_USER_ID,

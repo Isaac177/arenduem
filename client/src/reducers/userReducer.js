@@ -1,8 +1,16 @@
+import { FETCH_USER_DATA_SUCCESS, FETCH_USER_DATA_FAILURE, UPDATE_USER_FIELD } from '../actions/userActions';
 
-import { FETCH_USER_DATA_SUCCESS, FETCH_USER_DATA_FAILURE } from '../actions/userActions';
-
-const initialState = {
-    userData: null,
+export const initialState = {
+    userData: {
+        firstName: '',
+        lastName: '',
+        email: '',
+        dateOfBirth: '',
+        occupation: '',
+        aboutMe: '',
+        moveInDate: '',
+        budget: '',
+    },
     error: null,
 };
 
@@ -20,9 +28,18 @@ const userReducer = (state = initialState, action) => {
                 userData: null,
                 error: action.payload,
             };
+        case UPDATE_USER_FIELD:
+            return {
+                ...state,
+                userData: {
+                    ...state.userData,
+                    [action.payload.name]: action.payload.value,
+                },
+            };
         default:
             return state;
     }
 };
+
 
 export default userReducer;

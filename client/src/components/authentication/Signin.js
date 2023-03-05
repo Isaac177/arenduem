@@ -3,7 +3,7 @@ import { Formik, Form, Field, ErrorMessage } from 'formik';
 import { object, string } from 'yup';
 import api from "../../utils/api";
 import { useNavigate } from 'react-router-dom';
-import {setTokenAndRole} from "../../actions/userActions";
+import {setTokenAndRole, setUserId} from "../../actions/userActions";
 import {useDispatch} from "react-redux";
 
 const SigninSchema = object().shape({
@@ -25,9 +25,11 @@ const Signin = () => {
                 password: values.password,
             });
 
-            const { token, role } = response.data;
+            const { token, role, userId } = response.data;
+
             dispatch(setTokenAndRole(token, role));
-            console.log(response.data.token, response.data.role);
+            dispatch(setUserId(userId));
+            console.log('userId', userId);
 
             if (role === 'admin') {
                 navigate('/admin/dashboard');

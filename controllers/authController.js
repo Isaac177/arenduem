@@ -62,7 +62,7 @@ exports.signin = async (req, res) => {
                 expiresIn: process.env.JWT_EXPIRES_IN || '1h',
             }
         );
-        return res.status(200).json({ token, role: user.get('role') });
+        return res.status(200).json({ token, role: user.get('role'), userId: user.id });
     } catch (error) {
         console.error(error);
         return res.status(500).json({ message: 'Server error' });

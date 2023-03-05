@@ -18,11 +18,12 @@ function InfoSidebar() {
 
     return (
         <>
-            <div className="fixed flex flex-col h-screen w-64 h-1/3 rounded-lg">
-                <ul className="flex flex-col w-full">
+            <div className="fixed flex flex-col h-1/3 w-64 rounded-tl-lg bg-primaryGrey-600">
+                <div className="flex flex-col justify-between h-full">
+                <ul className="flex flex-col h-full">
                     <li
                         className={`px-6 py-4 flex items-center hover:text-aqua-500 hover:cursor-pointer ${
-                            activeLink === '/user/dashboard/profile' ? 'border-l-4 border-aqua-500 bg-gray-50 text-aqua-500' : ''
+                            activeLink === '/user/dashboard/profile' ? 'text-aqua-500 bg-darkCu-900': ''
                         }`}
                         onClick={() => handleClick('/user/dashboard/profile')}
                     >
@@ -31,7 +32,7 @@ function InfoSidebar() {
                     </li>
                     <li
                         className={`px-6 py-4 flex items-center hover:text-aqua-500 hover:cursor-pointer ${
-                            activeLink === '/user/dashboard/profile/personaldata' ? 'border-l-4 border-aqua-500 bg-gray-50 text-aqua-500' : ''
+                            activeLink === '/user/dashboard/profile/personaldata' ? 'text-aqua-500 bg-darkCu-900': ''
                         }`}
                         onClick={() => handleClick('/user/dashboard/profile/personaldata')}
                     >
@@ -40,7 +41,7 @@ function InfoSidebar() {
                     </li>
                     <li
                         className={`px-6 py-4  flex items-center hover:text-aqua-500 hover:cursor-pointer ${
-                            activeLink === '/user/dashboard/profile/aboutme' ? 'border-l-4 border-aqua-500 bg-gray-50 text-aqua-500' : ''
+                            activeLink === '/user/dashboard/profile/aboutme' ? 'text-aqua-500 bg-darkCu-900': ''
                         }`}
                         onClick={() => handleClick('/user/dashboard/profile/aboutme')}
                     >
@@ -49,7 +50,7 @@ function InfoSidebar() {
                     </li>
                     <li
                         className={`px-6 py-4 flex items-center hover:text-aqua-500 hover:cursor-pointer ${
-                            activeLink === '/user/dashboard/profile/interests' ? 'border-l-4 border-aqua-500 bg-gray-50 text-aqua-500' : ''
+                            activeLink === '/user/dashboard/profile/interests' ? 'text-aqua-500 bg-darkCu-900': ''
                         }`}
                         onClick={() => handleClick('/user/dashboard/profile/interests')}
                     >
@@ -58,7 +59,7 @@ function InfoSidebar() {
                     </li>
                     <li
                         className={`px-6 py-4 flex items-center hover:text-aqua-500 hover:cursor-pointer ${
-                            activeLink === '/user/dashboard/profile/matches' ? 'border-l-4 border-aqua-500 bg-gray-50 text-aqua-500' : ''
+                            activeLink === '/user/dashboard/profile/matches' ? 'text-aqua-500 bg-darkCu-900': ''
                         }`}
                         onClick={() => handleClick('/user/dashboard/profile/matches')}
                     >
@@ -67,7 +68,7 @@ function InfoSidebar() {
                     </li>
                     <li
                         className={`px-6 py-4 flex items-center hover:text-aqua-500 hover:cursor-pointer ${
-                            activeLink === '/user/dashboard/profile/email' ? 'border-l-4 border-aqua-500 bg-gray-50 text-aqua-500' : ''
+                            activeLink === '/user/dashboard/profile/email' ? 'text-aqua-500 bg-darkCu-900': ''
                         }`}
                         onClick={() => handleClick('/user/dashboard/profile/email')}
                     >
@@ -75,6 +76,7 @@ function InfoSidebar() {
                         My Email
                     </li>
                 </ul>
+                </div>
             </div>
         </>
     );

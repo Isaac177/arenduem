@@ -42,20 +42,15 @@ const ContentGallery = () => {
     }, []);
 
     return (
-        /*<div className="flex flex-row items-center justify-center">
-            <div className="flex flex-col items-center justify-center">
-                <InfoSidebar />
-            </div>*/
-            <div className="flex flex-row items-center gap-4 flex-wrap wrap">
-                {images.map((image) => (
-                    <ProfileImgCard
-                        key={image.id}
-                        profileImg={image.original}
-                        profileAlt={image.alt}
-                    />
-                ))}
-            </div>
-        /*</div>*/
+        <div className="flex flex-row items-center gap-4 flex-wrap wrap">
+            {images.map((image, index) => (
+                <ProfileImgCard
+                    key={index}
+                    profileImg={image.original}
+                    profileAlt={image.alt}
+                />
+            ))}
+        </div>
     );
 };
 
