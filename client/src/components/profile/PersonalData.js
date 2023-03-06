@@ -70,8 +70,11 @@ const PersonalData = () => {
                             <p>{userData && userData.aboutMe}</p>
                             <p>{userData && userData.moveInDate.slice(0, 10)}</p>
                             <p>{`Tt ${userData && userData.budget}/month`}</p>
-                            <button onClick={handleEdit}>
+                            <button
+                                onClick={handleEdit}
+                                className='text-aqua-300 flex flex-row hover:text-aqua-500 border border-aqua-300 hover:border-aqua-500 rounded-lg p-2 mt-4'>
                                 <FiEdit2 size={24} />
+                                <span className="ml-2">Edit</span>
                             </button>
                         </div>
                     </div>

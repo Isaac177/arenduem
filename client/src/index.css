@@ -43,7 +43,7 @@
 }
 
 .moon {
-  border: 1px solid white;
+  border: 1px transparent;
   border-radius: 292px 0 24px 0;
   width: 922px;
   left: 158px;

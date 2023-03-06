@@ -19,7 +19,7 @@ const InfoSection = () => {
         ]);
     return (
         <div className="flex flex-row justify-between bg-gradient-to-r
-        from-primaryGrey-400 to-transparent rounded-l-lg w-full h-full">
+        from-primaryGrey-400 to-transparent rounded-l-lg w-full h-full mb-20">
             <div className="flex flex-col justify-between">
                 <InfoSidebar />
             </div>
