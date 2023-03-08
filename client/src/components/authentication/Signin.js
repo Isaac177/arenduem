@@ -29,7 +29,6 @@ const Signin = () => {
 
             dispatch(setTokenAndRole(token, role));
             dispatch(setUserId(userId));
-            console.log('userId', userId);
 
             if (role === 'admin') {
                 navigate('/admin/dashboard');

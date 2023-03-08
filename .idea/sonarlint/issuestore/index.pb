@@ -65,16 +65,12 @@ B
 config/config.json,b/4/b46af4c0cf9c68fa9c458c1219f7c1d18ec484c2
 b
 2migrations/20230211204135-create-housing-status.js,9/4/9497e3cb3556315b866b1ba5dd9d4bc1f4b17a7a
-X
-(migrations/20230211204102-create-user.js,2/9/29597007042cdd6d2b9c281391829ae1c4889cfe
 L
 middleware/authMiddleware.js,4/9/4930bbf875888d8e0a6a978ddfc86c0749f8db55
 ?
 models/media.js,5/2/520d024105946b36c6cb783930621dd5a0441782
 ?
 models/index.js,e/4/e41453b900e7c418643d34a8cb9d68efc0b0ddd6
-^
-.migrations/20230224181450-add-role-to-users.js,0/d/0da5a78b04ff35868bdbe430ed0ff59e92fefc68
 4
 .env,3/c/3c84dcdc6bbe3d7817c49dcdc327b926fea1808a
 G
@@ -83,8 +79,6 @@ U
 %client/src/components/404/NotFound.js,0/6/06e48b5420c052a804f5a1610758379bab3b52c4
 B
 client/src/App.css,2/a/2a082b18bfc3afa6b25d6c4584e995e6b6c4ee3e
->
-routes/auth.js,8/b/8bbe7473c2ec08c224aead7ec6d668fb50f27965
 V
 &client/src/components/header/Header.js,5/f/5f63eea74f861092d6d5bab71157305af4ebe117
 H
@@ -115,10 +109,6 @@ R
 "client/src/components/home/Home.js,8/e/8e140dd2d1251bd2c24499e26986a0b37dfcab57
 ]
 -client/src/components/side-bar/SidebarMenu.js,6/4/64ef7a8200192e39250d0403a734a3ca35d8377d
->
-models/user.js,5/8/58952233992370efa7ea98b3ec60c43d2d227d89
-L
-client/src/reducers/index.js,f/d/fddb094e79d9adb9ec669c65c9511e7135f8a137
 ^
 .client/src/components/authentication/SignUp.js,0/9/09b886ecfc59f032f40aedaa32bcf74c4c342147
 V
@@ -131,12 +121,8 @@ C
 client/src/index.js,7/6/76cbb38a5cef42611c7af13985f39248682f4aa1
 \
 ,client/src/components/user-nav/UserHeader.js,3/9/396160d31be1e04cf4585d252b617eaf1949e487
-C
-client/src/store.js,4/a/4afe2750c2c347c6e38ea33d5c926b1ae43d2dfb
 W
 'client/src/reducers/persistedReducer.js,6/3/6361bca102e9d39917c03f71a1468aa2778409a8
-^
-.client/src/components/authentication/Signin.js,c/c/cc0ed757059b5deb7322a5477e7497d8db21e27a
 R
 "client/src/reducers/userReducer.js,3/a/3af3e9d3f595ac02dfee7e96d822cc0e9c01d450
 A
@@ -145,3 +131,23 @@ M
 controllers/authController.js,0/3/0337acf1f1f07013abb1b108a0023e639b60b2e0
 R
 "client/src/reducers/authReducer.js,1/2/125040e183eb986a3bc0bdcd4cfd8f79790e3a2b
+D
+client/src/index.css,7/5/751657f4fd5a737220a43ddd2ad7926446725c56
+I
+client/tailwind.config.js,6/b/6b273cff573b0a837bad584f90d7d827bf358bb1
+\
+,client/src/components/profile/InfoSection.js,6/8/684b1500e338bc15f113060860ad71c2e49166ac
+^
+.client/src/components/authentication/Signin.js,c/c/cc0ed757059b5deb7322a5477e7497d8db21e27a
+]
+-client/src/components/profile/CoverProfile.js,5/3/53a64b797e407def5cc58a0fe2c1e6cf07e44f36
+]
+-client/src/components/profile/PersonalData.js,0/0/00ed5f8f30fe7675ed75557034cc5aff2f6d43b9
+\
+,client/src/components/profile/InfoSidebar.js,c/7/c707f3c748a300489bc38b4055d490877acd53ef
+]
+-client/src/components/profile/CoverSection.js,1/1/117483e31a67c9eaaae6269c14ec2b6cabad5d9b
+C
+client/src/store.js,4/a/4afe2750c2c347c6e38ea33d5c926b1ae43d2dfb
+^
+.client/src/components/profile/FullSizeImage.js,2/c/2c291c015356f83961649705db1df19d0dd2d658

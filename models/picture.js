@@ -22,6 +22,10 @@ module.exports = (sequelize, DataTypes) => {
       type: Sequelize.BOOLEAN,
       defaultValue: false
     },
+    isCover: {
+      type: Sequelize.BOOLEAN,
+      defaultValue: false
+    },
     createdAt: Sequelize.DATE,
     updatedAt: Sequelize.DATE
   }, {

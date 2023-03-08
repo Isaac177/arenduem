@@ -2,7 +2,9 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const authRoutes = require('./routes/auth');
 const userRoutes = require('./routes/userRoutes');
+const picturesRoutes = require('./routes/picturesRoutes');
 const passport = require('passport');
+const multer = require('multer');
 const cors = require('cors');
 const { User } = require("./models");
 const authController = require("./controllers/authController");
@@ -34,6 +36,7 @@ app.put('/users/:userId', userController.updateUserById);
 app.post('/api/auth/signup', authController.signup);
 app.post('/api/auth/signin', authController.signin);
 app.get('/api/auth/signout', authController.signout);
+app.use('/api/pictures', picturesRoutes);
 
 const PORT = 8000;
 app.listen(PORT, () => {
