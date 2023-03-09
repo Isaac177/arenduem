@@ -11,26 +11,29 @@ import {
     setIsCover,
     setIsFullSize,
     getPictureById,
-    uploadPicture
+    uploadPicture, UPLOAD_PICTURE_REQUEST, UPLOAD_PICTURE_SUCCESS, UPLOAD_PICTURE_FAILURE
 } from '../../actions/galleryActions';
 import {useDispatch, useSelector} from "react-redux";
 import FullSizeImage from "./FullSizeImage";
+import axios from "axios";
 
 const ContentGallery = () => {
     const [currentImageIndex, setCurrentImageIndex] = useState(0);
     const dispatch = useDispatch();
     const [isPrevDisabled, setIsPrevDisabled] = useState(true);
     const [isNextDisabled, setIsNextDisabled] = useState(false);
+    const { file, isMain, isCover, id: pictureId } = useSelector(state => state.gallery) || {};
 
     const images = useSelector(state => state.gallery.images);
-    const isMain = useSelector(state => state.gallery.isMain);
-    const isCover = useSelector(state => state.gallery.isCover);
+    /*const isMain = useSelector(state => state.gallery.isMain);
+    const isCover = useSelector(state => state.gallery.isCover);*/
     const isModalOpen = useSelector(state => state.gallery.isModalOpen);
     const isFullSize = useSelector(state => state.gallery.isFullSize);
+    const userId = useSelector((state) => state.auth.userId);
 
-    useEffect(() => {
+  /*  useEffect(() => {
         dispatch(getPictureById());
-    }, [dispatch]);
+    }, [dispatch]);*/
 
     const handleDeleteImage = (id) => {
         const newImages = images.filter((image, index) => index !== id);
@@ -66,18 +69,37 @@ const ContentGallery = () => {
         }
     };
 
-    const handleUploadImageClick = async () => {
-        await dispatch(uploadPicture());
+    const handleUploadImage = async (values) => {
+        const formData = new FormData();
+        console.log(values.file)
+        formData.append('file', values.file);
+        formData.append('isMain', values.isMain);
+        formData.append('isCover', values.isCover);
+
+        const config = {
+            headers: {
+                'content-type': 'multipart/form-data',
+            },
+        };
+        try {
+            const res = await axios.post(`http://localhost:8000/users/${userId}/pictures`, formData, config);
+            if (res && res.data) {
+                console.log(res.data);
+            }
+        } catch (err) {
+            console.error(err.response && err.response.data ? err.response.data.message : err.message);
+        }
         dispatch(setModalOpen(!isModalOpen));
-        console.log('image uploaded');
     };
+
+
+
 
     return (
         <div>
             <h1 className="text-2xl font-bold m-4">My Gallery</h1>
-
             <div className="flex flex-row items-center gap-4 flex-wrap wrap">
-                {images.map((image, index) => (
+                {/*{images.map((image, index) => (
                     <ProfileImgCard
                         key={index}
                         profileImg={image.url}
@@ -85,17 +107,18 @@ const ContentGallery = () => {
                         handleDeleteImage={() => handleDeleteImage(index)}
                         handleViewImage={() => handleViewImage(index)}
                     />
-                ))}
+                ))}*/}
             </div>
             {isModalOpen && (
                 <UploadImage
                     handleModalClose={() => dispatch(setModalOpen(!isModalOpen))}
-                    handleFileChange={(event) => dispatch(setFile(event.target.files[0]))}
+                    handleFileChange={(event) => dispatch(setImages(event.target.files[0]))}
                     handleIsMainChange={() => dispatch(setIsMain(!isMain))}
                     handleIsCoverChange={() => dispatch(setIsCover(!isCover))}
-                    handleUploadImage={handleUploadImageClick}
+                    handleUploadImage={handleUploadImage}
                     isMain={isMain}
                     isCover={isCover}
+                    file={images}
                 />
             )}
             {isFullSize && (

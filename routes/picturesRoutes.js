@@ -1,8 +1,15 @@
 const express = require('express');
 const multer = require('multer');
-const { savePicture, getPictureById } = require('../controllers/picturesController');
+const { uploadPicture } = require('../controllers/picturesController');
 
 const router = express.Router();
+
+const fs = require('fs');
+const uploadDir = './uploads';
+
+if (!fs.existsSync(uploadDir)) {
+    fs.mkdirSync(uploadDir);
+}
 
 const storage = multer.diskStorage({
     destination: function (req, file, cb) {
@@ -16,14 +23,21 @@ const storage = multer.diskStorage({
 
 const upload = multer({ storage: storage });
 
-router.post('/', upload.single('file'), async (req, res) => {
-    const { isMain, isCover, userId } = req.body;
+router.post('/users/:userId/pictures', upload.single('file'), async (req, res) => {
+    console.log(req.file);
+    const { isMain, isCover } = req.body;
     const { originalname, path } = req.file;
+    const { userId } = req.params;
 
     try {
-        // save the picture to the database or do any other necessary processing
-        // for example, you could use the "savePicture" function that you provided earlier:
-        const picture = await savePicture(userId, originalname, path, isMain, isCover);
+        const picture = await uploadPicture({
+            userId,
+            isMain,
+            isCover,
+            originalname,
+            path
+        });
+
 
         res.status(201).json({
             id: picture.id,
@@ -41,6 +55,5 @@ router.post('/', upload.single('file'), async (req, res) => {
     }
 });
 
-router.get('/:id', getPictureById);
 
 module.exports = router;

@@ -127,8 +127,6 @@ R
 "client/src/reducers/userReducer.js,3/a/3af3e9d3f595ac02dfee7e96d822cc0e9c01d450
 A
 client/src/App.js,f/6/f6b8a135eb07bb80aa582994bcf1a8ccacd783ee
-M
-controllers/authController.js,0/3/0337acf1f1f07013abb1b108a0023e639b60b2e0
 R
 "client/src/reducers/authReducer.js,1/2/125040e183eb986a3bc0bdcd4cfd8f79790e3a2b
 D
@@ -137,17 +135,11 @@ I
 client/tailwind.config.js,6/b/6b273cff573b0a837bad584f90d7d827bf358bb1
 \
 ,client/src/components/profile/InfoSection.js,6/8/684b1500e338bc15f113060860ad71c2e49166ac
-^
-.client/src/components/authentication/Signin.js,c/c/cc0ed757059b5deb7322a5477e7497d8db21e27a
 ]
 -client/src/components/profile/CoverProfile.js,5/3/53a64b797e407def5cc58a0fe2c1e6cf07e44f36
-]
--client/src/components/profile/PersonalData.js,0/0/00ed5f8f30fe7675ed75557034cc5aff2f6d43b9
 \
 ,client/src/components/profile/InfoSidebar.js,c/7/c707f3c748a300489bc38b4055d490877acd53ef
 ]
 -client/src/components/profile/CoverSection.js,1/1/117483e31a67c9eaaae6269c14ec2b6cabad5d9b
-C
-client/src/store.js,4/a/4afe2750c2c347c6e38ea33d5c926b1ae43d2dfb
 ^
 .client/src/components/profile/FullSizeImage.js,2/c/2c291c015356f83961649705db1df19d0dd2d658

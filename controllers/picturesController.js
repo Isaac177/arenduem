@@ -1,32 +1,25 @@
-const path = require('path');
-const { Picture } = require('../models');
+const Picture = require('../models/Picture');
 
-const savePicture = async (userId, fileName, filePath, isMain, isCover) => {
-    try {
-        return await Picture.create({
-            userId,
-            fileName,
-            fileUrl: `http://localhost:8000/uploads/${path.basename(filePath)}`,
-            isMain,
-            isCover,
-        });
-    } catch (error) {
-        console.error(error);
-        throw new Error('Error saving picture to database');
+exports.uploadPicture = async (req, res) => {
+    const { isMain, isCover, userId } = req.body;
+    console.log(req.file)
+    if (!req.file) {
+        res.status(400).json({ message: 'No file uploaded' });
+        return;
     }
-};
-
-const getPictureById = async (req, res) => {
-    const { id } = req.params;
+    console.log(req.file)
+    const { originalname, path } = req.file;
 
     try {
-        const picture = await Picture.findByPk(id);
+        const picture = await Picture.create({
+            userId,
+            fileName: originalname,
+            fileUrl: `http://localhost:8000/${path}`,
+            isMain,
+            isCover
+        });
 
-        if (!picture) {
-            return res.status(404).json({ message: 'Picture not found' });
-        }
-
-        res.status(200).json({
+        res.status(201).json({
             id: picture.id,
             userId: picture.userId,
             fileName: picture.fileName,
@@ -34,15 +27,10 @@ const getPictureById = async (req, res) => {
             createdAt: picture.createdAt,
             updatedAt: picture.updatedAt,
             isMain: picture.isMain,
-            isCover: picture.isCover,
+            isCover: picture.isCover
         });
     } catch (error) {
         console.error(error);
-        res.status(500).json({ message: 'Error retrieving picture from database' });
+        res.status(500).json({ message: 'Error saving picture to database' });
     }
-};
-
-module.exports = {
-    savePicture,
-    getPictureById,
 };

@@ -4,11 +4,11 @@ const authRoutes = require('./routes/auth');
 const userRoutes = require('./routes/userRoutes');
 const picturesRoutes = require('./routes/picturesRoutes');
 const passport = require('passport');
-const multer = require('multer');
 const cors = require('cors');
 const { User } = require("./models");
 const authController = require("./controllers/authController");
 const userController = require("./controllers/userController");
+const picturesController = require("./controllers/picturesController");
 require('dotenv').config();
 require('./config/passport')(passport);
 const app = express();
@@ -36,7 +36,8 @@ app.put('/users/:userId', userController.updateUserById);
 app.post('/api/auth/signup', authController.signup);
 app.post('/api/auth/signin', authController.signin);
 app.get('/api/auth/signout', authController.signout);
-app.use('/api/pictures', picturesRoutes);
+
+app.post('/users/:userId/pictures', picturesController.uploadPicture);
 
 const PORT = 8000;
 app.listen(PORT, () => {

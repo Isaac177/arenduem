@@ -45,47 +45,18 @@ export const setIsFullSize = isFullSize => ({
     payload: isFullSize
 });
 
-export const uploadPicture = () => async (dispatch, getState) => {
-    const { file, isMain, isCover } = getState().picture || {};
-    const { id: userId } = getState().user || {};
+const BASE_URL = "http://localhost:8000";
 
-    dispatch({ type: UPLOAD_PICTURE_REQUEST });
-    try {
-        const formData = new FormData();
-        formData.append('file', file);
-        formData.append('userId', userId);
-        formData.append('isMain', isMain);
-        formData.append('isCover', isCover);
-
-        const { data } = await axios.post('/api/pictures', formData, {
-            headers: {
-                'Content-Type': 'multipart/form-data',
-            },
-        });
-        dispatch({ type: UPLOAD_PICTURE_SUCCESS, payload: data });
-    } catch (error) {
-        console.error(error);
-        dispatch({ type: UPLOAD_PICTURE_FAILURE, payload: error.message });
-    }
-};
-
-export const getPictureById = () => async (dispatch, getState) => {
-    console.log('getState()', getState());
-    console.log('getState().picture', getState().picture);
-
-    const { id } = getState().picture;
-    console.log('id', id);
-
+/*export const getPictureById = (pictureId) => async (dispatch) => {
     dispatch({ type: GET_PICTURE_REQUEST });
     try {
-        const { data } = await axios.get(`/api/pictures/${id}`);
+        const { data } = await axios.get(`${BASE_URL}/users/:userId/pictures/${pictureId}`);
         dispatch({ type: GET_PICTURE_SUCCESS, payload: data });
     } catch (error) {
         console.error(error);
         dispatch({ type: GET_PICTURE_FAILURE, payload: error.message });
     }
-};
-
+}*/
 
 
 
