@@ -46,16 +46,31 @@ export const setIsFullSize = isFullSize => ({
 });
 
 const BASE_URL = 'http://localhost:8000';
-export const getPictureById = (userId, pictureId) => async (dispatch) => {
-    dispatch({ type: GET_PICTURE_REQUEST });
+export const getPictureById = () => async (dispatch, getState) => {
     try {
-        const { data } = await axios.get(`${BASE_URL}/users/${userId}/pictures`);
-        dispatch({ type: GET_PICTURE_SUCCESS, payload: data });
+        const { userId } = getState().auth;
+        const token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwicm9sZSI6InVzZXIiLCJpYXQiOjE2Nzg1MjQzNDMsImV4cCI6MTY3ODUyNzk0M30.qfOcFTT_OU0X7b3x2NAeakNG-B9cYslRaFnwvMQURz4';
+        const response = await axios.get(`http://localhost:8000/users/${userId}/pictures`, {
+            headers: {
+                Authorization: `Bearer ${token}`,
+            },
+        });
+        console.log('response', response);
+        dispatch({
+            type: GET_PICTURE_SUCCESS,
+            payload: response.data,
+        });
     } catch (error) {
-        console.error(error);
-        dispatch({ type: GET_PICTURE_FAILURE, payload: error.message });
+        console.log('error response:', error.response);
+        dispatch({
+            type: GET_PICTURE_FAILURE,
+            payload: error.message,
+        });
     }
 };
+
+
+
 
 
 

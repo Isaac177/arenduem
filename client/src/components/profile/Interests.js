@@ -39,11 +39,13 @@ const Interests = () => {
     };
 
     return (
-        <div>
-            <div className="flex items-center justify-between">
+        <div className="text-center mt-4 pl-10">
+            <div className="flex items-center gap-8 mb-4">
                 <h1 className="text-2xl font-bold text-aqua-500">Interests</h1>
                 <button onClick={toggleEditing}>
-                    <AiOutlineEdit className="w-6 h-6 text-gray-500 hover:text-gray-700" />
+                    <AiOutlineEdit
+                        fill='aquamarine'
+                        className="w-6 h-6 text-gray-500 hover:text-gray-700" />
                 </button>
             </div>
             {editing ? (
@@ -57,7 +59,8 @@ const Interests = () => {
                             className="w-full px-4 py-2 mr-2 text-gray-700 placeholder-gray-400 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-aqua-500"
                         />
                         <button onClick={addInterest}>
-                            <IoIosCheckmarkCircleOutline className="w-6 h-6 text-green-500 hover:text-green-700" />
+                            <IoIosCheckmarkCircleOutline
+                                className="w-6 h-6 text-green-500 hover:text-green-700" />
                         </button>
                     </div>
                     <ul className="mt-2 space-y-2">

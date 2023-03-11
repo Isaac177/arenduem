@@ -26,7 +26,6 @@ const Signin = () => {
             });
 
             const { token, role, userId } = response.data;
-
             dispatch(setTokenAndRole(token, role));
             dispatch(setUserId(userId));
 

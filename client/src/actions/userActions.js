@@ -10,8 +10,13 @@ export const LOGOUT = 'LOGOUT';
 
 export const fetchUserData = () => async (dispatch, getState) => {
     try {
-        const { userId } = getState().auth;
-        const response = await axios.get(`http://localhost:8000/users/${userId}`);
+        const { userId, token } = getState().auth;
+        const response = await axios.get(`http://localhost:8000/users/${userId}`, {
+            headers: {
+                Authorization: `Bearer ${token}`,
+            },
+        });
+
         const userData = {
             ...initialState.userData,
             ...response.data,
@@ -22,15 +27,26 @@ export const fetchUserData = () => async (dispatch, getState) => {
             payload: userData,
         });
 
-        const { token, role } = response.data;
+        const { role } = response.data;
         dispatch(setTokenAndRole(token, role));
     } catch (error) {
-        dispatch({
-            type: FETCH_USER_DATA_FAILURE,
-            payload: error.message,
-        });
+        console.error(error);
+
+        // Check if the error is an authentication error
+        if (error.response && error.response.status === 401) {
+            dispatch({
+                type: FETCH_USER_DATA_FAILURE,
+                payload: error.response.data.message,
+            });
+        } else {
+            dispatch({
+                type: FETCH_USER_DATA_FAILURE,
+                payload: error.message,
+            });
+        }
     }
 };
+
 
 export const updateUser = (userData) => async (dispatch, getState) => {
     try {
