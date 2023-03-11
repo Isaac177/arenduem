@@ -45,18 +45,18 @@ export const setIsFullSize = isFullSize => ({
     payload: isFullSize
 });
 
-const BASE_URL = "http://localhost:8000";
-
-/*export const getPictureById = (pictureId) => async (dispatch) => {
+const BASE_URL = 'http://localhost:8000';
+export const getPictureById = (userId, pictureId) => async (dispatch) => {
     dispatch({ type: GET_PICTURE_REQUEST });
     try {
-        const { data } = await axios.get(`${BASE_URL}/users/:userId/pictures/${pictureId}`);
+        const { data } = await axios.get(`${BASE_URL}/users/${userId}/pictures`);
         dispatch({ type: GET_PICTURE_SUCCESS, payload: data });
     } catch (error) {
         console.error(error);
         dispatch({ type: GET_PICTURE_FAILURE, payload: error.message });
     }
-}*/
+};
+
 
 
 

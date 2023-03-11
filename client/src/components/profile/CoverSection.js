@@ -7,12 +7,9 @@ import {BsDot} from "react-icons/bs";
 import {GrEdit} from "react-icons/gr";
 
 
-
 const CoverSection = ({handleEditProfilePic}) => {
     const dispatch = useDispatch();
     const userData = useSelector((state) => state.user.userData);
-    //const age = new Date().getFullYear() - new Date(userData.dateOfBirth).getFullYear();
-
 
     useEffect(() => {
         dispatch(fetchUserData());
@@ -44,20 +41,31 @@ const CoverSection = ({handleEditProfilePic}) => {
                 </div>
             </div>
             <div className="moon relative z-0 flex flex-row rounded-l items-center rounded-r px-4 py-2 bg-primary-900">
-                {userData && (
+                {userData ? (
                     <>
                         <h1 className="text-2xl font-bold text-white px-4">
-                            {userData && userData.firstName || ' '} {userData && userData.lastName || ' '}
+                            {userData.firstName} {userData.lastName}
                         </h1>
                         <BsDot className="text-white font-bold text-2xl" />
-                        <p className="text-white px-2">{userData && userData.occupation}</p>
+                        <p className="text-white px-2">{userData.occupation}</p>
                         <BsDot className="text-white font-bold text-2xl" />
-                        <p className="text-white px-2">{`${userData && userData.dateOfBirth.slice(0, 4)} - ${new Date().getFullYear()}`}</p>
+                        <p className="text-white px-2">{`${userData.dateOfBirth?.slice(0, 4) || ''} - ${new Date().getFullYear()}`}</p>
                         <BsDot className="text-white font-bold text-2xl" />
                         <p className="text-white px-2">Almaty</p>
                     </>
+                ) : (
+                    <>
+                        <h1 className="text-2xl font-bold text-white px-4">{' '} {' '}</h1>
+                        <BsDot className="text-white font-bold text-2xl" />
+                        <p className="text-white px-2"></p>
+                        <BsDot className="text-white font-bold text-2xl" />
+                        <p className="text-white px-2"></p>
+                        <BsDot className="text-white font-bold text-2xl" />
+                        <p className="text-white px-2"></p>
+                    </>
                 )}
-            </div></>
+            </div>
+        </>
     );
 };
 

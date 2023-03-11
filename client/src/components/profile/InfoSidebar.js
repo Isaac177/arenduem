@@ -40,15 +40,6 @@ function InfoSidebar() {
                         My Personal Data
                     </li>
                     <li
-                        className={`px-6 py-4  flex items-center hover:text-aqua-500 hover:cursor-pointer ${
-                            activeLink === '/user/dashboard/profile/aboutme' ? 'text-aqua-500 bg-darkCu-900': ''
-                        }`}
-                        onClick={() => handleClick('/user/dashboard/profile/aboutme')}
-                    >
-                        <FiHeart size={24} className="mr-2" />
-                        About Me
-                    </li>
-                    <li
                         className={`px-6 py-4 flex items-center hover:text-aqua-500 hover:cursor-pointer ${
                             activeLink === '/user/dashboard/profile/interests' ? 'text-aqua-500 bg-darkCu-900': ''
                         }`}

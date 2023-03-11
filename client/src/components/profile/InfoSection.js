@@ -3,6 +3,7 @@ import ContentGallery from "./ContentGallery";
 import {useRoutes} from "react-router-dom";
 import InfoSidebar from "./InfoSidebar";
 import PersonalData from "./PersonalData";
+import Interests from "./Interests";
 
 
 
@@ -15,6 +16,10 @@ const InfoSection = () => {
         {
             path: "/personaldata",
             element: <PersonalData />
+        },
+        {
+            path: "/interests",
+            element: <Interests />
         }
         ]);
     return (

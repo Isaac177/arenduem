@@ -16,8 +16,11 @@ import {
 import {useDispatch, useSelector} from "react-redux";
 import FullSizeImage from "./FullSizeImage";
 import axios from "axios";
+import {Field, Form, Formik} from "formik";
+import {FiCheck} from "react-icons/fi";
 
 const ContentGallery = () => {
+    const [selectedFile, setSelectedFile] = useState(null);
     const [currentImageIndex, setCurrentImageIndex] = useState(0);
     const dispatch = useDispatch();
     const [isPrevDisabled, setIsPrevDisabled] = useState(true);
@@ -30,10 +33,12 @@ const ContentGallery = () => {
     const isModalOpen = useSelector(state => state.gallery.isModalOpen);
     const isFullSize = useSelector(state => state.gallery.isFullSize);
     const userId = useSelector((state) => state.auth.userId);
+    const [isLoading, setIsLoading] = useState(false);
 
-  /*  useEffect(() => {
-        dispatch(getPictureById());
-    }, [dispatch]);*/
+
+      useEffect(() => {
+          dispatch(getPictureById());
+      }, [dispatch]);
 
     const handleDeleteImage = (id) => {
         const newImages = images.filter((image, index) => index !== id);
@@ -69,57 +74,103 @@ const ContentGallery = () => {
         }
     };
 
+    const handleFileChange = (event) => {
+        setSelectedFile(event.target.files[0]);
+        dispatch(setFile(event.target.files[0]));
+    }
     const handleUploadImage = async (values) => {
-        const formData = new FormData();
-        console.log(values.file)
-        formData.append('file', values.file);
-        formData.append('isMain', values.isMain);
-        formData.append('isCover', values.isCover);
-
-        const config = {
-            headers: {
-                'content-type': 'multipart/form-data',
-            },
-        };
-        try {
-            const res = await axios.post(`http://localhost:8000/users/${userId}/pictures`, formData, config);
-            if (res && res.data) {
-                console.log(res.data);
+        setIsLoading(true);
+        if (selectedFile) {
+            try {
+                const formData = new FormData();
+                formData.append('file', selectedFile);
+                formData.append('isMain', values.isMain);
+                formData.append('isCover', values.isCover);
+                const response = await axios.post(`http://localhost:8000/users/${userId}/pictures`, formData, {
+                    onUploadProgress: (progressEvent) => {
+                        const percentCompleted = Math.round((progressEvent.loaded * 100) / progressEvent.total);
+                        console.log(`Upload progress: ${percentCompleted}%`);
+                    },
+                });
+                console.log(response.data); // the uploaded image data
+                dispatch(setImages([...images, response.data]));
+            } catch (error) {
+                console.error(error);
             }
-        } catch (err) {
-            console.error(err.response && err.response.data ? err.response.data.message : err.message);
+        } else {
+            console.error('No file selected');
         }
-        dispatch(setModalOpen(!isModalOpen));
+        //dispatch(setModalOpen(!isModalOpen));
     };
-
-
 
 
     return (
         <div>
             <h1 className="text-2xl font-bold m-4">My Gallery</h1>
             <div className="flex flex-row items-center gap-4 flex-wrap wrap">
-                {/*{images.map((image, index) => (
-                    <ProfileImgCard
+
+                {Object.keys(images).map((imageKey, index) => {
+                    console.log(images)
+                    return (<ProfileImgCard
                         key={index}
-                        profileImg={image.url}
-                        profileAlt={image.alt}
+                        profileImg={images[imageKey].url}
+                        profileAlt={images[imageKey].alt}
                         handleDeleteImage={() => handleDeleteImage(index)}
                         handleViewImage={() => handleViewImage(index)}
-                    />
-                ))}*/}
+                    />)
+                })}
             </div>
             {isModalOpen && (
-                <UploadImage
-                    handleModalClose={() => dispatch(setModalOpen(!isModalOpen))}
-                    handleFileChange={(event) => dispatch(setImages(event.target.files[0]))}
-                    handleIsMainChange={() => dispatch(setIsMain(!isMain))}
-                    handleIsCoverChange={() => dispatch(setIsCover(!isCover))}
-                    handleUploadImage={handleUploadImage}
-                    isMain={isMain}
-                    isCover={isCover}
-                    file={images}
-                />
+                <Formik
+                    initialValues={{
+                        isMain: isMain || false,
+                        isCover: isCover || false,
+                    }}
+                    onSubmit={(values) => {
+                        handleUploadImage(values, selectedFile).then(r => console.log(r));
+                        console.log(values);
+                    }}
+                >
+                    {({ isSubmitting }) => (
+                        <Form className="fixed top-0 left-0 w-full h-full bg-black bg-opacity-50 flex justify-center items-center">
+                            <div className="bg-white rounded-lg p-6 flex flex-col items-center">
+                                <h2 className="text-lg font-bold mb-4">Upload Image</h2>
+                                <div className="mb-4">
+                                    <input type="file" name="file" onChange={handleFileChange} />
+                                </div>
+                                <div className="flex flex-row items-center mb-4">
+                                    <Field type="checkbox" name="isMain" id="isMain" className="mr-2" />
+                                    <label htmlFor="isMain" className="ml-2">
+                                        Is Main
+                                    </label>
+                                </div>
+                                <div className="flex flex-row items-center mb-4">
+                                    <Field type="checkbox" name="isCover" id="isCover" className="mr-2" />
+                                    <label htmlFor="isCover" className="ml-2">
+                                        Is Cover
+                                    </label>
+                                </div>
+                                <div className="flex flex-row justify-center">
+                                    <button
+                                        type="submit"
+                                        className="bg-aqua-500 hover:bg-aqua-700 text-white font-bold py-2 px-4 rounded-full mr-4 cursor-pointer"
+                                        disabled={!selectedFile || isSubmitting}
+                                    >
+                                        {isSubmitting ? 'Uploading...' : 'Upload'}
+                                        <FiCheck className="inline-block align-text-top ml-2" />
+                                    </button>
+                                    <button
+                                        type="button"
+                                        className="bg-gray-200 hover:bg-gray-300 text-gray-700 font-bold py-2 px-4 rounded-full"
+                                        onClick={() => dispatch(setModalOpen(!isModalOpen))}
+                                    >
+                                        Cancel
+                                    </button>
+                                </div>
+                            </div>
+                        </Form>
+                    )}
+                </Formik>
             )}
             {isFullSize && (
                 <FullSizeImage

@@ -1,6 +1,5 @@
-import React, { useRef, useEffect } from 'react';
+import React, { useRef, useEffect, useState } from 'react';
 import { FiCheck } from 'react-icons/fi';
-import { connect } from 'react-redux';
 import { Formik, Form, Field } from 'formik';
 
 const UploadImage = ({
@@ -8,12 +7,9 @@ const UploadImage = ({
                          handleUploadImage,
                          isCover,
                          isMain,
-                         handleIsCoverChange,
-                         handleIsMainChange,
-                         handleFileChange,
-                         file,
                      }) => {
     const containerRef = useRef(null);
+    const [selectedFile, setSelectedFile] = useState(null);
 
     useEffect(() => {
         const handleClickOutside = (event) => {
@@ -29,15 +25,18 @@ const UploadImage = ({
         };
     }, [containerRef, handleModalClose]);
 
+    const handleFileChange = (event) => {
+        setSelectedFile(event.target.files[0]);
+    };
+
     return (
         <Formik
             initialValues={{
-                file : file || null,
                 isMain: isMain || false,
                 isCover: isCover || false,
             }}
             onSubmit={(values) => {
-                handleUploadImage(values, values.file);
+                handleUploadImage(values, selectedFile);
             }}
         >
             {({ isSubmitting }) => (
@@ -63,7 +62,7 @@ const UploadImage = ({
                             <button
                                 type="submit"
                                 className="bg-aqua-500 hover:bg-aqua-700 text-white font-bold py-2 px-4 rounded-full mr-4 cursor-pointer"
-                                disabled={!file || isSubmitting}
+                                disabled={!selectedFile || isSubmitting}
                             >
                                 {isSubmitting ? 'Uploading...' : 'Upload'}
                                 <FiCheck className="inline-block align-text-top ml-2" />
@@ -83,4 +82,4 @@ const UploadImage = ({
     );
 };
 
-export default connect()(UploadImage);
+export default UploadImage;
