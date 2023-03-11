@@ -8,7 +8,6 @@ const cors = require('cors');
 const { User } = require("./models");
 const authController = require("./controllers/authController");
 const userController = require("./controllers/userController");
-const picturesController = require("./controllers/picturesController");
 require('dotenv').config();
 require('./config/passport')(passport);
 const app = express();
@@ -17,8 +16,10 @@ const app = express();
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(passport.initialize());
+app.use('/uploads', express.static('uploads'));
 app.use(cors({
-    origin: 'http://localhost:3000'
+    origin: 'http://localhost:3000',
+    credentials: true
 }));
 app.get('/', (req, res) => {
     res.send('Hello World!');
@@ -32,12 +33,14 @@ app.get('/users', (req, res) => {
 app.use("/users", userRoutes);
 app.get('/users/:userId', userController.getUserById);
 app.put('/users/:userId', userController.updateUserById);
+app.post('/users/:userId/pictures', picturesRoutes);
+app.get('/users/:userId/pictures', picturesRoutes);
 
 app.post('/api/auth/signup', authController.signup);
 app.post('/api/auth/signin', authController.signin);
 app.get('/api/auth/signout', authController.signout);
 
-app.post('/users/:userId/pictures', picturesController.uploadPicture);
+//app.post('/users/:userId/pictures', picturesController.uploadPicture);
 
 const PORT = 8000;
 app.listen(PORT, () => {

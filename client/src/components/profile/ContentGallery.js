@@ -2,16 +2,12 @@ import React, { useState, useEffect } from 'react';
 import 'react-image-gallery/styles/css/image-gallery.css';
 import ProfileImgCard from "./ProfileImgCard";
 import {BsPlus} from "react-icons/bs";
-import UploadImage from "./UploadImage";
+import { ToastContainer, toast } from 'react-toastify';
 import {
     setImages,
     setModalOpen,
-    setFile,
-    setIsMain,
-    setIsCover,
     setIsFullSize,
     getPictureById,
-    uploadPicture, UPLOAD_PICTURE_REQUEST, UPLOAD_PICTURE_SUCCESS, UPLOAD_PICTURE_FAILURE
 } from '../../actions/galleryActions';
 import {useDispatch, useSelector} from "react-redux";
 import FullSizeImage from "./FullSizeImage";
@@ -76,7 +72,6 @@ const ContentGallery = () => {
 
     const handleFileChange = (event) => {
         setSelectedFile(event.target.files[0]);
-        dispatch(setFile(event.target.files[0]));
     }
     const handleUploadImage = async (values) => {
         setIsLoading(true);
@@ -87,12 +82,15 @@ const ContentGallery = () => {
                 formData.append('isMain', values.isMain);
                 formData.append('isCover', values.isCover);
                 const response = await axios.post(`http://localhost:8000/users/${userId}/pictures`, formData, {
+                    headers: {
+                        'Content-Type': 'multipart/form-data'
+                    },
                     onUploadProgress: (progressEvent) => {
                         const percentCompleted = Math.round((progressEvent.loaded * 100) / progressEvent.total);
-                        console.log(`Upload progress: ${percentCompleted}%`);
+                        toast(`Upload progress: ${percentCompleted}%`);
                     },
                 });
-                console.log(response.data); // the uploaded image data
+                console.log(response.data);
                 dispatch(setImages([...images, response.data]));
             } catch (error) {
                 console.error(error);
@@ -100,25 +98,25 @@ const ContentGallery = () => {
         } else {
             console.error('No file selected');
         }
-        //dispatch(setModalOpen(!isModalOpen));
+        dispatch(setModalOpen(false));
     };
 
 
     return (
         <div>
             <h1 className="text-2xl font-bold m-4">My Gallery</h1>
+            <ToastContainer />
             <div className="flex flex-row items-center gap-4 flex-wrap wrap">
-
-                {Object.keys(images).map((imageKey, index) => {
-                    console.log(images)
-                    return (<ProfileImgCard
+                {images.map((image, index) => {
+                    return(
+                    <ProfileImgCard
                         key={index}
-                        profileImg={images[imageKey].url}
-                        profileAlt={images[imageKey].alt}
+                        profileImg={image.fileUrl}
+                        profileAlt={image.fileName}
                         handleDeleteImage={() => handleDeleteImage(index)}
                         handleViewImage={() => handleViewImage(index)}
-                    />)
-                })}
+                    />
+                    ) })}
             </div>
             {isModalOpen && (
                 <Formik
@@ -127,7 +125,7 @@ const ContentGallery = () => {
                         isCover: isCover || false,
                     }}
                     onSubmit={(values) => {
-                        handleUploadImage(values, selectedFile).then(r => console.log(r));
+                        handleUploadImage(values).then(r => console.log(r));
                         console.log(values);
                     }}
                 >
@@ -136,7 +134,12 @@ const ContentGallery = () => {
                             <div className="bg-white rounded-lg p-6 flex flex-col items-center">
                                 <h2 className="text-lg font-bold mb-4">Upload Image</h2>
                                 <div className="mb-4">
-                                    <input type="file" name="file" onChange={handleFileChange} />
+                                    <input
+                                        type="file"
+                                        name="file"
+                                        onChange={handleFileChange}
+                                        accept="image/png,image/jpeg,image/gif"
+                                    />
                                 </div>
                                 <div className="flex flex-row items-center mb-4">
                                     <Field type="checkbox" name="isMain" id="isMain" className="mr-2" />
@@ -174,8 +177,8 @@ const ContentGallery = () => {
             )}
             {isFullSize && (
                 <FullSizeImage
-                    src={images[currentImageIndex].original}
-                    alt={images[currentImageIndex].alt}
+                    src={images[currentImageIndex].fileUrl}
+                    alt={images[currentImageIndex].fileName}
                     onClose={handleCloseFullSize}
                     onPrev={handlePrevClick}
                     onNext={handleNextClick}

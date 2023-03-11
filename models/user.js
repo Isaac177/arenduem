@@ -1,47 +1,38 @@
 'use strict';
-const {
-  Model
-} = require('sequelize');
+const { Model } = require('sequelize');
 const Sequelize = require('sequelize');
 const bcrypt = require('bcrypt');
-
-
 
 module.exports = (sequelize, DataTypes) => {
   class User extends Model {
     static associate(models) {
-      models.Gender = require('./gender')(sequelize, DataTypes);
-      models.Picture = require('./picture')(sequelize, DataTypes);
-      models.SmokingStatus = require('./smokingstatus')(sequelize, DataTypes);
-      models.DrinkingStatus = require('./drinkingstatus')(sequelize, DataTypes);
-      models.HousingStatus = require('./housingstatus')(sequelize, DataTypes);
+      const {Picture, Gender, SmokingStatus, DrinkingStatus, HousingStatus} = models;
 
-      User.hasOne(models.DrinkingStatus, {
-        foreignKey: "userId",
-        as: "userDrinkingStatus"
-      });
-
-      User.hasMany(models.Picture, {
+      User.hasMany(Picture, {
         foreignKey: 'userId',
         as: 'pictures',
         onDelete: 'CASCADE'
       });
-      User.hasOne(models.Gender, {
+      User.hasOne(Gender, {
         foreignKey: 'userId',
         as: 'gender'
       });
-      User.hasOne(models.SmokingStatus, {
+      User.hasOne(SmokingStatus, {
         foreignKey: 'userId',
         as: 'smokingStatus'
       });
-      User.hasOne(models.DrinkingStatus, {
+      User.hasOne(DrinkingStatus, {
         foreignKey: 'userId',
         as: 'drinkingStatus'
       });
-      User.hasOne(models.HousingStatus, {
+      User.hasOne(HousingStatus, {
         foreignKey: 'userId',
         as: 'housingStatus'
       });
+    }
+
+    async hashPassword() {
+      this.password = await bcrypt.hash(this.password, 10);
     }
   }
 
@@ -59,27 +50,27 @@ module.exports = (sequelize, DataTypes) => {
     },
     password: {
       type: Sequelize.STRING,
-      //allowNull: false
+      // allowNull: false
     },
     dateOfBirth: {
       type: Sequelize.DATEONLY,
-      //allowNull: true
+      // allowNull: true
     },
     occupation: {
       type: Sequelize.STRING,
-      //allowNull: false
+      // allowNull: false
     },
     aboutMe: {
       type: Sequelize.TEXT,
-      //allowNull: false
+      // allowNull: false
     },
     moveInDate: {
       type: Sequelize.DATEONLY,
-      //allowNull: false
+      // allowNull: false
     },
     budget: {
       type: Sequelize.INTEGER,
-      //allowNull: false
+      // allowNull: false
     },
     role: {
       type: Sequelize.STRING,
@@ -93,7 +84,7 @@ module.exports = (sequelize, DataTypes) => {
     modelName: 'User',
     hooks: {
       beforeCreate: async (user) => {
-        user.password = await bcrypt.hash(user.password, 10);
+        await user.hashPassword();
       }
     }
   });

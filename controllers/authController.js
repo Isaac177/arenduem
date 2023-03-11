@@ -55,19 +55,26 @@ exports.signin = async (req, res) => {
         if (!passwordMatch) {
             return res.status(401).json({ message: 'Incorrect email or password.' });
         }
-        const token = jwt.sign(
-            { id: user.id, role: user.get('role') },
-            process.env.JWT_SECRET,
-            {
-                expiresIn: process.env.JWT_EXPIRES_IN || '1h',
-            }
-        );
-        return res.status(200).json({ token, role: user.get('role'), userId: user.id });
+        const payload = {
+            id: user.id,
+            role: user.get('role')
+        };
+        const secret = process.env.JWT_SECRET;
+        const algorithm = 'HS256';
+        const expiresIn = process.env.JWT_EXPIRES_IN || '24h';
+        const token = jwt.sign(payload, secret, { algorithm, expiresIn });
+        res.cookie('jwt', token, {
+            httpOnly: true, // make the cookie inaccessible to client-side scripts
+            secure: process.env.NODE_ENV === 'production', // only set the cookie in production
+            sameSite: 'strict', // restrict the cookie to first-party context only
+        });
+        return res.status(200).json({ token: 'Bearer ' + token, role: user.get('role'), userId: user.id });
     } catch (error) {
         console.error(error);
         return res.status(500).json({ message: 'Server error' });
     }
 };
+
 
 let invalidatedTokens = [];
 
@@ -141,7 +148,11 @@ exports.signup = async (req, res) => {
         const token = jwt.sign({ id: newUser.id }, process.env.JWT_SECRET, {
             expiresIn: process.env.JWT_EXPIRES_IN || '1h',
         });
-        console.log('newUser:', newUser);
+        res.cookie('jwt', token, {
+            httpOnly: true,
+            secure: process.env.NODE_ENV === 'production',
+            sameSite: 'strict',
+        });
         return res.status(201).json({
             message: 'User created successfully',
             token: token,

@@ -1,19 +1,52 @@
 const { User } = require("../models");
+const Picture = require("../models").Picture;
+const DrinkingStatus = require("../models").DrinkingStatus;
+const Gender = require("../models").Gender;
+const SmokingStatus = require("../models").SmokingStatus;
+const HousingStatus = require("../models").HousingStatus;
+
 
 exports.getUserById = async (req, res) => {
     const { userId } = req.params;
 
     try {
-        const user = await User.findByPk(userId);
+        const user = await User.findByPk(userId, {
+            include: [
+                {
+                    model: Picture,
+                    as: 'pictures',
+                    attributes: ['id', 'fileName', 'fileUrl', 'isMain', 'isCover'],
+                },
+                /*{
+                    model: DrinkingStatus,
+                    as: 'userDrinkingStatus',
+                },
+                {
+                    model: Gender,
+                    as: 'gender',
+                },
+                {
+                    model: SmokingStatus,
+                    as: 'smokingStatus',
+                },
+                {
+                    model: HousingStatus,
+                    as: 'housingStatus',
+                },*/
+            ],
+        });
+
         if (!user) {
             throw new Error(`User with ID ${userId} not found`);
         }
+
         res.json(user);
     } catch (error) {
         console.error(error);
         res.status(500).json({ message: error.message });
     }
 };
+
 
 exports.updateUserById = async (req, res) => {
     const { userId } = req.params;

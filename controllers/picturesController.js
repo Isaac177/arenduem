@@ -1,36 +1,26 @@
-const Picture = require('../models/Picture');
+// controllers/picture.js
 
-exports.uploadPicture = async (req, res) => {
-    const { isMain, isCover, userId } = req.body;
-    console.log(req.file)
-    if (!req.file) {
-        res.status(400).json({ message: 'No file uploaded' });
-        return;
-    }
-    console.log(req.file)
-    const { originalname, path } = req.file;
+const Picture = require('../models/picture');
+
+// POST /users/:userId/pictures
+exports.create = async (req, res) => {
+    const { userId } = req.params;
+    const { isMain, isCover } = req.body;
+    const path = req.file.path;
+    console.log('req.file.path: ', req.file.path)
 
     try {
+        // Create a new picture record in the database
         const picture = await Picture.create({
             userId,
-            fileName: originalname,
-            fileUrl: `http://localhost:8000/${path}`,
+            path,
             isMain,
-            isCover
+            isCover,
         });
 
-        res.status(201).json({
-            id: picture.id,
-            userId: picture.userId,
-            fileName: picture.fileName,
-            fileUrl: picture.fileUrl,
-            createdAt: picture.createdAt,
-            updatedAt: picture.updatedAt,
-            isMain: picture.isMain,
-            isCover: picture.isCover
-        });
+        res.status(201).json(picture);
     } catch (error) {
         console.error(error);
-        res.status(500).json({ message: 'Error saving picture to database' });
+        res.status(500).json({ message: 'Failed to upload picture.' });
     }
 };

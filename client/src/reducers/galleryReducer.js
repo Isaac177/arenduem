@@ -9,7 +9,8 @@ import {
     UPLOAD_PICTURE_SUCCESS,
     UPLOAD_PICTURE_FAILURE,
     GET_PICTURE_REQUEST,
-    GET_PICTURE_SUCCESS, GET_PICTURE_FAILURE,
+    GET_PICTURE_SUCCESS, GET_PICTURE_FAILURE, MAX_FILE_SIZE,
+
 } from '../actions/galleryActions';
 
 const initialState = {
@@ -24,6 +25,7 @@ const initialState = {
     isGettingPicture: false,
     getPictureError: null,
     currentPicture: null,
+    MAX_FILE_SIZE: MAX_FILE_SIZE
 };
 
 export default function galleryReducer(state = initialState, action) {
@@ -59,7 +61,7 @@ export default function galleryReducer(state = initialState, action) {
             return { ...state, isGettingPicture: true, getPictureError: null };
 
         case GET_PICTURE_SUCCESS:
-            return { ...state, isGettingPicture: false, currentPicture: action.payload };
+            return { ...state, images: action.payload };
 
         case GET_PICTURE_FAILURE:
             return { ...state, isGettingPicture: false, getPictureError: action.payload };

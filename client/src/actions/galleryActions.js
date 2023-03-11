@@ -15,6 +15,8 @@ export const GET_PICTURE_REQUEST = 'GET_PICTURE_REQUEST';
 export const GET_PICTURE_SUCCESS = 'GET_PICTURE_SUCCESS';
 export const GET_PICTURE_FAILURE = 'GET_PICTURE_FAILURE';
 
+export const MAX_FILE_SIZE = 10485760;
+
 export const setImages = images => ({
     type: SET_IMAGES,
     payload: images
@@ -49,19 +51,17 @@ const BASE_URL = 'http://localhost:8000';
 export const getPictureById = () => async (dispatch, getState) => {
     try {
         const { userId } = getState().auth;
-        const token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwicm9sZSI6InVzZXIiLCJpYXQiOjE2Nzg1MjQzNDMsImV4cCI6MTY3ODUyNzk0M30.qfOcFTT_OU0X7b3x2NAeakNG-B9cYslRaFnwvMQURz4';
+        const { token } = getState().auth;
         const response = await axios.get(`http://localhost:8000/users/${userId}/pictures`, {
             headers: {
-                Authorization: `Bearer ${token}`,
+                Authorization: token
             },
         });
-        console.log('response', response);
         dispatch({
             type: GET_PICTURE_SUCCESS,
             payload: response.data,
         });
     } catch (error) {
-        console.log('error response:', error.response);
         dispatch({
             type: GET_PICTURE_FAILURE,
             payload: error.message,

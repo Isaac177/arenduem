@@ -26,6 +26,7 @@ const Signin = () => {
             });
 
             const { token, role, userId } = response.data;
+            console.log('token client-side: ', token);
             dispatch(setTokenAndRole(token, role));
             dispatch(setUserId(userId));
 

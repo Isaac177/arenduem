@@ -1,59 +1,74 @@
 const express = require('express');
-const multer = require('multer');
-const { uploadPicture } = require('../controllers/picturesController');
-
 const router = express.Router();
+const Picture = require('../models').Picture;
+const multer = require('multer');
+const { User } = require('../models');
+const jwt = require('jsonwebtoken');
 
-const fs = require('fs');
-const uploadDir = './uploads';
 
-if (!fs.existsSync(uploadDir)) {
-    fs.mkdirSync(uploadDir);
-}
-
-const storage = multer.diskStorage({
-    destination: function (req, file, cb) {
-        cb(null, 'uploads/');
-    },
-    filename: function (req, file, cb) {
-        const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1E9);
-        cb(null, uniqueSuffix + '-' + file.originalname);
+const fileFilter = (req, file, cb) => {
+    if (
+        file.mimetype === 'image/jpeg' ||
+        file.mimetype === 'image/png' ||
+        file.mimetype === 'image/gif'
+    ) {
+        cb(null, true);
+    } else {
+        cb(new Error('Invalid file type'), false);
     }
-});
+};
 
-const upload = multer({ storage: storage });
+const upload = multer({
+    dest: 'uploads/',
+    fileFilter,
+});
 
 router.post('/users/:userId/pictures', upload.single('file'), async (req, res) => {
-    console.log(req.file);
-    const { isMain, isCover } = req.body;
-    const { originalname, path } = req.file;
-    const { userId } = req.params;
-
     try {
-        const picture = await uploadPicture({
-            userId,
-            isMain,
-            isCover,
-            originalname,
-            path
+        const picture = await Picture.create({
+            userId: req.params.userId,
+            fileUrl: req.file.path,
+            isMain: req.body.isMain,
+            isCover: req.body.isCover,
         });
 
-
-        res.status(201).json({
-            id: picture.id,
-            userId: picture.userId,
-            fileName: picture.fileName,
-            fileUrl: picture.fileUrl,
-            createdAt: picture.createdAt,
-            updatedAt: picture.updatedAt,
-            isMain: picture.isMain,
-            isCover: picture.isCover,
-        });
+        res.status(201).json(picture);
     } catch (error) {
         console.error(error);
-        res.status(500).json({ message: 'Error saving picture to database' });
+        res.status(500).json({ message: 'Failed to upload picture.' });
     }
 });
 
+
+router.get('/users/:userId/pictures', async (req, res) => {
+    try {
+        const authHeader = req.headers.authorization;
+        if (!authHeader || !authHeader.startsWith('Bearer ')) {
+            return res.status(401).json({ message: 'Authorization header missing or invalid.' });
+        }
+        const token = authHeader.split(' ')[1];
+        if (!token) {
+            return res.status(401).json({ message: 'Authorization token missing.' });
+        }
+        const decodedToken = jwt.verify(token, process.env.JWT_SECRET);
+        if (!decodedToken) {
+            return res.status(401).json({ message: 'Invalid or expired token.' });
+        }
+        const userId = decodedToken.id;
+        const pictures = await Picture.findAll({
+            where: {
+                userId: userId
+            },
+            include: {
+                model: User,
+                as: 'user'
+            }
+        });
+        res.json(pictures);
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ message: 'Failed to retrieve pictures.' });
+    }
+});
 
 module.exports = router;
