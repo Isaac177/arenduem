@@ -28,8 +28,6 @@ D
 ]
 -client/src/components/profile/CoverProfile.js,5/3/53a64b797e407def5cc58a0fe2c1e6cf07e44f36
 ^
-.client/src/components/profile/FullSizeImage.js,2/c/2c291c015356f83961649705db1df19d0dd2d658
-^
 .migrations/20230224181450-add-role-to-users.js,0/d/0da5a78b04ff35868bdbe430ed0ff59e92fefc68
 q
 Amigrations/20230307180836-add-is-main-and-is-cover-to-pictures.js,6/a/6a2c7c472299a9d566cb7d7bae5aaefd88db5466

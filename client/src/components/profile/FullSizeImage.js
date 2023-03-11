@@ -36,7 +36,8 @@ const FullSizeImage = ({ src, alt, onClose, onPrev, onNext, isPrevDisabled, isNe
                     >
                         <BsChevronLeft />
                     </button>
-                    <img src={src} alt={alt} className="max-h-full max-w-full" />
+                    <img src={`http://localhost:8000/${src}`}
+                         alt={alt} className="h-full" />
                     <button
                         className="bg-aqua-500 text-white p-2 rounded-full hover:bg-aqua-700"
                         onClick={onNext}

@@ -70,5 +70,36 @@ router.get('/users/:userId/pictures', async (req, res) => {
         res.status(500).json({ message: 'Failed to retrieve pictures.' });
     }
 });
+router.delete('/users/:userId/pictures/:id', async (req, res) => {
+    try {
+        console.log(req.params.id);
+        const authHeader = req.headers.authorization;
+        if (!authHeader || !authHeader.startsWith('Bearer ')) {
+            return res.status(401).json({ message: 'Authorization header missing or invalid.' });
+        }
+        const token = authHeader.split(' ')[1];
+        if (!token) {
+            return res.status(401).json({ message: 'Authorization token missing.' });
+        }
+        const decodedToken = jwt.verify(token, process.env.JWT_SECRET);
+        if (!decodedToken) {
+            return res.status(401).json({ message: 'Invalid or expired token.' });
+        }
+        const userId = decodedToken.id;
+        const picture = await Picture.findByPk(parseInt(req.params.id));
+        if (!picture) {
+            return res.status(404).json({ message: 'Picture not found.' });
+        }
+        if (picture.userId === userId) {
+            await picture.destroy();
+            res.status(204).json({ message: 'Picture deleted.' });
+        } else {
+            res.status(403).json({ message: 'You are not authorized to delete this picture.' });
+        }
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ message: 'Failed to delete picture.' });
+    }
+});
 
 module.exports = router;

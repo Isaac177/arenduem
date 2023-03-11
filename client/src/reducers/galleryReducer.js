@@ -9,7 +9,7 @@ import {
     UPLOAD_PICTURE_SUCCESS,
     UPLOAD_PICTURE_FAILURE,
     GET_PICTURE_REQUEST,
-    GET_PICTURE_SUCCESS, GET_PICTURE_FAILURE, MAX_FILE_SIZE,
+    GET_PICTURE_SUCCESS, GET_PICTURE_FAILURE, MAX_FILE_SIZE, SET_SELECTED_PICTURE,
 
 } from '../actions/galleryActions';
 
@@ -65,6 +65,9 @@ export default function galleryReducer(state = initialState, action) {
 
         case GET_PICTURE_FAILURE:
             return { ...state, isGettingPicture: false, getPictureError: action.payload };
+
+        case SET_SELECTED_PICTURE:
+            return { ...state, currentPicture: action.payload };
 
         default:
             return state;

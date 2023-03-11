@@ -35,6 +35,7 @@ app.get('/users/:userId', userController.getUserById);
 app.put('/users/:userId', userController.updateUserById);
 app.post('/users/:userId/pictures', picturesRoutes);
 app.get('/users/:userId/pictures', picturesRoutes);
+app.delete('/users/:userId/pictures/:d', picturesRoutes);
 
 app.post('/api/auth/signup', authController.signup);
 app.post('/api/auth/signin', authController.signin);

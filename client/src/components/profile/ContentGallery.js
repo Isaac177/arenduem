@@ -7,7 +7,7 @@ import {
     setImages,
     setModalOpen,
     setIsFullSize,
-    getPictureById,
+    getPictureById, handleDeleteImage, setSelectedPicture,
 } from '../../actions/galleryActions';
 import {useDispatch, useSelector} from "react-redux";
 import FullSizeImage from "./FullSizeImage";
@@ -36,17 +36,25 @@ const ContentGallery = () => {
           dispatch(getPictureById());
       }, [dispatch]);
 
-    const handleDeleteImage = (id) => {
-        const newImages = images.filter((image, index) => index !== id);
-        dispatch(setImages(newImages));
-    };
+    // from redux
+    useEffect(() => {
+        if (images.length > 0) {
+            setCurrentImageIndex(0);
+        }
+    }, [images]);
+
+    const handleDeleteImg = (id) => {
+        dispatch(handleDeleteImage(id));
+    }
     const handleViewImage = (id) => {
         setCurrentImageIndex(id);
+        dispatch(setSelectedPicture(null));
         dispatch(setIsFullSize(true));
     };
 
     const handleCloseFullSize = () => {
         setCurrentImageIndex(null);
+        dispatch(setSelectedPicture(null));
         dispatch(setIsFullSize(false));
     };
 
@@ -113,7 +121,7 @@ const ContentGallery = () => {
                         key={index}
                         profileImg={image.fileUrl}
                         profileAlt={image.fileName}
-                        handleDeleteImage={() => handleDeleteImage(index)}
+                        handleDeleteImage={(id) => handleDeleteImg(id)}
                         handleViewImage={() => handleViewImage(index)}
                     />
                     ) })}
