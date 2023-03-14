@@ -1,6 +1,4 @@
 
-R
-"client/src/components/home/Home.js,8/e/8e140dd2d1251bd2c24499e26986a0b37dfcab57
 ]
 -client/src/components/side-bar/SidebarMenu.js,6/4/64ef7a8200192e39250d0403a734a3ca35d8377d
 ^
@@ -13,10 +11,6 @@ i
 9client/src/components/authentication/withAuthorization.js,5/a/5af9d82aa5f3ef7402a940a3d337eb4754c38543
 \
 ,client/src/components/user-nav/UserHeader.js,3/9/396160d31be1e04cf4585d252b617eaf1949e487
-C
-client/src/index.js,7/6/76cbb38a5cef42611c7af13985f39248682f4aa1
-A
-client/src/App.js,f/6/f6b8a135eb07bb80aa582994bcf1a8ccacd783ee
 W
 'client/src/reducers/persistedReducer.js,6/3/6361bca102e9d39917c03f71a1468aa2778409a8
 R
@@ -63,3 +57,11 @@ C
 client/package.json,a/d/ad8a30996233c30cdd545dbf5f18765b86e6bf64
 T
 $client/src/hooks/useImageUploader.js,f/f/ff81fc0ec0aaecae26c229d3926dd30eaa725ad4
+Q
+!client/src/actions/userActions.js,7/6/76643767db2d2cb617a2ec33b0b2b0ed9a6a5205
+4
+.env,3/c/3c84dcdc6bbe3d7817c49dcdc327b926fea1808a
+M
+controllers/userController.js,e/c/ec44b050defa6855748d2a8d6ff06d33bc8bba3a
+^
+.client/src/components/authentication/Signin.js,c/c/cc0ed757059b5deb7322a5477e7497d8db21e27a

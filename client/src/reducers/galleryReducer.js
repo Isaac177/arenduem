@@ -9,9 +9,15 @@ import {
     UPLOAD_PICTURE_SUCCESS,
     UPLOAD_PICTURE_FAILURE,
     GET_PICTURE_REQUEST,
-    GET_PICTURE_SUCCESS, GET_PICTURE_FAILURE, MAX_FILE_SIZE, SET_SELECTED_PICTURE,
+    GET_PICTURE_SUCCESS,
+    GET_PICTURE_FAILURE,
+    MAX_FILE_SIZE,
+    SET_SELECTED_PICTURE,
+    DELETE_PICTURE_SUCCESS,
+    DELETE_PICTURE_FAILURE,
 
 } from '../actions/galleryActions';
+import axios from "axios";
 
 const initialState = {
     images: [],
@@ -61,13 +67,27 @@ export default function galleryReducer(state = initialState, action) {
             return { ...state, isGettingPicture: true, getPictureError: null };
 
         case GET_PICTURE_SUCCESS:
-            return { ...state, images: action.payload };
+            return {
+                ...state,
+                isGettingPicture: false,
+                images: action.payload,
+            };
 
         case GET_PICTURE_FAILURE:
             return { ...state, isGettingPicture: false, getPictureError: action.payload };
 
         case SET_SELECTED_PICTURE:
             return { ...state, currentPicture: action.payload };
+
+        case DELETE_PICTURE_SUCCESS:
+            return {
+                ...state,
+                isDeletingPicture: false,
+                deletePictureError: null,
+                images: state.images.filter(image => image.id !== action.payload),
+            };
+        case DELETE_PICTURE_FAILURE:
+            return { ...state, isDeletingPicture: false, deletePictureError: action.payload };
 
         default:
             return state;

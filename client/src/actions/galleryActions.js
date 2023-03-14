@@ -61,7 +61,7 @@ export const getPictureById = (id) => async (dispatch, getState) => {
     try {
         const { userId } = getState().auth;
         const { token } = getState().auth;
-        const response = await axios.get(`http://localhost:8000/users/${userId}/pictures/${id}`, {
+        const response = await axios.get(`http://localhost:8000/users/${userId}/pictures`, {
             headers: {
                 Authorization: token
             },
@@ -83,7 +83,6 @@ export const handleDeleteImage = (id) => async (dispatch, getState) => {
     try {
         const { userId } = getState().auth;
         const { token } = getState().auth;
-        console.log('pictureId', id);
         const response = await axios.delete(`http://localhost:8000/users/${userId}/pictures/${id}`, {
             headers: {
                 Authorization: token
