@@ -18,6 +18,7 @@ export const DELETE_PICTURE_REQUEST = 'DELETE_PICTURE_REQUEST';
 export const DELETE_PICTURE_SUCCESS = 'DELETE_PICTURE_SUCCESS';
 export const DELETE_PICTURE_FAILURE = 'DELETE_PICTURE_FAILURE';
 export const SET_SELECTED_PICTURE = 'SET_SELECTED_PICTURE';
+export const SET_SHOW_IMG_MODAL = 'SET_SHOW_IMG_MODAL';
 
 export const MAX_FILE_SIZE = 10485760;
 
@@ -54,6 +55,11 @@ export const setIsFullSize = isFullSize => ({
 export const setSelectedPicture = id => ({
     type: SET_SELECTED_PICTURE,
     payload: id
+});
+
+export const setShowImgModal = showImgModal => ({
+    type: SET_SHOW_IMG_MODAL,
+    payload: showImgModal,
 });
 
 const BASE_URL = 'http://localhost:8000';

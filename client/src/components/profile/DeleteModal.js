@@ -1,9 +1,14 @@
 import React from 'react';
+import {motion } from 'framer-motion';
 
 const DeleteModal = ({ onDelete, onCancel }) => {
     return (
-        <div className="fixed z-10 inset-0 overflow-y-auto flex items-center justify-center">
-            <div className="flex items-end justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0">
+        <div
+            className="fixed z-10 inset-0 overflow-y-auto flex items-center justify-center"
+        >
+            <div
+                className="flex items-end justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0"
+            >
                 <div className="fixed inset-0 transition-opacity">
                     <div className="absolute inset-0 bg-gray-500 opacity-75"></div>
                 </div>

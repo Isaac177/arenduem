@@ -14,7 +14,7 @@ import {
     MAX_FILE_SIZE,
     SET_SELECTED_PICTURE,
     DELETE_PICTURE_SUCCESS,
-    DELETE_PICTURE_FAILURE,
+    DELETE_PICTURE_FAILURE, SET_SHOW_IMG_MODAL,
 
 } from '../actions/galleryActions';
 import axios from "axios";
@@ -31,6 +31,7 @@ const initialState = {
     isGettingPicture: false,
     getPictureError: null,
     currentPicture: null,
+    showImgModal: false,
     MAX_FILE_SIZE: MAX_FILE_SIZE
 };
 
@@ -86,6 +87,10 @@ export default function galleryReducer(state = initialState, action) {
                 deletePictureError: null,
                 images: state.images.filter(image => image.id !== action.payload),
             };
+
+        case SET_SHOW_IMG_MODAL:
+            return { ...state, showImgModal: action.payload };
+
         case DELETE_PICTURE_FAILURE:
             return { ...state, isDeletingPicture: false, deletePictureError: action.payload };
 

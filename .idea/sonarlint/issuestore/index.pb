@@ -113,8 +113,6 @@ q
 Amigrations/20230307180836-add-is-main-and-is-cover-to-pictures.js,6/a/6a2c7c472299a9d566cb7d7bae5aaefd88db5466
 >
 routes/auth.js,8/b/8bbe7473c2ec08c224aead7ec6d668fb50f27965
-L
-client/src/reducers/index.js,f/d/fddb094e79d9adb9ec669c65c9511e7135f8a137
 C
 client/src/store.js,4/a/4afe2750c2c347c6e38ea33d5c926b1ae43d2dfb
 \
@@ -151,3 +149,17 @@ Q
 !client/src/actions/userActions.js,7/6/76643767db2d2cb617a2ec33b0b2b0ed9a6a5205
 M
 controllers/userController.js,e/c/ec44b050defa6855748d2a8d6ff06d33bc8bba3a
+V
+&client/src/components/header/Header.js,5/f/5f63eea74f861092d6d5bab71157305af4ebe117
+T
+$client/src/components/header/Hero.js,1/e/1e618464d759cce8d5b2e8a191c143e5e4838f63
+R
+"client/src/components/home/Home.js,8/e/8e140dd2d1251bd2c24499e26986a0b37dfcab57
+C
+client/src/index.js,7/6/76cbb38a5cef42611c7af13985f39248682f4aa1
+A
+models/picture.js,1/3/13572076f33c39b994fc2c00ab8949dbd9b098f8
+]
+-client/src/components/profile/PersonalData.js,0/0/00ed5f8f30fe7675ed75557034cc5aff2f6d43b9
+`
+0client/src/components/profile/UploadImageForm.js,1/b/1b3eba2bbc8705e4655085d0a60b447c75f76bce

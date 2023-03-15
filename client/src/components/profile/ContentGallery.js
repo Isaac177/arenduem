@@ -6,7 +6,7 @@ import {
     setImages,
     setModalOpen,
     setIsFullSize,
-    getPictureById, handleDeleteImage, setSelectedPicture,
+    getPictureById, handleDeleteImage, setSelectedPicture, setShowImgModal,
 } from '../../actions/galleryActions';
 import {useDispatch, useSelector} from "react-redux";
 import FullSizeImage from "./FullSizeImage";
@@ -18,6 +18,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import DeleteModal from "./DeleteModal";
 import uuid4 from "uuid4";
 import {motion} from "framer-motion";
+import PictureOptionsModal from "./PictureOptionsModal";
 
 
 const ContentGallery = () => {
@@ -35,6 +36,7 @@ const ContentGallery = () => {
     const isFullSize = useSelector(state => state.gallery.isFullSize);
     const userId = useSelector((state) => state.auth.userId);
     const token = useSelector((state) => state.auth.token);
+    const showImgModal = useSelector((state) => state.gallery.showImgModal);
 
 
 
@@ -155,7 +157,6 @@ const ContentGallery = () => {
                     );
                 }
 
-
                 const id = prevMainPicture?.id || prevCoverPicture?.id || null;
                 formData.append('isMain', isMain);
                 formData.append('isCover', isCover);
@@ -177,7 +178,6 @@ const ContentGallery = () => {
                     }
                 );
 
-                // Add the new picture to the state
                 dispatch(setImages([...images, response.data]));
                 toast.success('Image uploaded successfully!');
             } catch (error) {
@@ -191,6 +191,14 @@ const ContentGallery = () => {
         dispatch(setModalOpen(false));
     };
 
+    const handleSetIsMain = (id) => {
+        // todo
+    }
+
+    const handleSetIsCover = (id) => {
+        //
+    }
+
     return (
         <div>
             <h1 className="text-2xl font-bold m-4">My Gallery</h1>
@@ -199,20 +207,38 @@ const ContentGallery = () => {
                     return (
                         <div key={uuid4()}>
                         <ProfileImgCard
-                            key={index}
+                            key={uuid4()}
                             profileImg={image.fileUrl}
                             profileAlt={image.fileName}
                             handleDeleteImage={() => setShowDeleteModal(true)}
                             handleViewImage={() => handleViewImage(index)}
+                            handleShowImageOptions={() => dispatch(setShowImgModal(true))}
                         />
-
-                    {showDeleteModal && (
-                        <DeleteModal
-                            onDelete={() => handleDeleteImg(image.id)}
-                            onCancel={() => setShowDeleteModal(false)}
-                        />
-                    )}
-                    </div>)
+                        {/*{showDeleteModal && (
+                            <DeleteModal
+                                onDelete={() => handleDeleteImg(image.id)}
+                                onCancel={() => setShowDeleteModal(false)}
+                            />
+                        )}*/}
+                        {showImgModal && (
+                            <PictureOptionsModal
+                                onClose={() => dispatch(setShowImgModal(false))}
+                                handleDeleteImage={() => {
+                                    handleDeleteImg(image.id).then(r => console.log(r));
+                                    setShowImgModal(false);
+                                }}
+                                handleSetIsMain={() => {
+                                    handleSetIsMain(image.id);
+                                    setShowImgModal(false);
+                                }}
+                                handleSetIsCover={() => {
+                                    handleSetIsCover(image.id);
+                                    setShowImgModal(false);
+                                }}
+                            />
+                        )}
+                    </div>
+                    )
                 })}
             </div>
 
@@ -228,17 +254,14 @@ const ContentGallery = () => {
                 >
                     {({ isSubmitting }) => (
                         <Form>
-                            <motion.div
+                            <div
                                 className="fixed top-0 left-0 w-full h-full bg-black bg-opacity-50 flex justify-center items-center"
-                                initial={{ transform: 'scale(0.5)', opacity: 0 }}
-                                animate={{ transform: 'scale(1)', opacity: 1 }}
-                                exit={{ transform: 'scale(0.5)', opacity: 0 }}
                             >
                                 <motion.div
                                     className="bg-white rounded-lg p-6 flex flex-col items-center"
-                                    initial={{ y: 50, opacity: 0 }}
-                                    animate={{ y: 0, opacity: 1 }}
-                                    exit={{ y: 50, opacity: 0 }}
+                                    initial={{ transform: 'scale(0.5)', opacity: 0 }}
+                                    animate={{ transform: 'scale(1)', opacity: 1 }}
+                                    exit={{ transform: 'scale(0.5)', opacity: 0 }}
                                 >
                                     <h2 className="text-lg font-bold mb-4">Upload Image</h2>
                                     <div className="mb-4">
@@ -279,7 +302,7 @@ const ContentGallery = () => {
                                         </button>
                                     </div>
                                 </motion.div>
-                            </motion.div>
+                            </div>
                         </Form>
                     )}
                 </Formik>
@@ -296,7 +319,7 @@ const ContentGallery = () => {
                 />
             )}
             <ToastContainer
-                position="top-center"
+                position="bottom-center"
                 autoClose={3000}
                 hideProgressBar={true}
                 newestOnTop={false}
