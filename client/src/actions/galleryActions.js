@@ -137,9 +137,9 @@ export const handleSetAsCoverImage = (id) => async (dispatch, getState) => {
     try {
         const { userId } = getState().auth;
         const { token } = getState().auth;
-        const response = await axios.put(`${BASE_URL}/users/${userId}/pictures/${id}`, {
-            isMain: false,
-            isCover: true,
+        const response = await axios.put(`${BASE_URL}/users/${userId}/pictures/${id}`,
+            { isMain: false, isCover: true},
+            {
             headers: {
                 Authorization: token
             },

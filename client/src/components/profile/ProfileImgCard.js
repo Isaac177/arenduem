@@ -20,7 +20,6 @@ const ProfileImgCard = ({
     const [isHovered, setIsHovered] = useState(false);
     const dispatch = useDispatch();
     const showImgModal = useSelector((state) => state.gallery.showImgModal);
-    const selectedPicture = useSelector((state) => state.gallery.selectedPicture);
 
 
     const handleCardClick = () => {
@@ -50,10 +49,14 @@ const ProfileImgCard = ({
 
     const handleSetMain = async (selectedPicture) => {
         await dispatch(handleSetAsMainImage(selectedPicture));
+        dispatch(setShowImgModal(false));
+        await dispatch(getPictureById());
     }
 
     const handleSetCover = async (selectedPicture) => {
         await dispatch(handleSetAsCoverImage(selectedPicture));
+        dispatch(setShowImgModal(false));
+        await dispatch(getPictureById());
     }
 
     return (
@@ -84,8 +87,8 @@ const ProfileImgCard = ({
                                 pictureId={pictureId}
                                 onClose={() => dispatch(setShowImgModal(false))}
                                 handleDeleteImage={handleDeleteImage}
-                                handleSetIsMain={() => handleSetMain(selectedPicture)}
-                                handleSetIsCover={() => handleSetCover(selectedPicture)}
+                                handleSetIsMain={() => handleSetMain(pictureId)}
+                                handleSetIsCover={() => handleSetCover(pictureId)}
                             />
                         )}
                     </div>

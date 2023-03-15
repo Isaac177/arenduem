@@ -6,7 +6,7 @@ import {
     setImages,
     setModalOpen,
     setIsFullSize,
-    getPictureById, handleDeleteImage, setSelectedPicture, setShowImgModal,
+    getPictureById, handleDeleteImage, setSelectedPicture, setShowImgModal, setIsMain, setIsCover,
 } from '../../actions/galleryActions';
 import {useDispatch, useSelector} from "react-redux";
 import FullSizeImage from "./FullSizeImage";
@@ -199,19 +199,24 @@ const ContentGallery = () => {
                         <div key={uuid4()}>
                             <ProfileImgCard
                                 key={uuid4()}
-                                pictureId = {selectedPicture}
+                                pictureId = {image.id}
                                 profileImg={image.fileUrl}
                                 profileAlt={image.fileName}
                                 handleDeleteImageClick={() => {
-                                    dispatch(setSelectedPicture(image.id)); // set the selectedPicture ID to the clicked image ID
+                                    dispatch(setSelectedPicture(image.id));
                                     setShowDeleteModal(true);
-                                }}                                handleViewImage={() => handleViewImage(index)}
+                                    setIsMain(image.isMain);
+                                    setIsCover(image.isCover);
+                                }}
+                                handleViewImage={() => handleViewImage(index)}
                                 handleShowImageOptions={() => dispatch(setShowImgModal(true))}
                             />
                             {showDeleteModal && selectedPicture && (
                                 <DeleteModal
                                     onDelete={() => handleDeleteImg(selectedPicture)}
                                     onCancel={() => setShowDeleteModal(false)}
+                                    isMain={image.isMain}
+                                    isCover={image.isCover}
                                 />
                             )}
                         </div>

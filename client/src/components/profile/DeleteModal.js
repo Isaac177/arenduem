@@ -1,6 +1,15 @@
 import React from 'react';
 
-const DeleteModal = ({ onDelete, onCancel }) => {
+const DeleteModal = ({ onDelete, onCancel, isMain, isCover}) => {
+    let deleteImageText;
+    if (isMain) {
+        deleteImageText = 'Delete Main Image';
+    } else if (isCover) {
+        deleteImageText = 'Delete Cover Image';
+    } else {
+        deleteImageText = 'Delete Image';
+    }
+
     return (
         <div
             className="fixed z-10 inset-0 overflow-y-auto flex items-center justify-center"
@@ -20,7 +29,9 @@ const DeleteModal = ({ onDelete, onCancel }) => {
                             </svg>
                         </div>
                         <div className="mt-3 text-center sm:mt-0 sm:ml-4 sm:text-left">
-                            <h3 className="text-lg leading-6 font-medium text-gray-900">Delete Image</h3>
+                            <h3 className="text-lg leading-6 font-medium text-gray-900">
+                                {deleteImageText}
+                            </h3>
                             <div className="mt-2">
                                 <p className="text-sm leading-5 text-gray-500">Are you sure you want to delete this image?</p>
                             </div>
