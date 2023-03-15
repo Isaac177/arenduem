@@ -18,7 +18,6 @@ import 'react-toastify/dist/ReactToastify.css';
 import DeleteModal from "./DeleteModal";
 import uuid4 from "uuid4";
 import {motion} from "framer-motion";
-import PictureOptionsModal from "./PictureOptionsModal";
 
 
 const ContentGallery = () => {
@@ -36,8 +35,7 @@ const ContentGallery = () => {
     const isFullSize = useSelector(state => state.gallery.isFullSize);
     const userId = useSelector((state) => state.auth.userId);
     const token = useSelector((state) => state.auth.token);
-    const showImgModal = useSelector((state) => state.gallery.showImgModal);
-
+    const selectedPicture = useSelector(state => state.gallery.selectedPicture);
 
 
     useEffect(() => {
@@ -49,13 +47,6 @@ const ContentGallery = () => {
             setCurrentImageIndex(0);
         }
     }, [images]);
-
-    const handleDeleteImg = async (id) => {
-        await dispatch(handleDeleteImage(id));
-        dispatch(getPictureById());
-        setShowDeleteModal(false);
-        toast.success('Image deleted successfully!');
-    };
 
     const handleViewImage = (id) => {
         setCurrentImageIndex(id);
@@ -77,6 +68,14 @@ const ContentGallery = () => {
         if (currentImageIndex - 1 === 0) {
             setIsPrevDisabled(true);
         }
+    };
+
+    const handleDeleteImg = async (selectedPicture) => {
+        await dispatch(handleDeleteImage(selectedPicture));
+        dispatch(getPictureById());
+        setShowDeleteModal(false);
+        toast.success('Image deleted successfully!');
+        dispatch(setShowImgModal(false));
     };
 
     const handleNextClick = () => {
@@ -191,14 +190,6 @@ const ContentGallery = () => {
         dispatch(setModalOpen(false));
     };
 
-    const handleSetIsMain = (id) => {
-        // todo
-    }
-
-    const handleSetIsCover = (id) => {
-        //
-    }
-
     return (
         <div>
             <h1 className="text-2xl font-bold m-4">My Gallery</h1>
@@ -206,38 +197,24 @@ const ContentGallery = () => {
                 {images.map((image, index) => {
                     return (
                         <div key={uuid4()}>
-                        <ProfileImgCard
-                            key={uuid4()}
-                            profileImg={image.fileUrl}
-                            profileAlt={image.fileName}
-                            handleDeleteImage={() => setShowDeleteModal(true)}
-                            handleViewImage={() => handleViewImage(index)}
-                            handleShowImageOptions={() => dispatch(setShowImgModal(true))}
-                        />
-                        {/*{showDeleteModal && (
-                            <DeleteModal
-                                onDelete={() => handleDeleteImg(image.id)}
-                                onCancel={() => setShowDeleteModal(false)}
+                            <ProfileImgCard
+                                key={uuid4()}
+                                pictureId = {selectedPicture}
+                                profileImg={image.fileUrl}
+                                profileAlt={image.fileName}
+                                handleDeleteImageClick={() => {
+                                    dispatch(setSelectedPicture(image.id)); // set the selectedPicture ID to the clicked image ID
+                                    setShowDeleteModal(true);
+                                }}                                handleViewImage={() => handleViewImage(index)}
+                                handleShowImageOptions={() => dispatch(setShowImgModal(true))}
                             />
-                        )}*/}
-                        {showImgModal && (
-                            <PictureOptionsModal
-                                onClose={() => dispatch(setShowImgModal(false))}
-                                handleDeleteImage={() => {
-                                    handleDeleteImg(image.id).then(r => console.log(r));
-                                    setShowImgModal(false);
-                                }}
-                                handleSetIsMain={() => {
-                                    handleSetIsMain(image.id);
-                                    setShowImgModal(false);
-                                }}
-                                handleSetIsCover={() => {
-                                    handleSetIsCover(image.id);
-                                    setShowImgModal(false);
-                                }}
-                            />
-                        )}
-                    </div>
+                            {showDeleteModal && selectedPicture && (
+                                <DeleteModal
+                                    onDelete={() => handleDeleteImg(selectedPicture)}
+                                    onCancel={() => setShowDeleteModal(false)}
+                                />
+                            )}
+                        </div>
                     )
                 })}
             </div>

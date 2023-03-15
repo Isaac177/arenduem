@@ -77,3 +77,7 @@ A
 models/picture.js,1/3/13572076f33c39b994fc2c00ab8949dbd9b098f8
 `
 0client/src/components/profile/UploadImageForm.js,1/b/1b3eba2bbc8705e4655085d0a60b447c75f76bce
+L
+client/src/reducers/index.js,f/d/fddb094e79d9adb9ec669c65c9511e7135f8a137
+A
+client/src/App.js,f/6/f6b8a135eb07bb80aa582994bcf1a8ccacd783ee

@@ -172,7 +172,6 @@ router.delete('/users/:userId/pictures/:id', async (req, res) => {
         }
         const userId = decodedToken.id;
         const picture = await Picture.findByPk(Number(req.params.id));
-
         if (!picture) {
             return res.status(404).json({ message: 'Picture not found.' });
         }

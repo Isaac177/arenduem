@@ -19,6 +19,8 @@ export const DELETE_PICTURE_SUCCESS = 'DELETE_PICTURE_SUCCESS';
 export const DELETE_PICTURE_FAILURE = 'DELETE_PICTURE_FAILURE';
 export const SET_SELECTED_PICTURE = 'SET_SELECTED_PICTURE';
 export const SET_SHOW_IMG_MODAL = 'SET_SHOW_IMG_MODAL';
+export const SET_AS_MAIN_IMAGE = 'SET_AS_MAIN_IMAGE';
+export const SET_AS_COVER_IMAGE = 'SET_AS_COVER_IMAGE';
 
 export const MAX_FILE_SIZE = 10485760;
 
@@ -67,7 +69,7 @@ export const getPictureById = (id) => async (dispatch, getState) => {
     try {
         const { userId } = getState().auth;
         const { token } = getState().auth;
-        const response = await axios.get(`http://localhost:8000/users/${userId}/pictures`, {
+        const response = await axios.get(`${BASE_URL}/users/${userId}/pictures`, {
             headers: {
                 Authorization: token
             },
@@ -89,7 +91,7 @@ export const handleDeleteImage = (id) => async (dispatch, getState) => {
     try {
         const { userId } = getState().auth;
         const { token } = getState().auth;
-        const response = await axios.delete(`http://localhost:8000/users/${userId}/pictures/${id}`, {
+        const response = await axios.delete(`${BASE_URL}/users/${userId}/pictures/${id}`, {
             headers: {
                 Authorization: token
             },
@@ -107,6 +109,49 @@ export const handleDeleteImage = (id) => async (dispatch, getState) => {
 }
 
 
+export const handleSetAsMainImage = (id) => async (dispatch, getState) => {
+    try {
+        const { userId } = getState().auth;
+        const { token } = getState().auth;
+        const response = await axios.put(
+            `${BASE_URL}/users/${userId}/pictures/${id}`,
+            { isMain: true, isCover: false },
+            {
+                headers: {
+                    Authorization: token,
+                },
+            }
+        );
+        dispatch({
+            type: SET_AS_MAIN_IMAGE,
+            payload: response.data,
+        });
+    } catch (error) {
+        console.log(error);
+    }
+};
+
+
+
+export const handleSetAsCoverImage = (id) => async (dispatch, getState) => {
+    try {
+        const { userId } = getState().auth;
+        const { token } = getState().auth;
+        const response = await axios.put(`${BASE_URL}/users/${userId}/pictures/${id}`, {
+            isMain: false,
+            isCover: true,
+            headers: {
+                Authorization: token
+            },
+        });
+        dispatch({
+            type: SET_AS_COVER_IMAGE,
+            payload: response.data,
+        });
+    } catch (error) {
+        console.log(error);
+    }
+}
 
 
 

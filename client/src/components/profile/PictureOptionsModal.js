@@ -4,19 +4,13 @@ import { motion } from 'framer-motion';
 const PictureOptionsModal = ({handleDeleteImage, handleSetIsMain, handleSetIsCover, onClose}) => {
     const modalRef = useRef();
 
-    const handleDeleteImageClick = () => {
-        handleDeleteImage();
-    };
-
     useEffect(() => {
         const handleClickOutside = (event) => {
             if (modalRef.current && !modalRef.current.contains(event.target)) {
                 onClose();
             }
         };
-
         document.addEventListener('mousedown', handleClickOutside);
-
         return () => {
             document.removeEventListener('mousedown', handleClickOutside);
         };
@@ -25,7 +19,7 @@ const PictureOptionsModal = ({handleDeleteImage, handleSetIsMain, handleSetIsCov
 
     return (
         <motion.div
-            className="absolute inset-0 z-50 flex items-center justify-center text-sm top-0 right-0"
+            className="fixed inset-0 z-50 flex items-center justify-center text-sm top-0 right-0 text-black"
             onClick={onClose}
             initial={{ scale: 0 }}
             animate={{ scale: 1 }}
@@ -48,7 +42,7 @@ const PictureOptionsModal = ({handleDeleteImage, handleSetIsMain, handleSetIsCov
                 </button>
                 <button
                     className="block w-full text-left py-2 px-4 hover:bg-gray-200 hover:rounded-b-md hover:text-red-500"
-                    onClick={handleDeleteImageClick}
+                    onClick={handleDeleteImage}
                 >
                     Delete
                 </button>
