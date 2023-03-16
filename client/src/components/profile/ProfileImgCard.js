@@ -16,6 +16,7 @@ const ProfileImgCard = ({
                             pictureId,
                             handleViewImage,
                             handleDeleteImageClick,
+    isMain, isCover
                         }) => {
     const [isHovered, setIsHovered] = useState(false);
     const dispatch = useDispatch();
@@ -74,6 +75,18 @@ const ProfileImgCard = ({
                         className="w-full h-full object-cover"
                         onClick={handleViewImage}
                     />
+                    {/* Add text on image if isMain */}
+                    {isMain && (
+                        <div className="absolute bottom-0 left-0 w-full h-10 bg-black bg-opacity-50 flex items-center justify-center">
+                            <p className="text-white text-sm">Main Image</p>
+                        </div>
+                    )}
+                    {/* Add text on image if isCover */}
+                    {isCover && (
+                        <div className="absolute top-0 left-0 w-full h-10 bg-black bg-opacity-50 flex items-center justify-center">
+                            <p className="text-white text-sm">Cover Image</p>
+                        </div>
+                    )}
                 </div>
                 {isHovered && (
                     <div className="absolute top-0 right-0 m-2 text-white">

@@ -37,7 +37,6 @@ const ContentGallery = () => {
     const token = useSelector((state) => state.auth.token);
     const selectedPicture = useSelector(state => state.gallery.selectedPicture);
 
-
     useEffect(() => {
           dispatch(getPictureById());
       }, [dispatch, userId]);
@@ -190,6 +189,7 @@ const ContentGallery = () => {
         dispatch(setModalOpen(false));
     };
 
+
     return (
         <div>
             <h1 className="text-2xl font-bold m-4">My Gallery</h1>
@@ -202,6 +202,8 @@ const ContentGallery = () => {
                                 pictureId = {image.id}
                                 profileImg={image.fileUrl}
                                 profileAlt={image.fileName}
+                                isMain = {image.isMain}
+                                isCover = {image.isCover}
                                 handleDeleteImageClick={() => {
                                     dispatch(setSelectedPicture(image.id));
                                     setShowDeleteModal(true);
