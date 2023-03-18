@@ -25,8 +25,6 @@ D
 .migrations/20230224181450-add-role-to-users.js,0/d/0da5a78b04ff35868bdbe430ed0ff59e92fefc68
 q
 Amigrations/20230307180836-add-is-main-and-is-cover-to-pictures.js,6/a/6a2c7c472299a9d566cb7d7bae5aaefd88db5466
->
-routes/auth.js,8/b/8bbe7473c2ec08c224aead7ec6d668fb50f27965
 C
 client/src/store.js,4/a/4afe2750c2c347c6e38ea33d5c926b1ae43d2dfb
 \
