@@ -21,8 +21,6 @@ P
  seeders/20230212074701-gender.js,e/8/e84ccfc50c095d0de2fa86902b1ce22e983f61e9
 O
 seeders/20230212074738-media.js,1/e/1e3c5dcf40f7edb936551e92b5c2aa4979994eeb
-[
-+migrations/20230211204221-create-picture.js,7/8/78ec241d8b64e4d5e2bd84315b9767b95592777d
 Q
 !seeders/20230212074755-picture.js,d/d/ddbc91d6164a00e87d0232a9c74b7bf0ca992490
 X
@@ -125,14 +123,10 @@ Q
 !controllers/picturesController.js,8/c/8c2c2185a3bd4258f38368fb5f196f81d2303da5
 ?
 models/media.js,5/2/520d024105946b36c6cb783930621dd5a0441782
-X
-(migrations/20230211204102-create-user.js,2/9/29597007042cdd6d2b9c281391829ae1c4889cfe
 A
 models/message.js,4/a/4a441d248f1f22039321f3c42842f9d65d4dbbd8
 G
 models/smokingstatus.js,8/c/8cf12b2f0282e0907b77e2612db56fe2234397c5
-?
-models/index.js,e/4/e41453b900e7c418643d34a8cb9d68efc0b0ddd6
 G
 models/housingstatus.js,8/c/8c5d7bb7270a9a30e0541188b3c742d71e790c62
 C
@@ -155,8 +149,6 @@ R
 "client/src/components/home/Home.js,8/e/8e140dd2d1251bd2c24499e26986a0b37dfcab57
 C
 client/src/index.js,7/6/76cbb38a5cef42611c7af13985f39248682f4aa1
-A
-models/picture.js,1/3/13572076f33c39b994fc2c00ab8949dbd9b098f8
 ]
 -client/src/components/profile/PersonalData.js,0/0/00ed5f8f30fe7675ed75557034cc5aff2f6d43b9
 `

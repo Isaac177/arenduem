@@ -1,98 +1,271 @@
-import React, { useState } from 'react';
-import { AiOutlineEdit } from 'react-icons/ai';
-import { IoIosCheckmarkCircleOutline, IoIosCloseCircleOutline } from 'react-icons/io';
-import { FaGuitar, FaHiking, FaBook, FaFilm, FaGamepad } from 'react-icons/fa';
-import { MdSportsBasketball } from 'react-icons/md';
-import { HiPhotograph } from 'react-icons/hi';
+import { useState } from "react";
+import {
+    FaCheckCircle,
+    FaPlusCircle,
+    FaHiking,
+    FaUtensils,
+    FaGamepad,
+    FaBook,
+    FaPlane,
+    FaCamera,
+    FaFutbol,
+    FaMusic,
+    FaFilm,
+    FaTv,
+    FaRegLaugh,
+    FaFeatherAlt,
+    FaPencilRuler,
+    FaPalette,
+    FaYarn,
+    FaBirthdayCake,
+    FaCampground,
+    FaFish,
+    FaSwimmer,
+    FaRunning,
+    FaOm,
+    FaFistRaised,
+    FaSeedling,
+    FaTools,
+    FaHammer,
+    FaCut,
+    FaTree,
+    FaSkiing,
+    FaSnowboarding,
+    FaSnowflake,
+    FaCrosshairs,
+    FaTractor,
+} from "react-icons/fa";
+import uuid4 from "uuid4";
+import {GiSewingNeedle} from "react-icons/gi";
+import {GrYoga} from "react-icons/gr";
 
-const Interests = () => {
-    const [editing, setEditing] = useState(false);
-    const [selectedInterests, setSelectedInterests] = useState([
-        'Playing guitar',
-        'Hiking',
-        'Reading books',
-        'Watching movies',
-        'Playing video games',
-        'Playing basketball',
-        'Photography',
-    ]);
-    const [newInterests, setNewInterests] = useState('');
 
-    const toggleEditing = () => {
-        setEditing(!editing);
-        setNewInterests('');
+const interestsArray = [
+    {
+        name: "Hiking",
+        icon: <FaHiking />,
+    },
+    {
+        name: "Cooking",
+        icon: <FaUtensils />,
+    },
+    {
+        name: "Gaming",
+        icon: <FaGamepad />,
+    },
+    {
+        name: "Reading",
+        icon: <FaBook />,
+    },
+    {
+        name: "Traveling",
+        icon: <FaPlane />,
+    },
+    {
+        name: "Photography",
+        icon: <FaCamera />,
+    },
+    {
+        name: "Sports",
+        icon: <FaFutbol />,
+    },
+    {
+        name: "Music",
+        icon: <FaMusic />,
+    },
+    {
+        name: "Movies",
+        icon: <FaFilm />,
+    },
+    {
+        name: "TV Shows",
+        icon: <FaTv />,
+    },
+    {
+        name: "Dancing",
+        icon: <FaRegLaugh />,
+    },
+    {
+        name: "Singing",
+        icon: <FaMusic />,
+    },
+    {
+        name: "Writing",
+        icon: <FaFeatherAlt />,
+    },
+    {
+        name: "Drawing",
+        icon: <FaPencilRuler />,
+    },
+    {
+        name: "Painting",
+        icon: <FaPalette />,
+    },
+    {
+        name: "Knitting",
+        icon: <FaYarn />,
+    },
+    {
+        name: "Sewing",
+        icon: <GiSewingNeedle />,
+    },
+    {
+        name: "Baking",
+        icon: <FaBirthdayCake />,
+    },
+    {
+        name: "Camping",
+        icon: <FaCampground />,
+    },
+    {
+        name: "Fishing",
+        icon: <FaFish />,
+    },
+    {
+        name: "Swimming",
+        icon: <FaSwimmer />,
+    },
+    {
+        name: "Running",
+        icon: <FaRunning />,
+    },
+    {
+        name: "Yoga",
+        icon: <GrYoga />,
+    },
+    {
+        name: "Meditation",
+        icon: <FaOm />,
+    },
+    {
+        name: "Martial Arts",
+        icon: <FaFistRaised />,
+    },
+    {
+        name: "Gardening",
+        icon: <FaSeedling />,
+    },
+    {
+        name: "DIY",
+        icon: <FaTools />,
+    },
+    {
+        name: "Home Improvement",
+        icon: <FaHammer/>,
+    },
+    {
+        name: "Crafting",
+        icon: <FaCut />,
+    },
+    {
+        name: "Woodworking",
+        icon: <FaTree />,
+    },
+    {
+        name: "Skiing",
+        icon: <FaSkiing />,
+    },
+    {
+        name: "Snowboarding",
+        icon: <FaSnowboarding />,
+    },
+    {
+        name: "Snowshoeing",
+        icon: <FaSnowflake />,
+    },
+    {
+        name: "Hunting",
+        icon: <FaCrosshairs />,
+    },
+    {
+        name: "Farming",
+        icon: <FaTractor />,
+    },
+];
+
+const InterestCard = ({ interest, isChecked, handleToggle }) => {
+    const [isHovered, setIsHovered] = useState(false);
+
+    const handleHover = () => {
+        setIsHovered(true);
     };
 
-    const handleInputChange = (e) => {
-        setNewInterests(e.target.value);
-    };
-
-    const addInterest = () => {
-        if (newInterests.trim() !== '') {
-            setSelectedInterests([...selectedInterests, newInterests]);
-            setNewInterests('');
-        }
-    };
-
-    const removeInterest = (interest) => {
-        setSelectedInterests(selectedInterests.filter((i) => i !== interest));
+    const handleMouseLeave = () => {
+        setIsHovered(false);
     };
 
     return (
-        <div className="text-center mt-4 pl-10">
-            <div className="flex items-center gap-8 mb-4">
-                <h1 className="text-2xl font-bold text-aqua-500">Interests</h1>
-                <button onClick={toggleEditing}>
-                    <AiOutlineEdit
-                        fill='aquamarine'
-                        className="w-6 h-6 text-gray-500 hover:text-gray-700" />
-                </button>
-            </div>
-            {editing ? (
-                <div className="mt-4">
-                    <div className="flex items-center">
-                        <input
-                            type="text"
-                            placeholder="Add an interest"
-                            value={newInterests}
-                            onChange={handleInputChange}
-                            className="w-full px-4 py-2 mr-2 text-gray-700 placeholder-gray-400 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-aqua-500"
-                        />
-                        <button onClick={addInterest}>
-                            <IoIosCheckmarkCircleOutline
-                                className="w-6 h-6 text-green-500 hover:text-green-700" />
-                        </button>
-                    </div>
-                    <ul className="mt-2 space-y-2">
-                        {selectedInterests.map((interest, index) => (
-                            <li key={index} className="flex items-center">
-                                <button onClick={() => removeInterest(interest)}>
-                                    <IoIosCloseCircleOutline className="w-6 h-6 text-red-500 hover:text-red-700" />
-                                </button>
-                                <p className="ml-2">{interest}</p>
-                            </li>
-                        ))}
-                    </ul>
-                </div>
+        <div
+            className={`flex items-center justify-center rounded-md py-1 px-2 bg-gray-200 
+            ${ isChecked ? "bg-green-500 text-white cursor-pointer" : "" } 
+            ${isHovered ? "bg-green-300 cursor-pointer" : ""}`}
+            onMouseEnter={handleHover}
+            onMouseLeave={handleMouseLeave}
+            onClick={handleToggle}
+        >
+            <span className="mr-1">{interest.icon}</span>
+            <span className="mr-1">{interest.name}</span>
+            {isChecked ? (
+                <FaCheckCircle className="w-5 h-5" />
             ) : (
-                <ul className="mt-4 space-y-2">
-                    {selectedInterests.map((interest, index) => (
-                        <li key={index} className="flex items-center">
-                            {interest === 'Playing guitar' && <FaGuitar className="w-6 h-6 text-gray-500" />}
-                            {interest === 'Hiking' && <FaHiking className="w-6 h-6 text-gray-500" />}
-                            {interest === 'Reading books' && <FaBook className="w-6 h-6 text-gray-500" />}
-                            {interest === 'Watching movies' && <FaFilm className="w-6 h-6 text-gray-500" />}
-                            {interest === 'Playing video games' && <FaGamepad className="w-6 h-6 text-gray-500" />}
-                            {interest === 'Playing basketball' && <MdSportsBasketball className="w-6 h-6 text-gray-500" />}
-                            {interest === 'Photography' && <HiPhotograph className="w-6 h-6 text-gray-500" />}
-                            <p className="ml-2">{interest}</p>
-                        </li>
-                    ))}
-                </ul>
+                <FaPlusCircle className="w-5 h-5" />
             )}
         </div>
     );
 };
 
+const InterestList = () => {
+    const [selectedInterests, setSelectedInterests] = useState([]);
+    const [newInterest, setNewInterest] = useState("");
 
-export default Interests;
+    const handleToggleInterest = (interest) => {
+        if (selectedInterests.includes(interest.name)) {
+            setSelectedInterests(
+                selectedInterests.filter((item) => item !== interest.name)
+            );
+        } else {
+            setSelectedInterests([...selectedInterests, interest.name]);
+        }
+        console.log(selectedInterests);
+    };
+
+    const handleNewInterestChange = (event) => {
+        setNewInterest(event.target.value);
+    };
+
+    const handleAddInterest = () => {
+        if (newInterest) {
+            setSelectedInterests([...selectedInterests, newInterest]);
+            setNewInterest("");
+        }
+    };
+
+    return (
+        <div className="flex flex-wrap">
+            {interestsArray.map((interest) => (
+                <InterestCard
+                    key={uuid4()}
+                    interest={interest}
+                    isChecked={selectedInterests.includes(interest.name)}
+                    handleToggle={() => handleToggleInterest(interest)}
+                />
+            ))}
+            <div className="flex items-center justify-center rounded-md py-1 px-2 bg-gray-200">
+                <input
+                    type="text"
+                    placeholder="Add new interest"
+                    className="outline-none border-0 bg-transparent mr-1"
+                    value={newInterest}
+                    onChange={handleNewInterestChange}
+                />
+                <FaPlusCircle
+                    className="w-5 h-5 cursor-pointer"
+                    onClick={handleAddInterest}
+                />
+            </div>
+        </div>
+    );
+};
+
+export default InterestList;
+

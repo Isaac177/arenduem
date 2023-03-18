@@ -1,4 +1,3 @@
-'use strict';
 const { Model } = require('sequelize');
 const Sequelize = require('sequelize');
 const bcrypt = require('bcrypt');
@@ -6,7 +5,7 @@ const bcrypt = require('bcrypt');
 module.exports = (sequelize, DataTypes) => {
   class User extends Model {
     static associate(models) {
-      const {Picture, Gender, SmokingStatus, DrinkingStatus, HousingStatus} = models;
+      const {Picture, Gender, SmokingStatus, DrinkingStatus, HousingStatus, Interest} = models;
 
       User.hasMany(Picture, {
         foreignKey: 'userId',
@@ -28,6 +27,11 @@ module.exports = (sequelize, DataTypes) => {
       User.hasOne(HousingStatus, {
         foreignKey: 'userId',
         as: 'housingStatus'
+      });
+      User.hasMany(Interest, {
+        foreignKey: 'userId',
+        as: 'interests',
+        onDelete: 'CASCADE'
       });
     }
 

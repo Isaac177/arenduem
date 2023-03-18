@@ -39,14 +39,10 @@ D
 routes/userRoutes.js,e/9/e9eb043515685faf25833d70ef475596fc6e333d
 ?
 models/media.js,5/2/520d024105946b36c6cb783930621dd5a0441782
-X
-(migrations/20230211204102-create-user.js,2/9/29597007042cdd6d2b9c281391829ae1c4889cfe
 A
 models/message.js,4/a/4a441d248f1f22039321f3c42842f9d65d4dbbd8
 G
 models/smokingstatus.js,8/c/8cf12b2f0282e0907b77e2612db56fe2234397c5
-?
-models/index.js,e/4/e41453b900e7c418643d34a8cb9d68efc0b0ddd6
 G
 models/housingstatus.js,8/c/8c5d7bb7270a9a30e0541188b3c742d71e790c62
 C
@@ -71,8 +67,6 @@ V
 &client/src/components/header/Header.js,5/f/5f63eea74f861092d6d5bab71157305af4ebe117
 C
 client/src/index.js,7/6/76cbb38a5cef42611c7af13985f39248682f4aa1
-A
-models/picture.js,1/3/13572076f33c39b994fc2c00ab8949dbd9b098f8
 `
 0client/src/components/profile/UploadImageForm.js,1/b/1b3eba2bbc8705e4655085d0a60b447c75f76bce
 L

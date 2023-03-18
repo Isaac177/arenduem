@@ -8,6 +8,7 @@ const cors = require('cors');
 const { User } = require("./models");
 const authController = require("./controllers/authController");
 const userController = require("./controllers/userController");
+const sequelize = require("./database/db");
 require('dotenv').config();
 require('./config/passport')(passport);
 const app = express();
@@ -46,4 +47,6 @@ const PORT = 8000;
 app.listen(PORT, () => {
     console.log(`Server running on port ${PORT}`);
 });
+
+
 
