@@ -1,3 +1,5 @@
+// models/Interest.js
+
 const { Model } = require('sequelize');
 const Sequelize = require('sequelize');
 
@@ -14,9 +16,13 @@ module.exports = (sequelize, DataTypes) => {
 
     Interest.init(
         {
+            id: {
+                type: Sequelize.INTEGER,
+                primaryKey: true,
+                autoIncrement: true
+            },
             userId: Sequelize.INTEGER,
             interest: Sequelize.STRING,
-            icon: Sequelize.STRING,
             createdAt: DataTypes.DATE,
             updatedAt: DataTypes.DATE
         },

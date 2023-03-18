@@ -2,188 +2,22 @@ import { useState } from "react";
 import {
     FaCheckCircle,
     FaPlusCircle,
-    FaHiking,
-    FaUtensils,
-    FaGamepad,
-    FaBook,
-    FaPlane,
-    FaCamera,
-    FaFutbol,
-    FaMusic,
-    FaFilm,
-    FaTv,
-    FaRegLaugh,
-    FaFeatherAlt,
-    FaPencilRuler,
-    FaPalette,
-    FaYarn,
-    FaBirthdayCake,
-    FaCampground,
-    FaFish,
-    FaSwimmer,
-    FaRunning,
-    FaOm,
-    FaFistRaised,
-    FaSeedling,
-    FaTools,
-    FaHammer,
-    FaCut,
-    FaTree,
-    FaSkiing,
-    FaSnowboarding,
-    FaSnowflake,
-    FaCrosshairs,
-    FaTractor,
+    FaQuestion,
 } from "react-icons/fa";
 import uuid4 from "uuid4";
-import {GiSewingNeedle} from "react-icons/gi";
-import {GrYoga} from "react-icons/gr";
+import {useDispatch, useSelector} from "react-redux";
+import {addInterest, removeInterest} from "../../actions/interestActions";
+import interestsArray from "../../assets/data/insterestsArray";
 
 
-const interestsArray = [
-    {
-        name: "Hiking",
-        icon: <FaHiking />,
-    },
-    {
-        name: "Cooking",
-        icon: <FaUtensils />,
-    },
-    {
-        name: "Gaming",
-        icon: <FaGamepad />,
-    },
-    {
-        name: "Reading",
-        icon: <FaBook />,
-    },
-    {
-        name: "Traveling",
-        icon: <FaPlane />,
-    },
-    {
-        name: "Photography",
-        icon: <FaCamera />,
-    },
-    {
-        name: "Sports",
-        icon: <FaFutbol />,
-    },
-    {
-        name: "Music",
-        icon: <FaMusic />,
-    },
-    {
-        name: "Movies",
-        icon: <FaFilm />,
-    },
-    {
-        name: "TV Shows",
-        icon: <FaTv />,
-    },
-    {
-        name: "Dancing",
-        icon: <FaRegLaugh />,
-    },
-    {
-        name: "Singing",
-        icon: <FaMusic />,
-    },
-    {
-        name: "Writing",
-        icon: <FaFeatherAlt />,
-    },
-    {
-        name: "Drawing",
-        icon: <FaPencilRuler />,
-    },
-    {
-        name: "Painting",
-        icon: <FaPalette />,
-    },
-    {
-        name: "Knitting",
-        icon: <FaYarn />,
-    },
-    {
-        name: "Sewing",
-        icon: <GiSewingNeedle />,
-    },
-    {
-        name: "Baking",
-        icon: <FaBirthdayCake />,
-    },
-    {
-        name: "Camping",
-        icon: <FaCampground />,
-    },
-    {
-        name: "Fishing",
-        icon: <FaFish />,
-    },
-    {
-        name: "Swimming",
-        icon: <FaSwimmer />,
-    },
-    {
-        name: "Running",
-        icon: <FaRunning />,
-    },
-    {
-        name: "Yoga",
-        icon: <GrYoga />,
-    },
-    {
-        name: "Meditation",
-        icon: <FaOm />,
-    },
-    {
-        name: "Martial Arts",
-        icon: <FaFistRaised />,
-    },
-    {
-        name: "Gardening",
-        icon: <FaSeedling />,
-    },
-    {
-        name: "DIY",
-        icon: <FaTools />,
-    },
-    {
-        name: "Home Improvement",
-        icon: <FaHammer/>,
-    },
-    {
-        name: "Crafting",
-        icon: <FaCut />,
-    },
-    {
-        name: "Woodworking",
-        icon: <FaTree />,
-    },
-    {
-        name: "Skiing",
-        icon: <FaSkiing />,
-    },
-    {
-        name: "Snowboarding",
-        icon: <FaSnowboarding />,
-    },
-    {
-        name: "Snowshoeing",
-        icon: <FaSnowflake />,
-    },
-    {
-        name: "Hunting",
-        icon: <FaCrosshairs />,
-    },
-    {
-        name: "Farming",
-        icon: <FaTractor />,
-    },
-];
 
-const InterestCard = ({ interest, isChecked, handleToggle }) => {
+
+const InterestCard = ({ interest, handleToggle, id }) => {
+    const dispatch = useDispatch();
+    const selectedInterests = useSelector(
+        (state) => state.interest.selectedInterests
+    );
+    const isChecked = selectedInterests.includes(interest.name);
     const [isHovered, setIsHovered] = useState(false);
 
     const handleHover = () => {
@@ -194,40 +28,53 @@ const InterestCard = ({ interest, isChecked, handleToggle }) => {
         setIsHovered(false);
     };
 
+    const handleRemoveInterest = (event) => {
+        event.stopPropagation();
+        dispatch(removeInterest(id));
+    };
+
     return (
         <div
-            className={`flex items-center justify-center rounded-md py-1 px-2 bg-gray-200 
+            className={`flex items-center justify-center rounded-md py-1 
+            px-2 bg-gray-200 shadow-sm p-2 m-2 
             ${ isChecked ? "bg-green-500 text-white cursor-pointer" : "" } 
-            ${isHovered ? "bg-green-300 cursor-pointer" : ""}`}
+            ${isHovered ? "bg-green-300 cursor-pointer transform scale-110 transition duration-500" : ""}`}
             onMouseEnter={handleHover}
             onMouseLeave={handleMouseLeave}
             onClick={handleToggle}
         >
-            <span className="mr-1">{interest.icon}</span>
-            <span className="mr-1">{interest.name}</span>
+            <span className="mr-1 text-xl" key={uuid4()}>{interest.icon}</span>
+            <span className="mr-1 text-sm" key={uuid4()}>{interest.name}</span>
             {isChecked ? (
-                <FaCheckCircle className="w-5 h-5" />
-            ) : (
-                <FaPlusCircle className="w-5 h-5" />
-            )}
+                <FaCheckCircle
+                    className="w-5 h-5 text-sm color-gray-800"
+                    onClick={handleRemoveInterest}
+                />
+            ) : null}
         </div>
     );
 };
 
+
+
 const InterestList = () => {
-    const [selectedInterests, setSelectedInterests] = useState([]);
+
+    const selectedInterests = useSelector(
+        (state) => state.interest.selectedInterests
+    );
+    const dispatch = useDispatch();
     const [newInterest, setNewInterest] = useState("");
 
     const handleToggleInterest = (interest) => {
-        if (selectedInterests.includes(interest.name)) {
-            setSelectedInterests(
-                selectedInterests.filter((item) => item !== interest.name)
-            );
-        } else {
-            setSelectedInterests([...selectedInterests, interest.name]);
-        }
         console.log(selectedInterests);
+        if (selectedInterests.some((i) => i.name === interest.name)) {
+            dispatch(removeInterest(interest.id))
+        } else {
+            dispatch(addInterest(interest));
+        }
     };
+
+
 
     const handleNewInterestChange = (event) => {
         setNewInterest(event.target.value);
@@ -235,22 +82,42 @@ const InterestList = () => {
 
     const handleAddInterest = () => {
         if (newInterest) {
-            setSelectedInterests([...selectedInterests, newInterest]);
-            setNewInterest("");
+            const interestObj = interestsArray.find(
+                (interest) => interest.name === newInterest
+            );
+            if (interestObj) {
+                dispatch(addInterest(interestObj));
+                setNewInterest("");
+            }
         }
     };
 
     return (
         <div className="flex flex-wrap">
-            {interestsArray.map((interest) => (
-                <InterestCard
-                    key={uuid4()}
-                    interest={interest}
-                    isChecked={selectedInterests.includes(interest.name)}
-                    handleToggle={() => handleToggleInterest(interest)}
-                />
-            ))}
-            <div className="flex items-center justify-center rounded-md py-1 px-2 bg-gray-200">
+            <div className="flex items-center justify-center p-5 text-center">
+                <h1 className="text-2xl font-bold mb-2">My Interests</h1>
+            </div>
+            <div className="flex items-center justify-center flex-row flex-wrap">
+                {interestsArray.map((interest) => (
+                    <InterestCard
+                        key={uuid4()}
+                        interest={interest}
+                        isChecked={selectedInterests.includes(interest.name)}
+                        handleToggle={() => handleToggleInterest(interest)}
+                    />
+                ))}
+                {selectedInterests
+                    .filter((interest) => !interestsArray.map((item) => item.name).includes(interest.name))
+                    .map((interest) => (
+                        <InterestCard
+                            key={uuid4()}
+                            interest={{ name: interest.name, id: interest.id }}
+                            isChecked={selectedInterests.some((i) => i.name === interest.name)}
+                            handleToggle={() => handleToggleInterest({ name: interest.name, id: interest.id })}
+                        />
+                    ))}
+            </div>
+            <div className="flex flex-start items-center m-4 rounded-md py-1 px-2 bg-gray-200">
                 <input
                     type="text"
                     placeholder="Add new interest"

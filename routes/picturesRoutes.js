@@ -123,8 +123,6 @@ router.put('/users/:userId/pictures/:id', async (req, res) => {
 });
 
 
-
-
 router.get('/users/:userId/pictures', async (req, res) => {
     try {
         const authHeader = req.headers.authorization;
