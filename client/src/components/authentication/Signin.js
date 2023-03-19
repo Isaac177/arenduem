@@ -5,11 +5,14 @@ import api from "../../utils/api";
 import { useNavigate } from 'react-router-dom';
 import {setTokenAndRole, setUserId} from "../../actions/userActions";
 import {useDispatch} from "react-redux";
+import FacebookLogin from 'react-facebook-login';
 
 const SigninSchema = object().shape({
     email: string().email('Invalid email').required('Email is required'),
     password: string().required('Password is required'),
 });
+
+const FACEBOOK_APP_ID = process.env.REACT_APP_FACEBOOK_APP_ID;
 
 const Signin = () => {
     const [success, setSuccess] = useState(false);
@@ -26,7 +29,6 @@ const Signin = () => {
             });
 
             const { token, role, userId } = response.data;
-            console.log('token client-side: ', token);
             dispatch(setTokenAndRole(token, role));
             dispatch(setUserId(userId));
 
@@ -46,6 +48,10 @@ const Signin = () => {
         }
     };
 
+    const responseFacebook = async (response) => {
+        // Handle Facebook login response
+        console.log(response);
+    };
 
     return (
         <div className="flex items-center justify-center h-screen">
@@ -115,6 +121,18 @@ const Signin = () => {
                                     </a>
                                 </p>
                             </div>
+                            <div className="flex items-center justify-between mt-4">
+                                <FacebookLogin
+                                    appId={FACEBOOK_APP_ID}
+                                    autoLoad={false}
+                                    fields="name,email,picture"
+                                    callback={responseFacebook}
+                                    className="text-white font-bold rounded focus:outline-none focus:shadow-outline bg-blue-500 hover:bg-blue-700 py-2 px-4"
+                                    icon="fa-facebook"
+                                    textButton=" Login with Facebook"
+                                />
+                            </div>
+
                             <div className="flex items-center justify-between">
                                 <p className="text-xs text-gray-700 mr-2">
                                     Don't have an account ?

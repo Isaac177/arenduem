@@ -6,23 +6,56 @@ import axios from "axios";
 import { makeStyles } from '@material-ui/core/styles';
 
 
-const useStyles = makeStyles({
+
+/*const useStyles = makeStyles({
     sliderThumb: {
         '&:focus': {
             boxShadow: 'none',
         },
     },
+});*/
+const useStyles = makeStyles({
+    sliderThumb: {
+        color: '#19BA99',
+        '&:focus': {
+            boxShadow: 'none',
+        },
+    },
+    radioRoot: {
+        color: '#19BA99',
+        '&$checked': {
+            color: '#19BA99',
+        },
+    },
+    checked: {},
+
+    checkboxRoot: {
+        color: '#19BA99',
+        '&$checked': {
+            color: '#19BA99',
+        },
+    },
+    checkboxChecked: {},
 });
 
 const HeroForm = ({history}) => {
     const classes = useStyles();
     const [owner] = React.useState(false);
+
+
+
     const [values, setValues] = React.useState({
         isOwner: false,
         gender: "",
         minAge: 0,
         maxAge: 0,
     });
+
+    const radioOptions = [
+        { value: "Male", label: "Male" },
+        { value: "Female", label: "Female" },
+        { value: "Other", label: "Other" },
+    ];
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -80,6 +113,10 @@ const HeroForm = ({history}) => {
                                     checked={values.isOwner}
                                     className="mr-2 h-5 w-5 rounded cursor-pointer"
                                     onChange={(e) => setValues({ ...values, isOwner: e.target.checked })}
+                                    classes={{
+                                        root: classes.checkboxRoot,
+                                        checked: classes.checkboxChecked,
+                                    }}
                                 />
                                 <label htmlFor="owner" className="text-xl">
                                     Yes, I'm a room owner
@@ -100,45 +137,25 @@ const HeroForm = ({history}) => {
                                 className="flex flex-row"
                                 row={true}
                             >
-                                <FormControlLabel
-                                    value="male"
-                                    control={
-                                        <Radio
-                                            color="primary"
-                                            checked={values.gender === "Male"}
-                                            onChange={(e) => setValues({...values, gender: e.target.value})}
-                                            value="Male"
-                                            className='text-xl'
-                                        />
-                                    }
-                                    label="Male"
-                                />
-                                <FormControlLabel
-                                    value="female"
-                                    control={
-                                        <Radio
-                                            color="primary"
-                                            checked={values.gender === 'Female'}
-                                            onChange={(e) => setValues({...values, gender: e.target.value})}
-                                            value="Female"
-                                            className='text-xl'
-                                        />
-                                    }
-                                    label="Female"
-                                />
-                                <FormControlLabel
-                                    value="other"
-                                    control={
-                                        <Radio
-                                            color="primary"
-                                            checked={values.gender === 'Other'}
-                                            onChange={(e) => setValues({...values, gender: e.target.value})}
-                                            value='Other'
-                                            className='text-xl'
-                                        />
-                                    }
-                                    label="Other"
-                                />
+                                {radioOptions.map((option) => (
+                                    <FormControlLabel
+                                        key={option.value}
+                                        value={option.value}
+                                        control={
+                                            <Radio
+                                                color="primary"
+                                                checked={values.gender === option.value}
+                                                onChange={(e) => setValues({ ...values, gender: e.target.value })}
+                                                value={option.value}
+                                                classes={{
+                                                    root: classes.radioRoot,
+                                                    checked: classes.checked,
+                                                }}
+                                            />
+                                        }
+                                        label={option.label}
+                                    />
+                                ))}
                             </RadioGroup>
                             {errors.gender && touched.gender && (
                                 <div className="text-red-500">{errors.gender}</div>
@@ -159,7 +176,7 @@ const HeroForm = ({history}) => {
                                     step={1}
                                     onChange={(event, value) => {
                                         const [minAge, maxAge] = value.map(val => Number(val));
-                                        setValues({...values, minAge, maxAge});
+                                        setValues({ ...values, minAge, maxAge });
                                     }}
                                     valueLabelDisplay="auto"
                                     color="primary"

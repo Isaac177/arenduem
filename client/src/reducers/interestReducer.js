@@ -1,5 +1,6 @@
 const initialState = {
     selectedInterests: [],
+    loading: false,
 };
 
 const interestReducer = (state = initialState, action) => {
@@ -19,8 +20,19 @@ const interestReducer = (state = initialState, action) => {
             return {
                 ...state,
                 selectedInterests: state.selectedInterests.filter(
-                    (interest) => interest.id !== action.payload
+                    (interest) => interest.id !== action.payload.id
                 ),
+            };
+        case "GET_INTERESTS_START":
+            return {
+                ...state,
+                loading: true,
+            };
+        case "GET_INTERESTS_SUCCESS":
+            return {
+                ...state,
+                selectedInterests: action.payload,
+                loading: false,
             };
         default:
             return state;

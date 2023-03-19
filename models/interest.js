@@ -22,7 +22,7 @@ module.exports = (sequelize, DataTypes) => {
                 autoIncrement: true
             },
             userId: Sequelize.INTEGER,
-            interest: Sequelize.STRING,
+            name: Sequelize.STRING,
             createdAt: DataTypes.DATE,
             updatedAt: DataTypes.DATE
         },

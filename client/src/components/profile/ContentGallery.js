@@ -312,17 +312,6 @@ const ContentGallery = () => {
                 pauseOnFocusLoss
                 draggable
                 pauseOnHover
-                style={
-                    {
-                        position: "fixed",
-                        top: "0",
-                        right: "0",
-                        width: "100%",
-                        maxWidth: "400px",
-                        zIndex: "9999",
-
-                    }
-                }
             />
             <div className="flex flex-row justify-center items-center m-4">
                 <button

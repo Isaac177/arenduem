@@ -18,9 +18,9 @@ function InfoSidebar() {
 
     return (
         <>
-            <div className="fixed flex flex-col h-1/3 w-64 rounded-tl-lg bg-primaryGrey-600">
-                <div className="flex flex-col justify-between h-full">
-                <ul className="flex flex-col h-full">
+            <div className="fixed flex flex-col w-64 rounded-tl-lg bg-primaryGrey-600 h-screen rounded-bl-lg">
+                <div className="flex flex-col justify-between">
+                <ul className="flex flex-col">
                     <li
                         className={`px-6 py-4 flex items-center hover:text-aqua-500 hover:cursor-pointer ${
                             activeLink === '/user/dashboard/profile' ? 'text-aqua-500 bg-darkCu-900': ''
@@ -50,21 +50,12 @@ function InfoSidebar() {
                     </li>
                     <li
                         className={`px-6 py-4 flex items-center hover:text-aqua-500 hover:cursor-pointer ${
-                            activeLink === '/user/dashboard/profile/matches' ? 'text-aqua-500 bg-darkCu-900': ''
-                        }`}
-                        onClick={() => handleClick('/user/dashboard/profile/matches')}
-                    >
-                        <FiHeart size={24} className="mr-2" />
-                        My Matches
-                    </li>
-                    <li
-                        className={`px-6 py-4 flex items-center hover:text-aqua-500 hover:cursor-pointer ${
                             activeLink === '/user/dashboard/profile/email' ? 'text-aqua-500 bg-darkCu-900': ''
                         }`}
                         onClick={() => handleClick('/user/dashboard/profile/email')}
                     >
                         <FiMail size={24} className="mr-2" />
-                        My Email
+                        Email Preferences
                     </li>
                 </ul>
                 </div>

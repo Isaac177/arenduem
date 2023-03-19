@@ -33,7 +33,7 @@ const UserHeader = () => {
     }, [dropdownRef]);
 
     return (
-        <header className="backdrop-blur-lg text-white bg-primary-800 bg-opacity-50 py-5 z-100">
+        <header className="fixed w-full backdrop-blur-lg text-white bg-primary-900 bg-opacity-50 py-5 z-100">
             <div className="container mx-auto flex flex-wrap items-center">
                 <div className="w-full lg:w-auto lg:flex-grow lg:flex lg:items-center">
                     <h1 className="text-4xl lg:text-5xl font-bold text-center text-white
@@ -78,7 +78,7 @@ const UserHeader = () => {
                                 exact={true}
                                 to="/user/profile"
                                 className="block w-full px-4 py-2 text-gray-800
-                                hover:bg-primary-700 hover:text-white"
+                             hover:bg-primary-700 hover:text-white"
                             >
                                 <FiUser size={16} className="inline-block mr-2" />
                                 Profile
@@ -86,7 +86,7 @@ const UserHeader = () => {
                             <button
                                 onClick={handleLogout}
                                 className="block w-full text-left px-4 py-2 text-gray-800
-                                hover:bg-primary-700 hover:text-white"
+                             hover:bg-primary-700 hover:text-white"
                             >
                                 <FiLogOut size={16} className="inline-block mr-2" />
                                 Logout
@@ -100,3 +100,8 @@ const UserHeader = () => {
 };
 
 export default UserHeader;
+
+
+
+
+

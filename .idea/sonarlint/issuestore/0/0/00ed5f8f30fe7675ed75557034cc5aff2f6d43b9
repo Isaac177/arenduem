@@ -1,2 +1,0 @@
-
-«javascript:S6478*"‚Do not define components during render. React will see a new component type on every render and destroy the entire subtreeâ€™s DOM nodes and state. Instead, move this component definition out of the parent component â€œPersonalDataâ€ and pass data as props.(ºÄÍøÿÿÿÿ8§–İÌì0

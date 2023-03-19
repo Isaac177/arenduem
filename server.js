@@ -52,6 +52,7 @@ app.put('/users/:userId/pictures/:id', picturesRoutes);
 
 app.post('/users/:userId/interests', interestController.addInterest, interestRoutes);
 app.delete('/users/:userId/interests/:id', interestController.removeInterest, interestRoutes);
+app.get('/users/:userId/interests', interestController.getInterests, interestRoutes);
 
 const PORT = 8000;
 app.listen(PORT, () => {

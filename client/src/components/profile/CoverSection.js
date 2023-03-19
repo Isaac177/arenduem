@@ -99,7 +99,7 @@ const CoverSection = ({handleEditProfilePic}) => {
                         <BsDot className="text-white font-bold text-2xl" />
                         <p className="text-white px-2">{userData.occupation}</p>
                         <BsDot className="text-white font-bold text-2xl" />
-                        <p className="text-white px-2">{`${userData.dateOfBirth?.slice(0, 4) || ''} - ${new Date().getFullYear()}`}</p>
+                        <p className="text-white px-2">{`${userData.dateOfBirth ? new Date().getFullYear() - new Date(userData.dateOfBirth).getFullYear() : ''} years old`}</p>
                         <BsDot className="text-white font-bold text-2xl" />
                         <p className="text-white px-2">Almaty</p>
                     </>

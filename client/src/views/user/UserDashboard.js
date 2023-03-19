@@ -30,12 +30,13 @@ const UserDashboard = () => {
     ]);
 
     return (
-        <div className="bg-gradient-to-r from-primaryGrey-100 to-gray-600">
-            <div className="flex flex-row min-h-screen text-center py-10 px-40 justify-between">
-                <div className="flex flex-col justify-between">
+        /*        <div className="bg-gradient-to-r from-primaryGrey-100 to-gray-600"> */
+        <div className="bg-gray-200">
+            <div className="flex flex-row min-h-screen py-10 gap-80">
+                <aside className="flex flex-col justify-between">
                     <SidebarMenu />
-                </div>
-                <div className="flex flex-col justify-between">
+                </aside>
+                <div className="flex flex-col justify-between items-center">
                     {routing}
                 </div>
             </div>

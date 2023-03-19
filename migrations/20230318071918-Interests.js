@@ -18,7 +18,7 @@ module.exports = {
         onUpdate: 'CASCADE',
         onDelete: 'SET NULL'
       },
-      interest: {
+      name: {
         type: Sequelize.STRING
       },
       createdAt: {

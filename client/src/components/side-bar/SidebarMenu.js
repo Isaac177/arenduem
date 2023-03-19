@@ -1,5 +1,5 @@
-import React, {useEffect, useState} from 'react';
-import {Link, useLocation} from 'react-router-dom';
+import React, { useState } from "react";
+import { Link, useLocation } from "react-router-dom";
 import {
     FiHome,
     FiMessageCircle,
@@ -9,100 +9,70 @@ import {
     FiLogOut,
     FiSettings,
     FiHelpCircle,
-    FiLock, FiUser
-} from 'react-icons/fi';
+    FiLock,
+    FiUser,
+    FiChevronRight,
+    FiChevronLeft,
+} from "react-icons/fi";
+import { motion } from "framer-motion";
+import {AiOutlineMenu} from "react-icons/ai";
+import {GrClose} from "react-icons/gr";
+
+const sidebarItems = [
+    { to: "/user/dashboard", Icon: FiHome, label: "Home" },
+    { to: "/user/dashboard/profile", Icon: FiUser, label: "Profile" },
+    { to: "/user/messages", Icon: FiMessageCircle, label: "Messages" },
+    { to: "/user/visitors", Icon: FiEye, label: "Visitors" },
+    { to: "/user/favourites", Icon: FiHeart, label: "Favourites" },
+    { to: "/user/matches", Icon: FiStar, label: "Matches" },
+    { to: "/user/settings", Icon: FiSettings, label: "Settings" },
+    { to: "/user/help", Icon: FiHelpCircle, label: "Help" },
+    { to: "/user/privacy", Icon: FiLock, label: "Privacy Policy" },
+    { to: "/user/logout", Icon: FiLogOut, label: "Logout" },
+];
 
 function SidebarMenu() {
     let location = useLocation();
-    const [activeLink, setActiveLink] = useState('');
+    const [isOpen, setIsOpen] = useState(false);
 
-    useEffect(() => {
-        setActiveLink(location.pathname);
-    }, [location.pathname]);
+    const handleToggleSidebar = () => {
+        setIsOpen(!isOpen);
+    };
 
     return (
         <>
-        <div className="fixed flex flex-col border-r border-primaryGrey-900 h-screen">
-            <ul className="flex flex-col w-full">
-                <li
-                    className={`px-6 py-4 hover:bg-gray-50 flex items-center hover:text-aqua-500 hover:cursor-pointer 
-                        ${
-                        activeLink === '/user/dashboard'
-                            ? 'border-l-4 border-aqua-500 bg-gray-50 text-aqua-500'
-                            : ''
-                    }`}
+            <motion.div
+                className="fixed flex flex-col border-r border-primaryGrey-900"
+                animate={{ width: isOpen ? "auto" : "0" }}
+                transition={{ duration: 0.3 }}
+            >
+                <motion.button
+                    className="bg-white p-2 rounded-full shadow-md w-12 h-12 flex items-center justify-center"
+                    whileHover={{ scale: 1.2 }}
+                    onClick={handleToggleSidebar}
                 >
-                    <Link to="/user/dashboard/" className="flex">
-                    <FiHome size={24} className="mr-2" />
-                    Home
-                    </Link>
-                </li>
-                <li className={`px-6 py-4 hover:bg-gray-50 flex items-center hover:text-aqua-500 hover:cursor-pointer 
-                ${location.pathname === '/user/dashboard/profile' ? 'border-l-4 border-aqua-500 bg-gray-50 text-aqua-500' : ''}`}>
-                    <Link to="/user/dashboard/profile" className='flex'>
-                    <FiUser size={24} className="mr-2" />
-                    Profile
-                    </Link>
-                </li>
-                <li className={`px-6 py-4 hover:bg-gray-50 flex items-center hover:text-aqua-500 hover:cursor-pointer
-                ${location.pathname === '/user/dashboard/settings' ? 'border-l-4 border-aqua-500 bg-gray-50 text-aqua-500' : ''}`}>
-                    <Link to="/user/messages" className='flex'>
-                    <FiMessageCircle size={24} className="mr-2" />
-                    Messages
-                    </Link>
-                </li>
-                <li className={`px-6 py-4 hover:bg-gray-50 flex items-center hover:text-aqua-500 hover:cursor-pointer
-                ${location.pathname === '/user/dashboard/settings' ? 'border-l-4 border-aqua-500 bg-gray-50 text-aqua-500' : ''}`}>
-                    <Link to="/user/visitors" className='flex'>
-                    <FiEye size={24} className="mr-2" />
-                    Visitors
-                    </Link>
-                </li>
-                <li className={`px-6 py-4 hover:bg-gray-50 flex items-center hover:text-aqua-500 hover:cursor-pointer
-                ${location.pathname === '/user/dashboard/settings' ? 'border-l-4 border-aqua-500 bg-gray-50 text-aqua-500' : ''}`}>
-                    <Link to="/user/favourites" className='flex'>
-                    <FiHeart size={24} className="mr-2" />
-                    Favourites
-                    </Link>
-                </li>
-                <li className={`px-6 py-4 hover:bg-gray-50 flex items-center hover:text-aqua-500 hover:cursor-pointer
-                ${location.pathname === '/user/dashboard/settings' ? 'border-l-4 border-aqua-500 bg-gray-50 text-aqua-500' : ''}`}>
-                   <Link to="/user/matches" className='flex'>
-                    <FiStar size={24} className="mr-2" />
-                    Matches
-                    </Link>
-                </li>
-                <li className={`px-6 py-4 hover:bg-gray-50 flex items-center hover:text-aqua-500 hover:cursor-pointer
-                ${location.pathname === '/user/dashboard/settings' ? 'border-l-4 border-aqua-500 bg-gray-50 text-aqua-500' : ''}`}>
-                    <Link to="/user/settings" className='flex'>
-                    <FiSettings size={24} className="mr-2" />
-                    Settings
-                    </Link>
-                </li>
-                <li className={`px-6 py-4 hover:bg-gray-50 flex items-center hover:text-aqua-500 hover:cursor-pointer
-                ${location.pathname === '/user/dashboard/settings' ? 'border-l-4 border-aqua-500 bg-gray-50 text-aqua-500' : ''}`}>
-                    <Link to="/user/help" className='flex'>
-                    <FiHelpCircle size={24} className="mr-2" />
-                    Help
-                    </Link>
-                </li>
-                <li className={`px-6 py-4 hover:bg-gray-50 flex items-center hover:text-aqua-500 hover:cursor-pointer
-                ${location.pathname === '/user/dashboard/settings' ? 'border-l-4 border-aqua-500 bg-gray-50 text-aqua-500' : ''}`}>
-                    <Link to="/user/privacy" className='flex'>
-                    <FiLock size={24} className="mr-2" />
-                    Privacy Policy
-                    </Link>
-                </li>
-                <li className="px-6 py-4 hover:bg-gray-50 flex items-center hover:text-aqua-500
-                hover:cursor-pointer">
-                    <Link to="/user/logout" className='flex'>
-                    <FiLogOut size={24} className="mr-2" />
-                    Logout
-                    </Link>
-                </li>
-            </ul>
-        </div>
-    </>
+                    {isOpen ? <GrClose size={24} /> : <AiOutlineMenu size={24} />}
+                </motion.button>
+                {isOpen && (
+                    <ul className="flex flex-col w-full">
+                        {sidebarItems.map(({ to, Icon, label }) => (
+                            <li
+                                key={to}
+                                className={`px-6 py-4 hover:bg-gray-50 flex items-center hover:text-aqua-500 hover:cursor-pointer 
+                                    ${location.pathname === to ? "border-l-4 border-aqua-500 bg-gray-50 text-aqua-500" : ""}`}
+                            >
+                                <Link to={to} className="flex">
+                                    <motion.div whileHover={{ scale: 1.2 }}>
+                                        <Icon size={24} className="mr-2" />
+                                    </motion.div>
+                                    {label}
+                                </Link>
+                            </li>
+                        ))}
+                    </ul>
+                )}
+            </motion.div>
+        </>
     );
 }
 
