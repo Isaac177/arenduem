@@ -1,4 +1,9 @@
-import { FETCH_USER_DATA_SUCCESS, FETCH_USER_DATA_FAILURE, UPDATE_USER_FIELD } from '../actions/userActions';
+import {
+    FETCH_USER_DATA_SUCCESS,
+    FETCH_USER_DATA_FAILURE,
+    UPDATE_USER_FIELD,
+    UPDATE_IS_OWNER_SUCCESS
+} from '../actions/userActions';
 
 export const initialState = {
     userData: {
@@ -36,6 +41,14 @@ const userReducer = (state = initialState, action) => {
                     [action.payload.name]: action.payload.value,
                 },
             };
+        case UPDATE_IS_OWNER_SUCCESS:
+            return {
+                ...state,
+                userData: {
+                    ...state.userData,
+                    isOwner: action.payload.isOwner,
+                }
+            }
         default:
             return state;
     }

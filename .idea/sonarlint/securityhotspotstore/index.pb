@@ -3,8 +3,6 @@
 .client/src/components/authentication/SignUp.js,0/9/09b886ecfc59f032f40aedaa32bcf74c4c342147
 i
 9client/src/components/authentication/withAuthorization.js,5/a/5af9d82aa5f3ef7402a940a3d337eb4754c38543
-W
-'client/src/reducers/persistedReducer.js,6/3/6361bca102e9d39917c03f71a1468aa2778409a8
 ^
 .migrations/20230224181450-add-role-to-users.js,0/d/0da5a78b04ff35868bdbe430ed0ff59e92fefc68
 q
@@ -13,8 +11,6 @@ C
 client/src/store.js,4/a/4afe2750c2c347c6e38ea33d5c926b1ae43d2dfb
 \
 ,client/src/components/profile/UploadImage.js,c/1/c1aa84c7c7bc5c23383ede8a87b8bc95c788c7e5
-D
-routes/userRoutes.js,e/9/e9eb043515685faf25833d70ef475596fc6e333d
 ?
 models/media.js,5/2/520d024105946b36c6cb783930621dd5a0441782
 A
@@ -35,8 +31,6 @@ $client/src/hooks/useImageUploader.js,f/f/ff81fc0ec0aaecae26c229d3926dd30eaa725
 ,client/src/components/profile/DeleteModal.js,3/3/33d8b836451f9d6c900f7b810e86cd83f8eb9249
 ?
 models/index.js,e/4/e41453b900e7c418643d34a8cb9d68efc0b0ddd6
-X
-(migrations/20230211204102-create-user.js,2/9/29597007042cdd6d2b9c281391829ae1c4889cfe
 A
 models/picture.js,1/3/13572076f33c39b994fc2c00ab8949dbd9b098f8
 R
@@ -51,8 +45,6 @@ d
 routes/auth.js,8/b/8bbe7473c2ec08c224aead7ec6d668fb50f27965
 ^
 .client/src/components/profile/FullSizeImage.js,2/c/2c291c015356f83961649705db1df19d0dd2d658
-R
-"client/src/reducers/userReducer.js,3/a/3af3e9d3f595ac02dfee7e96d822cc0e9c01d450
 L
 client/src/reducers/index.js,f/d/fddb094e79d9adb9ec669c65c9511e7135f8a137
 L
@@ -61,34 +53,18 @@ Q
 !controllers/picturesController.js,8/c/8c2c2185a3bd4258f38368fb5f196f81d2303da5
 M
 controllers/authController.js,0/3/0337acf1f1f07013abb1b108a0023e639b60b2e0
-M
-controllers/userController.js,e/c/ec44b050defa6855748d2a8d6ff06d33bc8bba3a
 Q
 !middleware/authTokenMiddleware.js,3/8/38b42046142e2b761de47dac13aa8caa50579da6
 V
 &migrations/20230318071918-Interests.js,8/4/84e599dbc011065ba036f923b7f59396718d5b02
->
-models/user.js,5/8/58952233992370efa7ea98b3ec60c43d2d227d89
 B
 models/interest.js,3/f/3f1ea3ca7a4ec107b3043de9212763cd4d40c290
 U
 %client/src/reducers/galleryReducer.js,e/9/e912d891c3367c330e83bd65d1c3d80dc6985263
-9
-	server.js,d/c/dc60ea9ee1ff6246bf342463277d5b914db2883d
-Q
-!client/src/actions/userActions.js,7/6/76643767db2d2cb617a2ec33b0b2b0ed9a6a5205
-V
-&client/src/reducers/interestReducer.js,5/d/5d29750d01ea26234eb2cba0bcb4ee4fc7999fce
 Q
 !controllers/interestController.js,5/4/54a7f2a2fb7536a5301aa9d05f93611109b2fc32
-H
-routes/interestRoutes.js,e/0/e0120ca0ded4ccf5bebe1c9a9d89e8daa468c458
-T
-$client/src/actions/galleryActions.js,6/9/69787fc62c2a2e530637a617159a5a423f03552a
 U
 %client/src/actions/interestActions.js,e/5/e5c60e73bace3f52e6e1569f735d8dddbdb7e1a2
-H
-routes/picturesRoutes.js,d/5/d5bbc46674c6ad2f5f6a58cd07ddcfe61bb5d0f7
 Y
 )client/src/assets/data/insterestsArray.js,6/7/676532cebb04fb9c13681924deb1d3f4ef87ab9d
 ]

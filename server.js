@@ -6,7 +6,7 @@ const picturesRoutes = require('./routes/picturesRoutes');
 const interestRoutes = require('./routes/interestRoutes');
 const passport = require('passport');
 const cors = require('cors');
-const { User } = require("./models");
+const { User, HousingStatus } = require("./models");
 const authController = require("./controllers/authController");
 const userController = require("./controllers/userController");
 const interestController = require("./controllers/interestController");
@@ -40,6 +40,13 @@ app.post('/api/auth/signin', authController.signin);
 app.get('/api/auth/signout', authController.signout);
 app.get('/users/:userId', userController.getUserById);
 app.put('/users/:userId', userController.updateUserById);
+app.put('/users/:userId', userController.updateIsOwner);
+app.get('/house/:userId', (req, res) => {
+    HousingStatus.findAll()
+        .then(housingStatus => res.json(housingStatus))
+        .catch(err => res.status(500).json({ message: err.message }));
+});
+
 
 // Pictures routes
 

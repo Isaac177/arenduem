@@ -5,7 +5,7 @@ import { useLocation, useNavigate } from 'react-router-dom';
 
 
 
-const Card = ({ imageSrc, imageAlt, title, subtitle, contentOrder, actions, onClick }) => {
+const Card = ({ imageSrc, imageAlt, title, subtitle, contentOrder, actions, handleClick }) => {
     const controls = useAnimation();
     const location = useLocation();
     const navigate = useNavigate();
@@ -40,10 +40,7 @@ const Card = ({ imageSrc, imageAlt, title, subtitle, contentOrder, actions, onCl
                 },
             }}
             className="mt-10 mb-10 hover:shadow-2xl hover:border hover:border-aqua-500"
-            onClick={() => {
-                navigate(onClick);
-                location.pathname = onClick;
-            }}
+            onClick={handleClick}
         >
         <div className={`flex ${contentOrder === 'image-first' ? 'flex-row' : 'flex-row-reverse'} justify-between`}>
                 <div style={{ position: 'relative' }}>

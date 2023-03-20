@@ -35,7 +35,7 @@ const Signin = () => {
             if (role === 'admin') {
                 navigate('/admin/dashboard');
             } else if (role === 'user') {
-                navigate('/user/dashboard');
+                navigate('/user/roles');
             }
 
             setSuccess(true);

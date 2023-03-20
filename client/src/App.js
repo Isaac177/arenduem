@@ -33,7 +33,8 @@ function App() {
                         <Route exact path="/signup" element={<SignUp />} />
                         <Route exact path="/signin" element={<SignIn />} />
                         <Route path="*" element={<NotFound />} />
-                        <Route exact path="/user/dashboard/*" element={<UserDashboardWithAuth />}>
+                        <Route exact path="/user/roles" element={<UserDashboardWithAuth />}/>
+                        <Route exact path="/user/dashboard/*" element={<UserDashboard />}>
                             <Route path="profile/*" element={<CoverProfile />}>
                                 <Route path="gallery/" element={<ContentGallery />} />
                                 <Route path="personaldata/:userId" element={<PersonalData />} />

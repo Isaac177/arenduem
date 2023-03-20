@@ -1,9 +1,6 @@
-const { User } = require("../models");
+const { User, HousingStatus } = require("../models");
 const Picture = require("../models").Picture;
-const DrinkingStatus = require("../models").DrinkingStatus;
-const Gender = require("../models").Gender;
-const SmokingStatus = require("../models").SmokingStatus;
-const HousingStatus = require("../models").HousingStatus;
+
 
 
 exports.getUserById = async (req, res) => {
@@ -17,22 +14,6 @@ exports.getUserById = async (req, res) => {
                     as: 'pictures',
                     attributes: ['id', 'fileName', 'fileUrl', 'isMain', 'isCover'],
                 },
-                /*{
-                    model: DrinkingStatus,
-                    as: 'userDrinkingStatus',
-                },
-                {
-                    model: Gender,
-                    as: 'gender',
-                },
-                {
-                    model: SmokingStatus,
-                    as: 'smokingStatus',
-                },
-                {
-                    model: HousingStatus,
-                    as: 'housingStatus',
-                },*/
             ],
         });
 
@@ -73,3 +54,24 @@ exports.updateUserById = async (req, res) => {
         res.status(500).json({ message: error.message });
     }
 };
+
+exports.updateIsOwner = async (req, res) => {
+    const { userId } = req.params;
+    const { isOwner } = req.body;
+
+    console.log(userId, isOwner)
+    try {
+        const housingStatus = await HousingStatus.findOne({ where: { userId } });
+        if (!housingStatus) {
+            throw new Error(`HousingStatus for user with ID ${userId} not found`);
+        }
+        housingStatus.isOwner = isOwner;
+        await housingStatus.save();
+
+        res.json(housingStatus);
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ message: error.message });
+    }
+};
+
