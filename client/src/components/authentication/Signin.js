@@ -54,7 +54,7 @@ const Signin = () => {
     };
 
     return (
-        <div className="flex items-center justify-center h-screen">
+        <div className="loginBack flex items-center justify-center h-screen backdrop-blur-sm backdrop:opacity-25">
             <div className="w-full max-w-xs bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
                 <h1 className="text-3xl text-center font-bold mb-4">SignIn</h1>
                 <Formik

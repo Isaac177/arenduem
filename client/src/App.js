@@ -14,9 +14,10 @@ import CoverProfile from "./components/profile/CoverProfile";
 import ContentGallery from "./components/profile/ContentGallery";
 import PersonalData from "./components/profile/PersonalData";
 import {useSelector} from "react-redux";
+import BeforeDash from "./components/before-dash/BeforeDash";
 
 
-const UserDashboardWithAuth = withAuthorization(['user'], UserDashboard);
+const UserDashboardWithAuth = withAuthorization(['user'], BeforeDash);
 
 
 function App() {
@@ -26,7 +27,7 @@ function App() {
         <Router>
             <div className="flex flex-col min-h-screen">
                 {userRole === 'user' ? <UserHeader /> : <Header />}
-                <main className="flex-1">
+                <main className="flex-1 bg-primaryGrey-90">
                     <Routes>
                         {userRole === 'user' ? <Route exact path="/" element={<UserDashboardWithAuth />} /> : <Route exact path="/" element={<Home />} />}
                         <Route exact path="/signup" element={<SignUp />} />
