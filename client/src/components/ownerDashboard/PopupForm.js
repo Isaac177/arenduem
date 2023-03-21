@@ -8,6 +8,7 @@ import useClickOutside from "../../hooks/userClickOutside";
 import Step2 from "../form-steps/Step2";
 import loadGoogleMapsScript from "../../utils/loadGoogleMapsScript";
 import Step3 from "../form-steps/Step3";
+import Step4 from "../form-steps/Step4";
 
 const fadeIn = keyframes`
   0% {
@@ -90,7 +91,7 @@ const PopupForm = ({ isOpen, onClose }) => {
 
     const handleNextStep = (e) => {
         e.preventDefault();
-        if (step < 4) {
+        if (step < totalSteps - 1) {
             setStep(step + 1);
         } else {
             onClose();
@@ -105,7 +106,7 @@ const PopupForm = ({ isOpen, onClose }) => {
         return null;
     }
 
-    const totalSteps = 3; // Update this when adding more steps
+    const totalSteps = 4;
 
     return (
         <ModalOverlay onClick={onClose}>
@@ -127,6 +128,7 @@ const PopupForm = ({ isOpen, onClose }) => {
                             {step === 0 && <Step1 handleSelectPropertyType={handleSelectPropertyType} />}
                             {step === 1 && gMapsLoaded && <Step2 propertyType={propertyType} />}
                             {step === 2 && <Step3 />}
+                            {step === 3 && <Step4 />}
                             <div className="mt-4 px-4">
                                 {step > 0 && (
                                     <button

@@ -17,7 +17,6 @@ import {
     DELETE_PICTURE_FAILURE, SET_SHOW_IMG_MODAL, SET_AS_MAIN_IMAGE, SET_AS_COVER_IMAGE,
 
 } from '../actions/galleryActions';
-import axios from "axios";
 
 const initialState = {
     images: [],

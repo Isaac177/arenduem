@@ -128,8 +128,6 @@ V
 M
 controllers/authController.js,0/3/0337acf1f1f07013abb1b108a0023e639b60b2e0
 U
-%client/src/reducers/galleryReducer.js,e/9/e912d891c3367c330e83bd65d1c3d80dc6985263
-U
 %client/src/actions/interestActions.js,e/5/e5c60e73bace3f52e6e1569f735d8dddbdb7e1a2
 ]
 -client/src/components/profile/InterestCard.js,3/0/30fa90193d3068ec180587bbcf359875955ebb37

@@ -55,8 +55,6 @@ V
 &migrations/20230318071918-Interests.js,8/4/84e599dbc011065ba036f923b7f59396718d5b02
 B
 models/interest.js,3/f/3f1ea3ca7a4ec107b3043de9212763cd4d40c290
-U
-%client/src/reducers/galleryReducer.js,e/9/e912d891c3367c330e83bd65d1c3d80dc6985263
 Q
 !controllers/interestController.js,5/4/54a7f2a2fb7536a5301aa9d05f93611109b2fc32
 U
