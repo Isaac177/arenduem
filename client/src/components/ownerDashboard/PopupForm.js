@@ -1,10 +1,13 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { Formik, Form } from 'formik';
 import styled from '@emotion/styled';
-import Step0 from '../form-steps/Step0';
+import Step1 from '../form-steps/Step1';
 import { keyframes } from '@emotion/react';
 import CloseIcon from '@mui/icons-material/Close';
 import useClickOutside from "../../hooks/userClickOutside";
+import Step2 from "../form-steps/Step2";
+import loadGoogleMapsScript from "../../utils/loadGoogleMapsScript";
+import Step3 from "../form-steps/Step3";
 
 const fadeIn = keyframes`
   0% {
@@ -31,11 +34,10 @@ const Modal = styled.div`
   left: 50%;
   transform: translate(-50%, -50%);
   background-color: white;
-  padding: 2rem;
+  padding: 6rem;
   border-radius: 10px;
-  width: 1080px;
-  height: 600px;
-  max-height: 80%;
+  min-width: 90%;
+  min-height: 90vh;
   overflow-y: auto;
   animation: ${fadeIn} 0.5s ease;
 `;
@@ -73,11 +75,19 @@ const CloseButton = styled.button`
 const PopupForm = ({ isOpen, onClose }) => {
     const [step, setStep] = useState(0);
     const [propertyType, setPropertyType] = useState('');
+    const [gMapsLoaded, setGMapsLoaded] = useState(false);
+
+    useEffect(() => {
+        loadGoogleMapsScript(() => {
+            setGMapsLoaded(true);
+        });
+    }, []);
 
     const handleSelectPropertyType = (type) => {
         setPropertyType(type);
         setStep(step + 1);
     };
+    console.log(propertyType)
 
     const modalRef = useRef();
     useClickOutside(modalRef, onClose);
@@ -86,7 +96,7 @@ const PopupForm = ({ isOpen, onClose }) => {
         return null;
     }
 
-    const totalSteps = 1; // Update this when adding more steps
+    const totalSteps = 3; // Update this when adding more steps
 
     return (
         <ModalOverlay onClick={onClose}>
@@ -105,17 +115,23 @@ const PopupForm = ({ isOpen, onClose }) => {
                             </CloseButton>
                             <Title>Step {step + 1} of {totalSteps}</Title>
                             <ProgressBar step={step} totalSteps={totalSteps} />
-
-                            {step === 0 && <Step0 handleSelectPropertyType={handleSelectPropertyType} />}
-                            <div className="mt-4">
+                            {step === 0 && <Step1 handleSelectPropertyType={handleSelectPropertyType} />}
+                            {step === 1 && gMapsLoaded && <Step2 propertyType={propertyType} />}
+                            {step === 2 && <Step3 />}
+                            <div className="mt-4 px-4">
                                 {step > 0 && (
-                                    <button type="button" onClick={() => setStep(step - 1)} className="mr-4">
+                                    <button
+                                        type="button"
+                                        onClick={() => setStep(step - 1)}
+                                        className="bg-gray-500 hover:bg-gray-700 text-white font-bold py-4 px-4 w-80 rounded-lg mr-2">
                                         Back
                                     </button>
                                 )}
                                 {step > 0 && (
-                                    <button type="submit" disabled={isSubmitting}>
-                                        Submit
+                                    <button className="bg-aqua-500 hover:bg-aqua-700 text-white font-bold w-80 py-4 px-4 rounded-lg"
+                                            type="submit"
+                                            disabled={isSubmitting}>
+                                        {step === 4 ? 'Submit' : 'Next Step'}
                                     </button>
                                 )}
                             </div>

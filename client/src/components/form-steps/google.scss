@@ -1,0 +1,32 @@
+/* target the input element */
+.gpac-input {
+    width: 100%;
+    padding: 0.5rem;
+    font-size: 1rem;
+    border-color: #d3d3d3;
+    border-radius: 0.25rem;
+&:focus {
+     outline: none;
+     border-color: #078d51;
+ }
+}
+
+/* target the autocomplete list */
+.gpac-dropdown {
+    background-color: #fff;
+    padding: 0.5rem;
+    border: 1px solid #d3d3d3;
+    border-radius: 0.25rem;
+    margin-top: 0.25rem;
+    max-height: 10rem;
+    overflow-y: auto;
+
+& .gpac-suggestion {
+      font-size: 1rem;
+      cursor: pointer;
+      padding: 0.5rem;
+&:hover {
+     background-color: #f2f2f2;
+ }
+}
+}
