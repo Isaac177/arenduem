@@ -2,6 +2,7 @@ import React from 'react';
 import MapsHomeWorkOutlinedIcon from '@mui/icons-material/MapsHomeWorkOutlined';
 import SupervisedUserCircleOutlinedIcon from '@mui/icons-material/SupervisedUserCircleOutlined';
 import MarkUnreadChatAltOutlinedIcon from '@mui/icons-material/MarkUnreadChatAltOutlined';
+import PopupForm from "./PopupForm";
 
 const features = [
     {
@@ -25,9 +26,7 @@ const features = [
 ];
 
 const OwnerContent = () => {
-    const redirectToListingForm = () => {
-        window.location.href = '/list-your-room';
-    }
+    const [isOpen, setIsOpen] = React.useState(false);
 
     return (
         <div className="container flex flex-col justify-center items-center pt-20 text-primary-700" style={{ width: '1080px', margin: '0 auto' }}>
@@ -57,7 +56,7 @@ const OwnerContent = () => {
                         Find your perfect roommate match with ArendyEm. Sign up and create a listing to begin your journey today.
                     </p>
                     <button
-                        onClick={redirectToListingForm}
+                        onClick={() => setIsOpen(true)}
                         className="bg-aqua-500 hover:bg-aqua-700 text-white font-bold py-2 px-4 rounded"
                     >
                         Create your listing
@@ -76,6 +75,12 @@ const OwnerContent = () => {
                     </div>
                 </div>
             </div>
+            {isOpen && (
+                <PopupForm
+                    isOpen={isOpen}
+                    onClose={() => setIsOpen(false)}
+                />
+            )}
         </div>
     );
 };
