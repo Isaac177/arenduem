@@ -103,7 +103,7 @@ const BeforeDash = () => {
                     subtitle=" roommates?"
                     contentOrder="image-last"
                     actions={houseOwnerActions}
-                    handleClick="/user/dashboard-2"
+                    handleClick={()=>handleClick(true)}
                 />
             </div>
         </div>

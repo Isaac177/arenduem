@@ -11,7 +11,7 @@ const withAuthorization = (allowedRoles, WrappedComponent) => {
 
         React.useEffect(() => {
             const fetchUser = async () => {
-                await dispatch(fetchUserData()); // dispatch the async action creator
+                await dispatch(fetchUserData());
             };
 
             if (!userRole) {

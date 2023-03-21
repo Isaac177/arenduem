@@ -75,3 +75,18 @@ exports.updateIsOwner = async (req, res) => {
     }
 };
 
+
+exports.getHousingStatus = async (req, res) => {
+    const { userId } = req.params;
+    try {
+        const housingStatus = await HousingStatus.findOne({ where: { userId } });
+        if (!housingStatus) {
+            throw new Error(`HousingStatus for user with ID ${userId} not found`);
+        }
+        res.json(housingStatus);
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ message: error.message });
+    }
+};
+

@@ -13,12 +13,13 @@ import UserHeader from "./components/user-nav/UserHeader";
 import CoverProfile from "./components/profile/CoverProfile";
 import ContentGallery from "./components/profile/ContentGallery";
 import PersonalData from "./components/profile/PersonalData";
-import {useSelector} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import BeforeDash from "./components/before-dash/BeforeDash";
+import OwnerDashboard from "./views/user/OwnerDashboard";
+
 
 
 const UserDashboardWithAuth = withAuthorization(['user'], BeforeDash);
-
 
 function App() {
     const userRole = useSelector(state => state.auth.role);
@@ -26,14 +27,15 @@ function App() {
     return (
         <Router>
             <div className="flex flex-col min-h-screen">
-                {userRole === 'user' ? <UserHeader /> : <Header />}
-                <main className="flex-1 bg-primaryGrey-90">
+                {userRole !== 'user' ? <Header /> : <UserHeader />}
+                 <main className="flex-1 bg-primaryGrey-90">
                     <Routes>
                         {userRole === 'user' ? <Route exact path="/" element={<UserDashboardWithAuth />} /> : <Route exact path="/" element={<Home />} />}
                         <Route exact path="/signup" element={<SignUp />} />
                         <Route exact path="/signin" element={<SignIn />} />
                         <Route path="*" element={<NotFound />} />
                         <Route exact path="/user/roles" element={<UserDashboardWithAuth />}/>
+                        <Route exact path="/user/owner" element={<OwnerDashboard/>}/>
                         <Route exact path="/user/dashboard/*" element={<UserDashboard />}>
                             <Route path="profile/*" element={<CoverProfile />}>
                                 <Route path="gallery/" element={<ContentGallery />} />

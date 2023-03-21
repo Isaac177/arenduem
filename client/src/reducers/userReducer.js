@@ -2,7 +2,7 @@ import {
     FETCH_USER_DATA_SUCCESS,
     FETCH_USER_DATA_FAILURE,
     UPDATE_USER_FIELD,
-    UPDATE_IS_OWNER_SUCCESS
+    UPDATE_IS_OWNER_SUCCESS, GET_HOUSING_STATUS_FAILURE, GET_HOUSING_STATUS_SUCCESS
 } from '../actions/userActions';
 
 export const initialState = {
@@ -49,6 +49,20 @@ const userReducer = (state = initialState, action) => {
                     isOwner: action.payload.isOwner,
                 }
             }
+        case GET_HOUSING_STATUS_SUCCESS:
+            return {
+                ...state,
+                userData: {
+                    ...state.userData,
+                    isOwner: action.payload.isOwner,
+                    userId: action.payload.userId,
+                },
+            };
+        case GET_HOUSING_STATUS_FAILURE:
+            return {
+                ...state,
+                error: action.payload,
+            };
         default:
             return state;
     }

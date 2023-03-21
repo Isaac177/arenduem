@@ -1,8 +1,6 @@
 
 ^
 .client/src/components/authentication/SignUp.js,0/9/09b886ecfc59f032f40aedaa32bcf74c4c342147
-i
-9client/src/components/authentication/withAuthorization.js,5/a/5af9d82aa5f3ef7402a940a3d337eb4754c38543
 ^
 .migrations/20230224181450-add-role-to-users.js,0/d/0da5a78b04ff35868bdbe430ed0ff59e92fefc68
 q
@@ -46,8 +44,6 @@ d
 ^
 .client/src/components/profile/FullSizeImage.js,2/c/2c291c015356f83961649705db1df19d0dd2d658
 L
-client/src/reducers/index.js,f/d/fddb094e79d9adb9ec669c65c9511e7135f8a137
-L
 middleware/authMiddleware.js,4/9/4930bbf875888d8e0a6a978ddfc86c0749f8db55
 Q
 !controllers/picturesController.js,8/c/8c2c2185a3bd4258f38368fb5f196f81d2303da5
@@ -71,8 +67,6 @@ Y
 -client/src/components/profile/InterestCard.js,3/0/30fa90193d3068ec180587bbcf359875955ebb37
 Z
 *client/src/components/profile/Interests.js,a/a/aa11f069b729de80350b239391dc64dbbbad51a3
-_
-/client/src/components/profile/ContentGallery.js,4/1/412ca9cf27b663f621a2a5639be18c734f640bb2
 ]
 -client/src/components/profile/CoverProfile.js,5/3/53a64b797e407def5cc58a0fe2c1e6cf07e44f36
 \
@@ -87,7 +81,5 @@ B
 client/src/App.css,2/a/2a082b18bfc3afa6b25d6c4584e995e6b6c4ee3e
 V
 &client/src/components/footer/Footer.js,9/b/9b17be6ab52fe509f6b03a03cc6308a2c49204d6
-I
-client/tailwind.config.js,6/b/6b273cff573b0a837bad584f90d7d827bf358bb1
 X
 (client/src/components/header/HeroForm.js,1/0/1033f3edaf1af402fbf849b3f01bcf0ba847f0f9
