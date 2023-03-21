@@ -87,6 +87,15 @@ const PopupForm = ({ isOpen, onClose }) => {
         setPropertyType(type);
         setStep(step + 1);
     };
+
+    const handleNextStep = (e) => {
+        e.preventDefault();
+        if (step < 4) {
+            setStep(step + 1);
+        } else {
+            onClose();
+        }
+    };
     console.log(propertyType)
 
     const modalRef = useRef();
@@ -129,8 +138,9 @@ const PopupForm = ({ isOpen, onClose }) => {
                                 )}
                                 {step > 0 && (
                                     <button className="bg-aqua-500 hover:bg-aqua-700 text-white font-bold w-80 py-4 px-4 rounded-lg"
-                                            type="submit"
-                                            disabled={isSubmitting}>
+                                            disabled={isSubmitting}
+                                            onClick={(e) => handleNextStep(e)}
+                                    >
                                         {step === 4 ? 'Submit' : 'Next Step'}
                                     </button>
                                 )}
