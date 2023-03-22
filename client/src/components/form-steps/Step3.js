@@ -6,9 +6,7 @@ import {
     FormControlLabel,
     FormGroup,
     FormControl,
-    FormLabel,
     Grid,
-    Typography,
     ThemeProvider,
     createTheme,
     MenuItem
@@ -72,7 +70,6 @@ const Step3 = () => {
                                 type="number"
                                 label="Size (m²)"
                                 variant="outlined"
-                                fullWidth
                                 onChange={(e) => console.log(e.target.value)}
                                 sx={{ mb: 2 }}
                             />

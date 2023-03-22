@@ -9,6 +9,8 @@ import Step2 from "../form-steps/Step2";
 import loadGoogleMapsScript from "../../utils/loadGoogleMapsScript";
 import Step3 from "../form-steps/Step3";
 import Step4 from "../form-steps/Step4";
+import Step5 from "../form-steps/Step5";
+import Step6 from "../form-steps/Step6";
 
 const fadeIn = keyframes`
   0% {
@@ -106,7 +108,7 @@ const PopupForm = ({ isOpen, onClose }) => {
         return null;
     }
 
-    const totalSteps = 4;
+    const totalSteps = 6;
 
     return (
         <ModalOverlay onClick={onClose}>
@@ -129,6 +131,8 @@ const PopupForm = ({ isOpen, onClose }) => {
                             {step === 1 && gMapsLoaded && <Step2 propertyType={propertyType} />}
                             {step === 2 && <Step3 />}
                             {step === 3 && <Step4 />}
+                            {step === 4 && <Step5 />}
+                            {step === 5 && <Step6 />}
                             <div className="mt-4 px-4">
                                 {step > 0 && (
                                     <button
@@ -143,7 +147,7 @@ const PopupForm = ({ isOpen, onClose }) => {
                                             disabled={isSubmitting}
                                             onClick={(e) => handleNextStep(e)}
                                     >
-                                        {step === 4 ? 'Submit' : 'Next Step'}
+                                        {step === 5 ? 'Submit' : 'Next Step'}
                                     </button>
                                 )}
                             </div>
