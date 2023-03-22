@@ -25,7 +25,7 @@ import {
     LocalLaundryService,
     Elevator,
     LocalParking,
-    Balcony, DesktopMac, LocalOffer, DoNotDisturbAlt,
+    Balcony, DesktopMac
 } from '@mui/icons-material';
 import CheckroomIcon from '@mui/icons-material/Checkroom';
 import NoSmokingIcon from '@material-ui/icons/SmokeFree';
@@ -34,7 +34,6 @@ import ChildFriendlyIcon from '@material-ui/icons/ChildCare';
 import SmokingRoomsIcon from '@material-ui/icons/SmokingRooms';
 import EventAvailableIcon from '@material-ui/icons/EventAvailable';
 import NoDrinksIcon from '@material-ui/icons/LocalDrink';
-import PartyIcon from '@material-ui/icons/PartyMode';
 import appart from '../../assets/img/appart.jpg';
 
 const Step3 = () => {
@@ -142,24 +141,32 @@ const Step3 = () => {
                         <div>
                             <h6 className="text-xl font-bold mt-4">Bed type</h6>
                             <FormControl fullWidth>
-                                <Field
-                                    name="bedType"
-                                    as={TextField}
-                                    select
-                                    label="Bed type"
-                                    variant="outlined"
-                                    helperText="Please select a bed type"
-                                    margin="normal"
-                                    fullWidth
-                                    onChange={(e) => e.stopPropagation()}
-                                >
-                                    <MenuItem value="single">Single</MenuItem>
-                                    <MenuItem value="double">Double</MenuItem>
-                                    <MenuItem value="queen">Queen</MenuItem>
-                                    <MenuItem value="king">King</MenuItem>
-                                    <MenuItem value="bunk">Bunk</MenuItem>
-                                    <MenuItem value="sofa">Sofa</MenuItem>
-                                </Field>
+                                <FormGroup row>
+                                    <FormControlLabel
+                                        control={<Field name="bedType" as={Checkbox} value="single" />}
+                                        label="Single"
+                                    />
+                                    <FormControlLabel
+                                        control={<Field name="bedType" as={Checkbox} value="double" />}
+                                        label="Double"
+                                    />
+                                    <FormControlLabel
+                                        control={<Field name="bedType" as={Checkbox} value="queen" />}
+                                        label="Queen"
+                                    />
+                                    <FormControlLabel
+                                        control={<Field name="bedType" as={Checkbox} value="king" />}
+                                        label="King"
+                                    />
+                                    <FormControlLabel
+                                        control={<Field name="bedType" as={Checkbox} value="bunk" />}
+                                        label="Bunk"
+                                    />
+                                    <FormControlLabel
+                                        control={<Field name="bedType" as={Checkbox} value="sofa" />}
+                                        label="Sofa"
+                                    />
+                                </FormGroup>
                             </FormControl>
                         </div>
                         <div>
@@ -446,8 +453,8 @@ const Step3 = () => {
                 <Grid item xs={12} sm={6}>
                     <img src={appart}
                         alt="appart"
-                        className="cover h-96 w-full object-center object-cover"
-                         />
+                        className="cover mt-80 h-96 w-full object-center object-cover"
+                    />
                 </Grid>
             </Grid>
         </div>

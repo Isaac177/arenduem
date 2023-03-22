@@ -1,14 +1,12 @@
 import React from 'react';
 import { Field } from 'formik';
-import {
-    FormControl,
+import {Grid, ThemeProvider, FormControl,
     FormControlLabel,
     Checkbox,
     FormGroup,
-    Slider,
-} from '@material-ui/core';
-import {Grid} from "@mui/material";
+    Slider,} from "@mui/material";
 import peopleImg from "../../assets/img/peopleImg.jpg";
+import theme from "../utils/theme";
 
 const Step6 = () => {
     const occupations = ['Student', 'Work'];
@@ -17,7 +15,8 @@ const Step6 = () => {
 
     return (
         <div>
-            <h6 className="text-2xl font-bold mt-4 text-aqua-500">Preferences</h6>
+            <h1 className="text-3xl font-bold mt-4 text-aqua-500">Preferences</h1>
+            <ThemeProvider theme={theme}>
             <Grid container spacing={3}>
                 <Grid item xs={12} sm={6}>
                     <h6 className="text-xl font-bold mt-2">What is your preferred gender?</h6>
@@ -38,17 +37,17 @@ const Step6 = () => {
                         </FormGroup>
                     </FormControl>
 
-                    <h6 className="text-xl font-bold mt-4">What is your preferred age range?</h6>
+                    <h6 className="text-xl font-bold my-4">What is your preferred age range?</h6>
                     <Field name="ageRange">
                         {({ field, form }) => (
                             <Slider
-                                value={field.value || [18, 60]}
+                                value={field.value || [1, 100]}
                                 onChange={(event, newValue) => {
                                     form.setFieldValue(field.name, newValue);
                                 }}
                                 valueLabelDisplay="auto"
-                                min={18}
-                                max={60}
+                                min={1}
+                                max={100}
                                 marks
                             />
                         )}
@@ -105,10 +104,12 @@ const Step6 = () => {
                             src={peopleImg}
                             alt="gender"
                             className="cover h-96 w-full object-cover object-center"
+                            style={{position: 'sticky', top: '0'}}
                         />
                     </div>
                 </Grid>
             </Grid>
+            </ThemeProvider>
         </div>
     );
 };

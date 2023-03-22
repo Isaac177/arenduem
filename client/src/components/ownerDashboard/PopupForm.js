@@ -11,6 +11,7 @@ import Step3 from "../form-steps/Step3";
 import Step4 from "../form-steps/Step4";
 import Step5 from "../form-steps/Step5";
 import Step6 from "../form-steps/Step6";
+import Step7 from "../form-steps/Step7";
 
 const fadeIn = keyframes`
   0% {
@@ -108,7 +109,7 @@ const PopupForm = ({ isOpen, onClose }) => {
         return null;
     }
 
-    const totalSteps = 6;
+    const totalSteps = 7;
 
     return (
         <ModalOverlay onClick={onClose}>
@@ -133,6 +134,7 @@ const PopupForm = ({ isOpen, onClose }) => {
                             {step === 3 && <Step4 />}
                             {step === 4 && <Step5 />}
                             {step === 5 && <Step6 />}
+                            {step === 6 && <Step7 />}
                             <div className="mt-4 px-4">
                                 {step > 0 && (
                                     <button
@@ -147,7 +149,7 @@ const PopupForm = ({ isOpen, onClose }) => {
                                             disabled={isSubmitting}
                                             onClick={(e) => handleNextStep(e)}
                                     >
-                                        {step === 5 ? 'Submit' : 'Next Step'}
+                                        {step === 6 ? 'Submit' : 'Next Step'}
                                     </button>
                                 )}
                             </div>

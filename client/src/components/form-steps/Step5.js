@@ -1,9 +1,8 @@
 // Step5.js
 import React from 'react';
 import { Field } from 'formik';
-import { FormControl, TextField, Button, Typography } from '@material-ui/core';
 import { useDropzone } from 'react-dropzone';
-import {Grid, ThemeProvider} from "@mui/material";
+import {Grid, ThemeProvider, FormControl, TextField, Button} from "@mui/material";
 import formImg from "../../assets/img/formImg.jpg";
 import theme from "../utils/theme";
 
@@ -79,7 +78,8 @@ const Step5 = () => {
                         <img
                             src={formImg}
                             alt="formImg"
-                            className="cover h-96 w-full object-cover object-center"
+                            className="cover mt-30 h-96 w-full object-cover object-center"
+                            style={{position: 'sticky', top: '0'}}
                         />
                     </div>
                 </Grid>

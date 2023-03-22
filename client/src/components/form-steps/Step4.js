@@ -5,16 +5,15 @@ import {
     TextField,
     Checkbox,
     FormGroup,
-    FormControlLabel,
-} from '@material-ui/core';
+    FormControlLabel, Grid, ThemeProvider,
+} from '@mui/material';
 import DatePicker from 'react-datepicker';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCalendarAlt } from '@fortawesome/free-solid-svg-icons';
-
 import 'react-datepicker/dist/react-datepicker.css';
-import {Grid} from "@mui/material";
 import available from "../../assets/img/available.jpg";
 import './custom-datepicker.css';
+import theme from "../utils/theme";
 
 
 const CustomInput = ({ value, onClick }) => (
@@ -51,6 +50,7 @@ const Step4 = () => {
     return (
         <div>
             <h6 className="text-xl font-bold mt-4 text-aqua-500">Availability</h6>
+            <ThemeProvider theme={theme}>
             <Grid container spacing={3}>
                 <Grid item xs={12} sm={6}>
                 <FormGroup row>
@@ -72,30 +72,30 @@ const Step4 = () => {
                 </FormGroup>
                     <div className="my-2 flex flex-col gap-4">
                         <p className="text-sm font-medium"> Minimum stay</p>
-                        <FormControl fullWidth className="mt-4">
+                        <FormControl className="mt-4">
                             <Field
-                                name="minStay"
                                 as={TextField}
+                                name="minStay"
                                 type="number"
+                                label="Minimum stay (in months)"
                                 variant="outlined"
-                                inputProps={{ min: 1 }}
-                                placeholder="Minimum stay (months)"
-                                sx={{my: 2, p: 2, width: 50}}
+                                onChange={(e) => console.log(e.target.value)}
+                                sx={{ mb: 2 }}
                             />
                         </FormControl>
                     </div>
 
                     <div className="my-2 flex flex-col gap-4">
                         <p className="text-sm font-medium"> Maximum stay</p>
-                        <FormControl fullWidth className="mt-4">
+                        <FormControl className="mt-4">
                             <Field
-                                name="maxStay"
                                 as={TextField}
-                                variant="outlined"
+                                name="maxStay"
                                 type="number"
-                                inputProps={{ min: 1 }}
-                                placeholder="Maximum stay (months or long stay)"
-                                sx={{my: 2, p: 2, width: 50}}
+                                label="Maximum stay (optional)"
+                                variant="outlined"
+                                onChange={(e) => console.log(e.target.value)}
+                                sx={{ mb: 2 }}
                             />
                         </FormControl>
                     </div>
@@ -104,12 +104,13 @@ const Step4 = () => {
                         <p className="text-sm font-medium"> Price per month</p>
                         <FormControl fullWidth className="mt-4">
                             <Field
-                                name="monthlyPayment"
                                 as={TextField}
+                                name="price"
                                 type="number"
+                                label="Price per month (in tg)"
                                 variant="outlined"
-                                placeholder="Price per month"
-                                sx={{my: 2, p: 2, width: 50}}
+                                onChange={(e) => console.log(e.target.value)}
+                                sx={{ mb: 2 }}
                             />
                         </FormControl>
                     </div>
@@ -127,12 +128,13 @@ const Step4 = () => {
                         <p className="text-sm font-medium"> Deposit</p>
                             <FormControl fullWidth className="mt-4">
                                 <Field
-                                    name="deposit"
                                     as={TextField}
+                                    name="deposit"
                                     type="number"
+                                    label="Deposit (in tg)"
                                     variant="outlined"
-                                    placeholder="Deposit (optional)"
-                                    sx={{my: 2, p: 2, width: 50}}
+                                    onChange={(e) => console.log(e.target.value)}
+                                    sx={{ mb: 2 }}
                                 />
                             </FormControl>
                     </div>
@@ -157,10 +159,12 @@ const Step4 = () => {
                     <div className="my-2 flex justify-center text-center items-center">
                         <img src={available}
                         alt="available"
-                        className="cover h-96 w-full object-cover object-center"/>
+                        className="cover h-96 w-full object-cover object-center"
+                        style={{position: 'sticky', top: '0'}} />
                     </div>
                 </Grid>
             </Grid>
+            </ThemeProvider>
         </div>
     );
 }

@@ -48,7 +48,7 @@ const Step2 = ({ propertyType }) => {
     const theme = createTheme({
         palette: {
             primary: {
-                main: '#078d51',
+                main: '#05ce9f',
             },
         },
     });

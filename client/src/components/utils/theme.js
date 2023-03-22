@@ -4,7 +4,7 @@ import { createTheme } from '@mui/material/styles';
 const theme = createTheme({
     palette: {
         primary: {
-            main: '#00B4D8', // aqua-500
+            main: '#05ce9f', // aqua-500
         },
     },
     components: {
@@ -12,12 +12,12 @@ const theme = createTheme({
             styleOverrides: {
                 root: {
                     '&:hover .MuiOutlinedInput-notchedOutline': {
-                        borderColor: '#00B4D8',
+                        borderColor: '#05ce9f',
                     },
                 },
                 notchedOutline: {
                     '&.Mui-focused': {
-                        borderColor: '#00B4D8',
+                        borderColor: '#05ce9f',
                     },
                 },
             },
@@ -26,7 +26,7 @@ const theme = createTheme({
             styleOverrides: {
                 root: {
                     '&.Mui-focused': {
-                        color: '#00B4D8',
+                        color: '#05ce9f',
                     },
                 },
             },
