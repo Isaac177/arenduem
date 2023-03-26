@@ -34,7 +34,7 @@ import ChildFriendlyIcon from '@material-ui/icons/ChildCare';
 import SmokingRoomsIcon from '@material-ui/icons/SmokingRooms';
 import EventAvailableIcon from '@material-ui/icons/EventAvailable';
 import NoDrinksIcon from '@material-ui/icons/LocalDrink';
-import appart from '../../assets/img/appart.jpg';
+import Apartment from '../../assets/img/appart.jpg';
 
 const Step3 = () => {
     const [checked, setChecked] = useState(false);
@@ -451,8 +451,8 @@ const Step3 = () => {
                     </ThemeProvider>
                 </Grid>
                 <Grid item xs={12} sm={6}>
-                    <img src={appart}
-                        alt="appart"
+                    <img src={Apartment}
+                        alt="Apartment"
                         className="cover mt-80 h-96 w-full object-center object-cover"
                     />
                 </Grid>

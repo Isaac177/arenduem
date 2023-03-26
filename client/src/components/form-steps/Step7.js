@@ -91,12 +91,16 @@ const Step7 = () => {
                         )}
 
                         <div className="my-4 flex flex-row gap-4">
-                            <Button variant="contained" color="primary" onClick={handleSendCodeClick}>
+                            <button className="bg-aqua-500 text-white px-4 py-2 rounded-md font-medium text-sm hover:bg-aqua-600"
+                                onClick={handleSendCodeClick}
+                            >
                                 Send Code
-                            </Button>
-                            <Button variant="contained" color="primary" onClick={handleCodeButtonClick}>
+                            </button>
+                            <button className="bg-aqua-500 text-white px-4 py-2 rounded-md font-medium text-sm hover:bg-aqua-600"
+                                onClick={handleCodeButtonClick}
+                            >
                                 I have a code
-                            </Button>
+                            </button>
                         </div>
 
                         <Snackbar

@@ -12,6 +12,8 @@ import Step4 from "../form-steps/Step4";
 import Step5 from "../form-steps/Step5";
 import Step6 from "../form-steps/Step6";
 import Step7 from "../form-steps/Step7";
+import {useDispatch, useSelector} from "react-redux";
+import {setStepPropertyType} from "../../actions/ownerFormActions";
 
 const fadeIn = keyframes`
   0% {
@@ -61,7 +63,7 @@ const ProgressBar = styled.div`
     content: '';
     position: absolute;
     height: 100%;
-    width: ${(props) => (props.step / props.totalSteps) * 100}%;
+    width: ${(props) => (props.step / (props.totalSteps - 1)) * 100}%;
     background-color: #4caf50;
     border-radius: 2px;
   }
@@ -78,8 +80,9 @@ const CloseButton = styled.button`
 
 const PopupForm = ({ isOpen, onClose }) => {
     const [step, setStep] = useState(0);
-    const [propertyType, setPropertyType] = useState('');
     const [gMapsLoaded, setGMapsLoaded] = useState(false);
+
+    const dispatch = useDispatch();
 
     useEffect(() => {
         loadGoogleMapsScript(() => {
@@ -87,8 +90,8 @@ const PopupForm = ({ isOpen, onClose }) => {
         });
     }, []);
 
-    const handleSelectPropertyType = (type) => {
-        setPropertyType(type);
+    const handleSelectPropertyType = (fieldName, value) => {
+        dispatch(setStepPropertyType(fieldName, value));
         setStep(step + 1);
     };
 
@@ -100,7 +103,6 @@ const PopupForm = ({ isOpen, onClose }) => {
             onClose();
         }
     };
-    console.log(propertyType)
 
     const modalRef = useRef();
     useClickOutside(modalRef, onClose);
@@ -115,7 +117,7 @@ const PopupForm = ({ isOpen, onClose }) => {
         <ModalOverlay onClick={onClose}>
             <Modal ref={modalRef} onClick={(e) => e.stopPropagation()}>
                 <Formik
-                    initialValues={{ propertyType }}
+                    initialValues={{   }}
                     onSubmit={(values) => {
                         console.log('Form submitted:', values);
                         onClose();
@@ -128,8 +130,8 @@ const PopupForm = ({ isOpen, onClose }) => {
                             </CloseButton>
                             <Title>Step {step + 1} of {totalSteps}</Title>
                             <ProgressBar step={step} totalSteps={totalSteps} />
-                            {step === 0 && <Step1 handleSelectPropertyType={handleSelectPropertyType} />}
-                            {step === 1 && gMapsLoaded && <Step2 propertyType={propertyType} />}
+                            {step === 0 && <Step1 fieldName="propertyType" handleSelectPropertyType={handleSelectPropertyType} />}
+                            {step === 1 && <Step2 />}
                             {step === 2 && <Step3 />}
                             {step === 3 && <Step4 />}
                             {step === 4 && <Step5 />}

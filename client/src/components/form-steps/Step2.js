@@ -4,6 +4,17 @@ import { TextField, ThemeProvider, createTheme } from '@mui/material';
 import GooglePlacesAutocomplete from 'react-google-places-autocomplete';
 import { GoogleMap, Marker, useLoadScript } from '@react-google-maps/api';
 import './google.scss';
+import {useDispatch, useSelector} from "react-redux";
+import {setLocationData} from "../../actions/ownerFormActions";
+import * as Yup from 'yup';
+
+const validationSchema = Yup.object().shape({
+    country: Yup.string().required('Country is required'),
+    city: Yup.string().required('City is required'),
+    street: Yup.string().required('Street is required'),
+    floor: Yup.number().required('Floor is required'),
+    apartmentNumber: Yup.number().required('Apartment number is required'),
+});
 
 const libraries = ['places'];
 
@@ -17,20 +28,25 @@ const center = {
     lng: -74.005974,
 };
 
-const Step2 = ({ propertyType }) => {
+const Step2 = ({ validationSchema }) => {
     const [mapCenter, setMapCenter] = useState(center);
-    const [city, setCity] = useState('');
-    const [country, setCountry] = useState('');
     const { isLoaded, loadError } = useLoadScript({
         googleMapsApiKey: process.env.REACT_APP_GOOGLE_API_KEY,
         libraries,
     });
 
+    const dispatch = useDispatch();
+    const locationData = useSelector(state => state.owner.locationData) || {
+        country: '',
+        city: '',
+    };
+    const propertyType = useSelector(state => state.owner.propertyType);
+
     useEffect(() => {
-        if (city && country) {
+        if (locationData.city && locationData.country) {
             const geocoder = new window.google.maps.Geocoder();
             geocoder.geocode(
-                { address: `${city}, ${country}` },
+                { address: `${locationData.city}, ${locationData.country}` },
                 (results, status) => {
                     if (status === 'OK') {
                         setMapCenter({
@@ -43,7 +59,7 @@ const Step2 = ({ propertyType }) => {
                 }
             );
         }
-    }, [city, country]);
+    }, [locationData.city, locationData.country]);
 
     const theme = createTheme({
         palette: {
@@ -54,11 +70,11 @@ const Step2 = ({ propertyType }) => {
     });
 
     const handleCityChange = (selected) => {
-        setCity(selected.label);
+        dispatch(setLocationData({...locationData, city: selected.label}));
     };
 
     const handleCountryChange = (selected) => {
-        setCountry(selected.label);
+        dispatch(setLocationData({...locationData, country: selected.label}));
     };
 
     if (loadError) return 'Error loading maps';
@@ -118,7 +134,7 @@ const Step2 = ({ propertyType }) => {
                                     label="Street"
                                     variant="outlined"
                                     fullWidth
-                                    onChange={(e) => console.log(e.target.value)}
+                                    onChange={(e) => dispatch(setLocationData({...locationData, street: e.target.value}))}
                                 />
                             </div>
                             <h6 className="text-sm font-medium">
@@ -129,10 +145,11 @@ const Step2 = ({ propertyType }) => {
                                     as={TextField}
                                     name="floor"
                                     label="Floor"
+                                    type="number"
                                     variant="outlined"
                                     fullWidth
                                     className="mt-4"
-                                    onChange={(e) => console.log(e.target.value)}
+                                    onChange={(e) => dispatch(setLocationData({...locationData, floor: e.target.value}))}
                                 />
                             </div>
                             <h6 className="text-sm font-medium">
@@ -142,10 +159,11 @@ const Step2 = ({ propertyType }) => {
                                 <Field
                                     as={TextField}
                                     name="apartmentNumber"
+                                    type="number"
                                     label="Apartment number or door"
                                     variant="outlined"
                                     fullWidth
-                                    onChange={(e) => console.log(e.target.value)}
+                                    onChange={(e) => dispatch(setLocationData({...locationData, apartmentNumber: e.target.value}))}
                                 />
                             </div>
                         </div>

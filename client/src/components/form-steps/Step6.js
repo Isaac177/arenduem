@@ -40,16 +40,22 @@ const Step6 = () => {
                     <h6 className="text-xl font-bold my-4">What is your preferred age range?</h6>
                     <Field name="ageRange">
                         {({ field, form }) => (
-                            <Slider
-                                value={field.value || [1, 100]}
-                                onChange={(event, newValue) => {
-                                    form.setFieldValue(field.name, newValue);
-                                }}
-                                valueLabelDisplay="auto"
-                                min={1}
-                                max={100}
-                                marks
-                            />
+                            <>
+                                <Slider
+                                    value={field.value || [1, 100]}
+                                    onChange={(event, newValue) => {
+                                        form.setFieldValue(field.name, newValue);
+                                    }}
+                                    valueLabelDisplay="auto"
+                                    min={1}
+                                    max={100}
+                                    marks
+                                />
+                                <div className="flex justify-between mb-4">
+                                <p className="text-sm text-gray-500">Minimum age: {field.value?.[0]}</p>
+                                <p className="text-sm text-gray-500">Maximum age: {field.value?.[1]}</p>
+                                </div>
+                            </>
                         )}
                     </Field>
 

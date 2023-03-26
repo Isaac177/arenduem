@@ -26,20 +26,15 @@ const Step5 = () => {
                 <Grid item xs={12} sm={6}>
                     <div
                         {...getRootProps()}
-                        className="border-2 border-dashed border-gray-400 h-60 w-full flex flex-col justify-center items-center"
+                        className="border-2 border-dashed border-gray-400 h-60 w-full flex flex-col justify-center items-center rounded-lg"
                     >
                         <input {...getInputProps()} />
                         <p className="text-sm font-medium">
                             Drag and drop your images here
                         </p>
-                        <Button
-                            variant="contained"
-                            color="primary"
-                            className="mt-2"
-                            onClick={open}
-                        >
+                        <button className="text-sm font-medium bg-aqua-600 text-white px-4 py-2 rounded-md mt-4 hover:bg-aqua-700">
                             Browse Images
-                        </Button>
+                        </button>
                     </div>
                     <aside>
                         <h6 className="text-md font-bold mt-4">Selected Files</h6>

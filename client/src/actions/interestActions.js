@@ -2,7 +2,6 @@ import axios from "axios";
 
 export const ADD_INTEREST = "ADD_INTEREST";
 export const REMOVE_INTEREST = "REMOVE_INTEREST";
-export const GET_INTERESTS = "GET_INTERESTS";
 export const GET_INTERESTS_START = "GET_INTERESTS_START";
 export const GET_INTERESTS_SUCCESS = "GET_INTERESTS_SUCCESS";
 

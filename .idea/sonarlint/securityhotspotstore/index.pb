@@ -5,8 +5,6 @@
 .migrations/20230224181450-add-role-to-users.js,0/d/0da5a78b04ff35868bdbe430ed0ff59e92fefc68
 q
 Amigrations/20230307180836-add-is-main-and-is-cover-to-pictures.js,6/a/6a2c7c472299a9d566cb7d7bae5aaefd88db5466
-C
-client/src/store.js,4/a/4afe2750c2c347c6e38ea33d5c926b1ae43d2dfb
 \
 ,client/src/components/profile/UploadImage.js,c/1/c1aa84c7c7bc5c23383ede8a87b8bc95c788c7e5
 ?
@@ -57,8 +55,6 @@ B
 models/interest.js,3/f/3f1ea3ca7a4ec107b3043de9212763cd4d40c290
 Q
 !controllers/interestController.js,5/4/54a7f2a2fb7536a5301aa9d05f93611109b2fc32
-U
-%client/src/actions/interestActions.js,e/5/e5c60e73bace3f52e6e1569f735d8dddbdb7e1a2
 Y
 )client/src/assets/data/insterestsArray.js,6/7/676532cebb04fb9c13681924deb1d3f4ef87ab9d
 ]
@@ -91,12 +87,8 @@ a
 -client/src/components/side-bar/SidebarMenu.js,6/4/64ef7a8200192e39250d0403a734a3ca35d8377d
 ^
 .client/src/components/authentication/Signin.js,c/c/cc0ed757059b5deb7322a5477e7497d8db21e27a
-T
-$client/src/actions/galleryActions.js,6/9/69787fc62c2a2e530637a617159a5a423f03552a
 W
 'client/src/reducers/persistedReducer.js,6/3/6361bca102e9d39917c03f71a1468aa2778409a8
-V
-&client/src/reducers/interestReducer.js,5/d/5d29750d01ea26234eb2cba0bcb4ee4fc7999fce
 >
 models/user.js,5/8/58952233992370efa7ea98b3ec60c43d2d227d89
 X
@@ -113,8 +105,6 @@ D
 routes/userRoutes.js,e/9/e9eb043515685faf25833d70ef475596fc6e333d
 _
 /client/src/components/profile/ContentGallery.js,4/1/412ca9cf27b663f621a2a5639be18c734f640bb2
-L
-client/src/reducers/index.js,f/d/fddb094e79d9adb9ec669c65c9511e7135f8a137
 M
 controllers/userController.js,e/c/ec44b050defa6855748d2a8d6ff06d33bc8bba3a
 R
@@ -133,8 +123,6 @@ i
 9client/src/components/authentication/withAuthorization.js,5/a/5af9d82aa5f3ef7402a940a3d337eb4754c38543
 _
 /client/src/components/before-dash/BeforeDash.js,c/5/c54aa272968810a6a921320544791babca704071
-I
-client/tailwind.config.js,6/b/6b273cff573b0a837bad584f90d7d827bf358bb1
 c
 3client/src/components/ownerDashboard/ProgressBar.js,c/3/c3a7c1470954a5a2d91fbbdcb9734601dd7f94ee
 \
@@ -149,8 +137,6 @@ B
 config/config.json,b/4/b46af4c0cf9c68fa9c458c1219f7c1d18ec484c2
 \
 ,client/src/components/form-steps/google.scss,8/5/853d0b3c9567cbc383f08e5b9a6197de0997ee4d
-Y
-)client/src/components/form-steps/Step1.js,7/b/7b3ce6c4ad102f7c7c41516044bacf54b9069278
 A
 client/.gitignore,e/3/e32ec5c998c4774d8d1bedd59740d14d940c90ec
 :
@@ -158,3 +144,25 @@ A
 .gitignore,a/5/a5cc2925ca8258af241be7e5b0381edf30266302
 U
 %client/src/reducers/galleryReducer.js,e/9/e912d891c3367c330e83bd65d1c3d80dc6985263
+d
+4client/src/components/ownerDashboard/OwnerContent.js,6/3/6321da6ca927d39bfff9ac4eb007e480173b6e04
+[
++client/src/components/map/MyMapComponent.js,b/8/b87c2732347433ced89f5651b3a0d103f8dd38e3
+4
+.env,3/c/3c84dcdc6bbe3d7817c49dcdc327b926fea1808a
+?
+client/src/.env,d/8/d81b4aff313d76306b258d3c4e870a50750b3c32
+A
+client/src/App.js,f/6/f6b8a135eb07bb80aa582994bcf1a8ccacd783ee
+C
+client/src/index.js,7/6/76cbb38a5cef42611c7af13985f39248682f4aa1
+C
+client/src/theme.js,4/5/45c1746b0c9e3c3063d8b6b5569ee8071f57c018
+H
+models/drinkingstatus.js,e/4/e4f2fe0a3168beda491683c7e7d01b6089e3e49e
+T
+$client/src/components/utils/theme.js,4/5/458f5ad99970d9c89ddab0fd9f3d00403fe7dd6d
+f
+6client/src/components/form-steps/custom-datepicker.css,4/c/4cd4b9864d98629fc644990f698d2470249fc321
+X
+(client/src/utils/loadGoogleMapsScript.js,f/f/ffd03813049c7789f9be0be28c51bda2b63ef156

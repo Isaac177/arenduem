@@ -19,7 +19,7 @@ const propertyTypes = [
     },
 ];
 
-const Step1 = ({ handleSelectPropertyType }) => {
+const Step1 = ({ fieldName, handleSelectPropertyType }) => {
     return (
     <AnimatePresence>
         <div className="flex flex-col items-center justify-center mx-auto text-primary-700 mt-10">
@@ -40,7 +40,7 @@ const Step1 = ({ handleSelectPropertyType }) => {
                         key={type}
                         className="flex flex-col items-center justify-center m-4 p-4
                         border border-gray-300 rounded-lg cursor-pointer hover:bg-gray-200"
-                        onClick={() => handleSelectPropertyType(type)}
+                        onClick={() => handleSelectPropertyType(fieldName, type)}
                     >
                         <IconComponent className="text-4xl mb-4" />
                         <p className="text-lg font-medium">{type}</p>
