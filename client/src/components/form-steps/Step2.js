@@ -6,15 +6,6 @@ import { GoogleMap, Marker, useLoadScript } from '@react-google-maps/api';
 import './google.scss';
 import {useDispatch, useSelector} from "react-redux";
 import {setLocationData} from "../../actions/ownerFormActions";
-import * as Yup from 'yup';
-
-const validationSchema = Yup.object().shape({
-    country: Yup.string().required('Country is required'),
-    city: Yup.string().required('City is required'),
-    street: Yup.string().required('Street is required'),
-    floor: Yup.number().required('Floor is required'),
-    apartmentNumber: Yup.number().required('Apartment number is required'),
-});
 
 const libraries = ['places'];
 
@@ -28,7 +19,7 @@ const center = {
     lng: -74.005974,
 };
 
-const Step2 = ({ validationSchema }) => {
+const Step2 = () => {
     const [mapCenter, setMapCenter] = useState(center);
     const { isLoaded, loadError } = useLoadScript({
         googleMapsApiKey: process.env.REACT_APP_GOOGLE_API_KEY,

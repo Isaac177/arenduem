@@ -35,9 +35,12 @@ import SmokingRoomsIcon from '@material-ui/icons/SmokingRooms';
 import EventAvailableIcon from '@material-ui/icons/EventAvailable';
 import NoDrinksIcon from '@material-ui/icons/LocalDrink';
 import Apartment from '../../assets/img/appart.jpg';
+import {useDispatch, useSelector} from "react-redux";
 
 const Step3 = () => {
     const [checked, setChecked] = useState(false);
+    const dispatch = useDispatch();
+    const propertyType = useSelector((state) => state.owner.propertyType);
 
     const handleChange = (event) => {
         setChecked(event.target.checked);
@@ -55,12 +58,30 @@ const Step3 = () => {
     const iconStyles = `${checked ? 'flex flex-col items-center bg-gray-300 p-2 border m-2 border-gray-300 rounded-2xl cursor-pointer' 
         : 'text-gray-500 flex flex-col items-center p-2 border m-2 border-gray-300 rounded-2xl cursor-pointer hover:bg-gray-200'}`;
 
+    console.log(propertyType)
     return (
         <div className="overflow-y-auto">
             <h1 className='text-2xl font-bold'>Property Details</h1>
             <Grid container spacing={3}>
                 <Grid item xs={12} sm={6}>
                     <ThemeProvider theme={theme}>
+                        {propertyType === 'Private apartment' && (
+                            <>
+                            <h6 className="text-xl font-bold mt-2">Is your apartment a studio</h6>
+                            <FormControl component="fieldset">
+                                <FormGroup row>
+                                    <FormControlLabel
+                                        control={<Field name="studio" as={Checkbox} />}
+                                        label="Yes"
+                                    />
+                                    <FormControlLabel
+                                        control={<Field name="studio" as={Checkbox} />}
+                                        label="No"
+                                    />
+                                </FormGroup>
+                            </FormControl>
+                            </>
+                            )}
                         <div>
                             <h6 className="text-sm font-medium mt-2">Size (m²):</h6>
                             <Field

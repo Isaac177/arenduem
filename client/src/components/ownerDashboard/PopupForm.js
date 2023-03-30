@@ -14,6 +14,14 @@ import Step6 from "../form-steps/Step6";
 import Step7 from "../form-steps/Step7";
 import {useDispatch, useSelector} from "react-redux";
 import {setStepPropertyType} from "../../actions/ownerFormActions";
+import {
+    availabilityValidationSchema,
+    combinedValidationSchema,
+    locationValidationSchema, phoneVerificationValidationSchema, picturesValidationSchema, preferencesValidationSchema,
+    propertyValidationSchema
+} from "../../utils/ownerValidationSchemas";
+import * as Yup from 'yup';
+
 
 const fadeIn = keyframes`
   0% {
@@ -83,6 +91,7 @@ const PopupForm = ({ isOpen, onClose }) => {
     const [gMapsLoaded, setGMapsLoaded] = useState(false);
 
     const dispatch = useDispatch();
+    const propertyType = useSelector((state) => state.owner.propertyType);
 
     useEffect(() => {
         loadGoogleMapsScript(() => {
@@ -113,21 +122,49 @@ const PopupForm = ({ isOpen, onClose }) => {
 
     const totalSteps = 7;
 
+    const getValidationSchemaForStep = (step) => {
+        let schema = Yup.object();
+
+        if (step >= 1) {
+            schema = schema.concat(locationValidationSchema);
+        }
+        if (step >= 2) {
+            schema = schema.concat(propertyValidationSchema);
+        }
+        if (step >= 3) {
+            schema = schema.concat(availabilityValidationSchema);
+        }
+        if (step >= 4) {
+            schema = schema.concat(picturesValidationSchema);
+        }
+        if (step >= 5) {
+            schema = schema.concat(preferencesValidationSchema);
+        }
+        if (step >= 6) {
+            schema = schema.concat(phoneVerificationValidationSchema);
+        }
+
+        return schema;
+    };
+
+
     return (
         <ModalOverlay onClick={onClose}>
             <Modal ref={modalRef} onClick={(e) => e.stopPropagation()}>
                 <Formik
                     initialValues={{   }}
+                    validationSchema={getValidationSchemaForStep(step)}
                     onSubmit={(values) => {
                         console.log('Form submitted:', values);
                         onClose();
                     }}
                 >
-                    {({ isSubmitting }) => (
+                    {({ isSubmitting, isValid }) => (
                         <Form>
                             <CloseButton onClick={onClose}>
                                 <CloseIcon />
                             </CloseButton>
+                            {step === 0 ? ''  : <h1 className="text-2xl font-bold text-center mb-4">Property Type: {propertyType}</h1>}
                             <Title>Step {step + 1} of {totalSteps}</Title>
                             <ProgressBar step={step} totalSteps={totalSteps} />
                             {step === 0 && <Step1 fieldName="propertyType" handleSelectPropertyType={handleSelectPropertyType} />}
@@ -147,9 +184,11 @@ const PopupForm = ({ isOpen, onClose }) => {
                                     </button>
                                 )}
                                 {step > 0 && (
-                                    <button className="bg-aqua-500 hover:bg-aqua-700 text-white font-bold w-80 py-4 px-4 rounded-lg"
-                                            disabled={isSubmitting}
-                                            onClick={(e) => handleNextStep(e)}
+                                    <button
+                                        className={`bg-green-500 hover:bg-green-700 text-white font-bold py-4 px-4 w-80 rounded-lg 
+                                        ${isSubmitting || !isValid ? 'opacity-50 cursor-not-allowed' : ''}`}
+                                        disabled={isSubmitting || !isValid}
+                                        onClick={(e) => handleNextStep(e)}
                                     >
                                         {step === 6 ? 'Submit' : 'Next Step'}
                                     </button>
