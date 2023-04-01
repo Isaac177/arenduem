@@ -6,6 +6,7 @@ import { GoogleMap, Marker, useLoadScript } from '@react-google-maps/api';
 import './google.scss';
 import {useDispatch, useSelector} from "react-redux";
 import {setLocationData} from "../../actions/ownerFormActions";
+import { useFormikContext } from 'formik';
 
 const libraries = ['places'];
 
@@ -32,6 +33,7 @@ const Step2 = () => {
         city: '',
     };
     const propertyType = useSelector(state => state.owner.propertyType);
+    const { setFieldValue } = useFormikContext();
 
     useEffect(() => {
         if (locationData.city && locationData.country) {
@@ -61,15 +63,18 @@ const Step2 = () => {
     });
 
     const handleCityChange = (selected) => {
-        dispatch(setLocationData({...locationData, city: selected.label}));
+        dispatch(setLocationData({ ...locationData, city: selected.label }));
+        setFieldValue('city', selected.label);
     };
 
     const handleCountryChange = (selected) => {
-        dispatch(setLocationData({...locationData, country: selected.label}));
+        dispatch(setLocationData({ ...locationData, country: selected.label }));
+        setFieldValue('country', selected.label);
     };
 
     if (loadError) return 'Error loading maps';
     if (!isLoaded) return 'Loading maps';
+
 
     return (
         <div>
@@ -125,7 +130,9 @@ const Step2 = () => {
                                     label="Street"
                                     variant="outlined"
                                     fullWidth
-                                    onChange={(e) => dispatch(setLocationData({...locationData, street: e.target.value}))}
+                                    onChange={(e) => {
+                                        setFieldValue('street', e.target.value);
+                                    }}
                                 />
                             </div>
                             <h6 className="text-sm font-medium">
@@ -140,7 +147,9 @@ const Step2 = () => {
                                     variant="outlined"
                                     fullWidth
                                     className="mt-4"
-                                    onChange={(e) => dispatch(setLocationData({...locationData, floor: e.target.value}))}
+                                    onChange={(e) => {
+                                        setFieldValue('floor', e.target.value);
+                                    }}
                                 />
                             </div>
                             <h6 className="text-sm font-medium">
@@ -154,7 +163,9 @@ const Step2 = () => {
                                     label="Apartment number or door"
                                     variant="outlined"
                                     fullWidth
-                                    onChange={(e) => dispatch(setLocationData({...locationData, apartmentNumber: e.target.value}))}
+                                    onChange={(e) => {
+                                        setFieldValue('apartmentNumber', e.target.value);
+                                    }}
                                 />
                             </div>
                         </div>

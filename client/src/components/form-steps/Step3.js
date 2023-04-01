@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import { Field } from 'formik';
+import {Field, useFormikContext} from 'formik';
 import {
     TextField,
     Checkbox,
@@ -40,11 +40,8 @@ import {useDispatch, useSelector} from "react-redux";
 const Step3 = () => {
     const [checked, setChecked] = useState(false);
     const dispatch = useDispatch();
+    const { setFieldValue } = useFormikContext();
     const propertyType = useSelector((state) => state.owner.propertyType);
-
-    const handleChange = (event) => {
-        setChecked(event.target.checked);
-    }
 
 
     const theme = createTheme({
@@ -71,11 +68,15 @@ const Step3 = () => {
                             <FormControl component="fieldset">
                                 <FormGroup row>
                                     <FormControlLabel
-                                        control={<Field name="studio" as={Checkbox} />}
+                                        control={<Field
+                                            name="studio"
+                                            as={Checkbox}
+                                            onChange={(e) => setFieldValue('studio', e.target.checked)}
+                                        />}
                                         label="Yes"
                                     />
                                     <FormControlLabel
-                                        control={<Field name="studio" as={Checkbox} />}
+                                        control={<Field name="studio" as={Checkbox} onChange={(e) => setFieldValue('studio', !e.target.checked)}/>}
                                         label="No"
                                     />
                                 </FormGroup>
@@ -90,7 +91,8 @@ const Step3 = () => {
                                 type="number"
                                 label="Size (m²)"
                                 variant="outlined"
-                                onChange={(e) => console.log(e.target.value)}
+                                value={propertyType === 'Private apartment' ? 'Studio' : ''}
+                                onChange={(e) => setFieldValue('size', e.target.value)}
                                 sx={{ mb: 2 }}
                             />
                         </div>
@@ -102,8 +104,9 @@ const Step3 = () => {
                                 type="number"
                                 label="Number of Bedrooms"
                                 variant="outlined"
+                                value={propertyType === 'Private apartment' ? 'Studio' : ''}
                                 fullWidth
-                                onChange={(e) => console.log(e.target.value)}
+                                onChange={(e) => setFieldValue('bedrooms', e.target.value)}
                                 sx={{ my: 2 }}
                             />
                         </div>
@@ -115,8 +118,9 @@ const Step3 = () => {
                                 type="number"
                                 label="Number of Bathrooms"
                                 variant="outlined"
+                                value={propertyType === 'Private apartment' ? 'Studio' : ''}
                                 fullWidth
-                                onChange={(e) => console.log(e.target.value)}
+                                onChange={(e) => setFieldValue('bathrooms', e.target.value)}
                                 sx={{ my: 2 }}
                             />
                         </div>
@@ -129,7 +133,7 @@ const Step3 = () => {
                                 label="Maximum number of roommates"
                                 variant="outlined"
                                 fullWidth
-                                onChange={(e) => console.log(e.target.value)}
+                                onChange={(e) => setFieldValue('roommates', e.target.value)}
                                 sx={{ my: 2 }}
                             />
                         </div>
@@ -137,12 +141,14 @@ const Step3 = () => {
                             <h6 className="text-xl font-bold">Are there any lifts in the building?</h6>
                             <FormGroup>
                                 <FormControlLabel
-                                    control={<Checkbox onChange={(e) => console.log(e.target.value)} />}
+                                    control={<Checkbox onChange={(e) => setFieldValue('lift', e.target.checked)} />}
                                     label="Yes"
+                                    value="yes"
                                 />
                                 <FormControlLabel
-                                    control={<Checkbox onChange={(e) => console.log(e.target.value)} />}
+                                    control={<Checkbox onChange={(e) => setFieldValue('lift', !e.target.checked)} />}
                                     label="No"
+                                    value="no"
                                 />
                             </FormGroup>
                         </FormControl>
@@ -150,12 +156,14 @@ const Step3 = () => {
                             <h6 className="text-xl font-bold mt-4">Is the property furnished?</h6>
                             <FormGroup>
                                 <FormControlLabel
-                                    control={<Checkbox onChange={(e) => console.log(e.target.value)} />}
+                                    control={<Checkbox onChange={(e) => setFieldValue('furnished', e.target.checked)} />}
                                     label="Yes"
+                                    value="yes"
                                 />
                                 <FormControlLabel
-                                    control={<Checkbox onChange={(e) => console.log(e.target.value)} />}
+                                    control={<Checkbox onChange={(e) => setFieldValue('furnished', !e.target.checked)} />}
                                     label="No"
+                                    value="no"
                                 />
                             </FormGroup>
                         </div>
@@ -164,27 +172,27 @@ const Step3 = () => {
                             <FormControl fullWidth>
                                 <FormGroup row>
                                     <FormControlLabel
-                                        control={<Field name="bedType" as={Checkbox} value="single" />}
+                                        control={<Field name="bedType" as={Checkbox} value="single" onChange={(e) => setFieldValue('bedType', e.target.value)} />}
                                         label="Single"
                                     />
                                     <FormControlLabel
-                                        control={<Field name="bedType" as={Checkbox} value="double" />}
+                                        control={<Field name="bedType" as={Checkbox} value="double" onChange={(e) => setFieldValue('bedType', e.target.value)} />}
                                         label="Double"
                                     />
                                     <FormControlLabel
-                                        control={<Field name="bedType" as={Checkbox} value="queen" />}
+                                        control={<Field name="bedType" as={Checkbox} value="queen" onChange={(e) => setFieldValue('bedType', e.target.value)}/>}
                                         label="Queen"
                                     />
                                     <FormControlLabel
-                                        control={<Field name="bedType" as={Checkbox} value="king" />}
+                                        control={<Field name="bedType" as={Checkbox} value="king" onChange={(e) => setFieldValue('bedType', e.target.value)}/>}
                                         label="King"
                                     />
                                     <FormControlLabel
-                                        control={<Field name="bedType" as={Checkbox} value="bunk" />}
+                                        control={<Field name="bedType" as={Checkbox} value="bunk" onChange={(e) => setFieldValue('bedType', e.target.value)} />}
                                         label="Bunk"
                                     />
                                     <FormControlLabel
-                                        control={<Field name="bedType" as={Checkbox} value="sofa" />}
+                                        control={<Field name="bedType" as={Checkbox} value="sofa" onChange={(e) => setFieldValue('bedType', e.target.value)}/>}
                                         label="Sofa"
                                     />
                                 </FormGroup>
@@ -200,7 +208,8 @@ const Step3 = () => {
                                             icon={<Home />}
                                             checkedIcon={<Home />}
                                             checked={checked}
-                                            onChange={handleChange}
+                                            value="home"
+                                            onChange={(e) => setFieldValue('amenities', e.target.checked)}
                                         />}
                                         label="Home"
                                     />
@@ -211,9 +220,10 @@ const Step3 = () => {
                                             icon={<SingleBed />}
                                             checkedIcon={<SingleBed />}
                                             checked={checked}
-                                            onChange={handleChange} />}
+                                            value="bedroom"
+                                            onChange={(e) => setFieldValue('amenities', e.target.checked)}
                                         label="Bedroom"
-                                    />
+                                    />} />
                                 </div>
                                 <div className={iconStyles}>
                                     <FormControlLabel
@@ -221,7 +231,8 @@ const Step3 = () => {
                                             icon={<Bathtub />}
                                             checkedIcon={<Bathtub />}
                                             checked={checked}
-                                            onChange={handleChange}
+                                            value="bathroom"
+                                            onChange={(e) => setFieldValue('amenities', e.target.checked)}
                                         />}
                                         label="Bathroom"
                                     />
@@ -232,7 +243,8 @@ const Step3 = () => {
                                             icon={<PeopleAlt />}
                                             checkedIcon={<PeopleAlt />}
                                             checked={checked}
-                                            onChange={handleChange}
+                                            value="roommates"
+                                            onChange={(e) => setFieldValue('amenities', e.target.checked)}
                                         />}
                                         label="Roommates"
                                     />
@@ -243,7 +255,8 @@ const Step3 = () => {
                                             icon={<MeetingRoom />}
                                             checkedIcon={<MeetingRoom />}
                                             checked={checked}
-                                            onChange={handleChange}
+                                            value='livingRoom'
+                                            onChange={(e) => setFieldValue('amenities', e.target.checked)}
                                         />}
                                         label="Living Room"
                                     />
@@ -254,7 +267,8 @@ const Step3 = () => {
                                             icon={<Kitchen />}
                                             checkedIcon={<Kitchen />}
                                             checked={checked}
-                                            onChange={handleChange}
+                                            value='kitchen'
+                                            onChange={(e) => setFieldValue('amenities', e.target.checked)}
                                         />}
                                         label="Kitchen"
                                     />
@@ -265,7 +279,8 @@ const Step3 = () => {
                                             icon={<Wifi />}
                                             checkedIcon={<Wifi />}
                                             checked={checked}
-                                            onChange={handleChange}
+                                            value='wifi'
+                                            onChange={(e) => setFieldValue('amenities', e.target.checked)}
                                         />}
                                         label="Wifi"
                                     />
@@ -276,7 +291,8 @@ const Step3 = () => {
                                             icon={<Tv />}
                                             checkedIcon={<Tv />}
                                             checked={checked}
-                                            onChange={handleChange}
+                                            value='tv'
+                                            onChange={(e) => setFieldValue('amenities', e.target.checked)}
                                         />}
                                         label="TV"
                                     />
@@ -287,7 +303,8 @@ const Step3 = () => {
                                             icon={<AcUnit />}
                                             checkedIcon={<AcUnit />}
                                             checked={checked}
-                                            onChange={handleChange}
+                                            value='airConditioning'
+                                            onChange={(e) => setFieldValue('amenities', e.target.checked)}
                                         />}
                                         label="Air conditioning"
                                     />
@@ -298,7 +315,8 @@ const Step3 = () => {
                                             icon={<SmokeFree />}
                                             checkedIcon={<SmokeFree />}
                                             checked={checked}
-                                            onChange={handleChange}
+                                            value='smokeFree'
+                                            onChange={(e) => setFieldValue('amenities', e.target.checked)}
                                         />}
                                         label="Smoke free"
                                     />
@@ -309,7 +327,8 @@ const Step3 = () => {
                                             icon={<LocalLaundryService />}
                                             checkedIcon={<LocalLaundryService />}
                                             checked={checked}
-                                            onChange={handleChange}
+                                            value='laundry'
+                                            onChange={(e) => setFieldValue('amenities', e.target.checked)}
                                         />}
                                         label="Laundry"
                                     />
@@ -320,7 +339,8 @@ const Step3 = () => {
                                             icon={<Elevator />}
                                             checkedIcon={<Elevator />}
                                             checked={checked}
-                                            onChange={handleChange}
+                                            value='elevator'
+                                            onChange={(e) => setFieldValue('amenities', e.target.checked)}
                                         />}
                                         label="Elevator"
                                     />
@@ -331,7 +351,8 @@ const Step3 = () => {
                                             icon={<LocalParking />}
                                             checkedIcon={<LocalParking />}
                                             checked={checked}
-                                            onChange={handleChange}
+                                            value='parking'
+                                            onChange={(e) => setFieldValue('amenities', e.target.checked)}
                                         />}
                                         label="Parking"
                                     />
@@ -347,7 +368,8 @@ const Step3 = () => {
                                             icon={<Balcony />}
                                             checkedIcon={<Balcony />}
                                             checked={checked}
-                                            onChange={handleChange}
+                                            value='balcony'
+                                            onChange={(e) => setFieldValue('amenities', e.target.checked)}
                                         />}
                                         label="Balcony"
                                     />
@@ -358,7 +380,8 @@ const Step3 = () => {
                                             icon={<Bathtub />}
                                             checkedIcon={<Bathtub />}
                                             checked={checked}
-                                            onChange={handleChange}
+                                            value='privateBathroom'
+                                            onChange={(e) => setFieldValue('amenities', e.target.checked)}
                                         />}
                                         label="Private bathroom"
                                     />
@@ -369,7 +392,8 @@ const Step3 = () => {
                                             icon={<Kitchen />}
                                             checkedIcon={<Kitchen />}
                                             checked={checked}
-                                            onChange={handleChange}
+                                            value='privateKitchen'
+                                            onChange={(e) => setFieldValue('amenities', e.target.checked)}
                                         />}
                                         label="Private kitchen"
                                     />
@@ -380,7 +404,8 @@ const Step3 = () => {
                                             icon={<DesktopMac />}
                                             checkedIcon={<DesktopMac />}
                                             checked={checked}
-                                            onChange={handleChange}
+                                            value='desk'
+                                            onChange={(e) => setFieldValue('amenities', e.target.checked)}
                                         />}
                                         label="Desk"
                                     />
@@ -391,7 +416,8 @@ const Step3 = () => {
                                             icon={<CheckroomIcon />}
                                             checkedIcon={<CheckroomIcon />}
                                             checked={checked}
-                                            onChange={handleChange}
+                                            value='closet'
+                                            onChange={(e) => setFieldValue('amenities', e.target.checked)}
                                         />}
                                         label="Closet"
                                     />
@@ -407,7 +433,8 @@ const Step3 = () => {
                                             icon={<NoSmokingIcon />}
                                             checkedIcon={<NoSmokingIcon />}
                                             checked={checked}
-                                            onChange={handleChange}
+                                            value='noSmoking'
+                                            onChange={(e) => setFieldValue('amenities', e.target.checked)}
                                         />}
                                         label="No smoking"
                                     />
@@ -418,7 +445,8 @@ const Step3 = () => {
                                             icon={<PetsIcon />}
                                             checkedIcon={<PetsIcon />}
                                             checked={checked}
-                                            onChange={handleChange}
+                                            values='pets'
+                                            onChange={(e) => setFieldValue('amenities', e.target.checked)}
                                         />}
                                         label="Pets allowed"
                                     />
@@ -429,7 +457,8 @@ const Step3 = () => {
                                             icon={<ChildFriendlyIcon />}
                                             checkedIcon={<ChildFriendlyIcon />}
                                             checked={checked}
-                                            onChange={handleChange}
+                                            value='children'
+                                            onChange={(e) => setFieldValue('amenities', e.target.checked)}
                                         />}
                                         label="Children allowed"
                                     />
@@ -440,7 +469,8 @@ const Step3 = () => {
                                             icon={<SmokingRoomsIcon />}
                                             checkedIcon={<SmokingRoomsIcon />}
                                             checked={checked}
-                                            onChange={handleChange}
+                                            value='smoking'
+                                            onChange={(e) => setFieldValue('amenities', e.target.checked)}
                                         />}
                                         label="Smoking allowed"
                                     />
@@ -451,7 +481,8 @@ const Step3 = () => {
                                             icon={<EventAvailableIcon />}
                                             checkedIcon={<EventAvailableIcon />}
                                             checked={checked}
-                                            onChange={handleChange}
+                                            value='events'
+                                            onChange={(e) => setFieldValue('amenities', e.target.checked)}
                                         />}
                                         label="Events allowed"
                                     />
@@ -462,7 +493,8 @@ const Step3 = () => {
                                             icon={<NoDrinksIcon />}
                                             checkedIcon={<NoDrinksIcon />}
                                             checked={checked}
-                                            onChange={handleChange}
+                                            value='noDrinking'
+                                            onChange={(e) => setFieldValue('amenities', e.target.checked)}
                                         />}
                                         label="No drinking"
                                     />

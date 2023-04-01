@@ -152,14 +152,21 @@ const PopupForm = ({ isOpen, onClose }) => {
         <ModalOverlay onClick={onClose}>
             <Modal ref={modalRef} onClick={(e) => e.stopPropagation()}>
                 <Formik
-                    initialValues={{   }}
+                    initialValues={{
+                        propertyType: '',
+                        country: '',
+                        city: '',
+                        street: '',
+                        floor: '',
+                        apartmentNumber: '',
+                    }}
                     validationSchema={getValidationSchemaForStep(step)}
                     onSubmit={(values) => {
                         console.log('Form submitted:', values);
                         onClose();
                     }}
                 >
-                    {({ isSubmitting, isValid }) => (
+                    {({ isSubmitting, isValid, errors }) => (
                         <Form>
                             <CloseButton onClick={onClose}>
                                 <CloseIcon />
@@ -167,13 +174,16 @@ const PopupForm = ({ isOpen, onClose }) => {
                             {step === 0 ? ''  : <h1 className="text-2xl font-bold text-center mb-4">Property Type: {propertyType}</h1>}
                             <Title>Step {step + 1} of {totalSteps}</Title>
                             <ProgressBar step={step} totalSteps={totalSteps} />
-                            {step === 0 && <Step1 fieldName="propertyType" handleSelectPropertyType={handleSelectPropertyType} />}
-                            {step === 1 && <Step2 />}
-                            {step === 2 && <Step3 />}
-                            {step === 3 && <Step4 />}
-                            {step === 4 && <Step5 />}
-                            {step === 5 && <Step6 />}
-                            {step === 6 && <Step7 />}
+                            {/*Steps with overflow scroll*/}
+                            <div className="overflow-y-scroll" style={{height: '500px'}}>
+                                {step === 0 && <Step1 fieldName="propertyType" handleSelectPropertyType={handleSelectPropertyType} />}
+                                {step === 1 && <Step2 />}
+                                {step === 2 && <Step3 />}
+                                {step === 3 && <Step4 />}
+                                {step === 4 && <Step5 />}
+                                {step === 5 && <Step6 />}
+                                {step === 6 && <Step7 />}
+                            </div>
                             <div className="mt-4 px-4">
                                 {step > 0 && (
                                     <button
@@ -193,6 +203,7 @@ const PopupForm = ({ isOpen, onClose }) => {
                                         {step === 6 ? 'Submit' : 'Next Step'}
                                     </button>
                                 )}
+                                {errors && <pre>{JSON.stringify(errors, null, 2)}</pre>}
                             </div>
                         </Form>
                     )}

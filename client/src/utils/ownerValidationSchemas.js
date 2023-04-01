@@ -2,8 +2,8 @@ import * as Yup from 'yup';
 
 
 export const locationValidationSchema = Yup.object().shape({
-    country: Yup.string().required('Country is required'),
-    city: Yup.string().required('City is required'),
+    /*country: Yup.string().required('Country is required'),
+    city: Yup.string().required('City is required'),*/
     street: Yup.string().required('Street is required'),
     floor: Yup.number().required('Floor is required'),
     apartmentNumber: Yup.number().required('Apartment number is required'),
