@@ -33,7 +33,7 @@ const Step2 = () => {
         city: '',
     };
     const propertyType = useSelector(state => state.owner.propertyType);
-    const { setFieldValue } = useFormikContext();
+    const { values, setFieldValue } = useFormikContext();
 
     useEffect(() => {
         if (locationData.city && locationData.country) {
@@ -64,12 +64,12 @@ const Step2 = () => {
 
     const handleCityChange = (selected) => {
         dispatch(setLocationData({ ...locationData, city: selected.label }));
-        setFieldValue('city', selected.label);
+        setFieldValue('propertyAddress.city', selected.label);
     };
 
     const handleCountryChange = (selected) => {
         dispatch(setLocationData({ ...locationData, country: selected.label }));
-        setFieldValue('country', selected.label);
+        setFieldValue('propertyAddress.country', selected.label);
     };
 
     if (loadError) return 'Error loading maps';
@@ -126,12 +126,13 @@ const Step2 = () => {
                             <div className="my-2">
                                 <Field
                                     as={TextField}
-                                    name="street"
+                                    name="propertyAddress.street"
                                     label="Street"
                                     variant="outlined"
+                                    value={values.propertyAddress.street}
                                     fullWidth
                                     onChange={(e) => {
-                                        setFieldValue('street', e.target.value);
+                                        setFieldValue('propertyAddress.street', e.target.value);
                                     }}
                                 />
                             </div>
@@ -141,14 +142,15 @@ const Step2 = () => {
                             <div className="my-2">
                                 <Field
                                     as={TextField}
-                                    name="floor"
+                                    name="propertyAddress.floor"
                                     label="Floor"
                                     type="number"
                                     variant="outlined"
+                                    value={values.propertyAddress.floor}
                                     fullWidth
                                     className="mt-4"
                                     onChange={(e) => {
-                                        setFieldValue('floor', e.target.value);
+                                        setFieldValue('propertyAddress.floor', e.target.value);
                                     }}
                                 />
                             </div>
@@ -158,13 +160,14 @@ const Step2 = () => {
                             <div className="my-2">
                                 <Field
                                     as={TextField}
-                                    name="apartmentNumber"
+                                    name="propertyAddress.apartmentNumber"
                                     type="number"
                                     label="Apartment number or door"
                                     variant="outlined"
+                                    value={values.propertyAddress.apartmentNumber}
                                     fullWidth
                                     onChange={(e) => {
-                                        setFieldValue('apartmentNumber', e.target.value);
+                                        setFieldValue('propertyAddress.apartmentNumber', e.target.value);
                                     }}
                                 />
                             </div>

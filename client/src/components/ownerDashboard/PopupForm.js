@@ -21,6 +21,8 @@ import {
     propertyValidationSchema
 } from "../../utils/ownerValidationSchemas";
 import * as Yup from 'yup';
+import Apartment from "../../assets/img/appart.jpg";
+import {Grid} from "@mui/material";
 
 
 const fadeIn = keyframes`
@@ -154,12 +156,43 @@ const PopupForm = ({ isOpen, onClose }) => {
                 <Formik
                     initialValues={{
                         propertyType: '',
-                        country: '',
-                        city: '',
-                        street: '',
-                        floor: '',
-                        apartmentNumber: '',
+                        propertyAddress: {
+                            country: '',
+                            city: '',
+                            street: '',
+                            floor: '',
+                            apartmentNumber: ''
+                        },
+                        propertyAmenities: {
+                            homeType: false,
+                            bedroom: false,
+                            bathroom: false,
+                            roommates: false,
+                            livingRoom: false,
+                            kitchen: false,
+                            wifi: false,
+                            tv: false,
+                            airConditioning: false,
+                            smokeFree: false,
+                            laundry: false,
+                            elevator: false,
+                            parking: false,
+                            balcony: false,
+                            privateBathroom: false,
+                            privateKitchen: false,
+                            desktop: false,
+                            closet: false,
+                        },
+                        houseRules: {
+                            noSmoking: false,
+                            pets: false,
+                            children: false,
+                            smoking: false,
+                            events: false,
+                            noDrinking: false,
+                        },
                     }}
+
                     validationSchema={getValidationSchemaForStep(step)}
                     onSubmit={(values) => {
                         console.log('Form submitted:', values);
@@ -174,16 +207,25 @@ const PopupForm = ({ isOpen, onClose }) => {
                             {step === 0 ? ''  : <h1 className="text-2xl font-bold text-center mb-4">Property Type: {propertyType}</h1>}
                             <Title>Step {step + 1} of {totalSteps}</Title>
                             <ProgressBar step={step} totalSteps={totalSteps} />
-                            {/*Steps with overflow scroll*/}
-                            <div className="overflow-y-scroll" style={{height: '500px'}}>
-                                {step === 0 && <Step1 fieldName="propertyType" handleSelectPropertyType={handleSelectPropertyType} />}
-                                {step === 1 && <Step2 />}
-                                {step === 2 && <Step3 />}
-                                {step === 3 && <Step4 />}
-                                {step === 4 && <Step5 />}
-                                {step === 5 && <Step6 />}
-                                {step === 6 && <Step7 />}
-                            </div>
+                            {step === 0 && <Step1 fieldName="propertyType" handleSelectPropertyType={handleSelectPropertyType} />}
+                            {step === 1 && <Step2 />}
+                            <Grid container spacing={3}>
+                                <Grid item xs={12} sm={6}>
+                                    <div className="overflow-y-scroll" style={{height: '500px'}}>
+                                        {step === 2 && <Step3 />}
+                                        {step === 3 && <Step4 />}
+                                        {step === 4 && <Step5 />}
+                                        {step === 5 && <Step6 />}
+                                        {step === 6 && <Step7 />}
+                                    </div>
+                                </Grid>
+                                <Grid item xs={12} sm={6}>
+                                    {step === 2 && (
+                                        <img src={Apartment} alt="Apartment" className="cover w-full object-center object-cover"/>
+                                    )}
+                                </Grid>
+                            </Grid>
+
                             <div className="mt-4 px-4">
                                 {step > 0 && (
                                     <button
@@ -203,7 +245,9 @@ const PopupForm = ({ isOpen, onClose }) => {
                                         {step === 6 ? 'Submit' : 'Next Step'}
                                     </button>
                                 )}
+{/*
                                 {errors && <pre>{JSON.stringify(errors, null, 2)}</pre>}
+*/}
                             </div>
                         </Form>
                     )}
