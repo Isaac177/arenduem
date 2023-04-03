@@ -25,6 +25,7 @@ import Apartment from "../../assets/img/appart.jpg";
 import {Grid} from "@mui/material";
 import available from "../../assets/img/available.jpg";
 import formImg from "../../assets/img/formImg.jpg";
+import peopleImg from "../../assets/img/peopleImg.jpg";
 
 
 const fadeIn = keyframes`
@@ -214,6 +215,19 @@ const PopupForm = ({ isOpen, onClose }) => {
                             title: '',
                             description: '',
                         },
+                        preferences: {
+                            tenantGender: '',
+                            tenantMinimumAge: 0,
+                            tenantMaximumAge: 0,
+                            tenantOccupation: '',
+                            tenantDrinkingStatus: '',
+                            tenantSmokingStatus: '',
+                        },
+                        phoneVerification: {
+                            country: '',
+                            phoneNumber: '',
+                            verificationCode: ''
+                        }
                     }}
 
                     //validationSchema={getValidationSchemaForStep(step)}
@@ -246,6 +260,7 @@ const PopupForm = ({ isOpen, onClose }) => {
                                     {step === 2 && <img src={Apartment} alt="Apartment" className="mx-auto cover w-96 object-center object-cover"/>}
                                     {step === 3 && <img src={available} alt="available" className="mx-auto cover w-96 object-cover object-center"/>}
                                     {step === 4 && <img src={formImg} alt="formImg" className="mx-auto cover h-96 object-cover object-center"/>}
+                                    {step === 5 && <img src={peopleImg} alt="gender" className="mx-auto cover h-96 object-cover object-center"/>}
                                 </Grid>
                             </Grid>
 

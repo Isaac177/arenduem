@@ -7,10 +7,8 @@ import {
     FormGroup,
     Checkbox,
     FormControl,
-    Grid,
     ThemeProvider,
     createTheme,
-    MenuItem
 } from '@mui/material';
 import {
     Home,
@@ -35,7 +33,6 @@ import ChildFriendlyIcon from '@material-ui/icons/ChildCare';
 import SmokingRoomsIcon from '@material-ui/icons/SmokingRooms';
 import EventAvailableIcon from '@material-ui/icons/EventAvailable';
 import NoDrinksIcon from '@material-ui/icons/LocalDrink';
-import Apartment from '../../assets/img/appart.jpg';
 import {useDispatch, useSelector} from "react-redux";
 
 const Step3 = () => {
