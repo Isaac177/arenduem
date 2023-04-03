@@ -24,6 +24,7 @@ import * as Yup from 'yup';
 import Apartment from "../../assets/img/appart.jpg";
 import {Grid} from "@mui/material";
 import available from "../../assets/img/available.jpg";
+import formImg from "../../assets/img/formImg.jpg";
 
 
 const fadeIn = keyframes`
@@ -208,6 +209,11 @@ const PopupForm = ({ isOpen, onClose }) => {
                             cleaningService: false,
                             maintenance: false
                         },
+                        propertyDetails: {
+                            pictures: [],
+                            title: '',
+                            description: '',
+                        },
                     }}
 
                     //validationSchema={getValidationSchemaForStep(step)}
@@ -237,8 +243,9 @@ const PopupForm = ({ isOpen, onClose }) => {
                                     </div>
                                 </Grid>
                                 <Grid item xs={12} sm={6}>
-                                    {step === 2 && <img src={Apartment} alt="Apartment" className="cover w-full object-center object-cover"/>}
-                                    {step === 3 && <img src={available} alt="available" className="cover w-96 object-cover object-center"/>}
+                                    {step === 2 && <img src={Apartment} alt="Apartment" className="mx-auto cover w-96 object-center object-cover"/>}
+                                    {step === 3 && <img src={available} alt="available" className="mx-auto cover w-96 object-cover object-center"/>}
+                                    {step === 4 && <img src={formImg} alt="formImg" className="mx-auto cover h-96 object-cover object-center"/>}
                                 </Grid>
                             </Grid>
 
