@@ -1,5 +1,4 @@
-import React, {useState} from 'react';
-import { Field } from 'formik';
+import React, {useEffect, useState} from 'react';
 import {
     FormControl,
     TextField,
@@ -14,6 +13,8 @@ import 'react-datepicker/dist/react-datepicker.css';
 import available from "../../assets/img/available.jpg";
 import './custom-datepicker.css';
 import theme from "../utils/theme";
+import { useFormikContext, Field } from 'formik';
+
 
 
 const CustomInput = ({ value, onClick }) => (
@@ -46,124 +47,148 @@ const Step4 = () => {
     const [startDate, setStartDate] = useState(new Date());
     const [endDate, setEndDate] = useState(new Date());
 
+    const {values, setFieldValue} = useFormikContext();
+
+    useEffect(() => {
+        if (values.propertyAvailability) {
+            setFieldValue('propertyAvailability.startDate', startDate);
+            setFieldValue('propertyAvailability.endDate', endDate);
+        }
+    }, [startDate, endDate, setFieldValue, values.propertyAvailability]);
+
 
     return (
         <div>
             <h6 className="text-xl font-bold mt-4 text-aqua-500">Availability</h6>
             <ThemeProvider theme={theme}>
-            <Grid container spacing={3}>
-                <Grid item xs={12} sm={6}>
                 <FormGroup row>
                     <div className="my-2 flex flex-row gap-4">
                     <DatePicker
                         selected={startDate}
                         onChange={(date) => setStartDate(date)}
                         dateFormat="MM/dd/yyyy"
+                        value={values.propertyAvailability.startDate}
                         customInput={<CustomInput />}
                     />
                     <DatePicker
                         selected={endDate}
                         onChange={(date) => setEndDate(date)}
                         dateFormat="MM/dd/yyyy"
+                        value={values.propertyAvailability.endDate}
                         customInput={<CustomInput />}
                         style={{my: 2}}
                     />
                     </div>
                 </FormGroup>
                     <div className="my-2 flex flex-col gap-4">
-                        <p className="text-sm font-medium"> Minimum stay</p>
+                        <p className="text-sm font-medium"> Minimum stay (in months)</p>
                         <FormControl className="mt-4">
                             <Field
                                 as={TextField}
-                                name="minStay"
+                                name="propertyAvailability.minStay"
                                 type="number"
-                                label="Minimum stay (in months)"
+                                label="Minimum stay"
                                 variant="outlined"
-                                onChange={(e) => console.log(e.target.value)}
-                                sx={{ mb: 2 }}
+                                value={values.propertyAvailability.minStay}
+                                onChange={(e) => setFieldValue('propertyAvailability.minStay', e.target.value)}
+                                sx={{ mb: 2, width: '30%' }}
                             />
                         </FormControl>
                     </div>
 
                     <div className="my-2 flex flex-col gap-4">
-                        <p className="text-sm font-medium"> Maximum stay</p>
+                        <p className="text-sm font-medium"> Maximum stay (optional)</p>
                         <FormControl className="mt-4">
                             <Field
                                 as={TextField}
-                                name="maxStay"
+                                name="propertyAvailability.maxStay"
                                 type="number"
-                                label="Maximum stay (optional)"
+                                label="Maximum stay"
                                 variant="outlined"
-                                onChange={(e) => console.log(e.target.value)}
-                                sx={{ mb: 2 }}
+                                value={values.propertyAvailability.maxStay}
+                                onChange={(e) => setFieldValue('propertyAvailability.maxStay', e.target.value)}
+                                sx={{ mb: 2, width: '30%' }}
                             />
                         </FormControl>
                     </div>
 
                     <div className="my-2 flex flex-col gap-4">
-                        <p className="text-sm font-medium"> Price per month</p>
-                        <FormControl fullWidth className="mt-4">
+                        <p className="text-sm font-medium"> Price per month (in tg)</p>
+                        <FormControl className="mt-4">
                             <Field
                                 as={TextField}
-                                name="price"
+                                name="prices.pricePerMonth"
                                 type="number"
-                                label="Price per month (in tg)"
+                                label="Price per month"
                                 variant="outlined"
-                                onChange={(e) => console.log(e.target.value)}
-                                sx={{ mb: 2 }}
+                                value={values.prices.pricePerMonth}
+                                onChange={(e) => setFieldValue('prices.pricePerMonth', e.target.value)}
+                                sx={{ mb: 2, width: '30%' }}
                             />
                         </FormControl>
                     </div>
 
-                <FormControl fullWidth className="mt-4">
+                <FormControl className="mt-4">
                     <FormGroup>
                         <FormControlLabel
-                            control={<Field name="billsIncluded" as={Checkbox} />}
+                            control={<Field
+                                name="prices.billsIncluded"
+                                as={Checkbox}
+                                value={values.prices.billsIncluded}
+                                onChange={(e) => setFieldValue('prices.billsIncluded', e.target.checked)}
+                            />}
                             label="Bills included"
                         />
                     </FormGroup>
                 </FormControl>
 
                     <div className="my-2 flex flex-col gap-4">
-                        <p className="text-sm font-medium"> Deposit</p>
-                            <FormControl fullWidth className="mt-4">
+                        <p className="text-sm font-medium"> Deposit (optional)</p>
+                            <FormControl className="mt-4">
                                 <Field
                                     as={TextField}
-                                    name="deposit"
+                                    name="prices.deposit"
                                     type="number"
                                     label="Deposit (in tg)"
                                     variant="outlined"
-                                    onChange={(e) => console.log(e.target.value)}
-                                    sx={{ mb: 2 }}
+                                    value={values.prices.deposit}
+                                    onChange={(e) => setFieldValue('prices.deposit', e.target.value)}
+                                    sx={{ mb: 2, width: '30%' }}
                                 />
                             </FormControl>
                     </div>
 
-                <h6 className="text-xl font-bold mt-4">Other Services</h6>
+                <h6 className="text-xl font-bold mt-4">Other Services (optional)</h6>
                 <FormGroup>
                     <FormControlLabel
-                        control={<Field name="rentalContract" as={Checkbox} />}
+                        control={<Field
+                            name="otherServices.rentalContract"
+                            as={Checkbox}
+                            value={values.otherServices.rentalContract}
+                            onChange={(e) => setFieldValue('otherServices.rentalContract', e.target.checked)}
+                        />}
                         label="Rental contract"
                     />
                     <FormControlLabel
-                        control={<Field name="cleaningService" as={Checkbox} />}
+                        control={<Field
+                            name="otherServices.cleaningService"
+                            as={Checkbox}
+                            value={values.otherServices.cleaningService}
+                            onChange={(e) => setFieldValue('otherServices.cleaningService', e.target.checked)}
+                        />
+                        }
                         label="Cleaning service"
                     />
-                    <FormControlLabel
-                        control={<Field name="maintenance" as={Checkbox} />}
+                            <FormControlLabel
+                        control={<Field
+                            name="otherServices.maintenance"
+                            as={Checkbox}
+                            value={values.otherServices.maintenance}
+                            onChange={(e) => setFieldValue('otherServices.maintenance', e.target.checked)}
+                        />}
                         label="Maintenance"
                     />
                 </FormGroup>
-            </Grid>
-                <Grid sx={{margin: '0 auto'}}>
-                    <div className="my-2 flex justify-center text-center items-center">
-                        <img src={available}
-                        alt="available"
-                        className="cover h-96 w-full object-cover object-center"
-                        style={{position: 'sticky', top: '0'}} />
-                    </div>
-                </Grid>
-            </Grid>
             </ThemeProvider>
         </div>
     );

@@ -54,11 +54,6 @@ export const availabilityValidationSchema = Yup.object().shape({
     price: Yup.number()
         .min(1, 'Price must be greater than 0')
         .required('Price is required'),
-    billsIncluded: Yup.boolean().nullable(),
-    deposit: Yup.number().min(0, 'Deposit must be greater than or equal to 0').required('Deposit is required'),
-    rentalContract: Yup.boolean().nullable(),
-    cleaningService: Yup.boolean().nullable(),
-    maintenance: Yup.boolean().nullable(),
 });
 
 export const picturesValidationSchema = Yup.object().shape({

@@ -23,6 +23,7 @@ import {
 import * as Yup from 'yup';
 import Apartment from "../../assets/img/appart.jpg";
 import {Grid} from "@mui/material";
+import available from "../../assets/img/available.jpg";
 
 
 const fadeIn = keyframes`
@@ -159,9 +160,9 @@ const PopupForm = ({ isOpen, onClose }) => {
                         propertyAddress: {
                             country: '',
                             city: '',
-                            street: '',
-                            floor: '',
-                            apartmentNumber: ''
+                            street: 0,
+                            floor: 0,
+                            apartmentNumber: 0
                         },
                         propertyAmenities: {
                             homeType: false,
@@ -191,9 +192,25 @@ const PopupForm = ({ isOpen, onClose }) => {
                             events: false,
                             noDrinking: false,
                         },
+                        propertyAvailability: {
+                            startDate: null,
+                            endDate: null,
+                            minStay: 0,
+                            maxStay: 0
+                        },
+                        prices: {
+                            pricePerMonth: 0,
+                            billsIncluded: false,
+                            deposit: 0
+                        },
+                        otherServices: {
+                            rentalContract: false,
+                            cleaningService: false,
+                            maintenance: false
+                        },
                     }}
 
-                    validationSchema={getValidationSchemaForStep(step)}
+                    //validationSchema={getValidationSchemaForStep(step)}
                     onSubmit={(values) => {
                         console.log('Form submitted:', values);
                         onClose();
@@ -220,9 +237,8 @@ const PopupForm = ({ isOpen, onClose }) => {
                                     </div>
                                 </Grid>
                                 <Grid item xs={12} sm={6}>
-                                    {step === 2 && (
-                                        <img src={Apartment} alt="Apartment" className="cover w-full object-center object-cover"/>
-                                    )}
+                                    {step === 2 && <img src={Apartment} alt="Apartment" className="cover w-full object-center object-cover"/>}
+                                    {step === 3 && <img src={available} alt="available" className="cover w-96 object-cover object-center"/>}
                                 </Grid>
                             </Grid>
 
