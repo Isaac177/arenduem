@@ -89,19 +89,20 @@ const Step3 = () => {
                     </>
                     )}
                 <div>
-                    <h6 className="text-sm font-medium my-2">Size (m²):</h6>
+                    <h6 className="text-xl font-bold mt-4 my-2">Size (m²):</h6>
                     <Field
                         as={TextField}
                         name="propertyDetails.size"
                         type="number"
                         label="Size (m²)"
                         variant="outlined"
+                        value={values.propertyDetails.size}
                         onChange={(e) => setFieldValue('propertyDetails.size', e.target.value)}
-                        sx={{ mb: 2 }}
+                        sx={{ mb: 2, width: '25%' }}
                     />
                 </div>
                 <div>
-                    <h6 className="text-sm font-medium">Number of Bedrooms:</h6>
+                    <h6 className="text-xl font-bold mt-4">Number of Bedrooms:</h6>
                     <Field
                         as={TextField}
                         name="propertyDetails.bedrooms"
@@ -110,11 +111,11 @@ const Step3 = () => {
                         variant="outlined"
                         fullWidth
                         onChange={(e) => setFieldValue('propertyDetails.bedrooms', e.target.value)}
-                        sx={{ my: 2 }}
+                        sx={{ my: 2,  width: '25%' }}
                     />
                 </div>
                 <div>
-                    <h6 className="text-sm font-medium">Number of Bathrooms:</h6>
+                    <h6 className="text-xl font-bold mt-4">Number of Bathrooms:</h6>
                     <Field
                         as={TextField}
                         name="propertyDetails.bathrooms"
@@ -123,11 +124,11 @@ const Step3 = () => {
                         variant="outlined"
                         fullWidth
                         onChange={(e) => setFieldValue('propertyDetails.bathrooms', e.target.value)}
-                        sx={{ my: 2 }}
+                        sx={{ my: 2,  width: '25%'}}
                     />
                 </div>
                 <div>
-                    <h6 className="text-sm font-medium">Maximum number of roommates:</h6>
+                    <h6 className="text-xl font-bold mt-4">Maximum number of roommates:</h6>
                     <Field
                         as={TextField}
                         name="propertyDetails.roommates"
@@ -136,7 +137,7 @@ const Step3 = () => {
                         variant="outlined"
                         fullWidth
                         onChange={(e) => setFieldValue('propertyDetails.roommates', e.target.value)}
-                        sx={{ my: 2 }}
+                        sx={{ my: 2,  width: '25%' }}
                     />
                 </div>
 

@@ -40,7 +40,11 @@ const Step5 = () => {
                 <p className="text-sm font-medium">
                     Drag and drop your images here
                 </p>
-                <button className="text-sm font-medium bg-aqua-600 text-white px-4 py-2 rounded-md mt-4 hover:bg-aqua-700">
+                <button
+                    type="button"
+                    className="text-sm font-medium bg-aqua-600 text-white px-4 py-2 rounded-md mt-4 hover:bg-aqua-700"
+                    onClick={open}
+                >
                     Browse Images
                 </button>
             </div>

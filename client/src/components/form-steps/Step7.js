@@ -62,7 +62,7 @@ const Step7 = () => {
 
 
                 <div className="my-2 flex flex-col gap-4">
-                    <p className="text-sm font-medium">Phone Number</p>
+                    <p className="text-xl font-bold">Phone Number</p>
                     <FormControl fullWidth>
                         <Field
                             name="phoneVerification.phoneNumber"

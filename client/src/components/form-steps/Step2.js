@@ -78,6 +78,7 @@ const Step2 = () => {
 
     return (
         <div>
+            <h1 className="text-3xl font-bold mt-4 text-aqua-500">Property Address</h1>
             <h6>
                 Tell us about the address of the{' '}
                 <span className="text-aqua-500">{propertyType}</span>
@@ -86,10 +87,10 @@ const Step2 = () => {
                 <div className="flex items-center">
                     <ThemeProvider theme={theme}>
                         <div className="ml-4">
-                            <h6 className="text-sm font-medium">
+                            <h6 className="text-xl font-bold mt-2">
                                 Which country is the property located in?
                             </h6>
-                            <div className="my-2">
+                            <div className="my-4">
                                 <GooglePlacesAutocomplete
                                     apiKey={process.env.REACT_APP_GOOGLE_API_KEY}
                                     autocompletionRequest={{
@@ -103,10 +104,10 @@ const Step2 = () => {
                                     placeholder="Country"
                                 />
                             </div>
-                            <h6 className="text-sm font-medium">
+                            <h6 className="text-xl font-bold mt-2">
                                 Which city is the property located in?
                             </h6>
-                            <div className="my-2">
+                            <div className="my-4">
                                 <GooglePlacesAutocomplete
                                     apiKey={process.env.REACT_APP_GOOGLE_API_KEY}
                                     autocompletionRequest={{
@@ -120,14 +121,14 @@ const Step2 = () => {
                                     placeholder="City"
                                 />
                             </div>
-                            <h6 className="text-sm font-medium">
+                            <h6 className="text-xl font-bold mt-2">
                                 Which street is the property located in?
                             </h6>
-                            <div className="my-2">
+                            <div className="my-4">
                                 <Field
                                     as={TextField}
                                     name="propertyAddress.street"
-                                    label="Street"
+                                    label="Street and number"
                                     variant="outlined"
                                     value={values.propertyAddress.street}
                                     fullWidth
@@ -136,10 +137,11 @@ const Step2 = () => {
                                     }}
                                 />
                             </div>
-                            <h6 className="text-sm font-medium">
-                                What is the street number of the property?
+
+                            <h6 className="text-xl font-bold mt-2">
+                                What is the the {propertyType} number or floor?
                             </h6>
-                            <div className="my-2">
+                            <div className="my-4">
                                 <Field
                                     as={TextField}
                                     name="propertyAddress.floor"
@@ -154,10 +156,10 @@ const Step2 = () => {
                                     }}
                                 />
                             </div>
-                            <h6 className="text-sm font-medium">
+                            <h6 className="text-xl font-bold mt-2">
                                 What is the apartment number of the property?
                             </h6>
-                            <div className="my-2">
+                            <div className="my-4">
                                 <Field
                                     as={TextField}
                                     name="propertyAddress.apartmentNumber"

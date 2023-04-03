@@ -162,7 +162,7 @@ const PopupForm = ({ isOpen, onClose }) => {
                         propertyAddress: {
                             country: '',
                             city: '',
-                            street: 0,
+                            street: '',
                             floor: 0,
                             apartmentNumber: 0
                         },
@@ -231,12 +231,12 @@ const PopupForm = ({ isOpen, onClose }) => {
                     }}
 
                     //validationSchema={getValidationSchemaForStep(step)}
-                    onSubmit={(values) => {
+                    onSubmit={(values, e) => {
                         console.log('Form submitted:', values);
                         onClose();
                     }}
                 >
-                    {({ isSubmitting, isValid, errors }) => (
+                    {({ isSubmitting, errors }) => (
                         <Form>
                             <CloseButton onClick={onClose}>
                                 <CloseIcon />
@@ -276,16 +276,16 @@ const PopupForm = ({ isOpen, onClose }) => {
                                 {step > 0 && (
                                     <button
                                         className={`bg-green-500 hover:bg-green-700 text-white font-bold py-4 px-4 w-80 rounded-lg 
-                                        ${isSubmitting || !isValid ? 'opacity-50 cursor-not-allowed' : ''}`}
-                                        disabled={isSubmitting || !isValid}
+                                        ${isSubmitting ?'opacity-50 cursor-not-allowed' : ''}`}
+                                        //disabled={isSubmitting || !isValid}
                                         onClick={(e) => handleNextStep(e)}
                                     >
                                         {step === 6 ? 'Submit' : 'Next Step'}
                                     </button>
                                 )}
-{/*
+
                                 {errors && <pre>{JSON.stringify(errors, null, 2)}</pre>}
-*/}
+
                             </div>
                         </Form>
                     )}

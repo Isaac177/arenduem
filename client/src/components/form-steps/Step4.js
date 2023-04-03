@@ -59,17 +59,20 @@ const Step4 = () => {
 
     return (
         <div>
-            <h6 className="text-xl font-bold mt-4 text-aqua-500">Availability</h6>
+            <h6 className="text-xl font-bold mt-4">Availability</h6>
             <ThemeProvider theme={theme}>
                 <FormGroup row>
-                    <div className="my-2 flex flex-row gap-4">
+                    <div className="my-2 flex flex-col gap-4">
+                        <p className="text-sm font-medium">Available from</p>
                     <DatePicker
                         selected={startDate}
                         onChange={(date) => setStartDate(date)}
                         dateFormat="MM/dd/yyyy"
                         value={values.propertyAvailability.startDate}
                         customInput={<CustomInput />}
+                        label="Start date"
                     />
+                    <p className="text-sm font-medium">to</p>
                     <DatePicker
                         selected={endDate}
                         onChange={(date) => setEndDate(date)}
@@ -77,6 +80,7 @@ const Step4 = () => {
                         value={values.propertyAvailability.endDate}
                         customInput={<CustomInput />}
                         style={{my: 2}}
+                        label="End date (optional)"
                     />
                     </div>
                 </FormGroup>

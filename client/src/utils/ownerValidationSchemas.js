@@ -43,7 +43,7 @@ export const propertyValidationSchema = Yup.object().shape({
 export const availabilityValidationSchema = Yup.object().shape({
     startDate: Yup.date().required('Start date is required'),
     endDate: Yup.date()
-        .required('End date is required')
+        .notRequired()
         .min(Yup.ref('startDate'), 'End date cannot be before start date'),
     minStay: Yup.number()
         .min(1, 'Minimum stay must be greater than 0')
