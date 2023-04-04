@@ -6,12 +6,11 @@ import {ThemeProvider, FormControl,
     FormGroup,
     Slider,} from "@mui/material";
  import theme from "../utils/theme";
+import genders from "../../assets/data/genders";
+import occupations from "../../assets/data/occupations";
+import {drinkingStatus, smokingStatus} from "../../assets/data/statuses";
 
 const Step6 = () => {
-    const occupations = ['Student', 'Work', 'Retired', 'Study and Work'];
-    const smokingStatuses = ['Never', 'Socially', 'Regularly', 'Very often'];
-    const drinkingStatuses = ['Never', 'Socially', 'Regularly', 'Very often'];
-    const genders = ['Male', 'Female', 'Other'];
 
     const {values, setFieldValue} = useFormikContext();
 
@@ -24,9 +23,15 @@ const Step6 = () => {
                     <FormGroup row>
                         {genders.map((gender) => (
                             <FormControlLabel
-                                key={gender}
-                                control={<Field name="preferences.tenantGender" as={Radio} value={values.preferences?.tenantGender} onChange={(e) => setFieldValue('preferences.tenantGender', e.target.value)} />}
-                                label={gender}
+                                key={gender.value}
+                                control={
+                                <Field name="preferences.tenantGender"
+                                       as={Radio}
+                                       value={gender.value}
+                                       checked={values.preferences?.tenantGender === gender.value}
+                                       onChange={(e) => setFieldValue('preferences.tenantGender', e.target.value)}
+                                />}
+                                label={gender.label}
                             />
                         ))}
                     </FormGroup>
@@ -58,11 +63,16 @@ const Step6 = () => {
                     <FormGroup row>
                         {occupations.map((occupation) => (
                             <FormControlLabel
-                                key={occupation}
+                                key={occupation.value}
                                 control={
-                                    <Field name="preferences.tenantOccupation" as={Radio} value={values.preferences?.tenantOccupation} onChange={(e) => setFieldValue('tenantOccupation', e.target.value)} />
+                                    <Field
+                                        name="preferences.tenantOccupation"
+                                        as={Radio}
+                                        value={occupation.value}
+                                        checked={values.preferences.tenantOccupation === occupation.value}
+                                        onChange={(e) => setFieldValue('preferences.tenantOccupation', e.target.value)} />
                                 }
-                                label={occupation}
+                                label={occupation.label}
                             />
                         ))}
                     </FormGroup>
@@ -71,13 +81,19 @@ const Step6 = () => {
                 <h6 className="text-xl font-bold mt-4">Smoking Status</h6>
                 <FormControl component="fieldset">
                     <FormGroup row>
-                        {smokingStatuses.map((status) => (
+                        {smokingStatus.map((status) => (
                             <FormControlLabel
-                                key={status}
+                                key={status.value}
                                 control={
-                                    <Field name="preferences.tenantSmokingStatus" as={Radio} value={values.preferences?.tenantSmokingStatus} onChange={(e) => setFieldValue('tenantSmokingStatus', e.target.value)} />
+                                    <Field
+                                        name="preferences.tenantSmokingStatus"
+                                        as={Radio}
+                                        value={status.value}
+                                        checked={values.preferences.tenantSmokingStatus === status.value}
+                                        onChange={(e) => setFieldValue('preferences.tenantSmokingStatus', e.target.value)}
+                                    />
                                 }
-                                label={status}
+                                label={status.label}
                             />
                         ))}
                     </FormGroup>
@@ -86,13 +102,18 @@ const Step6 = () => {
                 <h6 className="text-xl font-bold mt-4">Drinking Status</h6>
                 <FormControl component="fieldset">
                     <FormGroup row>
-                        {drinkingStatuses.map((status) => (
+                        {drinkingStatus.map((status) => (
                             <FormControlLabel
-                                key={status}
+                                key={status.value}
                                 control={
-                                    <Field name="preferences.tenantDrinkingStatus" as={Radio} value={values.preferences?.tenantDrinkingStatus} onChange={(e) => setFieldValue('tenantDrinkingStatus', e.target.value)} />
+                                    <Field
+                                        name="preferences.tenantDrinkingStatus"
+                                        as={Radio}
+                                        value={status.value}
+                                        checked={values.preferences.tenantDrinkingStatus === status.value}
+                                        onChange={(e) => setFieldValue('preferences.tenantDrinkingStatus', e.target.value)} />
                                 }
-                                label={status}
+                                label={status.label}
                             />
                         ))}
                     </FormGroup>

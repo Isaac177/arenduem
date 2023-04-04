@@ -180,3 +180,7 @@ V
 &client/src/reducers/interestReducer.js,5/d/5d29750d01ea26234eb2cba0bcb4ee4fc7999fce
 U
 %client/src/actions/interestActions.js,e/5/e5c60e73bace3f52e6e1569f735d8dddbdb7e1a2
+W
+'client/src/reducers/ownerFormReducer.js,f/3/f3310d1992c295ee1d79ede5e9cb27b132761ac8
+V
+&client/src/actions/ownerFormActions.js,0/f/0f43878f9cd2d06f08b05adc7736a3c15811e2b8

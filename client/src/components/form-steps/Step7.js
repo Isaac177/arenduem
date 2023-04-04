@@ -73,7 +73,14 @@ const Step7 = () => {
                             placeholder="Enter your phone number"
                             sx={{ my: 2, p: 2, whidth: '40%'}}
                             value={values.phoneVerification?.phoneNumber}
-                            onChange={(e) => setFieldValue('phoneVerification.phoneNumber', e.target.value)}
+                            onChange={(e) => {
+                                const inputRegex = /^[0-9\b]+$/;
+                                if (e.target.value === '' || inputRegex.test(e.target.value)) {
+                                    setFieldValue('phoneVerification.phoneNumber', e.target.value);
+                                } else {
+                                    e.preventDefault();
+                                }
+                            }}
                         />
                     </FormControl>
                 </div>

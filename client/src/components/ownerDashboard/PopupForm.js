@@ -1,10 +1,9 @@
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Formik, Form } from 'formik';
 import styled from '@emotion/styled';
 import Step1 from '../form-steps/Step1';
 import { keyframes } from '@emotion/react';
 import CloseIcon from '@mui/icons-material/Close';
-import useClickOutside from "../../hooks/userClickOutside";
 import Step2 from "../form-steps/Step2";
 import loadGoogleMapsScript from "../../utils/loadGoogleMapsScript";
 import Step3 from "../form-steps/Step3";
@@ -118,8 +117,6 @@ const PopupForm = ({ isOpen, onClose }) => {
         }
     };
 
-    const modalRef = useRef();
-    useClickOutside(modalRef, onClose);
 
     if (!isOpen) {
         return null;
@@ -152,10 +149,16 @@ const PopupForm = ({ isOpen, onClose }) => {
         return schema;
     };
 
+    const handleKeyDown = (event) => {
+        if (event.key === 'Enter') {
+            event.preventDefault();
+        }
+    };
+
 
     return (
-        <ModalOverlay onClick={onClose}>
-            <Modal ref={modalRef} onClick={(e) => e.stopPropagation()}>
+        <ModalOverlay>
+            <Modal onClick={(e) => e.stopPropagation()}>
                 <Formik
                     initialValues={{
                         propertyType: '',
@@ -237,7 +240,7 @@ const PopupForm = ({ isOpen, onClose }) => {
                     }}
                 >
                     {({ isSubmitting, errors }) => (
-                        <Form>
+                        <Form onKeyDown={handleKeyDown}>
                             <CloseButton onClick={onClose}>
                                 <CloseIcon />
                             </CloseButton>

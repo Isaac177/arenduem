@@ -151,8 +151,11 @@ const Step2 = () => {
                                     value={values.propertyAddress.floor}
                                     fullWidth
                                     className="mt-4"
+                                    min={0}
                                     onChange={(e) => {
-                                        setFieldValue('propertyAddress.floor', e.target.value);
+                                        const inputValue = parseInt(e.target.value, 10);
+                                        const sanitizedValue = inputValue < 0 ? 0 : inputValue;
+                                        setFieldValue('propertyAddress.floor', sanitizedValue);
                                     }}
                                 />
                             </div>
@@ -168,8 +171,11 @@ const Step2 = () => {
                                     variant="outlined"
                                     value={values.propertyAddress.apartmentNumber}
                                     fullWidth
+                                    min={0}
                                     onChange={(e) => {
-                                        setFieldValue('propertyAddress.apartmentNumber', e.target.value);
+                                        const inputValue = parseInt(e.target.value, 10);
+                                        const sanitizedValue = inputValue < 0 ? 0 : inputValue;
+                                        setFieldValue('propertyAddress.apartmentNumber', sanitizedValue);
                                     }}
                                 />
                             </div>
