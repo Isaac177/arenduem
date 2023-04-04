@@ -23,7 +23,7 @@ const Step5 = () => {
 
     const {values, setFieldValue} = useFormikContext();
 
-    const files = acceptedFiles.map((file) => (
+    const files = values.propertyDetails.pictures?.map((file) => (
         <li key={file.path}>
             {file.path} - {file.size} bytes
         </li>

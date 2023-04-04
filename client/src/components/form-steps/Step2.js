@@ -20,7 +20,7 @@ const center = {
     lng: -74.005974,
 };
 
-const Step2 = () => {
+const Step2 = ({errors}) => {
     const [mapCenter, setMapCenter] = useState(center);
     const { isLoaded, loadError } = useLoadScript({
         googleMapsApiKey: process.env.REACT_APP_GOOGLE_API_KEY,
@@ -62,7 +62,7 @@ const Step2 = () => {
         },
     });
 
-    const handleCityChange = (selected) => {
+    const handleCityChange = ({selected, startDate, setStartDate, endDate, setEndDate}) => {
         dispatch(setLocationData({ ...locationData, city: selected.label }));
         setFieldValue('propertyAddress.city', selected.label);
     };
@@ -135,6 +135,7 @@ const Step2 = () => {
                                     onChange={(e) => {
                                         setFieldValue('propertyAddress.street', e.target.value);
                                     }}
+                                    errors={errors}
                                 />
                             </div>
 
@@ -157,6 +158,8 @@ const Step2 = () => {
                                         const sanitizedValue = inputValue < 0 ? 0 : inputValue;
                                         setFieldValue('propertyAddress.floor', sanitizedValue);
                                     }}
+                                    errors={errors}
+
                                 />
                             </div>
                             <h6 className="text-xl font-bold mt-2">
@@ -177,6 +180,8 @@ const Step2 = () => {
                                         const sanitizedValue = inputValue < 0 ? 0 : inputValue;
                                         setFieldValue('propertyAddress.apartmentNumber', sanitizedValue);
                                     }}
+                                    errors={errors}
+
                                 />
                             </div>
                         </div>

@@ -43,9 +43,7 @@ const CustomInput = ({ value, onClick }) => (
     />
 );
 
-const Step4 = () => {
-    const [startDate, setStartDate] = useState(new Date());
-    const [endDate, setEndDate] = useState(new Date());
+const Step4 = ({startDate, setStartDate, endDate, setEndDate}) => {
 
     const {values, setFieldValue} = useFormikContext();
 
@@ -71,8 +69,8 @@ const Step4 = () => {
                                 setFieldValue('propertyAvailability.startDate', date);
                             }}
                             dateFormat="MM/dd/yyyy"
-                            value={values.propertyAvailability.startDate === '' ? startDate : values.propertyAvailability.startDate}
-                            customInput={<CustomInput/>}
+                            value={values.propertyAvailability.startDate}
+                            customInput={<CustomInput />}
                             label="Start date"
                         />
                         <p className="text-sm font-medium">to</p>
@@ -88,6 +86,7 @@ const Step4 = () => {
                             style={{ my: 2 }}
                             label="End date (optional)"
                         />
+
                     </div>
                 </FormGroup>
                 <div className="my-2 flex flex-col gap-4">

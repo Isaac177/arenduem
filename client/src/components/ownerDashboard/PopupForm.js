@@ -93,6 +93,9 @@ const CloseButton = styled.button`
 const PopupForm = ({ isOpen, onClose }) => {
     const [step, setStep] = useState(0);
     const [gMapsLoaded, setGMapsLoaded] = useState(false);
+    const [startDate, setStartDate] = useState(null);
+    const [endDate, setEndDate] = useState(null);
+
 
     const dispatch = useDispatch();
     const propertyType = useSelector((state) => state.owner.propertyType);
@@ -239,7 +242,7 @@ const PopupForm = ({ isOpen, onClose }) => {
                         onClose();
                     }}
                 >
-                    {({ isSubmitting, errors }) => (
+                    {({ isSubmitting, errors, isValid }) => (
                         <Form onKeyDown={handleKeyDown}>
                             <CloseButton onClick={onClose}>
                                 <CloseIcon />
@@ -248,12 +251,16 @@ const PopupForm = ({ isOpen, onClose }) => {
                             <Title>Step {step + 1} of {totalSteps}</Title>
                             <ProgressBar step={step} totalSteps={totalSteps} />
                             {step === 0 && <Step1 fieldName="propertyType" handleSelectPropertyType={handleSelectPropertyType} />}
-                            {step === 1 && <Step2 />}
+                            {step === 1 && <Step2 errors={errors} />}
                             <Grid container spacing={3}>
                                 <Grid item xs={12} sm={6}>
                                     <div className="overflow-y-scroll" style={{height: '500px'}}>
-                                        {step === 2 && <Step3 />}
-                                        {step === 3 && <Step4 />}
+                                        {step === 2 && <Step3 errors={errors} />}
+                                        {step === 3 && <Step4 errors={errors}
+                                            startDate={startDate}
+                                            setStartDate={setStartDate}
+                                            endDate={endDate}
+                                            setEndDate={setEndDate}/>}
                                         {step === 4 && <Step5 />}
                                         {step === 5 && <Step6 />}
                                         {step === 6 && <Step7 />}
@@ -279,16 +286,13 @@ const PopupForm = ({ isOpen, onClose }) => {
                                 {step > 0 && (
                                     <button
                                         className={`bg-green-500 hover:bg-green-700 text-white font-bold py-4 px-4 w-80 rounded-lg 
-                                        ${isSubmitting ?'opacity-50 cursor-not-allowed' : ''}`}
+                                        ${isSubmitting || !isValid ? 'opacity-50 cursor-not-allowed' : ''}`}
                                         //disabled={isSubmitting || !isValid}
                                         onClick={(e) => handleNextStep(e)}
                                     >
                                         {step === 6 ? 'Submit' : 'Next Step'}
                                     </button>
                                 )}
-
-                                {errors && <pre>{JSON.stringify(errors, null, 2)}</pre>}
-
                             </div>
                         </Form>
                     )}

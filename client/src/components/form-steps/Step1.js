@@ -1,25 +1,14 @@
 import React from 'react';
-import RoomIcon from '@mui/icons-material/Room';
-import ApartmentIcon from '@mui/icons-material/Apartment';
-import HouseIcon from '@mui/icons-material/House';
 import {AnimatePresence, motion} from 'framer-motion';
+import {FormControlLabel, Radio, RadioGroup} from "@mui/material";
+import propertyTypes from "../../assets/data/propertyTypes";
+import {Field, useFormikContext} from "formik";
 
-const propertyTypes = [
-    {
-        type: 'Room in a shared apartment',
-        IconComponent: RoomIcon,
-    },
-    {
-        type: 'Private apartment',
-        IconComponent: ApartmentIcon,
-    },
-    {
-        type: 'House',
-        IconComponent: HouseIcon,
-    },
-];
 
 const Step1 = ({ fieldName, handleSelectPropertyType }) => {
+
+const { values } = useFormikContext();
+
     return (
     <AnimatePresence>
         <div className="flex flex-col items-center justify-center mx-auto text-primary-700 mt-10">
@@ -35,17 +24,30 @@ const Step1 = ({ fieldName, handleSelectPropertyType }) => {
                 animate={{ opacity: 1, y: 0, scale: 1, transition: { duration: 0.5 }}}
                 exit={{ opacity: 0, y: 20, scale: 0.9, transition: { duration: 0.5 }}}
                 className="flex flex-wrap justify-center">
-                {propertyTypes.map(({ type, IconComponent }) => (
-                    <div
-                        key={type}
-                        className="flex flex-col items-center justify-center m-4 p-4
-                        border border-gray-300 rounded-lg cursor-pointer hover:bg-gray-200"
-                        onClick={() => handleSelectPropertyType(fieldName, type)}
-                    >
-                        <IconComponent className="text-4xl mb-4" />
-                        <p className="text-lg font-medium">{type}</p>
-                    </div>
-                ))}
+                <RadioGroup style={{ display: 'flex', flexDirection: 'row', gap: '16px' }}>
+                    {propertyTypes.map(({ value, label, IconComponent }) => (
+                        <FormControlLabel
+                            key={value}
+                            control={
+                                <Field
+                                    name="propertyType"
+                                    type="radio"
+                                    value={value}
+                                    checked={values.propertyType === value}
+                                    onChange={(e) => handleSelectPropertyType('propertyType', e.target.value)}
+                                    as={Radio}
+                                    style={{ display: 'none' }}
+                                />
+                            }
+                            label={
+                                <div className="flex flex-col items-center justify-center m-4 p-4 border border-gray-300 rounded-lg cursor-pointer hover:bg-gray-200">
+                                    <IconComponent className="text-4xl mb-4" />
+                                    <p className="text-lg font-medium">{label}</p>
+                                </div>
+                            }
+                        />
+                    ))}
+                </RadioGroup>
             </motion.div>
         </div>
     </AnimatePresence>

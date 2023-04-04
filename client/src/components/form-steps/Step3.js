@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React from 'react';
 import {Field, useFormikContext} from 'formik';
 import {
     TextField,
@@ -10,14 +10,12 @@ import {
     ThemeProvider,
     createTheme,
 } from '@mui/material';
-import {useDispatch, useSelector} from "react-redux";
 import amenities from "../../assets/data/amenities.js";
 import houseRules from "../../assets/data/houseRules";
+import {useSelector} from "react-redux";
 
 
-const Step3 = () => {
-    const [checked, setChecked] = useState(false);
-    const dispatch = useDispatch();
+const Step3 = ({errors}) => {
     const { values, setFieldValue } = useFormikContext();
     const propertyType = useSelector((state) => state.owner.propertyType);
 
@@ -91,6 +89,7 @@ const Step3 = () => {
                             const sanitizedValue = inputValue < 0 ? 0 : inputValue;
                             setFieldValue('propertyDetails.size', sanitizedValue);}}
                         sx={{ mb: 2, width: '25%' }}
+                        errors={errors}
                     />
                 </div>
                 <div>
@@ -108,6 +107,7 @@ const Step3 = () => {
                             setFieldValue('propertyDetails.bedrooms', sanitizedValue);}
                         }
                         sx={{ my: 2,  width: '25%' }}
+                        errors={errors}
                     />
                 </div>
                 <div>
@@ -121,6 +121,7 @@ const Step3 = () => {
                         fullWidth
                         onChange={(e) => setFieldValue('propertyDetails.bathrooms', e.target.value)}
                         sx={{ my: 2,  width: '25%'}}
+                        errors={errors}
                     />
                 </div>
                 <div>
@@ -139,6 +140,7 @@ const Step3 = () => {
                         }
                         }
                         sx={{ my: 2,  width: '25%' }}
+                        errors={errors}
                     />
                 </div>
 
