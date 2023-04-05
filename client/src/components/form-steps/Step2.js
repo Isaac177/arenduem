@@ -37,7 +37,7 @@ const Step2 = ({ errors }) => {
             <h1 className="text-3xl font-bold mt-4 text-aqua-500">Property Address</h1>
             <h6>
                 Tell us about the address of the{' '}
-                <span className="text-aqua-500">{propertyType}</span>
+                <span className="text-aqua-500 mt-2">{values.propertyType}</span>
             </h6>
             <div className="grid grid-cols-2 gap-8 mt-4">
                 <div className="flex items-center">
@@ -76,6 +76,7 @@ const Step2 = ({ errors }) => {
                                             placeholder="Country"
                                             variant="outlined"
                                             label="Country"
+                                            value={values.propertyAddress?.country}
                                             InputProps={{
                                                 ...params.InputProps,
                                                 style: {
@@ -88,6 +89,11 @@ const Step2 = ({ errors }) => {
                                     )}
                                     wrapperStyle={{ width: '100%', zIndex: '1000', position: 'relative' }}
                                 />
+                                {errors.propertyAddress?.country && (
+                                    <div className="text-red-500 text-sm">
+                                        {errors.propertyAddress?.country}
+                                    </div>
+                                        )}
                             </div>
 
                             <h6 className="text-xl font-bold mt-2">
@@ -99,7 +105,7 @@ const Step2 = ({ errors }) => {
                                     name="propertyAddress.city"
                                     label="City"
                                     variant="outlined"
-                                    value={values.propertyAddress.city}
+                                    value={values.propertyAddress?.city}
                                     fullWidth
                                     onChange={(e) => {
                                         setFieldValue('propertyAddress.city', e.target.value);
@@ -107,6 +113,11 @@ const Step2 = ({ errors }) => {
                                     errors={errors}
                                     sx={{zIndex: '0' }}
                                 />
+                                {errors.propertyAddress?.city && (
+                                    <div className="text-red-500 text-sm">
+                                        {errors.propertyAddress?.city}
+                                    </div>
+                                )}
                             </div>
                             <h6 className="text-xl font-bold mt-2">
                                 Which street is the property located in?
@@ -117,17 +128,22 @@ const Step2 = ({ errors }) => {
                                     name="propertyAddress.street"
                                     label="Street and number"
                                     variant="outlined"
-                                    value={values.propertyAddress.street}
+                                    value={values.propertyAddress?.street}
                                     fullWidth
                                     onChange={(e) => {
                                         setFieldValue('propertyAddress.street', e.target.value);
                                     }}
                                     errors={errors}
                                 />
+                                {errors.propertyAddress?.street && (
+                                    <div className="text-red-500 text-sm">
+                                        {errors.propertyAddress?.street}
+                                    </div>
+                                )}
                             </div>
 
                             <h6 className="text-xl font-bold mt-2">
-                                What is the the {propertyType} number or floor?
+                                What is the the {values.propertyType} number or floor?
                             </h6>
                             <div className="my-4">
                                 <Field
@@ -136,7 +152,7 @@ const Step2 = ({ errors }) => {
                                     label="Floor"
                                     type="number"
                                     variant="outlined"
-                                    value={values.propertyAddress.floor}
+                                    value={values.propertyAddress?.floor}
                                     fullWidth
                                     className="mt-4"
                                     min={0}
@@ -146,8 +162,8 @@ const Step2 = ({ errors }) => {
                                         setFieldValue('propertyAddress.floor', sanitizedValue);
                                     }}
                                     errors={errors}
-
                                 />
+                                {errors.propertyAddress?.floor && <div className="text-red-500 text-sm">{errors.propertyAddress?.floor}</div>}
                             </div>
                             <h6 className="text-xl font-bold mt-2">
                                 What is the apartment number of the property?
@@ -159,7 +175,7 @@ const Step2 = ({ errors }) => {
                                     type="number"
                                     label="Apartment number or door"
                                     variant="outlined"
-                                    value={values.propertyAddress.apartmentNumber}
+                                    value={values.propertyAddress?.apartmentNumber}
                                     fullWidth
                                     min={0}
                                     onChange={(e) => {
@@ -168,8 +184,8 @@ const Step2 = ({ errors }) => {
                                         setFieldValue('propertyAddress.apartmentNumber', sanitizedValue);
                                     }}
                                     errors={errors}
-
                                 />
+                                {errors.propertyAddress?.apartmentNumber && <div className="text-red-500 text-sm">{errors.propertyAddress?.apartmentNumber}</div>}
                             </div>
                         </div>
                     </ThemeProvider>

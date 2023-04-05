@@ -43,7 +43,7 @@ const CustomInput = ({ value, onClick }) => (
     />
 );
 
-const Step4 = ({startDate, setStartDate, endDate, setEndDate}) => {
+const Step4 = ({startDate, setStartDate, endDate, setEndDate, errors}) => {
 
     const {values, setFieldValue} = useFormikContext();
 
@@ -69,10 +69,11 @@ const Step4 = ({startDate, setStartDate, endDate, setEndDate}) => {
                                 setFieldValue('propertyAvailability.startDate', date);
                             }}
                             dateFormat="MM/dd/yyyy"
-                            value={values.propertyAvailability.startDate}
+                            value={values.propertyAvailability?.startDate}
                             customInput={<CustomInput />}
                             label="Start date"
                         />
+                        {errors.propertyAvailability?.startDate && <p className="text-red-500 text-sm">{errors.propertyAvailability?.startDate}</p>}
                         <p className="text-sm font-medium">to</p>
                         <DatePicker
                             selected={endDate}
@@ -81,7 +82,7 @@ const Step4 = ({startDate, setStartDate, endDate, setEndDate}) => {
                                 setFieldValue('propertyAvailability.endDate', date);
                             }}
                             dateFormat="MM/dd/yyyy"
-                            value={values.propertyAvailability.endDate}
+                            value={values.propertyAvailability?.endDate}
                             customInput={<CustomInput />}
                             style={{ my: 2 }}
                             label="End date (optional)"
@@ -98,7 +99,7 @@ const Step4 = ({startDate, setStartDate, endDate, setEndDate}) => {
                                 type="number"
                                 label="Minimum stay"
                                 variant="outlined"
-                                value={values.propertyAvailability.minStay}
+                                value={values.propertyAvailability?.minStay}
                                 onChange={(e) => {
                                     const inputValue = parseInt(e.target.value, 10);
                                     const sanitizedValue = inputValue < 0 ? 0 : inputValue;
@@ -106,6 +107,7 @@ const Step4 = ({startDate, setStartDate, endDate, setEndDate}) => {
                                 }}
                                 sx={{ mb: 2, width: '30%' }}
                             />
+                            {errors.propertyAvailability?.minStay && <p className="text-red-500 text-sm">{errors.propertyAvailability?.minStay}</p>}
                         </FormControl>
                     </div>
 
@@ -118,7 +120,7 @@ const Step4 = ({startDate, setStartDate, endDate, setEndDate}) => {
                                 type="number"
                                 label="Maximum stay"
                                 variant="outlined"
-                                value={values.propertyAvailability.maxStay}
+                                value={values.propertyAvailability?.maxStay}
                                 onChange={(e) => {
                                     const inputValue = parseInt(e.target.value, 10);
                                     const sanitizedValue = inputValue < 0 ? 0 : inputValue;
@@ -138,7 +140,7 @@ const Step4 = ({startDate, setStartDate, endDate, setEndDate}) => {
                                 type="number"
                                 label="Price per month"
                                 variant="outlined"
-                                value={values.prices.pricePerMonth}
+                                value={values.prices?.pricePerMonth}
                                 onChange={(e) => {
                                     const inputValue = parseInt(e.target.value, 10);
                                     const sanitizedValue = inputValue < 0 ? 0 : inputValue;
@@ -146,6 +148,7 @@ const Step4 = ({startDate, setStartDate, endDate, setEndDate}) => {
                                 }}
                                 sx={{ mb: 2, width: '30%' }}
                             />
+                            {errors.prices?.pricePerMonth && <p className="text-red-500 text-sm">{errors.prices?.pricePerMonth}</p>}
                         </FormControl>
                     </div>
 
@@ -156,7 +159,7 @@ const Step4 = ({startDate, setStartDate, endDate, setEndDate}) => {
                                 <Field
                                     name="prices.billsIncluded"
                                     as={Checkbox}
-                                    checked={values.prices.billsIncluded || false}
+                                    checked={values.prices?.billsIncluded || false}
                                     onChange={() =>
                                         setFieldValue(
                                             'prices.billsIncluded',
@@ -178,7 +181,7 @@ const Step4 = ({startDate, setStartDate, endDate, setEndDate}) => {
                                     type="number"
                                     label="Deposit (in tg)"
                                     variant="outlined"
-                                    value={values.prices.deposit}
+                                    value={values.prices?.deposit}
                                     onChange={(e) => {
                                         const inputValue = parseInt(e.target.value, 10);
                                         const sanitizedValue = inputValue < 0 ? 0 : inputValue;
@@ -196,7 +199,7 @@ const Step4 = ({startDate, setStartDate, endDate, setEndDate}) => {
                             <Field
                                 name="otherServices.rentalContract"
                                 as={Checkbox}
-                                checked={values.otherServices.rentalContract || false}
+                                checked={values.otherServices?.rentalContract || false}
                                 onChange={() =>
                                     setFieldValue(
                                         'otherServices.rentalContract',
@@ -212,7 +215,7 @@ const Step4 = ({startDate, setStartDate, endDate, setEndDate}) => {
                             <Field
                                 name="otherServices.cleaningService"
                                 as={Checkbox}
-                                checked={values.otherServices.cleaningService || false}
+                                checked={values.otherServices?.cleaningService || false}
                                 onChange={() =>
                                     setFieldValue(
                                         'otherServices.cleaningService',
@@ -228,7 +231,7 @@ const Step4 = ({startDate, setStartDate, endDate, setEndDate}) => {
                             <Field
                                 name="otherServices.maintenance"
                                 as={Checkbox}
-                                checked={values.otherServices.maintenance || false}
+                                checked={values.otherServices?.maintenance || false}
                                 onChange={() =>
                                     setFieldValue(
                                         'otherServices.maintenance',

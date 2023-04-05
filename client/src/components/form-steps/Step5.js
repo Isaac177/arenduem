@@ -4,7 +4,7 @@ import { useDropzone } from 'react-dropzone';
 import {ThemeProvider, FormControl, TextField} from "@mui/material";
 import theme from "../utils/theme";
 
-const Step5 = () => {
+const Step5 = ({errors}) => {
     const { getRootProps, getInputProps, open, acceptedFiles } = useDropzone({
         accept: 'image/jpeg, image/png',
         noClick: true,
@@ -52,6 +52,7 @@ const Step5 = () => {
                 <h6 className="text-md font-bold mt-4">Selected Files</h6>
                 <ul>{files}</ul>
             </aside>
+            {errors && errors.length > 0 && <p className="text-red-500">{errors[0].message}</p>}
             <div className="my-2 flex flex-col gap-4">
                 <p className="text-sm font-medium">Title</p>
                 <FormControl fullWidth className="mt-4">
@@ -60,10 +61,16 @@ const Step5 = () => {
                         as={TextField}
                         variant="outlined"
                         placeholder="Enter a title"
-                        value={values.propertyDetails.title}
+                        value={values.propertyDetails?.title}
                         onChange={(e) => setFieldValue('propertyDetails.title', e.target.value)}
                         sx={{ my: 2, p: 2 }}
+                        validate={(value) => {
+                            if (value.length < 15) {
+                                return 'Title must be at least 15 characters long';
+                            }
+                        }}
                     />
+                    {errors.propertyDetails?.title && <p className="text-red-500">{errors.propertyDetails?.title}</p>}
                 </FormControl>
             </div>
             <div className="my-2 flex flex-col gap-4">
@@ -77,10 +84,16 @@ const Step5 = () => {
                         maxLength={200}
                         variant="outlined"
                         placeholder="Enter a description (minimum 200 words)"
-                        value={values.propertyDetails.description}
+                        value={values.propertyDetails?.description}
                         onChange={(e) => setFieldValue('propertyDetails.description', e.target.value)}
                         sx={{ my: 2, p: 2 }}
+                        validate={(value) => {
+                            if (value.length < 200) {
+                                return 'Description must be at least 200 characters long';
+                            }
+                        }}
                     />
+                    {errors.propertyDetails?.description && <p className="text-red-500">{errors.propertyDetails?.description}</p>}
                 </FormControl>
             </div>
         </ThemeProvider>

@@ -49,7 +49,7 @@ const Step3 = ({errors}) => {
                                         <Radio
                                             name="propertyDetails.studio"
                                             value={true}
-                                            checked={values.propertyDetails.studio === true}
+                                            checked={values.propertyDetails?.studio === true}
                                             onChange={(e) =>
                                                 setFieldValue('propertyDetails.studio', JSON.parse(e.target.value))
                                             }
@@ -62,7 +62,7 @@ const Step3 = ({errors}) => {
                                         <Radio
                                             name="propertyDetails.studio"
                                             value={false}
-                                            checked={values.propertyDetails.studio === false}
+                                            checked={values.propertyDetails?.studio === false}
                                             onChange={(e) =>
                                                 setFieldValue('propertyDetails.studio', JSON.parse(e.target.value))
                                             }
@@ -70,6 +70,7 @@ const Step3 = ({errors}) => {
                                     }
                                     label="No"
                                 />
+                                {errors.propertyDetails?.studio && <p className="text-red-500 text-sm">{errors.propertyDetails?.studio}</p>}
                             </FormGroup>
                         </FormControl>
                     </>
@@ -83,14 +84,15 @@ const Step3 = ({errors}) => {
                         label="Size (m²)"
                         variant="outlined"
                         min={0}
-                        value={values.propertyDetails.size}
-                        onChange={(e) => {
-                            const inputValue = parseInt(e.target.value, 10);
-                            const sanitizedValue = inputValue < 0 ? 0 : inputValue;
-                            setFieldValue('propertyDetails.size', sanitizedValue);}}
                         sx={{ mb: 2, width: '25%' }}
                         errors={errors}
+                        onBlur={(e) => {
+                            const inputValue = parseInt(e.target.value, 10);
+                            const sanitizedValue = inputValue < 0 ? 0 : inputValue;
+                            setFieldValue('propertyDetails.size', sanitizedValue);
+                        }}
                     />
+                    {errors.propertyDetails?.size && <p className="text-red-500 text-sm">{errors.propertyDetails?.size}</p>}
                 </div>
                 <div>
                     <h6 className="text-xl font-bold mt-4">Number of Bedrooms:</h6>
@@ -100,6 +102,7 @@ const Step3 = ({errors}) => {
                         type="number"
                         label="Number of Bedrooms"
                         variant="outlined"
+                        value={values.propertyDetails?.bedrooms}
                         fullWidth
                         onChange={(e) => {
                             const inputValue = parseInt(e.target.value, 10);
@@ -109,6 +112,7 @@ const Step3 = ({errors}) => {
                         sx={{ my: 2,  width: '25%' }}
                         errors={errors}
                     />
+                    {errors.propertyDetails?.bedrooms && <p className="text-red-500 text-sm">{errors.propertyDetails?.bedrooms}</p>}
                 </div>
                 <div>
                     <h6 className="text-xl font-bold mt-4">Number of Bathrooms:</h6>
@@ -118,11 +122,13 @@ const Step3 = ({errors}) => {
                         type="number"
                         label="Number of Bathrooms"
                         variant="outlined"
+                        value={values.propertyDetails?.bathrooms}
                         fullWidth
                         onChange={(e) => setFieldValue('propertyDetails.bathrooms', e.target.value)}
                         sx={{ my: 2,  width: '25%'}}
                         errors={errors}
                     />
+                    {errors.propertyDetails?.bathrooms && <p className="text-red-500 text-sm">{errors.propertyDetails?.bathrooms}</p>}
                 </div>
                 <div>
                     <h6 className="text-xl font-bold mt-4">Maximum number of roommates:</h6>
@@ -132,6 +138,7 @@ const Step3 = ({errors}) => {
                         type="number"
                         label="Maximum number of roommates"
                         variant="outlined"
+                        value={values.propertyDetails?.roommates}
                         fullWidth
                         onChange={(e) => {
                             const inputValue = parseInt(e.target.value, 10);
@@ -142,6 +149,7 @@ const Step3 = ({errors}) => {
                         sx={{ my: 2,  width: '25%' }}
                         errors={errors}
                     />
+                    {errors.propertyDetails?.roommates && <p className="text-red-500 text-sm">{errors.propertyDetails?.roommates}</p>}
                 </div>
 
                 <div>
@@ -152,7 +160,7 @@ const Step3 = ({errors}) => {
                                 <Radio
                                     name="propertyDetails.furnished"
                                     value={true}
-                                    checked={values.propertyDetails.furnished === true}
+                                    checked={values.propertyDetails?.furnished === true}
                                     onChange={(e) =>
                                         setFieldValue('propertyDetails.furnished', JSON.parse(e.target.value))
                                     }
@@ -165,7 +173,7 @@ const Step3 = ({errors}) => {
                                 <Radio
                                     name="propertyDetails.furnished"
                                     value={false}
-                                    checked={values.propertyDetails.furnished === false}
+                                    checked={values.propertyDetails?.furnished === false}
                                     onChange={(e) =>
                                         setFieldValue('propertyDetails.furnished', JSON.parse(e.target.value))
                                     }
@@ -173,6 +181,7 @@ const Step3 = ({errors}) => {
                             }
                             label="No"
                         />
+                        {errors.propertyDetails?.furnished && <p className="text-red-500 text-sm">{errors.propertyDetails?.furnished}</p>}
                     </FormGroup>
                 </div>
                 <div>
@@ -194,13 +203,14 @@ const Step3 = ({errors}) => {
                                             name="propertyDetails.bedType"
                                             as={Radio}
                                             value={option.value}
-                                            checked={values.propertyDetails.bedType === option.value}
+                                            checked={values.propertyDetails?.bedType === option.value}
                                             onChange={(e) => setFieldValue("propertyDetails.bedType", e.target.value)}
                                         />
                                     }
                                     label={option.label}
                                 />
                             ))}
+                    {errors.propertyDetails?.bedType && <p className="text-red-500 text-sm">{errors.propertyDetails?.bedType}</p>}
                         </FormGroup>
                     </FormControl>
                 </div>
@@ -218,15 +228,16 @@ const Step3 = ({errors}) => {
                                             icon={amenity.icon}
                                             checkedIcon={amenity.icon}
                                             checked={values.propertyAmenities[amenity.name] || false}
-                                            value={amenity.name}
+                                            value={amenity?.name}
                                             name={`propertyAmenities.${amenity.name}`}
                                             onChange={(e) =>
-                                                setFieldValue(`propertyAmenities.${amenity.name}`, e.target.checked)
+                                                setFieldValue(`propertyAmenities.${amenity?.name}`, e.target.checked)
                                             }
                                         />
                                     }
                                     label={amenity.label}
                                 />
+                    {errors.propertyAmenities?.[amenity.name] && <p className="text-red-500 text-sm">{errors.propertyAmenities?.[amenity.name]}</p>}
                             </div>
                         ))}
                     </FormGroup>
@@ -242,13 +253,14 @@ const Step3 = ({errors}) => {
                                             icon={rule.icon}
                                             checkedIcon={rule.icon}
                                             checked={values.houseRules[rule.name] || false}
-                                            value={rule.name}
+                                            value={rule?.name}
                                             name={`houseRules.${rule.name}`}
-                                            onChange={(e) => setFieldValue(`houseRules.${rule.name}`, e.target.checked)}
+                                            onChange={(e) => setFieldValue(`houseRules.${rule?.name}`, e.target.checked)}
                                         />
                                     }
                                     label={rule.label}
                                 />
+                    {errors.houseRules?.[rule.name] && <p className="text-red-500 text-sm">{errors.houseRules?.[rule.name]}</p>}
                             </div>
                         ))}
                     </FormGroup>

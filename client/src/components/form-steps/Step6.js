@@ -18,7 +18,7 @@ const Step6 = () => {
         <div>
             <h1 className="text-3xl font-bold mt-4 text-aqua-500">Preferences</h1>
             <ThemeProvider theme={theme}>
-                <h6 className="text-xl font-bold mt-2">What is your preferred gender?</h6>
+                <h6 className="text-xl font-bold mt-4">What is your preferred gender?</h6>
                 <FormControl component="fieldset">
                     <FormGroup row>
                         {genders.map((gender) => (
@@ -58,7 +58,7 @@ const Step6 = () => {
                         </>
                     )}
                 </Field>
-                <h6 className="text-xl font-bold mt-4">Tenant occupation</h6>
+                <h6 className="text-xl font-bold mt-6">Tenant occupation</h6>
                 <FormControl component="fieldset">
                     <FormGroup row>
                         {occupations.map((occupation) => (
@@ -69,7 +69,7 @@ const Step6 = () => {
                                         name="preferences.tenantOccupation"
                                         as={Radio}
                                         value={occupation.value}
-                                        checked={values.preferences.tenantOccupation === occupation.value}
+                                        checked={values.preferences?.tenantOccupation === occupation.value}
                                         onChange={(e) => setFieldValue('preferences.tenantOccupation', e.target.value)} />
                                 }
                                 label={occupation.label}
@@ -78,7 +78,7 @@ const Step6 = () => {
                     </FormGroup>
                 </FormControl>
 
-                <h6 className="text-xl font-bold mt-4">Smoking Status</h6>
+                <h6 className="text-xl font-bold mt-6">Smoking Status</h6>
                 <FormControl component="fieldset">
                     <FormGroup row>
                         {smokingStatus.map((status) => (
@@ -89,7 +89,7 @@ const Step6 = () => {
                                         name="preferences.tenantSmokingStatus"
                                         as={Radio}
                                         value={status.value}
-                                        checked={values.preferences.tenantSmokingStatus === status.value}
+                                        checked={values.preferences?.tenantSmokingStatus === status.value}
                                         onChange={(e) => setFieldValue('preferences.tenantSmokingStatus', e.target.value)}
                                     />
                                 }
@@ -99,7 +99,7 @@ const Step6 = () => {
                     </FormGroup>
                 </FormControl>
 
-                <h6 className="text-xl font-bold mt-4">Drinking Status</h6>
+                <h6 className="text-xl font-bold mt-6">Drinking Status</h6>
                 <FormControl component="fieldset">
                     <FormGroup row>
                         {drinkingStatus.map((status) => (
@@ -110,7 +110,7 @@ const Step6 = () => {
                                         name="preferences.tenantDrinkingStatus"
                                         as={Radio}
                                         value={status.value}
-                                        checked={values.preferences.tenantDrinkingStatus === status.value}
+                                        checked={values.preferences?.tenantDrinkingStatus === status.value}
                                         onChange={(e) => setFieldValue('preferences.tenantDrinkingStatus', e.target.value)} />
                                 }
                                 label={status.label}

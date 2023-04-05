@@ -51,8 +51,6 @@ b
 2migrations/20230211204135-create-housing-status.js,9/4/9497e3cb3556315b866b1ba5dd9d4bc1f4b17a7a
 U
 %client/src/components/404/NotFound.js,0/6/06e48b5420c052a804f5a1610758379bab3b52c4
-H
-client/public/index.html,8/1/818a76598cddfc0ac5e6740251b5b4dc9ff67f2c
 W
 'client/src/components/utils/Carousel.js,2/3/23a838582dcc19b73ff380dd6da79c3818cd80bf
 [
@@ -83,8 +81,6 @@ G
 models/smokingstatus.js,8/c/8cf12b2f0282e0907b77e2612db56fe2234397c5
 G
 models/housingstatus.js,8/c/8c5d7bb7270a9a30e0541188b3c742d71e790c62
-C
-client/package.json,a/d/ad8a30996233c30cdd545dbf5f18765b86e6bf64
 T
 $client/src/hooks/useImageUploader.js,f/f/ff81fc0ec0aaecae26c229d3926dd30eaa725ad4
 `
@@ -218,8 +214,6 @@ d
 +client/src/components/map/MyMapComponent.js,b/8/b87c2732347433ced89f5651b3a0d103f8dd38e3
 4
 .env,3/c/3c84dcdc6bbe3d7817c49dcdc327b926fea1808a
-?
-client/src/.env,d/8/d81b4aff313d76306b258d3c4e870a50750b3c32
 A
 client/src/App.js,f/6/f6b8a135eb07bb80aa582994bcf1a8ccacd783ee
 C
@@ -236,8 +230,6 @@ X
 (client/src/utils/loadGoogleMapsScript.js,f/f/ffd03813049c7789f9be0be28c51bda2b63ef156
 I
 client/tailwind.config.js,6/b/6b273cff573b0a837bad584f90d7d827bf358bb1
-Y
-)client/src/components/form-steps/Step1.js,7/b/7b3ce6c4ad102f7c7c41516044bacf54b9069278
 T
 $client/src/actions/galleryActions.js,6/9/69787fc62c2a2e530637a617159a5a423f03552a
 L
@@ -252,3 +244,13 @@ W
 'client/src/reducers/ownerFormReducer.js,f/3/f3310d1992c295ee1d79ede5e9cb27b132761ac8
 V
 &client/src/actions/ownerFormActions.js,0/f/0f43878f9cd2d06f08b05adc7736a3c15811e2b8
+T
+$client/src/assets/data/houseRules.js,0/c/0c00cfffbaf09f7ae4e0982db49d8d131dacf60f
+W
+'client/src/assets/data/propertyTypes.js,e/9/e96ccfca64ec34238fce3f27bf07d0b66f6ebe8f
+?
+client/src/.env,d/8/d81b4aff313d76306b258d3c4e870a50750b3c32
+C
+client/package.json,a/d/ad8a30996233c30cdd545dbf5f18765b86e6bf64
+H
+client/public/index.html,8/1/818a76598cddfc0ac5e6740251b5b4dc9ff67f2c

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { Field, useFormikContext } from 'formik';
 import {
     FormControl,
@@ -7,25 +7,24 @@ import {
     Snackbar,
     Alert,
 } from '@mui/material';
-import Autocomplete from 'react-google-autocomplete';
-import { useLoadScript } from '@react-google-maps/api';
 import theme from '../utils/theme';
 import { parsePhoneNumberFromString, AsYouType } from 'libphonenumber-js';
+import { getNames } from 'country-list';
+import Autocomplete from 'react-autocomplete';
+
 
 const Step7 = () => {
-    const {isLoaded, loadError} = useLoadScript({
-        googleMapsApiKey: process.env.REACT_APP_GOOGLE_API_KEY,
-    });
-
-
     const [showVerificationCodeField, setShowVerificationCodeField] = useState(
         false,
     );
+    const [countryInput, setCountryInput] = useState('');
+
     const [snackbarOpen, setSnackbarOpen] = useState(false);
     const [isValidPhoneNumber, setIsValidPhoneNumber] = useState(false);
     const [buttonText, setButtonText] = useState('Send Code');
 
-    const {values, setFieldValue, touched, errors} = useFormikContext();
+    const {values, setFieldValue} = useFormikContext();
+    const countryNames = getNames();
 
     const handlePhoneInputChange = (e) => {
         const rawValue = e.target.value;
@@ -66,15 +65,46 @@ const Step7 = () => {
                 <h6 className="text-xl font-bold my-4">Country</h6>
                 <FormControl fullWidth>
                     <Autocomplete
-                        apiKey={process.env.REACT_APP_GOOGLE_API_KEY}
-                        onPlaceSelected={(place) => {
-                            setFieldValue("phoneVerification.country", place.formatted_address);
+                        getItemValue={(item) => item}
+                        items={countryNames}
+                        renderItem={(item, isHighlighted) => (
+                            <div
+                                key={item}
+                                style={{
+                                    background: isHighlighted ? 'lightgray' : 'white',
+                                    padding: '5px',
+                                    zIndex: '1000',
+                                    position: 'relative',
+                                }}
+                            >
+                                {item}
+                            </div>
+                        )}
+                        value={countryInput}
+                        onChange={(e) => setCountryInput(e.target.value)}
+                        onSelect={(val) => {
+                            setCountryInput(val);
+                            //handleCountryChange(val);
+                            setFieldValue('phoneVerification.country', val);
                         }}
-                        types={['(regions)']}
-                        componentRestrictions={{ country: 'country' }}
-                        className="m-2 w-96 rounded-sm border border-primaryGrey-500 px-4 py-3 focus:outline-none focus:ring-2 focus:ring-aqua-500 focus:border-transparent"
+                        renderInput={(params) => (
+                            <TextField
+                                {...params}
+                                placeholder="Country"
+                                variant="outlined"
+                                label="Country"
+                                InputProps={{
+                                    ...params.InputProps,
+                                    style: {
+                                        width: '100%',
+                                        borderColor: 'green',
+                                    },
+                                }}
+                                fullWidth
+                            />
+                        )}
+                        wrapperStyle={{ width: '100%', zIndex: '1000', position: 'relative' }}
                     />
-                    <Field name="phoneVerification.country" type="hidden" />
                 </FormControl>
 
                 <div className="my-2 flex flex-col gap-4">
@@ -87,7 +117,7 @@ const Step7 = () => {
                             type="tel"
                             placeholder="Enter your phone number"
                             sx={{my: 2, p: 2, width: '40%'}}
-                            value={values.phoneVerification.phoneNumber}
+                            value={values.phoneVerification?.phoneNumber}
                             onChange={handlePhoneInputChange}
                             onBlur={handlePhoneInputChange}
                            />

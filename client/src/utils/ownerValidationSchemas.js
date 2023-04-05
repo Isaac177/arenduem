@@ -2,17 +2,20 @@ import * as Yup from 'yup';
 
 
 export const locationValidationSchema = Yup.object().shape({
-    /*country: Yup.string().required('Country is required'),
-    city: Yup.string().required('City is required'),*/
-    street: Yup.string().required('Street is required'),
-    floor: Yup.number().required('Floor is required'),
-    apartmentNumber: Yup.number().required('Apartment number is required'),
+    propertyAddress: Yup.object().shape({
+        country: Yup.string().required('Country is required'),
+        city: Yup.string().required('City is required'),
+        street: Yup.string().required('Street is required'),
+        floor: Yup.number().required('Floor is required'),
+        apartmentNumber: Yup.number().required('Apartment number is required'),
+    }),
 });
-
 export const propertyValidationSchema = Yup.object().shape({
-    studio: Yup.boolean().nullable().required('Studio selection is required'),
+    studio: Yup.boolean()
+        .nullable()
+        .notRequired(),
     size: Yup.number()
-        .min(1, 'Size must be greater than 0')
+        .min(10, 'Size must be greater than 10')
         .required('Size is required'),
     bedrooms: Yup.number()
         .min(1, 'Number of bedrooms must be greater than 0')
@@ -23,21 +26,44 @@ export const propertyValidationSchema = Yup.object().shape({
     roommates: Yup.number()
         .min(1, 'Maximum number of roommates must be greater than 0')
         .required('Maximum number of roommates is required'),
-    lifts: Yup.boolean().nullable().required('Lifts selection is required'),
-    furnished: Yup.boolean().nullable().required('Furnished selection is required'),
+    lifts: Yup.boolean()
+        .nullable()
+        .required('Lifts selection is required'),
+    furnished: Yup.boolean()
+        .nullable()
+        .required('Furnished selection is required'),
     bedType: Yup.array()
         .of(Yup.string().oneOf(['single'], 'Invalid bed type'))
         .min(1, 'At least one bed type should be selected')
         .required('Bed type is required'),
-    propertyAmenities: Yup.array()
-        .of(Yup.string().required('Property amenity is required'))
-        .min(1, 'At least one property amenity should be selected'),
-    roomAmenities: Yup.array()
-        .of(Yup.string().required('Room amenity is required'))
-        .min(1, 'At least one room amenity should be selected'),
-    houseRules: Yup.array()
-        .of(Yup.string().required('House rule is required'))
-        .min(1, 'At least one house rule should be selected'),
+    propertyAmenities: Yup.object().shape({
+        homeType: Yup.boolean().required(),
+        bedroom: Yup.boolean().required(),
+        bathroom: Yup.boolean().required(),
+        roommates: Yup.boolean().required(),
+        livingRoom: Yup.boolean().required(),
+        kitchen: Yup.boolean().required(),
+        wifi: Yup.boolean().required(),
+        tv: Yup.boolean().required(),
+        airConditioning: Yup.boolean().required(),
+        smokeFree: Yup.boolean().required(),
+        laundry: Yup.boolean().required(),
+        elevator: Yup.boolean().required(),
+        parking: Yup.boolean().required(),
+        balcony: Yup.boolean().required(),
+        privateBathroom: Yup.boolean().required(),
+        privateKitchen: Yup.boolean().required(),
+        desktop: Yup.boolean().required(),
+        closet: Yup.boolean().required(),
+    }),
+    houseRules: Yup.object().shape({
+        noSmoking: Yup.boolean().required(),
+        pets: Yup.boolean().required(),
+        children: Yup.boolean().required(),
+        smoking: Yup.boolean().required(),
+        events: Yup.boolean().required(),
+        noDrinking: Yup.boolean().required(),
+    }),
 });
 
 export const availabilityValidationSchema = Yup.object().shape({
