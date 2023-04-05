@@ -1,58 +1,27 @@
-import React, { useState, useEffect } from 'react';
-import { Field } from 'formik';
+import React, { useState} from 'react';
+import { Field, useFormikContext } from 'formik';
 import { TextField, ThemeProvider, createTheme } from '@mui/material';
-import GooglePlacesAutocomplete from 'react-google-places-autocomplete';
-import { GoogleMap, Marker, useLoadScript } from '@react-google-maps/api';
-import './google.scss';
-import {useDispatch, useSelector} from "react-redux";
-import {setLocationData} from "../../actions/ownerFormActions";
-import { useFormikContext } from 'formik';
+import { useDispatch, useSelector } from 'react-redux';
+import { setLocationData } from '../../actions/ownerFormActions';
+import Autocomplete from 'react-autocomplete';
+import { getNames } from 'country-list';
 
-const libraries = ['places'];
 
-const mapContainerStyle = {
-    width: '100%',
-    height: '400px',
-};
-
-const center = {
-    lat: 40.712776,
-    lng: -74.005974,
-};
-
-const Step2 = ({errors}) => {
-    const [mapCenter, setMapCenter] = useState(center);
-    const { isLoaded, loadError } = useLoadScript({
-        googleMapsApiKey: process.env.REACT_APP_GOOGLE_API_KEY,
-        libraries,
-    });
-
+const Step2 = ({ errors }) => {
+    const [countryInput, setCountryInput] = useState('');
     const dispatch = useDispatch();
-    const locationData = useSelector(state => state.owner.locationData) || {
+    const locationData = useSelector((state) => state.owner.locationData) || {
         country: '',
         city: '',
     };
-    const propertyType = useSelector(state => state.owner.propertyType);
+    const propertyType = useSelector((state) => state.owner.propertyType);
     const { values, setFieldValue } = useFormikContext();
+    const countryNames = getNames();
 
-    useEffect(() => {
-        if (locationData.city && locationData.country) {
-            const geocoder = new window.google.maps.Geocoder();
-            geocoder.geocode(
-                { address: `${locationData.city}, ${locationData.country}` },
-                (results, status) => {
-                    if (status === 'OK') {
-                        setMapCenter({
-                            lat: results[0].geometry.location.lat(),
-                            lng: results[0].geometry.location.lng(),
-                        });
-                    } else {
-                        console.log(`Geocode was not successful for the following reason: ${status}`);
-                    }
-                }
-            );
-        }
-    }, [locationData.city, locationData.country]);
+    const handleCountryChange = (selectedCountry) => {
+        dispatch(setLocationData({ ...locationData, country: selectedCountry }));
+        setFieldValue('propertyAddress.country', selectedCountry);
+    };
 
     const theme = createTheme({
         palette: {
@@ -61,19 +30,6 @@ const Step2 = ({errors}) => {
             },
         },
     });
-
-    const handleCityChange = ({selected, startDate, setStartDate, endDate, setEndDate}) => {
-        dispatch(setLocationData({ ...locationData, city: selected.label }));
-        setFieldValue('propertyAddress.city', selected.label);
-    };
-
-    const handleCountryChange = (selected) => {
-        dispatch(setLocationData({ ...locationData, country: selected.label }));
-        setFieldValue('propertyAddress.country', selected.label);
-    };
-
-    if (loadError) return 'Error loading maps';
-    if (!isLoaded) return 'Loading maps';
 
 
     return (
@@ -87,38 +43,69 @@ const Step2 = ({errors}) => {
                 <div className="flex items-center">
                     <ThemeProvider theme={theme}>
                         <div className="ml-4">
-                            <h6 className="text-xl font-bold mt-2">
-                                Which country is the property located in?
-                            </h6>
                             <div className="my-4">
-                                <GooglePlacesAutocomplete
-                                    apiKey={process.env.REACT_APP_GOOGLE_API_KEY}
-                                    autocompletionRequest={{
-                                        types: ['(regions)'],
+                                <h6 className="text-xl font-bold my-4">
+                                    Which country is the property located in?
+                                </h6>
+                                <Autocomplete
+                                    getItemValue={(item) => item}
+                                    items={countryNames}
+                                    renderItem={(item, isHighlighted) => (
+                                        <div
+                                            key={item}
+                                            style={{
+                                                background: isHighlighted ? 'lightgray' : 'white',
+                                                padding: '5px',
+                                                zIndex: '1000',
+                                                position: 'relative',
+                                            }}
+                                        >
+                                            {item}
+                                        </div>
+                                    )}
+                                    value={countryInput}
+                                    onChange={(e) => setCountryInput(e.target.value)}
+                                    onSelect={(val) => {
+                                        setCountryInput(val);
+                                        handleCountryChange(val);
+                                        setFieldValue('propertyAddress.country', val);
                                     }}
-                                    selectProps={{
-                                        name: 'country',
-                                        onChange: handleCountryChange,
-                                    }}
-                                    inputClassName="mb-4 w-full"
-                                    placeholder="Country"
+                                    renderInput={(params) => (
+                                        <TextField
+                                            {...params}
+                                            placeholder="Country"
+                                            variant="outlined"
+                                            label="Country"
+                                            InputProps={{
+                                                ...params.InputProps,
+                                                style: {
+                                                    width: '100%',
+                                                    borderColor: 'green',
+                                                },
+                                            }}
+                                            fullWidth
+                                        />
+                                    )}
+                                    wrapperStyle={{ width: '100%', zIndex: '1000', position: 'relative' }}
                                 />
                             </div>
+
                             <h6 className="text-xl font-bold mt-2">
                                 Which city is the property located in?
                             </h6>
                             <div className="my-4">
-                                <GooglePlacesAutocomplete
-                                    apiKey={process.env.REACT_APP_GOOGLE_API_KEY}
-                                    autocompletionRequest={{
-                                        types: ['(cities)'],
+                                 <Field
+                                    as={TextField}
+                                    name="propertyAddress.city"
+                                    label="City"
+                                    variant="outlined"
+                                    value={values.propertyAddress.city}
+                                    fullWidth
+                                    onChange={(e) => {
+                                        setFieldValue('propertyAddress.city', e.target.value);
                                     }}
-                                    selectProps={{
-                                        name: 'city',
-                                        onChange: handleCityChange,
-                                    }}
-                                    inputClassName="mb-4 w-full"
-                                    placeholder="City"
+                                    errors={errors}
+                                    sx={{zIndex: '0' }}
                                 />
                             </div>
                             <h6 className="text-xl font-bold mt-2">
@@ -186,15 +173,6 @@ const Step2 = ({errors}) => {
                             </div>
                         </div>
                     </ThemeProvider>
-                </div>
-                <div>
-                    <GoogleMap
-                        mapContainerStyle={mapContainerStyle}
-                        zoom={12}
-                        center={mapCenter}
-                    >
-                        <Marker position={mapCenter} />
-                    </GoogleMap>
                 </div>
             </div>
         </div>

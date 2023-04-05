@@ -12,7 +12,6 @@ import Step5 from "../form-steps/Step5";
 import Step6 from "../form-steps/Step6";
 import Step7 from "../form-steps/Step7";
 import {useDispatch, useSelector} from "react-redux";
-import {setStepPropertyType} from "../../actions/ownerFormActions";
 import {
     availabilityValidationSchema,
     combinedValidationSchema,
@@ -25,6 +24,8 @@ import {Grid} from "@mui/material";
 import available from "../../assets/img/available.jpg";
 import formImg from "../../assets/img/formImg.jpg";
 import peopleImg from "../../assets/img/peopleImg.jpg";
+import location from "../../assets/img/location.jpg";
+import phone from "../../assets/img/phone.jpg";
 
 
 const fadeIn = keyframes`
@@ -107,16 +108,16 @@ const PopupForm = ({ isOpen, onClose }) => {
     }, []);
 
     const handleSelectPropertyType = (fieldName, value) => {
-        dispatch(setStepPropertyType(fieldName, value));
+         //dispatch(setStepPropertyType(fieldName, value));
         setStep(step + 1);
     };
 
-    const handleNextStep = (e) => {
+    const handleNextStep = (e, submitForm) => {
         e.preventDefault();
         if (step < totalSteps - 1) {
             setStep(step + 1);
         } else {
-            onClose();
+            submitForm();
         }
     };
 
@@ -242,7 +243,7 @@ const PopupForm = ({ isOpen, onClose }) => {
                         onClose();
                     }}
                 >
-                    {({ isSubmitting, errors, isValid }) => (
+                    {({ isSubmitting, errors, isValid, submitForm }) => (
                         <Form onKeyDown={handleKeyDown}>
                             <CloseButton onClick={onClose}>
                                 <CloseIcon />
@@ -250,11 +251,11 @@ const PopupForm = ({ isOpen, onClose }) => {
                             {step === 0 ? ''  : <h1 className="text-2xl font-bold text-center mb-4">Property Type: {propertyType}</h1>}
                             <Title>Step {step + 1} of {totalSteps}</Title>
                             <ProgressBar step={step} totalSteps={totalSteps} />
-                            {step === 0 && <Step1 fieldName="propertyType" handleSelectPropertyType={handleSelectPropertyType} />}
-                            {step === 1 && <Step2 errors={errors} />}
+                            {step === 0 && <Step1 fieldName="propertyType" step={step} setStep={setStep} />}
                             <Grid container spacing={3}>
                                 <Grid item xs={12} sm={6}>
                                     <div className="overflow-y-scroll" style={{height: '500px'}}>
+                                        {step === 1 && <Step2 errors={errors} />}
                                         {step === 2 && <Step3 errors={errors} />}
                                         {step === 3 && <Step4 errors={errors}
                                             startDate={startDate}
@@ -267,10 +268,12 @@ const PopupForm = ({ isOpen, onClose }) => {
                                     </div>
                                 </Grid>
                                 <Grid item xs={12} sm={6}>
-                                    {step === 2 && <img src={Apartment} alt="Apartment" className="mx-auto cover w-96 object-center object-cover"/>}
-                                    {step === 3 && <img src={available} alt="available" className="mx-auto cover w-96 object-cover object-center"/>}
-                                    {step === 4 && <img src={formImg} alt="formImg" className="mx-auto cover h-96 object-cover object-center"/>}
-                                    {step === 5 && <img src={peopleImg} alt="gender" className="mx-auto cover h-96 object-cover object-center"/>}
+                                    {step === 1 && <img src={location} alt="location" className="mx-auto cover w-96 object-center object-cover" loading="lazy"/>}
+                                    {step === 2 && <img src={Apartment} alt="Apartment" className="mx-auto cover w-96 object-center object-cover" loading="lazy"/>}
+                                    {step === 3 && <img src={available} alt="available" className="mx-auto cover w-96 object-cover object-center" loading="lazy"/>}
+                                    {step === 4 && <img src={formImg} alt="formImg" className="mx-auto cover h-96 object-cover object-center" loading="lazy"/>}
+                                    {step === 5 && <img src={peopleImg} alt="gender" className="mx-auto cover h-96 object-cover object-center" loading="lazy"/>}
+                                    {step === 6 && <img src={phone} alt="phone" className="mx-auto cover h-96 object-cover object-center" loading="lazy"/>}
                                 </Grid>
                             </Grid>
 
@@ -288,7 +291,8 @@ const PopupForm = ({ isOpen, onClose }) => {
                                         className={`bg-green-500 hover:bg-green-700 text-white font-bold py-4 px-4 w-80 rounded-lg 
                                         ${isSubmitting || !isValid ? 'opacity-50 cursor-not-allowed' : ''}`}
                                         //disabled={isSubmitting || !isValid}
-                                        onClick={(e) => handleNextStep(e)}
+                                        onClick={(e) => handleNextStep(e, submitForm)}
+                                        type={step === 6 ? 'submit' : 'button'}
                                     >
                                         {step === 6 ? 'Submit' : 'Next Step'}
                                     </button>

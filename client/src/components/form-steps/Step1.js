@@ -5,9 +5,9 @@ import propertyTypes from "../../assets/data/propertyTypes";
 import {Field, useFormikContext} from "formik";
 
 
-const Step1 = ({ fieldName, handleSelectPropertyType }) => {
+const Step1 = ({ fieldName, step, setStep }) => {
 
-const { values } = useFormikContext();
+    const {setFieldValue} = useFormikContext();
 
     return (
     <AnimatePresence>
@@ -33,8 +33,11 @@ const { values } = useFormikContext();
                                     name="propertyType"
                                     type="radio"
                                     value={value}
-                                    checked={values.propertyType === value}
-                                    onChange={(e) => handleSelectPropertyType('propertyType', e.target.value)}
+                                    checked={value === fieldName}
+                                    onChange={(e) => {
+                                        setFieldValue('propertyType', e.target.value);
+                                        setStep(step + 1);
+                                    }}
                                     as={Radio}
                                     style={{ display: 'none' }}
                                 />
