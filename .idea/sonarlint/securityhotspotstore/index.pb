@@ -13,8 +13,6 @@ A
 models/message.js,4/a/4a441d248f1f22039321f3c42842f9d65d4dbbd8
 G
 models/smokingstatus.js,8/c/8cf12b2f0282e0907b77e2612db56fe2234397c5
-G
-models/housingstatus.js,8/c/8c5d7bb7270a9a30e0541188b3c742d71e790c62
 T
 $client/src/hooks/useImageUploader.js,f/f/ff81fc0ec0aaecae26c229d3926dd30eaa725ad4
 `
@@ -43,8 +41,6 @@ L
 middleware/authMiddleware.js,4/9/4930bbf875888d8e0a6a978ddfc86c0749f8db55
 Q
 !controllers/picturesController.js,8/c/8c2c2185a3bd4258f38368fb5f196f81d2303da5
-M
-controllers/authController.js,0/3/0337acf1f1f07013abb1b108a0023e639b60b2e0
 Q
 !middleware/authTokenMiddleware.js,3/8/38b42046142e2b761de47dac13aa8caa50579da6
 V
@@ -87,8 +83,6 @@ a
 .client/src/components/authentication/Signin.js,c/c/cc0ed757059b5deb7322a5477e7497d8db21e27a
 W
 'client/src/reducers/persistedReducer.js,6/3/6361bca102e9d39917c03f71a1468aa2778409a8
->
-models/user.js,5/8/58952233992370efa7ea98b3ec60c43d2d227d89
 X
 (migrations/20230211204102-create-user.js,2/9/29597007042cdd6d2b9c281391829ae1c4889cfe
 H
@@ -109,8 +103,6 @@ R
 "client/src/reducers/userReducer.js,3/a/3af3e9d3f595ac02dfee7e96d822cc0e9c01d450
 9
 	server.js,d/c/dc60ea9ee1ff6246bf342463277d5b914db2883d
-Q
-!client/src/actions/userActions.js,7/6/76643767db2d2cb617a2ec33b0b2b0ed9a6a5205
 R
 "client/src/components/home/Home.js,8/e/8e140dd2d1251bd2c24499e26986a0b37dfcab57
 V
@@ -148,8 +140,6 @@ d
 +client/src/components/map/MyMapComponent.js,b/8/b87c2732347433ced89f5651b3a0d103f8dd38e3
 4
 .env,3/c/3c84dcdc6bbe3d7817c49dcdc327b926fea1808a
-A
-client/src/App.js,f/6/f6b8a135eb07bb80aa582994bcf1a8ccacd783ee
 C
 client/src/index.js,7/6/76cbb38a5cef42611c7af13985f39248682f4aa1
 C
@@ -176,8 +166,6 @@ U
 %client/src/actions/interestActions.js,e/5/e5c60e73bace3f52e6e1569f735d8dddbdb7e1a2
 W
 'client/src/reducers/ownerFormReducer.js,f/3/f3310d1992c295ee1d79ede5e9cb27b132761ac8
-V
-&client/src/actions/ownerFormActions.js,0/f/0f43878f9cd2d06f08b05adc7736a3c15811e2b8
 T
 $client/src/assets/data/houseRules.js,0/c/0c00cfffbaf09f7ae4e0982db49d8d131dacf60f
 W
