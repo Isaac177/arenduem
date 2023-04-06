@@ -23,8 +23,6 @@ $client/src/hooks/useImageUploader.js,f/f/ff81fc0ec0aaecae26c229d3926dd30eaa725
 ,client/src/components/profile/DeleteModal.js,3/3/33d8b836451f9d6c900f7b810e86cd83f8eb9249
 ?
 models/index.js,e/4/e41453b900e7c418643d34a8cb9d68efc0b0ddd6
-A
-models/picture.js,1/3/13572076f33c39b994fc2c00ab8949dbd9b098f8
 R
 "client/src/reducers/authReducer.js,1/2/125040e183eb986a3bc0bdcd4cfd8f79790e3a2b
 _
@@ -144,8 +142,6 @@ C
 client/src/index.js,7/6/76cbb38a5cef42611c7af13985f39248682f4aa1
 C
 client/src/theme.js,4/5/45c1746b0c9e3c3063d8b6b5569ee8071f57c018
-H
-models/drinkingstatus.js,e/4/e4f2fe0a3168beda491683c7e7d01b6089e3e49e
 T
 $client/src/components/utils/theme.js,4/5/458f5ad99970d9c89ddab0fd9f3d00403fe7dd6d
 f

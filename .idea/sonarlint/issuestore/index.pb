@@ -99,8 +99,6 @@ d
 .client/src/components/profile/FullSizeImage.js,2/c/2c291c015356f83961649705db1df19d0dd2d658
 [
 +migrations/20230211204221-create-picture.js,7/8/78ec241d8b64e4d5e2bd84315b9767b95592777d
-A
-models/picture.js,1/3/13572076f33c39b994fc2c00ab8949dbd9b098f8
 Q
 !controllers/picturesController.js,8/c/8c2c2185a3bd4258f38368fb5f196f81d2303da5
 L
@@ -210,8 +208,6 @@ C
 client/src/index.js,7/6/76cbb38a5cef42611c7af13985f39248682f4aa1
 C
 client/src/theme.js,4/5/45c1746b0c9e3c3063d8b6b5569ee8071f57c018
-H
-models/drinkingstatus.js,e/4/e4f2fe0a3168beda491683c7e7d01b6089e3e49e
 T
 $client/src/components/utils/theme.js,4/5/458f5ad99970d9c89ddab0fd9f3d00403fe7dd6d
 f
