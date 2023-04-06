@@ -1,4 +1,4 @@
-import {SET_LOCATION_DATA, SET_PROPERTY_TYPE} from "../actions/ownerFormActions";
+import {SET_LOCATION_DATA, SET_PROPERTY_TYPE} from "../actions/propertyActions";
 
 const initialState = {
     propertyType: '',
