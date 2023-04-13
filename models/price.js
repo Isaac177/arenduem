@@ -11,6 +11,14 @@ module.exports = (sequelize, DataTypes) => {
     }
     Price.init(
         {
+            propertyId: {
+                type: Sequelize.INTEGER,
+                allowNull: false,
+                references: {
+                    model: 'Properties',
+                    key: 'id',
+                },
+            },
             pricePerMonth: Sequelize.INTEGER,
             billsIncluded: Sequelize.BOOLEAN,
             deposit: Sequelize.INTEGER,

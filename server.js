@@ -4,12 +4,15 @@ const authRoutes = require('./routes/auth');
 const userRoutes = require('./routes/userRoutes');
 const picturesRoutes = require('./routes/picturesRoutes');
 const interestRoutes = require('./routes/interestRoutes');
+const propertyRoutes = require('./routes/propertyRoutes');
 const passport = require('passport');
 const cors = require('cors');
 const { User, HousingStatus } = require("./models");
 const authController = require("./controllers/authController");
 const userController = require("./controllers/userController");
 const interestController = require("./controllers/interestController");
+const {createProperty} = require("./controllers/propertyController");
+const propertyController = require("./controllers/propertyController");
 require('dotenv').config();
 require('./config/passport')(passport);
 const app = express();
@@ -55,6 +58,10 @@ app.put('/users/:userId/pictures/:id', picturesRoutes);
 app.post('/users/:userId/interests', interestController.addInterest, interestRoutes);
 app.delete('/users/:userId/interests/:id', interestController.removeInterest, interestRoutes);
 app.get('/users/:userId/interests', interestController.getInterests, interestRoutes);
+
+// Properties routes
+
+app.post('/users/:userId/properties', propertyController.createProperty, propertyRoutes);
 
 const PORT = 8000;
 app.listen(PORT, () => {

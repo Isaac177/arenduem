@@ -5,7 +5,7 @@ const bcrypt = require('bcrypt');
 module.exports = (sequelize, DataTypes) => {
   class User extends Model {
     static associate(models) {
-      const {Picture, Gender, SmokingStatus, DrinkingStatus, HousingStatus, Interest} = models;
+      const {Picture, Gender, SmokingStatus, DrinkingStatus, HousingStatus, Interest, PhoneVerification} = models;
 
       User.hasMany(Picture, {
         foreignKey: 'userId',
@@ -33,6 +33,12 @@ module.exports = (sequelize, DataTypes) => {
         as: 'interests',
         onDelete: 'CASCADE'
       });
+      User.hasMany(PhoneVerification, {
+        foreignKey: 'userId',
+        as: 'phoneVerifications',
+        onDelete: 'CASCADE'
+      });
+
     }
 
     async hashPassword() {

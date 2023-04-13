@@ -4,11 +4,19 @@ const Sequelize = require('sequelize');
 module.exports = (sequelize, DataTypes) => {
     class Amenity extends Model {
         static associate(models) {
-            Amenity.belongsToMany(models.Property, { through: 'PropertyAmenity' });
+            Amenity.belongsTo(models.Property, { foreignKey: 'propertyId' });
         }
     }
     Amenity.init(
         {
+            propertyId: {
+                type: Sequelize.INTEGER,
+                allowNull: false,
+                references: {
+                    model: 'Properties',
+                    key: 'id',
+                },
+            },
             homeType: Sequelize.BOOLEAN,
             bedroom: Sequelize.BOOLEAN,
             bathroom: Sequelize.BOOLEAN,

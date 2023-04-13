@@ -1,14 +1,15 @@
+
 import axios from 'axios';
 
-export const SET_PROPERTY_TYPE = 'SET_PROPERTY_TYPE';
-export const SET_LOCATION_DATA = 'SET_LOCATION_DATA';
 
-export const setStepPropertyType = (fieldName, value) => ({
-    type: SET_PROPERTY_TYPE,
-    payload: { fieldName, value },
-});
-
-export const setLocationData = (locationData) => ({
-    type: SET_LOCATION_DATA,
-    payload: locationData,
-});
+const BASE_URL = 'http://localhost:8000';
+export const createProperty = (propertyData) => async (dispatch, getState) => {
+    try {
+        const { userId } = getState().auth;
+        console.log("userId:", userId);
+        const response = await axios.post(`${BASE_URL}/users/${userId}/properties`, propertyData);
+        dispatch({ type: 'CREATE_PROPERTY_SUCCESS', payload: response.data });
+    } catch (error) {
+        dispatch({ type: 'CREATE_PROPERTY_FAILURE', payload: error });
+    }
+};

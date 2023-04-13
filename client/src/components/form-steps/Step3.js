@@ -12,13 +12,10 @@ import {
 } from '@mui/material';
 import amenities from "../../assets/data/amenities.js";
 import houseRules from "../../assets/data/houseRules";
-import {useSelector} from "react-redux";
 
 
 const Step3 = ({errors}) => {
     const { values, setFieldValue } = useFormikContext();
-    const propertyType = useSelector((state) => state.owner.propertyType);
-
 
     const theme = createTheme({
         palette: {
@@ -34,12 +31,11 @@ const Step3 = ({errors}) => {
             : 'text-gray-500 flex flex-col items-center p-2 border m-2 border-gray-300 rounded-2xl cursor-pointer hover:bg-gray-200';
     };
 
-    console.log(propertyType)
     return (
         <div className="overflow-y-auto">
             <h1 className='text-2xl font-bold'>Property Details</h1>
             <ThemeProvider theme={theme}>
-                {propertyType === 'Private apartment' && (
+                {values.propertyType === 'Private apartment' && (
                     <>
                     <h6 className="text-xl font-bold mt-2">Is your apartment a studio</h6>
                         <FormControl component="fieldset">

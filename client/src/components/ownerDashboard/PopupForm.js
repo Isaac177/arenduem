@@ -1,17 +1,16 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { Formik, Form } from 'formik';
 import styled from '@emotion/styled';
 import Step1 from '../form-steps/Step1';
 import { keyframes } from '@emotion/react';
 import CloseIcon from '@mui/icons-material/Close';
 import Step2 from "../form-steps/Step2";
-import loadGoogleMapsScript from "../../utils/loadGoogleMapsScript";
 import Step3 from "../form-steps/Step3";
 import Step4 from "../form-steps/Step4";
 import Step5 from "../form-steps/Step5";
 import Step6 from "../form-steps/Step6";
 import Step7 from "../form-steps/Step7";
-import {useDispatch, useSelector} from "react-redux";
+import {useDispatch} from "react-redux";
 import {
     availabilityValidationSchema,
     combinedValidationSchema,
@@ -26,6 +25,7 @@ import formImg from "../../assets/img/formImg.jpg";
 import peopleImg from "../../assets/img/peopleImg.jpg";
 import location from "../../assets/img/location.jpg";
 import phone from "../../assets/img/phone.jpg";
+import {createProperty} from "../../actions/propertyActions";
 
 
 const fadeIn = keyframes`
@@ -93,31 +93,19 @@ const CloseButton = styled.button`
 
 const PopupForm = ({ isOpen, onClose }) => {
     const [step, setStep] = useState(0);
-    const [gMapsLoaded, setGMapsLoaded] = useState(false);
     const [startDate, setStartDate] = useState(null);
     const [endDate, setEndDate] = useState(null);
 
-
     const dispatch = useDispatch();
-    const propertyType = useSelector((state) => state.owner.propertyType);
-
-    useEffect(() => {
-        loadGoogleMapsScript(() => {
-            setGMapsLoaded(true);
-        });
-    }, []);
 
     const handleNextStep = (e, submitForm, setFieldValue, values) => {
-        // Save the form values before moving to the next step
         Object.keys(values).forEach((key) => {
             setFieldValue(key, values[key]);
         });
 
-        // Move to the next step
         if (step < totalSteps - 1) {
             setStep(step + 1);
         } else {
-            // Submit the form
             submitForm();
         }
     };
@@ -237,12 +225,14 @@ const PopupForm = ({ isOpen, onClose }) => {
                     }}
 
                     validationSchema={getValidationSchemaForStep(step)}
-                    onSubmit={(values, e) => {
-                        console.log('Form submitted:', values);
+                    onSubmit={(values, { setSubmitting }) => {
+                        dispatch(createProperty(values));
+                        setSubmitting(false);
                         onClose();
                     }}
                 >
-                    {({ isSubmitting, errors, isValid, submitForm, values, setFieldValue }) => (                        <Form onKeyDown={handleKeyDown}>
+                    {({ isSubmitting, errors, isValid, submitForm, values, setFieldValue }) => (
+                        <Form onKeyDown={handleKeyDown}>
                             <CloseButton onClick={onClose}>
                                 <CloseIcon
                                     size={80}

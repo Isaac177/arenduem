@@ -4,11 +4,19 @@ const Sequelize = require('sequelize');
 module.exports = (sequelize, DataTypes) => {
     class HouseRule extends Model {
         static associate(models) {
-            HouseRule.belongsToMany(models.Property, { through: 'PropertyHouseRule' });
+            HouseRule.belongsTo(models.Property, { foreignKey: 'propertyId' });
         }
     }
     HouseRule.init(
         {
+            propertyId: {
+                type: Sequelize.INTEGER,
+                allowNull: false,
+                references: {
+                    model: 'Properties',
+                    key: 'id',
+                },
+            },
             noSmoking: Sequelize.BOOLEAN,
             pets: Sequelize.BOOLEAN,
             children: Sequelize.BOOLEAN,

@@ -7,15 +7,34 @@ module.exports = (sequelize, DataTypes) => {
             PhoneVerification.belongsTo(models.Property, {
                 foreignKey: 'propertyId',
             });
+
+            PhoneVerification.belongsTo(models.User, {
+                foreignKey: 'userId',
+            });
         }
     }
     PhoneVerification.init(
         {
+            propertyId: {
+                type: Sequelize.INTEGER,
+                allowNull: false,
+                references: {
+                    model: 'Properties',
+                    key: 'id',
+                },
+            },
+            userId: {
+                type: Sequelize.INTEGER,
+                allowNull: false,
+                references: {
+                    model: 'Users',
+                    key: 'id',
+                },
+            },
             country: Sequelize.STRING,
             phoneNumber: Sequelize.STRING,
             verificationCode: Sequelize.STRING,
-            propertyId: Sequelize.INTEGER,
-        },
+         },
         {
             sequelize,
             modelName: 'PhoneVerification',

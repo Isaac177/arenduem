@@ -1,25 +1,17 @@
 import React, { useState} from 'react';
 import { Field, useFormikContext } from 'formik';
 import { TextField, ThemeProvider, createTheme } from '@mui/material';
-import { useDispatch, useSelector } from 'react-redux';
-import { setLocationData } from '../../actions/ownerFormActions';
 import Autocomplete from 'react-autocomplete';
 import { getNames } from 'country-list';
 
 
 const Step2 = ({ errors }) => {
     const [countryInput, setCountryInput] = useState('');
-    const dispatch = useDispatch();
-    const locationData = useSelector((state) => state.owner.locationData) || {
-        country: '',
-        city: '',
-    };
-    const propertyType = useSelector((state) => state.owner.propertyType);
+
     const { values, setFieldValue } = useFormikContext();
     const countryNames = getNames();
 
     const handleCountryChange = (selectedCountry) => {
-        dispatch(setLocationData({ ...locationData, country: selectedCountry }));
         setFieldValue('propertyAddress.country', selectedCountry);
     };
 

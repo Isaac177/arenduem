@@ -25,8 +25,6 @@ Q
 !seeders/20230212074755-picture.js,d/d/ddbc91d6164a00e87d0232a9c74b7bf0ca992490
 X
 (seeders/20230212073745-smoking-status.js,4/c/4cc09e137cc8a41e1ada49cb1c44541d3074cb55
-@
-models/gender.js,e/8/e885ae6c24c10ce4162d8d6bd61c2c8ae7f164e3
 b
 2migrations/20230211204142-create-smoking-status.js,8/d/8df7efbbd6f2565e8c8151bd960cafc8bdded51f
 Y
@@ -77,14 +75,10 @@ Amigrations/20230307180836-add-is-main-and-is-cover-to-pictures.js,6/a/6a2c7c47
 models/media.js,5/2/520d024105946b36c6cb783930621dd5a0441782
 A
 models/message.js,4/a/4a441d248f1f22039321f3c42842f9d65d4dbbd8
-G
-models/smokingstatus.js,8/c/8cf12b2f0282e0907b77e2612db56fe2234397c5
 T
 $client/src/hooks/useImageUploader.js,f/f/ff81fc0ec0aaecae26c229d3926dd30eaa725ad4
 `
 0client/src/components/profile/UploadImageForm.js,1/b/1b3eba2bbc8705e4655085d0a60b447c75f76bce
-<
-package.json,7/0/7030d0b2f71b999ff89a343de08c414af32fc93a
 \
 ,client/src/components/profile/DeleteModal.js,3/3/33d8b836451f9d6c900f7b810e86cd83f8eb9249
 ?
@@ -103,8 +97,6 @@ Q
 !controllers/picturesController.js,8/c/8c2c2185a3bd4258f38368fb5f196f81d2303da5
 L
 middleware/authMiddleware.js,4/9/4930bbf875888d8e0a6a978ddfc86c0749f8db55
-R
-"client/src/reducers/authReducer.js,1/2/125040e183eb986a3bc0bdcd4cfd8f79790e3a2b
 Q
 !middleware/authTokenMiddleware.js,3/8/38b42046142e2b761de47dac13aa8caa50579da6
 B
@@ -117,8 +109,6 @@ Y
 )client/src/assets/data/insterestsArray.js,6/7/676532cebb04fb9c13681924deb1d3f4ef87ab9d
 Z
 *client/src/components/profile/Interests.js,a/a/aa11f069b729de80350b239391dc64dbbbad51a3
-Q
-!controllers/interestController.js,5/4/54a7f2a2fb7536a5301aa9d05f93611109b2fc32
 B
 client/src/App.css,2/a/2a082b18bfc3afa6b25d6c4584e995e6b6c4ee3e
 \
@@ -169,14 +159,10 @@ _
 /client/src/components/before-dash/BeforeDash.js,c/5/c54aa272968810a6a921320544791babca704071
 i
 9client/src/components/authentication/withAuthorization.js,5/a/5af9d82aa5f3ef7402a940a3d337eb4754c38543
-9
-	server.js,d/c/dc60ea9ee1ff6246bf342463277d5b914db2883d
 V
 &client/src/views/user/UserDashboard.js,9/4/94d9df5c9edea51b323d34c7e9393465d540750c
 M
 controllers/userController.js,e/c/ec44b050defa6855748d2a8d6ff06d33bc8bba3a
-H
-routes/interestRoutes.js,e/0/e0120ca0ded4ccf5bebe1c9a9d89e8daa468c458
 c
 3client/src/components/ownerDashboard/ProgressBar.js,c/3/c3a7c1470954a5a2d91fbbdcb9734601dd7f94ee
 \
@@ -216,18 +202,10 @@ X
 (client/src/utils/loadGoogleMapsScript.js,f/f/ffd03813049c7789f9be0be28c51bda2b63ef156
 I
 client/tailwind.config.js,6/b/6b273cff573b0a837bad584f90d7d827bf358bb1
-T
-$client/src/actions/galleryActions.js,6/9/69787fc62c2a2e530637a617159a5a423f03552a
-L
-client/src/reducers/index.js,f/d/fddb094e79d9adb9ec669c65c9511e7135f8a137
 C
 client/src/store.js,4/a/4afe2750c2c347c6e38ea33d5c926b1ae43d2dfb
-V
-&client/src/reducers/interestReducer.js,5/d/5d29750d01ea26234eb2cba0bcb4ee4fc7999fce
 U
 %client/src/actions/interestActions.js,e/5/e5c60e73bace3f52e6e1569f735d8dddbdb7e1a2
-W
-'client/src/reducers/ownerFormReducer.js,f/3/f3310d1992c295ee1d79ede5e9cb27b132761ac8
 T
 $client/src/assets/data/houseRules.js,0/c/0c00cfffbaf09f7ae4e0982db49d8d131dacf60f
 W
@@ -238,3 +216,19 @@ C
 client/package.json,a/d/ad8a30996233c30cdd545dbf5f18765b86e6bf64
 H
 client/public/index.html,8/1/818a76598cddfc0ac5e6740251b5b4dc9ff67f2c
+Y
+)client/src/components/form-steps/Step3.js,7/4/743f18d2f68e09f4e72128352d3eeeafb40eacf9
+V
+&client/src/reducers/propertyReducer.js,8/9/89859367dc3da63825889341feacca6ff1c24b07
+G
+models/housingstatus.js,8/c/8c5d7bb7270a9a30e0541188b3c742d71e790c62
+U
+%client/src/actions/propertyActions.js,7/a/7a0428ce928b984fb54096cd17e42ad50991dbc9
+Q
+!controllers/interestController.js,5/4/54a7f2a2fb7536a5301aa9d05f93611109b2fc32
+a
+1client/src/components/ownerDashboard/PopupForm.js,5/4/546c2e37a261616eb48f5b52e2222ef828d88316
+H
+models/drinkingstatus.js,e/4/e4f2fe0a3168beda491683c7e7d01b6089e3e49e
+[
++migrations/20230406040619-create-address.js,0/7/0752b97874e4c3447bbd026afabe2a91f1748a76

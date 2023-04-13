@@ -3,7 +3,6 @@
 const { Model } = require('sequelize');
 const Sequelize = require('sequelize');
 
-
 module.exports = (sequelize, DataTypes) => {
     class Property extends Model {
         static associate(models) {
@@ -19,23 +18,25 @@ module.exports = (sequelize, DataTypes) => {
             models.PhoneVerification = require('./phoneVerification')(sequelize, DataTypes);
 
             Property.belongsTo(models.HousingStatus, {
-                foreignKey: 'housingStatusId',
+                foreignKey: 'userId',
+                targetKey: 'userId',
+                as: 'housingStatus'
             });
             Property.hasOne(models.Address);
-            Property.belongsToMany(models.Amenity, { through: 'PropertyAmenity' });
-            Property.belongsToMany(models.HouseRule, { through: 'PropertyHouseRule' });
-            Property.hasOne(models.Availability);
-            Property.hasOne(models.Price);
-            Property.hasOne(models.Service);
-            Property.hasOne(models.PropertyDetail);
-            Property.hasOne(models.Preference);
-            Property.hasOne(models.PhoneVerification);
+            Property.hasMany(models.Amenity, { foreignKey: 'propertyId' });
+            Property.hasMany(models.HouseRule, { foreignKey: 'propertyId' });
+            Property.hasOne(models.Availability, { foreignKey: 'propertyId' });
+            Property.hasOne(models.Price, { foreignKey: 'propertyId' });
+            Property.hasOne(models.Service, { foreignKey: 'propertyId' });
+            Property.hasOne(models.PropertyDetail, { foreignKey: 'propertyId' });
+            Property.hasOne(models.Preference, { foreignKey: 'propertyId' });
+            Property.hasOne(models.PhoneVerification, { foreignKey: 'propertyId' });
         }
     }
     Property.init(
         {
             propertyType: Sequelize.STRING,
-            housingStatusId: Sequelize.INTEGER,
+            userId: Sequelize.INTEGER,
         },
         {
             sequelize,

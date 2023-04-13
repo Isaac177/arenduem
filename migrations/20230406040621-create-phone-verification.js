@@ -22,6 +22,16 @@ module.exports = {
         onUpdate: 'CASCADE',
         onDelete: 'CASCADE'
       },
+      propertyId: {
+        type: Sequelize.INTEGER,
+        allowNull: false,
+        references: {
+          model: 'Properties',
+          key: 'id'
+        },
+        onUpdate: 'CASCADE',
+        onDelete: 'CASCADE'
+      },
       country: {
         type: Sequelize.STRING,
         allowNull: false

@@ -9,6 +9,13 @@ module.exports = (sequelize, DataTypes) => {
                 foreignKey: 'propertyId',
             });
         }
+
+        toJSON() {
+            const values = Object.assign({}, this.get());
+
+            delete values.PropertyId;
+            return values;
+        }
     }
     Address.init(
         {
@@ -17,7 +24,14 @@ module.exports = (sequelize, DataTypes) => {
             street: Sequelize.STRING,
             floor: Sequelize.INTEGER,
             apartmentNumber: Sequelize.INTEGER,
-            propertyId: Sequelize.INTEGER,
+            propertyId: {
+                type: Sequelize.INTEGER,
+                allowNull: false,
+                references: {
+                    model: 'Properties',
+                    key: 'id',
+                },
+            },
         },
         {
             sequelize,
