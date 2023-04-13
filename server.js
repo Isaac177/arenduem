@@ -62,6 +62,7 @@ app.get('/users/:userId/interests', interestController.getInterests, interestRou
 // Properties routes
 
 app.post('/users/:userId/properties', propertyController.createProperty, propertyRoutes);
+app.get('/users/:userId/properties', propertyController.getProperties, propertyRoutes);
 
 const PORT = 8000;
 app.listen(PORT, () => {

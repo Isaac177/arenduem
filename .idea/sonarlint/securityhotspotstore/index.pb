@@ -162,8 +162,6 @@ Q
 !controllers/interestController.js,5/4/54a7f2a2fb7536a5301aa9d05f93611109b2fc32
 G
 models/housingstatus.js,8/c/8c5d7bb7270a9a30e0541188b3c742d71e790c62
-U
-%client/src/actions/propertyActions.js,7/a/7a0428ce928b984fb54096cd17e42ad50991dbc9
 [
 +migrations/20230406040619-create-address.js,0/7/0752b97874e4c3447bbd026afabe2a91f1748a76
 H

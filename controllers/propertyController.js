@@ -1,3 +1,4 @@
+
 const {
     Property,
     HousingStatus,
@@ -99,3 +100,34 @@ exports.createProperty = async (req, res) => {
         res.status(500).json({ message: 'Server error' });
     }
 };
+
+exports.getProperties = async (req, res) => {
+    try {
+        const userId = req.params.userId;
+
+        // Find all and include the associated models without alias
+        const properties = await Property.findAll({
+            where: { userId },
+            include: [
+                { model: Address },
+                { model: Amenity },
+                { model: HouseRule },
+                { model: Availability },
+                { model: Price },
+                { model: Service },
+                { model: PropertyDetail },
+                { model: Preference },
+                { model: PhoneVerification },
+            ],
+        });
+
+        if (!properties) {
+            return res.status(404).json({ message: 'No properties found for this user.' });
+        }
+
+        res.status(200).json({ properties });
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ message: 'Server error' });
+    }
+}

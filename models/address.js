@@ -12,7 +12,6 @@ module.exports = (sequelize, DataTypes) => {
 
         toJSON() {
             const values = Object.assign({}, this.get());
-
             delete values.PropertyId;
             return values;
         }

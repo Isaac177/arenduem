@@ -222,8 +222,6 @@ V
 &client/src/reducers/propertyReducer.js,8/9/89859367dc3da63825889341feacca6ff1c24b07
 G
 models/housingstatus.js,8/c/8c5d7bb7270a9a30e0541188b3c742d71e790c62
-U
-%client/src/actions/propertyActions.js,7/a/7a0428ce928b984fb54096cd17e42ad50991dbc9
 Q
 !controllers/interestController.js,5/4/54a7f2a2fb7536a5301aa9d05f93611109b2fc32
 a

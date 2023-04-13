@@ -22,7 +22,7 @@ module.exports = (sequelize, DataTypes) => {
                 targetKey: 'userId',
                 as: 'housingStatus'
             });
-            Property.hasOne(models.Address);
+            Property.hasOne(models.Address, { foreignKey: 'propertyId' });
             Property.hasMany(models.Amenity, { foreignKey: 'propertyId' });
             Property.hasMany(models.HouseRule, { foreignKey: 'propertyId' });
             Property.hasOne(models.Availability, { foreignKey: 'propertyId' });
