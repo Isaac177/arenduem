@@ -104,8 +104,6 @@ exports.createProperty = async (req, res) => {
 exports.getProperties = async (req, res) => {
     try {
         const userId = req.params.userId;
-
-        // Find all and include the associated models without alias
         const properties = await Property.findAll({
             where: { userId },
             include: [
