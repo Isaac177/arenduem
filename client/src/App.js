@@ -16,6 +16,7 @@ import PersonalData from "./components/profile/PersonalData";
 import {useDispatch, useSelector} from "react-redux";
 import BeforeDash from "./components/before-dash/BeforeDash";
 import OwnerDashboard from "./views/user/OwnerDashboard";
+import OwnerRooms from "./components/owner/OwnerRooms";
 
 
 
@@ -35,8 +36,9 @@ function App() {
                         <Route exact path="/signin" element={<SignIn />} />
                         <Route path="*" element={<NotFound />} />
                         <Route exact path="/user/roles" element={<UserDashboardWithAuth />}/>
-                        <Route exact path="/user/owner" element={<OwnerDashboard/>}/>
-                        <Route exact path="/user/dashboard/*" element={<UserDashboard />}>
+                        <Route exact path="/user/owner/*" element={<OwnerDashboard/>}/>
+                        <Route exact path="/r/*" element={<OwnerRooms />}/>
+                         <Route exact path="/user/dashboard/*" element={<UserDashboard />}>
                             <Route path="profile/*" element={<CoverProfile />}>
                                 <Route path="gallery/" element={<ContentGallery />} />
                                 <Route path="personaldata/:userId" element={<PersonalData />} />

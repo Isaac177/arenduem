@@ -10,7 +10,7 @@ import Step4 from "../form-steps/Step4";
 import Step5 from "../form-steps/Step5";
 import Step6 from "../form-steps/Step6";
 import Step7 from "../form-steps/Step7";
-import {useDispatch} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import {
     availabilityValidationSchema,
     combinedValidationSchema,
@@ -26,6 +26,7 @@ import peopleImg from "../../assets/img/peopleImg.jpg";
 import location from "../../assets/img/location.jpg";
 import phone from "../../assets/img/phone.jpg";
 import {createProperty} from "../../actions/propertyActions";
+import MessagePopup from "../utils/MessagePopup";
 
 
 const fadeIn = keyframes`
@@ -97,6 +98,13 @@ const PopupForm = ({ isOpen, onClose }) => {
     const [endDate, setEndDate] = useState(null);
 
     const dispatch = useDispatch();
+    const successMessage = useSelector((state) => state.property.successMessage);
+    const errorMessage = useSelector((state) => state.property.errorMessage);
+
+    const handleClose = () => {
+        dispatch({ type: 'CLEAR_MESSAGES' });
+    };
+
 
     const handleNextStep = (e, submitForm, setFieldValue, values) => {
         Object.keys(values).forEach((key) => {
@@ -277,6 +285,7 @@ const PopupForm = ({ isOpen, onClose }) => {
                                     </button>
                                 )}
                                 {step > 0 && (
+                                    <>
                                     <button
                                         className={`bg-green-500 hover:bg-green-700 text-white font-bold py-4 px-4 w-80 rounded-lg 
                                         ${isSubmitting || !isValid ? 'opacity-50 cursor-not-allowed' : ''}`}
@@ -286,8 +295,13 @@ const PopupForm = ({ isOpen, onClose }) => {
                                     >
                                         {step === 7 ? 'Submit' : 'Next Step'}
                                     </button>
+                                    <MessagePopup
+                                        errorMessage={errorMessage}
+                                        successMessage={successMessage}
+                                        handleClose={handleClose}
+                                    />
+                                    </>
                                 )}
-                                {errors && <pre>{JSON.stringify(errors, null, 2)}</pre>}
                             </div>
                         </Form>
                     )}

@@ -1,8 +1,13 @@
 import React from 'react';
 import roomCover from '../../assets/img/img_1.png';
+import PopupForm from "./PopupForm";
+import {useNavigate} from "react-router-dom";
 
 
 const OwnerHero = () => {
+    const [isOpen, setIsOpen] = React.useState(false);
+    const navigate = useNavigate();
+
     return (
         <div className="relative">
             <img className="w-full object-cover object-center"
@@ -17,11 +22,26 @@ const OwnerHero = () => {
                         List your <span className="text-aqua-500">room</span> or <span className="text-aqua-500">apartment</span> for
                         free
                     </h1>
-                    <button className="bg-aqua-500 hover:bg-aqua-700 text-white font-bold py-2 px-4 rounded mt-4">
+                    <button
+                        className="bg-aqua-500 hover:bg-aqua-700 text-white font-bold py-2 px-4 rounded mt-4"
+                        onClick={() => setIsOpen(true)}
+                    >
                         List your room
+                    </button>
+                    <button
+                        className="bg-aqua-500 hover:bg-aqua-700 text-white font-bold py-2 px-4 rounded mt-4 ml-4"
+                        onClick={() => navigate('/r/')}
+                    >
+                        See my rooms
                     </button>
                 </div>
             </div>
+            {isOpen && (
+                <PopupForm
+                    isOpen={isOpen}
+                    onClose={() => setIsOpen(false)}
+                />
+            )}
         </div>
     );
 };

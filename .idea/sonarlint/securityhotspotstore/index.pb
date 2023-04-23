@@ -79,8 +79,6 @@ H
 routes/picturesRoutes.js,d/5/d5bbc46674c6ad2f5f6a58cd07ddcfe61bb5d0f7
 Y
 )client/src/components/before-dash/Card.js,d/d/ddbe39f2c42f35798e440576a7dade22f8f47398
-V
-&client/src/views/user/UserDashboard.js,9/4/94d9df5c9edea51b323d34c7e9393465d540750c
 D
 routes/userRoutes.js,e/9/e9eb043515685faf25833d70ef475596fc6e333d
 _
@@ -97,16 +95,12 @@ T
 $client/src/components/header/Hero.js,1/e/1e618464d759cce8d5b2e8a191c143e5e4838f63
 i
 9client/src/components/authentication/withAuthorization.js,5/a/5af9d82aa5f3ef7402a940a3d337eb4754c38543
-_
-/client/src/components/before-dash/BeforeDash.js,c/5/c54aa272968810a6a921320544791babca704071
 c
 3client/src/components/ownerDashboard/ProgressBar.js,c/3/c3a7c1470954a5a2d91fbbdcb9734601dd7f94ee
 \
 ,client/src/components/headers/OwnerHeader.js,8/b/8b1701e63d248e458b9c60fa0c5db166d25ed699
 T
 $client/src/hooks/userClickOutside.js,0/1/017b365da8e2feb533c15b9afbd70a0ca3e4f413
-a
-1client/src/components/ownerDashboard/OwnerHero.js,d/6/d634919b2414f13a5dfd471561e1f291c4bb8a26
 \
 ,client/src/components/user-nav/UserHeader.js,3/9/396160d31be1e04cf4585d252b617eaf1949e487
 B
@@ -120,8 +114,6 @@ A
 .gitignore,a/5/a5cc2925ca8258af241be7e5b0381edf30266302
 U
 %client/src/reducers/galleryReducer.js,e/9/e912d891c3367c330e83bd65d1c3d80dc6985263
-d
-4client/src/components/ownerDashboard/OwnerContent.js,6/3/6321da6ca927d39bfff9ac4eb007e480173b6e04
 [
 +client/src/components/map/MyMapComponent.js,b/8/b87c2732347433ced89f5651b3a0d103f8dd38e3
 4
@@ -136,8 +128,6 @@ f
 6client/src/components/form-steps/custom-datepicker.css,4/c/4cd4b9864d98629fc644990f698d2470249fc321
 X
 (client/src/utils/loadGoogleMapsScript.js,f/f/ffd03813049c7789f9be0be28c51bda2b63ef156
-I
-client/tailwind.config.js,6/b/6b273cff573b0a837bad584f90d7d827bf358bb1
 C
 client/src/store.js,4/a/4afe2750c2c347c6e38ea33d5c926b1ae43d2dfb
 U
@@ -150,8 +140,6 @@ W
 client/src/.env,d/8/d81b4aff313d76306b258d3c4e870a50750b3c32
 H
 client/public/index.html,8/1/818a76598cddfc0ac5e6740251b5b4dc9ff67f2c
-a
-1client/src/components/ownerDashboard/PopupForm.js,5/4/546c2e37a261616eb48f5b52e2222ef828d88316
 Y
 )client/src/components/form-steps/Step3.js,7/4/743f18d2f68e09f4e72128352d3eeeafb40eacf9
 Q
@@ -194,3 +182,23 @@ F
 models/availability.js,2/7/27888899f6ed961c33840d968bbf14aeecc6bb0e
 ^
 .migrations/20230406040620-create-house-rule.js,a/4/a4487bf9b76ba9617d015b69672964b4ad6ecc12
+B
+models/property.js,c/e/ce0364542d1bf1cf36ea5af9aa9b44887cdcebbf
+f
+6migrations/20230406040621-create-phone-verification.js,2/8/28b474b927ded79a89ced1d2aec0fc72d8143992
+C
+client/package.json,a/d/ad8a30996233c30cdd545dbf5f18765b86e6bf64
+9
+	server.js,d/c/dc60ea9ee1ff6246bf342463277d5b914db2883d
+H
+routes/propertyRoutes.js,1/9/19af69cd1f8024e189a785da4a4d0b3d0aa13fa9
+>
+models/user.js,5/8/58952233992370efa7ea98b3ec60c43d2d227d89
+K
+models/phoneVerification.js,2/6/264c3270fbbf0dec87356ff0f686b0ab60678f8e
+T
+$client/src/actions/galleryActions.js,6/9/69787fc62c2a2e530637a617159a5a423f03552a
+A
+models/address.js,1/6/16b66fefb64fe0a5ad178e8d02cf84e4ea61241b
+I
+client/tailwind.config.js,6/b/6b273cff573b0a837bad584f90d7d827bf358bb1
