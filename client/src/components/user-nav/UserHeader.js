@@ -36,13 +36,13 @@ const UserHeader = () => {
     }, [dropdownRef]);
 
     return (
-        <header className="backdrop-blur-lg text-white bg-primary-800 bg-opacity-50 z-100">
+        <header className="bg-opacity-50 text-white backdrop-blur-lg bg-primary-800 z-100">
             <div className="container mx-auto flex flex-wrap items-center">
-                <div className="w-full lg:w-auto lg:flex-grow lg:flex lg:items-center">
+                <div className="w-full lg:flex lg:w-auto lg:flex-grow lg:items-center">
                     <h1 className="text-lg lg:text-lg font-bold text-center text-white
                     tracking-tight cursor-pointer relative">
                         arend<span className="text-aqua-500">Yem</span>
-                        <span className="absolute top-0 left-0 right-0 bottom-0 text-aqua-500 shadow-glow"></span>
+                        <span className="absolute top-0 right-0 bottom-0 left-0 text-aqua-500 shadow-glow"></span>
                     </h1>
                 </div>
                 {isOwner ? (
@@ -75,21 +75,21 @@ const UserHeader = () => {
                             onClick={() => setShowMenu(!showMenu)}
                         >
                             <img
-                                className="w-8 h-8 rounded-full mr-2"
+                                className="mr-2 h-8 w-8 rounded-full"
                                 src="https://via.placeholder.com/24"
                                 alt="User avatar"
                             />
                             <FiChevronDown size={16} />
                         </button>
                         {showMenu && (
-                            <div className="absolute right-0 mt-2 w-48 bg-white rounded-md shadow-lg z-100">
+                            <div className="absolute right-0 mt-2 w-48 rounded-md bg-white shadow-lg z-100">
                                 <NavLink
                                     exact={true}
                                     to="/user/profile"
                                     className="block w-full px-4 py-2 text-gray-800
                                     hover:bg-primary-700 hover:text-white"
                                 >
-                                    <FiUser size={16} className="inline-block mr-2" />
+                                    <FiUser size={16} className="mr-2 inline-block" />
                                     Profile
                                 </NavLink>
                                 <button
@@ -97,7 +97,7 @@ const UserHeader = () => {
                                     className="block w-full text-left px-4 py-2 text-gray-800
                                     hover:bg-primary-700 hover:text-white"
                                 >
-                                    <FiLogOut size={16} className="inline-block mr-2" />
+                                    <FiLogOut size={16} className="mr-2 inline-block" />
                                     Logout
                                 </button>
                             </div>

@@ -17,7 +17,7 @@ const Carousel = ({ children }) => {
         <div className="relative p-20">
             <div className="flex overflow-hidden">
                 <div
-                    className="flex transition duration-300 ease-in-out transform shadow-2xl"
+                    className="flex transform shadow-2xl transition duration-300 ease-in-out"
                     style={{ transform: `translateX(-${index * 100}%)` }}
                 >
                     {children}

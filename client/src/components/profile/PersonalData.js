@@ -42,7 +42,7 @@ const PersonalData = () => {
     };
 
     const IsLoading = () => (
-        <div className="flex justify-center items-center animate-spin text-2xl text-gray-600">
+        <div className="flex animate-spin items-center justify-center text-2xl text-gray-600">
             <FaSpinner className="mr-2" />
             <span>Loading...</span>
         </div>
@@ -55,9 +55,9 @@ const PersonalData = () => {
         <div>
             {!userData ? <IsLoading /> : (
                 <div className="align-start">
-                    <h1 className="text-2xl font-bold m-4">My Personal Data</h1>
+                    <h1 className="m-4 text-2xl font-bold">My Personal Data</h1>
                     <form onSubmit={handleSubmit}>
-                        <div className="align-start text-lg p-4">
+                        <div className="p-4 text-lg align-start">
                             <p className={smallText}>First Name:</p>
                             <input
                                 type="text"
@@ -139,10 +139,10 @@ const PersonalData = () => {
                                 className={inputStyles}
                                 placeholder="Budget in Tenge"
                             />
-                            <div className="flex gap-4 mt-4">
+                            <div className="mt-4 flex gap-4">
                                 <button
                                     type="submit"
-                                    className="px-4 py-2 bg-aqua-500 text-white rounded-lg hover:bg-aqua-400"
+                                    className="rounded-lg px-4 py-2 text-white bg-aqua-500 hover:bg-aqua-400"
                                     onClick={handleSubmit}
                                 >
                                     Save
@@ -150,7 +150,7 @@ const PersonalData = () => {
                                 <button
                                     type="button"
                                     onClick={handleEdit}
-                                    className="px-4 py-2 bg-gray-300 text-gray-600 rounded-lg hover:bg-gray-400">
+                                    className="rounded-lg bg-gray-300 px-4 py-2 text-gray-600 hover:bg-gray-400">
                                     Cancel
                                 </button>
                                 <ToastContainer
@@ -176,7 +176,7 @@ const PersonalData = () => {
                     {!userData.firstName && (
                         <button
                             onClick={handleEdit}
-                            className='text-aqua-300 flex flex-row hover:text-aqua-500 border border-aqua-300 hover:border-aqua-500 rounded-lg p-2 mt-4'>
+                            className='mt-4 flex flex-row rounded-lg border p-2 text-aqua-300 border-aqua-300 hover:text-aqua-500 hover:border-aqua-500'>
                             <FiEdit2 size={24} />
                             <span className="ml-2">Edit</span>
                         </button>

@@ -11,7 +11,7 @@ module.exports = (sequelize, DataTypes) => {
     }
     PropertyDetail.init(
         {
-            pictures: Sequelize.ARRAY(Sequelize.STRING),
+            pictures: Sequelize.JSONB,
             title: Sequelize.STRING,
             description: Sequelize.TEXT,
             propertyId: Sequelize.INTEGER,

@@ -57,7 +57,7 @@ const Step4 = ({startDate, setStartDate, endDate, setEndDate, errors}) => {
 
     return (
         <div>
-            <h6 className="text-xl font-bold mt-4">Availability</h6>
+            <h6 className="mt-4 text-xl font-bold">Availability</h6>
             <ThemeProvider theme={theme}>
                 <FormGroup row>
                     <div className="my-2 flex flex-col gap-4">
@@ -73,7 +73,7 @@ const Step4 = ({startDate, setStartDate, endDate, setEndDate, errors}) => {
                             customInput={<CustomInput />}
                             label="Start date"
                         />
-                        {errors.propertyAvailability?.startDate && <p className="text-red-500 text-sm">{errors.propertyAvailability?.startDate}</p>}
+                        {errors.propertyAvailability?.startDate && <p className="text-sm text-red-500">{errors.propertyAvailability?.startDate}</p>}
                         <p className="text-sm font-medium">to</p>
                         <DatePicker
                             selected={endDate}
@@ -107,7 +107,7 @@ const Step4 = ({startDate, setStartDate, endDate, setEndDate, errors}) => {
                                 }}
                                 sx={{ mb: 2, width: '30%' }}
                             />
-                            {errors.propertyAvailability?.minStay && <p className="text-red-500 text-sm">{errors.propertyAvailability?.minStay}</p>}
+                            {errors.propertyAvailability?.minStay && <p className="text-sm text-red-500">{errors.propertyAvailability?.minStay}</p>}
                         </FormControl>
                     </div>
 
@@ -148,7 +148,7 @@ const Step4 = ({startDate, setStartDate, endDate, setEndDate, errors}) => {
                                 }}
                                 sx={{ mb: 2, width: '30%' }}
                             />
-                            {errors.prices?.pricePerMonth && <p className="text-red-500 text-sm">{errors.prices?.pricePerMonth}</p>}
+                            {errors.prices?.pricePerMonth && <p className="text-sm text-red-500">{errors.prices?.pricePerMonth}</p>}
                         </FormControl>
                     </div>
 
@@ -192,7 +192,7 @@ const Step4 = ({startDate, setStartDate, endDate, setEndDate, errors}) => {
                             </FormControl>
                     </div>
 
-                <h6 className="text-xl font-bold mt-4">Other Services (optional)</h6>
+                <h6 className="mt-4 text-xl font-bold">Other Services (optional)</h6>
                 <FormGroup>
                     <FormControlLabel
                         control={

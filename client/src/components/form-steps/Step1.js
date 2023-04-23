@@ -11,12 +11,12 @@ const Step1 = ({ fieldName, step, setStep }) => {
 
     return (
     <AnimatePresence>
-        <div className="flex flex-col items-center justify-center mx-auto text-primary-700 mt-10">
+        <div className="mx-auto mt-10 flex flex-col items-center justify-center text-primary-700">
             <motion.h1
                 initial={{ opacity: 0}}
                 animate={{ opacity: 1}}
                 exit={{ opacity: 0}}
-                className="text-3xl font-bold mb-4 text-center">
+                className="mb-4 text-center text-3xl font-bold">
                 What type of property are you listing?
             </motion.h1>
             <motion.div
@@ -43,8 +43,8 @@ const Step1 = ({ fieldName, step, setStep }) => {
                                 />
                             }
                             label={
-                                <div className="flex flex-col items-center justify-center m-4 p-4 border border-gray-300 rounded-lg cursor-pointer hover:bg-gray-200">
-                                    <IconComponent className="text-4xl mb-4" />
+                                <div className="m-4 flex cursor-pointer flex-col items-center justify-center rounded-lg border border-gray-300 p-4 hover:bg-gray-200">
+                                    <IconComponent className="mb-4 text-4xl" />
                                     <p className="text-lg font-medium">{label}</p>
                                 </div>
                             }

@@ -19,18 +19,18 @@ const Highlight = () => {
     };
 
     return (
-        <div className="bg-primaryGrey-100 w-full mx-auto p-8">
+        <div className="mx-auto w-full p-8 bg-primaryGrey-100">
             <Element name="highlight" className="highlight">
-                <h1 className="text-6xl font-bold mb-4 text-center mt-12">
+                <h1 className="mt-12 mb-4 text-center text-6xl font-bold">
                     Our New <span className="text-aqua-500">Roommates</span>
                 </h1>
-                <p className="text-xl mb-8 text-center">
+                <p className="mb-8 text-center text-xl">
                     Lorem ipsum dolor sit amet, consectetur adipiscing elit.
                 </p>
             </Element>
             <div className="flex items-center justify-center gap-12">
                 <button
-                    className="text-gray-600 hover:text-gray-900 p-2 border-primaryGrey-700 border-2 rounded-full active:bg-gray-200"
+                    className="rounded-full border-2 p-2 text-gray-600 border-primaryGrey-700 hover:text-gray-900 active:bg-gray-200"
                     onClick={goToPrevious}
                     disabled={startIndex === 0}
                 >
@@ -51,7 +51,7 @@ const Highlight = () => {
                         ))}
                 </div>
                 <button
-                    className="text-gray-600 hover:text-gray-900 p-2 border-primaryGrey-700 border-2 rounded-full active:bg-gray-200"
+                    className="rounded-full border-2 p-2 text-gray-600 border-primaryGrey-700 hover:text-gray-900 active:bg-gray-200"
                     onClick={goToNext}
                     disabled={startIndex === profiles.length - 3}
                 >

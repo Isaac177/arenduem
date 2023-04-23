@@ -34,19 +34,19 @@ const Header = () => {
                     }`}
                 >
                     <div className="container mx-auto flex flex-wrap items-center">
-                        <div className="w-full text-white-100 lg:w-auto lg:flex-grow lg:flex lg:items-center">
+                        <div className="w-full text-white-100 lg:flex lg:w-auto lg:flex-grow lg:items-center">
                             <h1
                                 className={`text-2xl font-bold text-center text-white tracking-tight cursor-pointer relative ${
                                     shrink ?  'logo-shrink' : 'logo'
                                 }`}
                             >
                                 Room<span className="text-aqua-500">Finder</span>
-                                <span className="absolute top-0 left-0 right-0 bottom-0 text-aqua-500 shadow-glow"></span>
+                                <span className="absolute top-0 right-0 bottom-0 left-0 text-aqua-500 shadow-glow"></span>
                             </h1>
                         </div>
-                        <div className="w-full lg:w-auto text-white-100">
+                        <div className="w-full text-white-100 lg:w-auto">
                             <button
-                                className="text-primary-900 text-white-100 hover:text-white lg:hidden focus:outline-none"
+                                className="text-primary-900 text-white-100 hover:text-white focus:outline-none lg:hidden"
                                 onClick={() => setIsOpen(!isOpen)}
                             >
                                 {/* ... */}
@@ -62,7 +62,7 @@ const Header = () => {
                                             key={to}
                                             exact
                                             to={to}
-                                            className="block mt-4 lg:inline-block lg:mt-0 hover:text-white mr-4 hover:text-aqua-500"
+                                            className="mt-4 mr-4 block hover:text-aqua-500 hover:text-white lg:mt-0 lg:inline-block"
                                         >
                                             {label}
                                         </NavLink>
@@ -72,14 +72,14 @@ const Header = () => {
                                     <NavLink
                                         exact
                                         to="/signin"
-                                        className="inline-block text-sm px-4 py-2 mx-4 leading-none border rounded text-white border-white hover:border-transparent hover:text-primary-900 hover:bg-white mt-4 lg:mt-0"
+                                        className="mx-4 mt-4 inline-block rounded border border-white px-4 py-2 text-sm leading-none text-white hover:text-primary-900 hover:border-transparent hover:bg-white lg:mt-0"
                                     >
                                         Sign In
                                     </NavLink>
                                     <NavLink
                                         exact
                                         to="/signup"
-                                        className="inline-block text-sm px-4 py-2 mx-4 leading-none border rounded text-white border-white hover:border-transparent hover:text-primary-900 hover:bg-white mt-4 lg:mt-0"
+                                        className="mx-4 mt-4 inline-block rounded border border-white px-4 py-2 text-sm leading-none text-white hover:text-primary-900 hover:border-transparent hover:bg-white lg:mt-0"
                                     >
                                         Sign Up
                                     </NavLink>

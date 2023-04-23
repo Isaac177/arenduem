@@ -113,15 +113,15 @@ const QuickSearch = () => {
         <Separator>
         <form onSubmit={formik.handleSubmit}>
             <div>
-                <h1 className="text-2xl font-bold px-4 flex items-start">Quick Search</h1>
-                <hr className="border-aqua-500 border w-1/2 ml-4" />
+                <h1 className="flex items-start px-4 text-2xl font-bold">Quick Search</h1>
+                <hr className="ml-4 w-1/2 border border-aqua-500" />
             </div>
-            <div className="flex flex-col gap-4 p-4 mt-4 border-gray-500 border rounded-md" style={{width:'676px'}}>
+            <div className="mt-4 flex flex-col gap-4 rounded-md border border-gray-500 p-4" style={{width:'676px'}}>
                 <div className="flex flex-row gap-8">
                     <div className='flex flex-col gap-2'>
-                        <p className="text-gray-500 flex items-start">Location</p>
-                        <div className="flex items-center bg-white rounded-md p-2">
-                            <FaMapMarkerAlt className="text-aqua-500 mr-2" />
+                        <p className="flex items-start text-gray-500">Location</p>
+                        <div className="flex items-center rounded-md bg-white p-2">
+                            <FaMapMarkerAlt className="mr-2 text-aqua-500" />
                             <input
                                 type="text"
                                 name="location"
@@ -134,9 +134,9 @@ const QuickSearch = () => {
                         </div>
                     </div>
                     <div className='flex flex-col gap-2'>
-                        <p className="text-gray-500 flex items-start">Rent Budget</p>
-                        <div className="flex items-center bg-white rounded-md p-2">
-                            <FaDollarSign className="text-aqua-500 mr-2" />
+                        <p className="flex items-start text-gray-500">Rent Budget</p>
+                        <div className="flex items-center rounded-md bg-white p-2">
+                            <FaDollarSign className="mr-2 text-aqua-500" />
                             <input
                                 type="text"
                                 name="rentBudgetFrom"
@@ -149,9 +149,9 @@ const QuickSearch = () => {
                         </div>
                     </div>
                     <div className='flex flex-col gap-2'>
-                        <p className="text-gray-500 flex items-start">To:</p>
-                        <div className="flex items-center bg-white rounded-md p-2">
-                            <FaDollarSign className="text-aqua-500 mr-2" />
+                        <p className="flex items-start text-gray-500">To:</p>
+                        <div className="flex items-center rounded-md bg-white p-2">
+                            <FaDollarSign className="mr-2 text-aqua-500" />
                             <input
                                 type="text"
                                 name="rentBudgetTo"
@@ -166,9 +166,9 @@ const QuickSearch = () => {
                 </div>
                 <div className="flex flex-row gap-8">
                     <div className='flex flex-col gap-2'>
-                        <p className="text-gray-500 flex items-start">Gender Preference</p>
-                        <div className="flex items-center bg-white rounded-md p-2">
-                            <FaVenusMars className="text-aqua-500 mr-2" />
+                        <p className="flex items-start text-gray-500">Gender Preference</p>
+                        <div className="flex items-center rounded-md bg-white p-2">
+                            <FaVenusMars className="mr-2 text-aqua-500" />
                             <Select
                                 name="genderPreference"
                                 options={genderOptions}
@@ -199,9 +199,9 @@ const QuickSearch = () => {
                         </div>
                     </div>
                     <div className='flex flex-col gap-2'>
-                        <p className="text-gray-500 flex items-start">Age</p>
-                        <div className="flex items-center bg-white rounded-md p-2">
-                            <FaUser className="text-aqua-500 mr-2" />
+                        <p className="flex items-start text-gray-500">Age</p>
+                        <div className="flex items-center rounded-md bg-white p-2">
+                            <FaUser className="mr-2 text-aqua-500" />
                             <div className="w-24">
                                 <div className="flex justify-between text-sm">
                                     <div>From:{formik.values.ageRangeFrom}</div>
@@ -215,7 +215,7 @@ const QuickSearch = () => {
                                     value={formik.values.ageRangeFrom}
                                     onChange={handleAgeRangeChange}
                                     data-index="0"
-                                    className="appearance-none h-3 bg-gray-300 rounded w-full outline-none overflow-hidden"
+                                    className="h-3 w-full appearance-none overflow-hidden rounded bg-gray-300 outline-none"
                                     style={{ WebkitAppearance: 'none' }}
                                 />
                                 <style>
@@ -235,9 +235,9 @@ const QuickSearch = () => {
                         </div>
                     </div>
                     <div className='flex flex-col gap-2'>
-                        <p className="text-gray-500 flex items-start">To:</p>
-                        <div className="flex items-center bg-white rounded-md p-2">
-                            <FaUser className="text-aqua-500 mr-2" />
+                        <p className="flex items-start text-gray-500">To:</p>
+                        <div className="flex items-center rounded-md bg-white p-2">
+                            <FaUser className="mr-2 text-aqua-500" />
                             <div className="w-24">
                                 <div className="flex justify-between text-sm">
                                     <div>To:{formik.values.ageRangeTo}</div>
@@ -251,16 +251,16 @@ const QuickSearch = () => {
                                     value={formik.values.ageRangeTo}
                                     onChange={handleAgeRangeChange}
                                     data-index="1"
-                                    className="appearance-none h-3 bg-gray-300 rounded w-full outline-none overflow-hidden"
+                                    className="h-3 w-full appearance-none overflow-hidden rounded bg-gray-300 outline-none"
                                     style={{ WebkitAppearance: 'none' }}
                                 />
                             </div>
                         </div>
                     </div>
                     <div className='flex flex-col gap-2'>
-                        <p className="text-gray-500 flex items-start">Student Status</p>
-                        <div className="flex items-center bg-white rounded-md p-2">
-                            <HiAcademicCap className="text-aqua-500 mr-2" />
+                        <p className="flex items-start text-gray-500">Student Status</p>
+                        <div className="flex items-center rounded-md bg-white p-2">
+                            <HiAcademicCap className="mr-2 text-aqua-500" />
                             <Select
                                 name="studentStatus"
                                 options={studentOptions}
@@ -289,9 +289,9 @@ const QuickSearch = () => {
                 </div>
                 <div className="flex flex-row gap-8">
                     <div className='flex flex-col gap-2'>
-                        <p className="text-gray-500 flex items-start">Smoking Status</p>
-                        <div className="flex items-center bg-white rounded-md p-2">
-                            <FaSmokingBan className="text-aqua-500 mr-2" />
+                        <p className="flex items-start text-gray-500">Smoking Status</p>
+                        <div className="flex items-center rounded-md bg-white p-2">
+                            <FaSmokingBan className="mr-2 text-aqua-500" />
                             <Select
                                 name="smokingPreference"
                                 options={smokingOptions}
@@ -318,9 +318,9 @@ const QuickSearch = () => {
                         </div>
                     </div>
                     <div className='flex flex-col gap-2'>
-                        <p className="text-gray-500 flex items-start">Drinking Status</p>
-                        <div className="flex items-center bg-white rounded-md p-2">
-                            <FaGlassMartiniAlt className="text-aqua-500 mr-2" />
+                        <p className="flex items-start text-gray-500">Drinking Status</p>
+                        <div className="flex items-center rounded-md bg-white p-2">
+                            <FaGlassMartiniAlt className="mr-2 text-aqua-500" />
                             <Select
                                 name="drinkingPreference"
                                 options={drinkingOptions}
@@ -347,9 +347,9 @@ const QuickSearch = () => {
                         </div>
                     </div>
                     <div className='flex flex-col gap-2'>
-                        <p className="text-gray-500 flex items-start">Pet Preferences</p>
-                        <div className="flex items-center bg-white rounded-md p-2">
-                            <FaPaw className="text-aqua-500 mr-2" />
+                        <p className="flex items-start text-gray-500">Pet Preferences</p>
+                        <div className="flex items-center rounded-md bg-white p-2">
+                            <FaPaw className="mr-2 text-aqua-500" />
                             <Select
                                 name="petPreference"
                                 options={petOptions}
@@ -376,9 +376,9 @@ const QuickSearch = () => {
                         </div>
                     </div>
                     <div className='flex flex-col gap-2'>
-                        <p className="text-gray-500 flex items-start">Length of Stay</p>
-                        <div className="flex items-center bg-white rounded-md p-2">
-                            <FaClock className="text-aqua-500 mr-2" />
+                        <p className="flex items-start text-gray-500">Length of Stay</p>
+                        <div className="flex items-center rounded-md bg-white p-2">
+                            <FaClock className="mr-2 text-aqua-500" />
                             <Select
                                 name="lengthOfStay"
                                 options={lengthOptions}
@@ -406,9 +406,9 @@ const QuickSearch = () => {
                     </div>
                 </div>
                 <div className='flex flex-col gap-2'>
-                    <p className="text-gray-500 flex items-start">Interests</p>
-                    <div className="flex items-center bg-white rounded-md p-2">
-                        <FaHeart className="text-aqua-500 mr-2" />
+                    <p className="flex items-start text-gray-500">Interests</p>
+                    <div className="flex items-center rounded-md bg-white p-2">
+                        <FaHeart className="mr-2 text-aqua-500" />
                         <Select
                             name="interests"
                             options={interestOptions}
@@ -444,7 +444,7 @@ const QuickSearch = () => {
             </div>
             <button
                 type="submit"
-                className="bg-aqua-500 text-white rounded-md py-2 px-4 mt-4 focus:outline-none hover:bg-aqua-400"
+                className="mt-4 rounded-md px-4 py-2 text-white bg-aqua-500 hover:bg-aqua-400 focus:outline-none"
             >
                 Search
             </button>

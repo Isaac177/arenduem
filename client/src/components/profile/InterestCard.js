@@ -38,7 +38,7 @@ const InterestCard = ({ interest, handleToggle, id, dbId }) => {
             <span className="mr-1 text-sm" key={uuid4()}>{interest.name}</span>
             {isChecked ? (
                 <FaCheckCircle
-                    className="w-5 h-5 text-sm color-gray-800"
+                    className="h-5 w-5 text-sm color-gray-800"
                     onClick={handleRemoveInterest}
                 />
             ) : null}

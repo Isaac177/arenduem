@@ -47,14 +47,14 @@ function SidebarMenu() {
                 transition={{ duration: 0.3 }}
             >
                 <motion.button
-                    className="bg-white p-2 rounded-full shadow-md w-12 h-12 flex items-center justify-center"
+                    className="flex h-12 w-12 items-center justify-center rounded-full bg-white p-2 shadow-md"
                     whileHover={{ scale: 1.2 }}
                     onClick={handleToggleSidebar}
                 >
                     {isOpen ? <GrClose size={24} /> : <AiOutlineMenu size={24} />}
                 </motion.button>
                 {isOpen && (
-                    <ul className="flex flex-col w-full">
+                    <ul className="flex w-full flex-col">
                         {sidebarItems.map(({ to, Icon, label }) => (
                             <li
                                 key={to}

@@ -43,7 +43,6 @@ exports.createProperty = async (req, res) => {
 
 
         const property = await Property.create({ propertyType, userId });
-        console.log('property:', JSON.stringify(property, null, 2));
 
         const address = await Address.create({ ...propertyAddress, propertyId: property.id }, {
             returning: ['id', 'country', 'city', 'street', 'floor', 'apartmentNumber', 'propertyId', 'createdAt', 'updatedAt']
@@ -70,8 +69,14 @@ exports.createProperty = async (req, res) => {
             returning: true
         });
 
-        const propertyDetail = await PropertyDetail.create({ ...propertyDetails, propertyId: property.id }, {
-            returning: true
+        const newPropertyDetails = {
+            ...propertyDetails,
+            pictures: propertyDetails.pictures,
+            propertyId: property.id,
+        };
+
+        const propertyDetail = await PropertyDetail.create(newPropertyDetails, {
+            returning: true,
         });
 
         const preference = await Preference.create({ ...preferences, propertyId: property.id }, {
@@ -124,6 +129,36 @@ exports.getProperties = async (req, res) => {
         }
 
         res.status(200).json({ properties });
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ message: 'Server error' });
+    }
+}
+
+exports.deleteProperty = async (req, res) => {
+    try {
+        const userId = req.params.userId;
+        const propertyId = req.params.propertyId;
+
+        const property = await Property.findOne({ where: { id: propertyId, userId } });
+
+        if (!property) {
+            return res.status(404).json({ message: 'Property not found.' });
+        }
+
+        // Add the snippet here to delete related records before deleting the property
+        await Address.destroy({ where: { propertyId } });
+        await Amenity.destroy({ where: { propertyId } });
+        await HouseRule.destroy({ where: { propertyId } });
+        await Availability.destroy({ where: { propertyId } });
+        await Price.destroy({ where: { propertyId } });
+        await Service.destroy({ where: { propertyId } });
+        await PropertyDetail.destroy({ where: { propertyId } });
+        await Preference.destroy({ where: { propertyId } });
+
+        await property.destroy();
+
+        res.status(200).json({ message: 'Property deleted successfully.' });
     } catch (error) {
         console.error(error);
         res.status(500).json({ message: 'Server error' });

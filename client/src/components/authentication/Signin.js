@@ -54,9 +54,9 @@ const Signin = () => {
     };
 
     return (
-        <div className="loginBack flex items-center justify-center h-screen backdrop-blur-sm backdrop:opacity-25">
-            <div className="w-full max-w-xs bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
-                <h1 className="text-3xl text-center font-bold mb-4">SignIn</h1>
+        <div className="flex h-screen items-center justify-center backdrop:opacity-25 backdrop-blur-sm loginBack">
+            <div className="mb-4 w-full max-w-xs rounded bg-white px-8 pt-6 pb-8 shadow-md">
+                <h1 className="mb-4 text-center text-3xl font-bold">SignIn</h1>
                 <Formik
                     initialValues={{ email: '', password: '' }}
                     validationSchema={SigninSchema}
@@ -65,11 +65,11 @@ const Signin = () => {
                     {({ errors, isSubmitting, values, setFieldValue }) => (
                         <Form>
                             {success ? (
-                                <p className="text-green-600 mb-4">Sign in successful!</p>
+                                <p className="mb-4 text-green-600">Sign in successful!</p>
                             ) : null}
-                            {error ? <p className="text-red-600 mb-4">{error}</p> : null}
+                            {error ? <p className="mb-4 text-red-600">{error}</p> : null}
                             <div className="mb-4">
-                                <label className="block text-gray-700 font-bold mb-2" htmlFor="email">
+                                <label className="mb-2 block font-bold text-gray-700" htmlFor="email">
                                     Email
                                 </label>
                                 <Field
@@ -85,12 +85,12 @@ const Signin = () => {
                                     }}
                                 />
                                 <ErrorMessage name="email">
-                                    {msg => <p className="text-red-500 text-xs italic">{msg}</p>}
+                                    {msg => <p className="text-xs italic text-red-500">{msg}</p>}
                                 </ErrorMessage>
                             </div>
                             <div className="mb-4">
                                 <label
-                                    className="block text-gray-700 font-bold mb-2"
+                                    className="mb-2 block font-bold text-gray-700"
                                     htmlFor="password"
                                 >
                                     Password
@@ -108,45 +108,45 @@ const Signin = () => {
                                     }}
                                 />
                                 <ErrorMessage name="password">
-                                    {msg => <p className="text-red-500 text-xs italic">{msg}</p>}
+                                    {msg => <p className="text-xs italic text-red-500">{msg}</p>}
                                 </ErrorMessage>
                             </div>
                             <div className="flex items-center justify-between">
                                 <p className="text-xs text-gray-700">
                                     <a
-                                        className="text-aqua-500 hover:text-aqua-700 no-underline"
+                                        className="no-underline text-aqua-500 hover:text-aqua-700"
                                         href="/forgot-password"
                                     >
                                         Forgot Password?
                                     </a>
                                 </p>
                             </div>
-                            <div className="flex items-center justify-between mt-4">
+                            <div className="mt-4 flex items-center justify-between">
                                 <FacebookLogin
                                     appId={FACEBOOK_APP_ID}
                                     autoLoad={false}
                                     fields="name,email,picture"
                                     callback={responseFacebook}
-                                    className="text-white font-bold rounded focus:outline-none focus:shadow-outline bg-blue-500 hover:bg-blue-700 py-2 px-4"
+                                    className="rounded bg-blue-500 px-4 py-2 font-bold text-white hover:bg-blue-700 focus:shadow-outline focus:outline-none"
                                     icon="fa-facebook"
                                     textButton=" Login with Facebook"
                                 />
                             </div>
 
                             <div className="flex items-center justify-between">
-                                <p className="text-xs text-gray-700 mr-2">
+                                <p className="mr-2 text-xs text-gray-700">
                                     Don't have an account ?
                                     <a
-                                        className="text-aqua-500 hover:text-aqua-700 no-underline"
+                                        className="no-underline text-aqua-500 hover:text-aqua-700"
                                         href="/signup"
                                     >
                                         Sign Up
                                     </a>
                                 </p>
                             </div>
-                            <div className="flex items-center justify-between mt-4">
+                            <div className="mt-4 flex items-center justify-between">
                                 <button
-                                    className="bg-aqua-500 hover:bg-aqua-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+                                    className="rounded px-4 py-2 font-bold text-white bg-aqua-500 hover:bg-aqua-700 focus:shadow-outline focus:outline-none"
                                     type="submit"
                                     disabled={isSubmitting}
                                 >

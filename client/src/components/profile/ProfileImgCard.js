@@ -63,28 +63,28 @@ const ProfileImgCard = ({
     return (
         <div className="relative">
             <div
-                className="flex flex-row justify-center items-center hover:cursor-pointer hover:border-aqua-500 hover:shadow-lg hover:transition-all hover:duration-300 hover:ease-in-out hover:transform hover:scale-105"
+                className="flex flex-row items-center justify-center hover:border-aqua-500 hover:scale-105 hover:transform hover:cursor-pointer hover:shadow-lg hover:transition-all hover:duration-300 hover:ease-in-out"
                 onMouseEnter={() => setIsHovered(true)}
                 onMouseLeave={handleMouseLeave}
                 onClick={handleCardClick}
             >
-                <div className="w-60 h-60 rounded-xl overflow-hidden border-4 border-white relative">
+                <div className="relative h-60 w-60 overflow-hidden rounded-xl border-4 border-white">
                     <img
                         src={`http://localhost:8000/${profileImg}`}
                         alt={profileAlt}
-                        className="w-full h-full object-cover"
+                        className="h-full w-full object-cover"
                         onClick={handleViewImage}
                     />
                     {/* Add text on image if isMain */}
                     {isMain && (
-                        <div className="absolute bottom-0 left-0 w-full h-10 bg-black bg-opacity-50 flex items-center justify-center">
-                            <p className="text-white text-sm">Main Image</p>
+                        <div className="absolute bottom-0 left-0 flex h-10 w-full items-center justify-center bg-black bg-opacity-50">
+                            <p className="text-sm text-white">Main Image</p>
                         </div>
                     )}
                     {/* Add text on image if isCover */}
                     {isCover && (
-                        <div className="absolute top-0 left-0 w-full h-10 bg-black bg-opacity-50 flex items-center justify-center">
-                            <p className="text-white text-sm">Cover Image</p>
+                        <div className="absolute top-0 left-0 flex h-10 w-full items-center justify-center bg-black bg-opacity-50">
+                            <p className="text-sm text-white">Cover Image</p>
                         </div>
                     )}
                 </div>
@@ -93,7 +93,7 @@ const ProfileImgCard = ({
                         <FiMoreVertical
                             onClick={handleMoreClick}
                             size={20}
-                            className="hover:cursor-pointer hover:text-aqua-500"
+                            className="hover:text-aqua-500 hover:cursor-pointer"
                         />
                         {showImgModal && (
                             <PictureOptionsModal

@@ -74,10 +74,10 @@ const LatestAnnouncements = () => {
     return (
         <>
         <Separator>
-        <div className="flex flex-col mt-8 border-b">
+        <div className="mt-8 flex flex-col border-b">
             <div>
-                <h1 className="text-2xl font-bold px-4 flex items-start">Latest Announcements</h1>
-                <hr className="border-aqua-500 border w-1/2 ml-4" />
+                <h1 className="flex items-start px-4 text-2xl font-bold">Latest Announcements</h1>
+                <hr className="ml-4 w-1/2 border border-aqua-500" />
             </div>
             <div className={`flex flex-row gap-6 flex-wrap p-12 ${showAllCards ? 'animate-fade-in transform translate-y-0' : 'animate-fade-out transform translate-y-4'}`}>
             {slicedCards.map((card, index) => (
@@ -92,16 +92,16 @@ const LatestAnnouncements = () => {
                     ))}
                 </div>
             {numCards < cards.length && (
-                <div className="flex justify-center my-4">
+                <div className="my-4 flex justify-center">
                     {showAllCards ? (
                         <button
                             onClick={() => setShowAllCards(false)}
-                            className="text-aqua-500 hover:text-aqua-600 hover:underline focus:outline-none text-decoration: underline"
+                            className="underline text-aqua-500 text-decoration: hover:text-aqua-600 hover:underline focus:outline-none"
                         >View less</button>
                     ) : (
                         <button
                             onClick={() => setShowAllCards(true)}
-                            className="text-aqua-500 hover:text-aqua-600 hover:underline focus:outline-none text-decoration: underline"
+                            className="underline text-aqua-500 text-decoration: hover:text-aqua-600 hover:underline focus:outline-none"
                         >View all</button>
                     )}
                 </div>

@@ -24,10 +24,11 @@ const UserDashboardWithAuth = withAuthorization(['user'], BeforeDash);
 
 function App() {
     const userRole = useSelector(state => state.auth.role);
+    const userId = useSelector(state => state.auth.userId);
 
     return (
         <Router>
-            <div className="flex flex-col min-h-screen">
+            <div className="flex min-h-screen flex-col">
                 {userRole !== 'user' ? <Header /> : <UserHeader />}
                  <main className="flex-1 bg-primaryGrey-90">
                     <Routes>
@@ -37,7 +38,7 @@ function App() {
                         <Route path="*" element={<NotFound />} />
                         <Route exact path="/user/roles" element={<UserDashboardWithAuth />}/>
                         <Route exact path="/user/owner/*" element={<OwnerDashboard/>}/>
-                        <Route exact path="/r/*" element={<OwnerRooms />}/>
+                        <Route exact path="/:userId/*" element={<OwnerRooms userId={userId} />}/>
                          <Route exact path="/user/dashboard/*" element={<UserDashboard />}>
                             <Route path="profile/*" element={<CoverProfile />}>
                                 <Route path="gallery/" element={<ContentGallery />} />

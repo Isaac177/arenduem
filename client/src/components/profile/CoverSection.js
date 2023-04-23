@@ -38,7 +38,7 @@ const CoverSection = ({handleEditProfilePic}) => {
                         alt="Profile Image"
                     />
                     <GrEdit
-                        className="absolute top-0 right-0 mr-2 mt-2 text-2xl text-gray-500 hover:text-gray-700"
+                        className="absolute top-0 right-0 mt-2 mr-2 text-2xl text-gray-500 hover:text-gray-700"
                         onClick={handleEditProfilePic}
                     />
                 </div>
@@ -51,7 +51,7 @@ const CoverSection = ({handleEditProfilePic}) => {
             return (
                 <div className="relative h-40 md:h-60 lg:h-72 xl:h-80" key={uuid4()}>
                     <img
-                        className="object-cover w-full h-full z-0"
+                        className="z-0 h-full w-full object-cover"
                         src={defaultCoverUrl}
                         loading="lazy"
                         alt="Profile Cover"
@@ -66,7 +66,7 @@ const CoverSection = ({handleEditProfilePic}) => {
             {coverImage ? (
                 <div className="relative h-40 md:h-60 lg:h-72 xl:h-80" key={uuid4()}>
                     <img
-                        className="object-cover w-full h-full z-0"
+                        className="z-0 h-full w-full object-cover"
                         src={`http://localhost:8000/${coverImage.fileUrl}`}
                         loading="lazy"
                         alt="Profile Cover"
@@ -90,28 +90,28 @@ const CoverSection = ({handleEditProfilePic}) => {
                     />
                 </div>
             ): defaultImage()}
-            <div className="moon relative z-0 flex flex-row rounded-l items-center rounded-r px-4 py-2 bg-primary-900">
+            <div className="relative z-0 flex flex-row items-center rounded-r rounded-l px-4 py-2 moon bg-primary-900">
                 {userData ? (
                     <>
-                        <h1 className="text-2xl font-bold text-white px-4">
+                        <h1 className="px-4 text-2xl font-bold text-white">
                             {userData.firstName} {userData.lastName}
                         </h1>
-                        <BsDot className="text-white font-bold text-2xl" />
-                        <p className="text-white px-2">{userData.occupation}</p>
-                        <BsDot className="text-white font-bold text-2xl" />
-                        <p className="text-white px-2">{`${userData.dateOfBirth ? new Date().getFullYear() - new Date(userData.dateOfBirth).getFullYear() : ''} years old`}</p>
-                        <BsDot className="text-white font-bold text-2xl" />
-                        <p className="text-white px-2">Almaty</p>
+                        <BsDot className="text-2xl font-bold text-white" />
+                        <p className="px-2 text-white">{userData.occupation}</p>
+                        <BsDot className="text-2xl font-bold text-white" />
+                        <p className="px-2 text-white">{`${userData.dateOfBirth ? new Date().getFullYear() - new Date(userData.dateOfBirth).getFullYear() : ''} years old`}</p>
+                        <BsDot className="text-2xl font-bold text-white" />
+                        <p className="px-2 text-white">Almaty</p>
                     </>
                 ) : (
                     <>
-                        <h1 className="text-2xl font-bold text-white px-4">{' '} {' '}</h1>
-                        <BsDot className="text-white font-bold text-2xl" />
-                        <p className="text-white px-2"></p>
-                        <BsDot className="text-white font-bold text-2xl" />
-                        <p className="text-white px-2"></p>
-                        <BsDot className="text-white font-bold text-2xl" />
-                        <p className="text-white px-2"></p>
+                        <h1 className="px-4 text-2xl font-bold text-white">{' '} {' '}</h1>
+                        <BsDot className="text-2xl font-bold text-white" />
+                        <p className="px-2 text-white"></p>
+                        <BsDot className="text-2xl font-bold text-white" />
+                        <p className="px-2 text-white"></p>
+                        <BsDot className="text-2xl font-bold text-white" />
+                        <p className="px-2 text-white"></p>
                     </>
                 )}
             </div>

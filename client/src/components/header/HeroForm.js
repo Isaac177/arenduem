@@ -76,8 +76,8 @@ const HeroForm = ({history}) => {
     });
 
     return (
-        <div className="backdrop-blur-lg text-white bg-primary-700 bg-opacity-50 p-12 rounded-3xl w-2/3">
-            <h2 className="text-2xl font-bold mb-4">Find a Roommate</h2>
+        <div className="w-2/3 rounded-3xl bg-opacity-50 p-12 text-white backdrop-blur-lg bg-primary-700">
+            <h2 className="mb-4 text-2xl font-bold">Find a Roommate</h2>
             <Formik
                 initialValues={{
                     owner: false,
@@ -102,7 +102,7 @@ const HeroForm = ({history}) => {
                 {({ errors, touched }) => (
                     <Form className="flex flex-col">
                         <div className="mb-4">
-                            <label htmlFor="owner" className="block text-xl mb-2">
+                            <label htmlFor="owner" className="mb-2 block text-xl">
                                 Are you a room owner?
                             </label>
                             <div className="flex items-center">
@@ -111,7 +111,7 @@ const HeroForm = ({history}) => {
                                     id="owner"
                                     name="owner"
                                     checked={values.isOwner}
-                                    className="mr-2 h-5 w-5 rounded cursor-pointer"
+                                    className="mr-2 h-5 w-5 cursor-pointer rounded"
                                     onChange={(e) => setValues({ ...values, isOwner: e.target.checked })}
                                     classes={{
                                         root: classes.checkboxRoot,
@@ -125,9 +125,9 @@ const HeroForm = ({history}) => {
                         </div>
 
                         <div className="mb-4">
-                            <label htmlFor="gender" className="block font-medium mb-2 text-xl">
+                            <label htmlFor="gender" className="mb-2 block text-xl font-medium">
                                 I am{' '}
-                                <span className="font-bold text-red-500 text-xl">
+                                <span className="text-xl font-bold text-red-500">
                                     {owner ? 'looking for' : 'seeking'}
                                   </span>{' '}
                                 a roommate who is...
@@ -163,7 +163,7 @@ const HeroForm = ({history}) => {
                         </div>
 
                         <div className="mb-4">
-                            <label htmlFor="ageRange" className="block text-xl font-medium mb-2">
+                            <label htmlFor="ageRange" className="mb-2 block text-xl font-medium">
                                 Age range
                             </label>
                             <div className="flex items-center">
@@ -193,14 +193,14 @@ const HeroForm = ({history}) => {
                     </Form>
                     )}
             </Formik>
-            <div className="flex mt-4">
-                <button className="bg-aqua-500 hover:bg-aqua-600 text-white font-bold py-2 px-4 rounded"
+            <div className="mt-4 flex">
+                <button className="rounded px-4 py-2 font-bold text-white bg-aqua-500 hover:bg-aqua-600"
                         type="submit"
                         onClick={handleSubmit}
                 >
                     Search
                 </button>
-                <button className="bg-gray-500 hover:bg-gray-600 text-white font-bold py-2 px-4 rounded ml-4">
+                <button className="ml-4 rounded bg-gray-500 px-4 py-2 font-bold text-white hover:bg-gray-600">
                     Reset
                 </button>
             </div>

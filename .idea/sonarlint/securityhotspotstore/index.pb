@@ -52,8 +52,6 @@ Z
 \
 ,client/src/components/profile/InfoSidebar.js,c/7/c707f3c748a300489bc38b4055d490877acd53ef
 ]
--client/src/components/profile/PersonalData.js,0/0/00ed5f8f30fe7675ed75557034cc5aff2f6d43b9
-]
 -client/src/components/profile/CoverSection.js,1/1/117483e31a67c9eaaae6269c14ec2b6cabad5d9b
 B
 client/src/App.css,2/a/2a082b18bfc3afa6b25d6c4584e995e6b6c4ee3e
@@ -85,8 +83,6 @@ _
 /client/src/components/profile/ContentGallery.js,4/1/412ca9cf27b663f621a2a5639be18c734f640bb2
 M
 controllers/userController.js,e/c/ec44b050defa6855748d2a8d6ff06d33bc8bba3a
-R
-"client/src/reducers/userReducer.js,3/a/3af3e9d3f595ac02dfee7e96d822cc0e9c01d450
 R
 "client/src/components/home/Home.js,8/e/8e140dd2d1251bd2c24499e26986a0b37dfcab57
 V
@@ -159,8 +155,6 @@ D
 models/preference.js,c/e/cec1d99c57a1e58f88b0c64c780bc00e4d2d816b
 A
 models/picture.js,1/3/13572076f33c39b994fc2c00ab8949dbd9b098f8
-H
-models/propertyDetail.js,e/e/eec091923df662d6ab182d62e8c85723b62da1a9
 A
 models/service.js,2/9/29d29e353fe8fb6eecc301c964d1f92ac6e981a0
 C
@@ -179,10 +173,6 @@ f
 6migrations/20230406040621-create-phone-verification.js,2/8/28b474b927ded79a89ced1d2aec0fc72d8143992
 C
 client/package.json,a/d/ad8a30996233c30cdd545dbf5f18765b86e6bf64
-9
-	server.js,d/c/dc60ea9ee1ff6246bf342463277d5b914db2883d
-H
-routes/propertyRoutes.js,1/9/19af69cd1f8024e189a785da4a4d0b3d0aa13fa9
 >
 models/user.js,5/8/58952233992370efa7ea98b3ec60c43d2d227d89
 K

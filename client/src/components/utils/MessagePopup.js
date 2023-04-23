@@ -21,13 +21,13 @@ const MessagePopup = ({ successMessage, errorMessage, handleClose }) => {
             </DialogTitle>
             <DialogContent>
                 {successMessage && (
-                    <div className="text-white bg-green-500 p-4 rounded-md flex items-center">
+                    <div className="flex items-center rounded-md bg-green-500 p-4 text-white">
                         <CheckCircleIcon className="mr-2" style={{ color: '#19BA99' }} />
                         {successMessage}
                     </div>
                 )}
                 {errorMessage && (
-                    <div className="text-white bg-red-500 p-4 rounded-md flex items-center">
+                    <div className="flex items-center rounded-md bg-red-500 p-4 text-white">
                         <CancelIcon className="mr-2" style={{ color: 'red' }} />
                         {errorMessage}
                     </div>

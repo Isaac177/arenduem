@@ -39,7 +39,7 @@ const Card = ({ imageSrc, imageAlt, title, subtitle, contentOrder, actions, hand
                     transition: { duration: 0.5 },
                 },
             }}
-            className="mt-10 mb-10 hover:shadow-2xl hover:border hover:border-aqua-500"
+            className="mt-10 mb-10 hover:border-aqua-500 hover:border hover:shadow-2xl"
             onClick={handleClick}
         >
         <div className={`flex ${contentOrder === 'image-first' ? 'flex-row' : 'flex-row-reverse'} justify-between`}>
@@ -47,14 +47,14 @@ const Card = ({ imageSrc, imageAlt, title, subtitle, contentOrder, actions, hand
                     <img src={imageSrc} alt={imageAlt} className={`rounded-l-lg ${contentOrder === 'image-first' ? 'rounded-r-none' : 'rounded-r-lg rounded-l-none cover non-repeat'}`}
                          style={{ width: '700px', height: '400px', objectFit: 'cover', backgroundRepeat: 'no-repeat', filter: 'brightness(50%)' }} />
                     <div style={{ position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%, -50%)', color: '#fff', width: '100%' }}>
-                        <h1 className="text-4xl font-bold m-10">{title}<span className="text-aqua-500">{subtitle}</span></h1>
+                        <h1 className="m-10 text-4xl font-bold">{title}<span className="text-aqua-500">{subtitle}</span></h1>
                     </div>
                 </div>
                 <div className={`flex flex-col w-1/2 ${contentOrder === 'image-first' ? 'rounded-r-lg' : 'rounded-l-lg'} bg-white p-10`}>
                     {actions.map((action, index) => (
-                        <div key={index} className="flex flex-row justify-between gap-8 mt-5 w-full">
+                        <div key={index} className="mt-5 flex w-full flex-row justify-between gap-8">
                             {action.icon}
-                            <div className="flex flex-col w-full">
+                            <div className="flex w-full flex-col">
                                 <h2 className="text-lg font-bold">{action.title}</h2>
                                 <span className="text-xs">{action.description}</span>
                             </div>

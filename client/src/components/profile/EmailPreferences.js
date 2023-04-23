@@ -10,7 +10,7 @@ const EmailPreferences = () => {
 
     return (
         <div className="p-4">
-            <h2 className="text-2xl font-semibold mb-4">Email Preferences</h2>
+            <h2 className="mb-4 text-2xl font-semibold">Email Preferences</h2>
             <div className="flex items-center gap-4">
                 <label htmlFor="emailUpdates" className="text-lg">
                     Receive email updates
@@ -21,10 +21,10 @@ const EmailPreferences = () => {
                     name="emailUpdates"
                     checked={emailUpdates}
                     onChange={toggleEmailUpdates}
-                    className="form-checkbox h-5 w-5 text-green-500"
+                    className="h-5 w-5 text-green-500 form-checkbox"
                 />
             </div>
-            <div className="flex items-start mt-6">
+            <div className="mt-6 flex items-start">
                 <button
                     onClick={toggleEmailUpdates}
                     className="flex items-center justify-center bg-green-500 text-white font-semibold py-2 px-4 rounded-lg

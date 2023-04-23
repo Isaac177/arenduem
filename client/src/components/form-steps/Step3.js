@@ -37,7 +37,7 @@ const Step3 = ({errors}) => {
             <ThemeProvider theme={theme}>
                 {values.propertyType === 'Private apartment' && (
                     <>
-                    <h6 className="text-xl font-bold mt-2">Is your apartment a studio</h6>
+                    <h6 className="mt-2 text-xl font-bold">Is your apartment a studio</h6>
                         <FormControl component="fieldset">
                             <FormGroup row>
                                 <FormControlLabel
@@ -66,13 +66,13 @@ const Step3 = ({errors}) => {
                                     }
                                     label="No"
                                 />
-                                {errors.propertyDetails?.studio && <p className="text-red-500 text-sm">{errors.propertyDetails?.studio}</p>}
+                                {errors.propertyDetails?.studio && <p className="text-sm text-red-500">{errors.propertyDetails?.studio}</p>}
                             </FormGroup>
                         </FormControl>
                     </>
                     )}
                 <div>
-                    <h6 className="text-xl font-bold mt-4 my-2">Size (m²):</h6>
+                    <h6 className="my-2 mt-4 text-xl font-bold">Size (m²):</h6>
                     <Field
                         as={TextField}
                         name="propertyDetails.size"
@@ -88,10 +88,10 @@ const Step3 = ({errors}) => {
                             setFieldValue('propertyDetails.size', sanitizedValue);
                         }}
                     />
-                    {errors.propertyDetails?.size && <p className="text-red-500 text-sm">{errors.propertyDetails?.size}</p>}
+                    {errors.propertyDetails?.size && <p className="text-sm text-red-500">{errors.propertyDetails?.size}</p>}
                 </div>
                 <div>
-                    <h6 className="text-xl font-bold mt-4">Number of Bedrooms:</h6>
+                    <h6 className="mt-4 text-xl font-bold">Number of Bedrooms:</h6>
                     <Field
                         as={TextField}
                         name="propertyDetails.bedrooms"
@@ -108,10 +108,10 @@ const Step3 = ({errors}) => {
                         sx={{ my: 2,  width: '25%' }}
                         errors={errors}
                     />
-                    {errors.propertyDetails?.bedrooms && <p className="text-red-500 text-sm">{errors.propertyDetails?.bedrooms}</p>}
+                    {errors.propertyDetails?.bedrooms && <p className="text-sm text-red-500">{errors.propertyDetails?.bedrooms}</p>}
                 </div>
                 <div>
-                    <h6 className="text-xl font-bold mt-4">Number of Bathrooms:</h6>
+                    <h6 className="mt-4 text-xl font-bold">Number of Bathrooms:</h6>
                     <Field
                         as={TextField}
                         name="propertyDetails.bathrooms"
@@ -124,10 +124,10 @@ const Step3 = ({errors}) => {
                         sx={{ my: 2,  width: '25%'}}
                         errors={errors}
                     />
-                    {errors.propertyDetails?.bathrooms && <p className="text-red-500 text-sm">{errors.propertyDetails?.bathrooms}</p>}
+                    {errors.propertyDetails?.bathrooms && <p className="text-sm text-red-500">{errors.propertyDetails?.bathrooms}</p>}
                 </div>
                 <div>
-                    <h6 className="text-xl font-bold mt-4">Maximum number of roommates:</h6>
+                    <h6 className="mt-4 text-xl font-bold">Maximum number of roommates:</h6>
                     <Field
                         as={TextField}
                         name="propertyDetails.roommates"
@@ -145,11 +145,11 @@ const Step3 = ({errors}) => {
                         sx={{ my: 2,  width: '25%' }}
                         errors={errors}
                     />
-                    {errors.propertyDetails?.roommates && <p className="text-red-500 text-sm">{errors.propertyDetails?.roommates}</p>}
+                    {errors.propertyDetails?.roommates && <p className="text-sm text-red-500">{errors.propertyDetails?.roommates}</p>}
                 </div>
 
                 <div>
-                    <h6 className="text-xl font-bold mt-4">Is the property furnished?</h6>
+                    <h6 className="mt-4 text-xl font-bold">Is the property furnished?</h6>
                     <FormGroup>
                         <FormControlLabel
                             control={
@@ -177,11 +177,11 @@ const Step3 = ({errors}) => {
                             }
                             label="No"
                         />
-                        {errors.propertyDetails?.furnished && <p className="text-red-500 text-sm">{errors.propertyDetails?.furnished}</p>}
+                        {errors.propertyDetails?.furnished && <p className="text-sm text-red-500">{errors.propertyDetails?.furnished}</p>}
                     </FormGroup>
                 </div>
                 <div>
-                    <h6 className="text-xl font-bold mt-4">Bed type</h6>
+                    <h6 className="mt-4 text-xl font-bold">Bed type</h6>
                     <FormControl fullWidth>
                         <FormGroup row>
                             {[
@@ -206,12 +206,12 @@ const Step3 = ({errors}) => {
                                     label={option.label}
                                 />
                             ))}
-                    {errors.propertyDetails?.bedType && <p className="text-red-500 text-sm">{errors.propertyDetails?.bedType}</p>}
+                    {errors.propertyDetails?.bedType && <p className="text-sm text-red-500">{errors.propertyDetails?.bedType}</p>}
                         </FormGroup>
                     </FormControl>
                 </div>
                 <div>
-                    <h6 className="text-xl font-bold my-2">Property amenities</h6>
+                    <h6 className="my-2 text-xl font-bold">Property amenities</h6>
                     <FormGroup row>
                         {amenities.map((amenity) => (
                             <div
@@ -233,13 +233,13 @@ const Step3 = ({errors}) => {
                                     }
                                     label={amenity.label}
                                 />
-                    {errors.propertyAmenities?.[amenity.name] && <p className="text-red-500 text-sm">{errors.propertyAmenities?.[amenity.name]}</p>}
+                    {errors.propertyAmenities?.[amenity.name] && <p className="text-sm text-red-500">{errors.propertyAmenities?.[amenity.name]}</p>}
                             </div>
                         ))}
                     </FormGroup>
                 </div>
                 <div>
-                    <h6 className="text-xl font-bold my-4">House rules</h6>
+                    <h6 className="my-4 text-xl font-bold">House rules</h6>
                     <FormGroup row>
                         {houseRules.map((rule) => (
                             <div key={rule.name} className={iconStyles(values.houseRules[rule.name])}>
@@ -256,7 +256,7 @@ const Step3 = ({errors}) => {
                                     }
                                     label={rule.label}
                                 />
-                    {errors.houseRules?.[rule.name] && <p className="text-red-500 text-sm">{errors.houseRules?.[rule.name]}</p>}
+                    {errors.houseRules?.[rule.name] && <p className="text-sm text-red-500">{errors.houseRules?.[rule.name]}</p>}
                             </div>
                         ))}
                     </FormGroup>

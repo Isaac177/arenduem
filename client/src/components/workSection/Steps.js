@@ -15,16 +15,16 @@ const Steps = () => {
                 {steps.map((step, index) => (
                     <motion.div
                         key={index}
-                        className="bg-white shadow-lg rounded-lg p-6 flex flex-col items-center"
+                        className="flex flex-col items-center rounded-lg bg-white p-6 shadow-lg"
                         onClick={handleClick}
                         animate={{ y: showAnimation ? -10 : 0 }}
                         transition={{ duration: 0.5 }}
                     >
-                        <div className="bg-indigo-500 text-white rounded-full p-3 mb-4">
+                        <div className="mb-4 rounded-full bg-indigo-500 p-3 text-white">
                             {step.icon}
                         </div>
-                        <h3 className="text-xl font-bold mb-2">{step.title}</h3>
-                        <p className="text-gray-600 text-center">{step.description}</p>
+                        <h3 className="mb-2 text-xl font-bold">{step.title}</h3>
+                        <p className="text-center text-gray-600">{step.description}</p>
                     </motion.div>
                 ))}
             </div>

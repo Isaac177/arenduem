@@ -58,11 +58,11 @@ const Step7 = () => {
 
     return (
         <div>
-            <h1 className="text-3xl font-bold mt-4 text-aqua-500">
+            <h1 className="mt-4 text-3xl font-bold text-aqua-500">
                 Phone Verification
             </h1>
             <ThemeProvider theme={theme}>
-                <h6 className="text-xl font-bold my-4">Country</h6>
+                <h6 className="my-4 text-xl font-bold">Country</h6>
                 <FormControl fullWidth>
                     <Autocomplete
                         getItemValue={(item) => item}
@@ -141,7 +141,7 @@ const Step7 = () => {
 
                 <button
                     type="button"
-                    className="bg-aqua-500 text-white px-4 py-2 rounded-md font-medium text-sm hover:bg-aqua-600"
+                    className="rounded-md px-4 py-2 text-sm font-medium text-white bg-aqua-500 hover:bg-aqua-600"
                     onClick={handleSendCodeClick}
                 >
                     {buttonText}

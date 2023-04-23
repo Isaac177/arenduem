@@ -3,11 +3,11 @@ import { NavLink } from 'react-router-dom';
 
 const OwnerHeader = () => {
     return (
-        <header className="backdrop-blur-lg text-white bg-primary-800 bg-opacity-50 z-100">
+        <header className="bg-opacity-50 text-white backdrop-blur-lg bg-primary-800 z-100">
             <div className="container mx-auto flex flex-wrap items-center justify-between">
-                <div className="text-lg lg:text-lg font-bold text-center text-white tracking-tight cursor-pointer relative">
+                <div className="relative cursor-pointer text-center text-lg font-bold tracking-tight text-white lg:text-lg">
                     arend<span className="text-aqua-500">Yem</span>
-                    <span className="absolute top-0 left-0 right-0 bottom-0 text-aqua-500 shadow-glow"></span>
+                    <span className="absolute top-0 right-0 bottom-0 left-0 text-aqua-500 shadow-glow"></span>
                 </div>
                 <NavLink
                     to="/list-your-room"

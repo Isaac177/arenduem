@@ -27,18 +27,18 @@ const UploadImageForm = ({ isModalOpen, handleUploadImage, selectedFile, handleF
         >
             {({ isSubmitting }) => (
                 <motion.div
-                    className="fixed top-0 left-0 w-full h-full bg-black bg-opacity-50 flex justify-center items-center"
+                    className="fixed top-0 left-0 flex h-full w-full items-center justify-center bg-black bg-opacity-50"
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
                     exit={{ opacity: 0 }}
                 >
                     <motion.div
-                        className="bg-white rounded-lg p-6 flex flex-col items-center"
+                        className="flex flex-col items-center rounded-lg bg-white p-6"
                         initial={{ y: -50, opacity: 0 }}
                         animate={{ y: 0, opacity: 1 }}
                         exit={{ y: 50, opacity: 0 }}
                     >
-                        <h2 className="text-lg font-bold mb-4">Upload Image</h2>
+                        <h2 className="mb-4 text-lg font-bold">Upload Image</h2>
                         <div className="mb-4">
                             <input
                                 type="file"
@@ -47,13 +47,13 @@ const UploadImageForm = ({ isModalOpen, handleUploadImage, selectedFile, handleF
                                 accept="image/png,image/jpeg,image/gif"
                             />
                         </div>
-                        <div className="flex flex-row items-center mb-4">
+                        <div className="mb-4 flex flex-row items-center">
                             <Field type="checkbox" name="isMain" id="isMain" className="mr-2" />
                             <label htmlFor="isMain" className="ml-2">
                                 Is Main
                             </label>
                         </div>
-                        <div className="flex flex-row items-center mb-4">
+                        <div className="mb-4 flex flex-row items-center">
                             <Field type="checkbox" name="isCover" id="isCover" className="mr-2" />
                             <label htmlFor="isCover" className="ml-2">
                                 Is Cover
@@ -62,15 +62,15 @@ const UploadImageForm = ({ isModalOpen, handleUploadImage, selectedFile, handleF
                         <div className="flex flex-row justify-center">
                             <button
                                 type="submit"
-                                className="bg-aqua-500 hover:bg-aqua-700 text-white font-bold py-2 px-4 rounded-full mr-4 cursor-pointer"
+                                className="mr-4 cursor-pointer rounded-full px-4 py-2 font-bold text-white bg-aqua-500 hover:bg-aqua-700"
                                 disabled={!selectedFile || isSubmitting}
                             >
                                 {isSubmitting ? 'Uploading...' : 'Upload'}
-                                <FiCheck className="inline-block align-text-top ml-2" />
+                                <FiCheck className="ml-2 inline-block align-text-top" />
                             </button>
                             <button
                                 type="button"
-                                className="bg-gray-200 hover:bg-gray-300 text-gray-700 font-bold py-2 px-4 rounded-full"
+                                className="rounded-full bg-gray-200 px-4 py-2 font-bold text-gray-700 hover:bg-gray-300"
                                 onClick={() => dispatch(setModalOpen(!isModalOpen))}
                             >
                                 Cancel

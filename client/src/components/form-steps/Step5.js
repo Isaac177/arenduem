@@ -12,11 +12,11 @@ const Step5 = () => {
         onDrop: (acceptedFiles) => {
             setFieldValue(
                 'propertyDetails.pictures',
-                acceptedFiles.map((file) =>
-                    Object.assign(file, {
-                        preview: URL.createObjectURL(file),
-                    })
-                )
+                acceptedFiles.map((file) => ({
+                    path: file.path,
+                    size: file.size,
+                    preview: URL.createObjectURL(file),
+                }))
             );
         },
     });
@@ -31,10 +31,10 @@ const Step5 = () => {
 
     return (
         <ThemeProvider theme={theme}>
-            <h6 className="text-xl font-bold mt-4 text-aqua-500">Pictures</h6>
+            <h6 className="mt-4 text-xl font-bold text-aqua-500">Pictures</h6>
             <div
                 {...getRootProps()}
-                className="border-2 border-dashed border-gray-400 h-60 w-full flex flex-col justify-center items-center rounded-lg"
+                className="flex h-60 w-full flex-col items-center justify-center rounded-lg border-2 border-dashed border-gray-400"
             >
                 <input {...getInputProps()} />
                 <p className="text-sm font-medium">
@@ -42,14 +42,14 @@ const Step5 = () => {
                 </p>
                 <button
                     type="button"
-                    className="text-sm font-medium bg-aqua-600 text-white px-4 py-2 rounded-md mt-4 hover:bg-aqua-700"
+                    className="mt-4 rounded-md px-4 py-2 text-sm font-medium text-white bg-aqua-600 hover:bg-aqua-700"
                     onClick={open}
                 >
                     Browse Images
                 </button>
             </div>
             <aside>
-                <h6 className="text-md font-bold mt-4">Selected Files</h6>
+                <h6 className="mt-4 font-bold text-md">Selected Files</h6>
                 <ul>{files}</ul>
             </aside>
 {/*

@@ -63,6 +63,7 @@ app.get('/users/:userId/interests', interestController.getInterests, interestRou
 
 app.post('/users/:userId/properties', propertyController.createProperty, propertyRoutes);
 app.get('/users/:userId/properties', propertyController.getProperties, propertyRoutes);
+app.delete('/users/:userId/properties/:propertyId', propertyController.deleteProperty, propertyRoutes);
 
 const PORT = 8000;
 app.listen(PORT, () => {

@@ -21,16 +21,16 @@ const FullSizeImage = ({ src, alt, onClose, onPrev, onNext, isPrevDisabled, isNe
     return (
         <div className="fixed inset-0 z-50 flex items-center justify-center">
             <div className="absolute inset-0 bg-black opacity-75" onClick={onClose}></div>
-            <div ref={containerRef} className="relative h-3/4 w-3/4 max-h-full max-w-full">
+            <div ref={containerRef} className="relative h-3/4 max-h-full w-3/4 max-w-full">
                 <button
-                    className="absolute top-0 right-0 bg-aqua-500 text-white p-2 rounded-full hover:bg-aqua-700"
+                    className="absolute top-0 right-0 rounded-full p-2 text-white bg-aqua-500 hover:bg-aqua-700"
                     onClick={onClose}
                 >
                     <BsX />
                 </button>
-                <div className="h-full flex items-center justify-between">
+                <div className="flex h-full items-center justify-between">
                     <button
-                        className="bg-aqua-500 text-white p-2 rounded-full hover:bg-aqua-700"
+                        className="rounded-full p-2 text-white bg-aqua-500 hover:bg-aqua-700"
                         onClick={onPrev}
                         disabled={isPrevDisabled}
                     >
@@ -39,7 +39,7 @@ const FullSizeImage = ({ src, alt, onClose, onPrev, onNext, isPrevDisabled, isNe
                     <img src={`http://localhost:8000/${src}`}
                          alt={alt} className="h-full" />
                     <button
-                        className="bg-aqua-500 text-white p-2 rounded-full hover:bg-aqua-700"
+                        className="rounded-full p-2 text-white bg-aqua-500 hover:bg-aqua-700"
                         onClick={onNext}
                         disabled={isNextDisabled}
                     >

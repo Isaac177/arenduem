@@ -96,6 +96,7 @@ const PopupForm = ({ isOpen, onClose }) => {
     const [step, setStep] = useState(0);
     const [startDate, setStartDate] = useState(null);
     const [endDate, setEndDate] = useState(null);
+    const [showMessage, setShowMessage] = useState(false);
 
     const dispatch = useDispatch();
     const successMessage = useSelector((state) => state.property.successMessage);
@@ -246,7 +247,7 @@ const PopupForm = ({ isOpen, onClose }) => {
                                     size={80}
                                 />
                             </CloseButton>
-                            {step === 0 ? ''  : <h1 className="text-2xl font-bold text-center mb-4">Property Type: {values.propertyType}</h1>}
+                            {step === 0 ? ''  : <h1 className="mb-4 text-center text-2xl font-bold">Property Type: {values.propertyType}</h1>}
                             <Title>Step {step + 1} of {totalSteps}</Title>
                             <ProgressBar step={step} totalSteps={totalSteps} />
                             {step === 0 && <Step1 fieldName="propertyType" step={step} setStep={setStep} />}
@@ -266,12 +267,12 @@ const PopupForm = ({ isOpen, onClose }) => {
                                     </div>
                                 </Grid>
                                 <Grid item xs={12} sm={6}>
-                                    {step === 1 && <img src={location} alt="location" className="mx-auto cover w-96 object-center object-cover animate-pulse" loading="lazy"/>}
-                                    {step === 2 && <img src={Apartment} alt="Apartment" className="mx-auto cover w-96 object-center object-cover animate-pulse" loading="lazy"/>}
-                                    {step === 3 && <img src={available} alt="available" className="mx-auto cover w-96 object-cover object-center animate-pulse" loading="lazy"/>}
-                                    {step === 4 && <img src={formImg} alt="formImg" className="mx-auto cover h-96 object-cover object-center animate-pulse" loading="lazy"/>}
-                                    {step === 5 && <img src={peopleImg} alt="gender" className="mx-auto cover h-96 object-cover object-center animate-pulse" loading="lazy"/>}
-                                    {step === 6 && <img src={phone} alt="phone" className="mx-auto cover h-96 object-cover object-center animate-pulse" loading="lazy"/>}
+                                    {step === 1 && <img src={location} alt="location" className="mx-auto w-96 animate-pulse object-cover object-center cover" loading="lazy"/>}
+                                    {step === 2 && <img src={Apartment} alt="Apartment" className="mx-auto w-96 animate-pulse object-cover object-center cover" loading="lazy"/>}
+                                    {step === 3 && <img src={available} alt="available" className="mx-auto w-96 animate-pulse object-cover object-center cover" loading="lazy"/>}
+                                    {step === 4 && <img src={formImg} alt="formImg" className="mx-auto h-96 animate-pulse object-cover object-center cover" loading="lazy"/>}
+                                    {step === 5 && <img src={peopleImg} alt="gender" className="mx-auto h-96 animate-pulse object-cover object-center cover" loading="lazy"/>}
+                                    {step === 6 && <img src={phone} alt="phone" className="mx-auto h-96 animate-pulse object-cover object-center cover" loading="lazy"/>}
                                 </Grid>
                             </Grid>
 
@@ -280,32 +281,33 @@ const PopupForm = ({ isOpen, onClose }) => {
                                     <button
                                         type="button"
                                         onClick={() => setStep(step - 1)}
-                                        className="bg-gray-500 hover:bg-gray-700 text-white font-bold py-4 px-4 w-80 rounded-lg mr-2">
+                                        className="mr-2 w-80 rounded-lg bg-gray-500 px-4 py-4 font-bold text-white hover:bg-gray-700">
                                         Back
                                     </button>
                                 )}
                                 {step > 0 && (
-                                    <>
                                     <button
                                         className={`bg-green-500 hover:bg-green-700 text-white font-bold py-4 px-4 w-80 rounded-lg 
                                         ${isSubmitting || !isValid ? 'opacity-50 cursor-not-allowed' : ''}`}
                                         disabled={isSubmitting || !isValid}
-                                        onClick={(e) => handleNextStep(e, submitForm, setFieldValue, values)}
+                                        onClick={(e) => {
+                                            handleNextStep(e, submitForm, setFieldValue, values);
+                                            setShowMessage(!showMessage);
+                                        }}
                                         type={step === 7 ? 'submit' : 'button'}
                                     >
                                         {step === 7 ? 'Submit' : 'Next Step'}
                                     </button>
-                                    <MessagePopup
-                                        errorMessage={errorMessage}
-                                        successMessage={successMessage}
-                                        handleClose={handleClose}
-                                    />
-                                    </>
                                 )}
                             </div>
                         </Form>
                     )}
                 </Formik>
+                {showMessage && <MessagePopup
+                    errorMessage={errorMessage}
+                    successMessage={successMessage}
+                    handleClose={handleClose}
+                />}
             </Modal>
         </ModalOverlay>
     );

@@ -26,17 +26,17 @@ const Step2 = ({ errors }) => {
 
     return (
         <div>
-            <h1 className="text-3xl font-bold mt-4 text-aqua-500">Property Address</h1>
+            <h1 className="mt-4 text-3xl font-bold text-aqua-500">Property Address</h1>
             <h6>
                 Tell us about the address of the{' '}
-                <span className="text-aqua-500 mt-2">{values.propertyType}</span>
+                <span className="mt-2 text-aqua-500">{values.propertyType}</span>
             </h6>
-            <div className="grid grid-cols-2 gap-8 mt-4">
+            <div className="mt-4 grid grid-cols-2 gap-8">
                 <div className="flex items-center">
                     <ThemeProvider theme={theme}>
                         <div className="ml-4">
                             <div className="my-4">
-                                <h6 className="text-xl font-bold my-4">
+                                <h6 className="my-4 text-xl font-bold">
                                     Which country is the property located in?
                                 </h6>
                                 <Autocomplete
@@ -82,13 +82,13 @@ const Step2 = ({ errors }) => {
                                     wrapperStyle={{ width: '100%', zIndex: '1000', position: 'relative' }}
                                 />
                                 {errors.propertyAddress?.country && (
-                                    <div className="text-red-500 text-sm">
+                                    <div className="text-sm text-red-500">
                                         {errors.propertyAddress?.country}
                                     </div>
                                         )}
                             </div>
 
-                            <h6 className="text-xl font-bold mt-2">
+                            <h6 className="mt-2 text-xl font-bold">
                                 Which city is the property located in?
                             </h6>
                             <div className="my-4">
@@ -106,12 +106,12 @@ const Step2 = ({ errors }) => {
                                     sx={{zIndex: '0' }}
                                 />
                                 {errors.propertyAddress?.city && (
-                                    <div className="text-red-500 text-sm">
+                                    <div className="text-sm text-red-500">
                                         {errors.propertyAddress?.city}
                                     </div>
                                 )}
                             </div>
-                            <h6 className="text-xl font-bold mt-2">
+                            <h6 className="mt-2 text-xl font-bold">
                                 Which street is the property located in?
                             </h6>
                             <div className="my-4">
@@ -128,13 +128,13 @@ const Step2 = ({ errors }) => {
                                     errors={errors}
                                 />
                                 {errors.propertyAddress?.street && (
-                                    <div className="text-red-500 text-sm">
+                                    <div className="text-sm text-red-500">
                                         {errors.propertyAddress?.street}
                                     </div>
                                 )}
                             </div>
 
-                            <h6 className="text-xl font-bold mt-2">
+                            <h6 className="mt-2 text-xl font-bold">
                                 What is the the {values.propertyType} number or floor?
                             </h6>
                             <div className="my-4">
@@ -155,9 +155,9 @@ const Step2 = ({ errors }) => {
                                     }}
                                     errors={errors}
                                 />
-                                {errors.propertyAddress?.floor && <div className="text-red-500 text-sm">{errors.propertyAddress?.floor}</div>}
+                                {errors.propertyAddress?.floor && <div className="text-sm text-red-500">{errors.propertyAddress?.floor}</div>}
                             </div>
-                            <h6 className="text-xl font-bold mt-2">
+                            <h6 className="mt-2 text-xl font-bold">
                                 What is the apartment number of the property?
                             </h6>
                             <div className="my-4">
@@ -177,7 +177,7 @@ const Step2 = ({ errors }) => {
                                     }}
                                     errors={errors}
                                 />
-                                {errors.propertyAddress?.apartmentNumber && <div className="text-red-500 text-sm">{errors.propertyAddress?.apartmentNumber}</div>}
+                                {errors.propertyAddress?.apartmentNumber && <div className="text-sm text-red-500">{errors.propertyAddress?.apartmentNumber}</div>}
                             </div>
                         </div>
                     </ThemeProvider>

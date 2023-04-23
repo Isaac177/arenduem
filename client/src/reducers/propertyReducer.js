@@ -3,6 +3,7 @@ const initialState = {
     error: null,
     successMessage: '',
     errorMessage: '',
+    isPropertyLoading: false,
 };
 
 const propertyReducer = (state = initialState, action) => {
@@ -27,6 +28,21 @@ const propertyReducer = (state = initialState, action) => {
                 successMessage: '',
                 errorMessage: '',
             };
+
+        case 'GET_PROPERTIES_SUCCESS':
+            return {
+                ...state,
+                property: action.payload,
+                error: null,
+                isPropertyLoading: false,
+            }
+        case 'GET_PROPERTIES_FAILURE':
+            return {
+                ...state,
+                property: null,
+                error: action.payload,
+                isPropertyLoading: false,
+            }
         default:
             return state;
     }

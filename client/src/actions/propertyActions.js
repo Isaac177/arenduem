@@ -13,3 +13,15 @@ export const createProperty = (propertyData) => async (dispatch, getState) => {
     }
 };
 
+export const getProperties = () => async (dispatch, getState) => {
+    try {
+        const { userId } = getState().auth;
+        const response = await axios.get(`${BASE_URL}/users/${userId}/properties`);
+        console.log(response.data);
+        dispatch({ type: 'GET_PROPERTIES_SUCCESS', payload: response.data });
+    } catch (error) {
+        const errorMessage = error.response ? error.response.data.message : error.message;
+        dispatch({ type: 'GET_PROPERTIES_FAILURE', payload: errorMessage });
+    }
+}
+

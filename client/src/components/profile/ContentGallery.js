@@ -192,8 +192,8 @@ const ContentGallery = () => {
 
     return (
         <div>
-            <h1 className="text-2xl font-bold m-4">My Gallery</h1>
-            <div className="flex flex-row items-center gap-4 flex-wrap wrap">
+            <h1 className="m-4 text-2xl font-bold">My Gallery</h1>
+            <div className="flex flex-row flex-wrap items-center gap-4 wrap">
                 {images.map((image, index) => {
                     return (
                         <div key={uuid4()}>
@@ -239,15 +239,15 @@ const ContentGallery = () => {
                     {({ isSubmitting }) => (
                         <Form>
                             <div
-                                className="fixed top-0 left-0 w-full h-full bg-black bg-opacity-50 flex justify-center items-center"
+                                className="fixed top-0 left-0 flex h-full w-full items-center justify-center bg-black bg-opacity-50"
                             >
                                 <motion.div
-                                    className="bg-white rounded-lg p-6 flex flex-col items-center"
+                                    className="flex flex-col items-center rounded-lg bg-white p-6"
                                     initial={{ transform: 'scale(0.5)', opacity: 0 }}
                                     animate={{ transform: 'scale(1)', opacity: 1 }}
                                     exit={{ transform: 'scale(0.5)', opacity: 0 }}
                                 >
-                                    <h2 className="text-lg font-bold mb-4">Upload Image</h2>
+                                    <h2 className="mb-4 text-lg font-bold">Upload Image</h2>
                                     <div className="mb-4">
                                         <input
                                             type="file"
@@ -256,13 +256,13 @@ const ContentGallery = () => {
                                             accept="image/png,image/jpeg,image/gif"
                                         />
                                     </div>
-                                    <div className="flex flex-row items-center mb-4">
+                                    <div className="mb-4 flex flex-row items-center">
                                         <Field type="checkbox" name="isMain" id="isMain" className="mr-2" />
                                         <label htmlFor="isMain" className="ml-2">
                                             Is Main
                                         </label>
                                     </div>
-                                    <div className="flex flex-row items-center mb-4">
+                                    <div className="mb-4 flex flex-row items-center">
                                         <Field type="checkbox" name="isCover" id="isCover" className="mr-2" />
                                         <label htmlFor="isCover" className="ml-2">
                                             Is Cover
@@ -271,15 +271,15 @@ const ContentGallery = () => {
                                     <div className="flex flex-row justify-center">
                                         <button
                                             type="submit"
-                                            className="bg-aqua-500 hover:bg-aqua-700 text-white font-bold py-2 px-4 rounded-full mr-4 cursor-pointer"
+                                            className="mr-4 cursor-pointer rounded-full px-4 py-2 font-bold text-white bg-aqua-500 hover:bg-aqua-700"
                                             disabled={!selectedFile || isSubmitting}
                                         >
                                             {isSubmitting ? 'Uploading...' : 'Upload'}
-                                            <FiCheck className="inline-block align-text-top ml-2" />
+                                            <FiCheck className="ml-2 inline-block align-text-top" />
                                         </button>
                                         <button
                                             type="button"
-                                            className="bg-gray-200 hover:bg-gray-300 text-gray-700 font-bold py-2 px-4 rounded-full"
+                                            className="rounded-full bg-gray-200 px-4 py-2 font-bold text-gray-700 hover:bg-gray-300"
                                             onClick={() => dispatch(setModalOpen(!isModalOpen))}
                                         >
                                             Cancel
@@ -313,9 +313,9 @@ const ContentGallery = () => {
                 draggable
                 pauseOnHover
             />
-            <div className="flex flex-row justify-center items-center m-4">
+            <div className="m-4 flex flex-row items-center justify-center">
                 <button
-                    className="bg-aqua-500 hover:bg-aqua-700 text-white font-bold py-2 px-4 rounded-full p-2 flex items-center"
+                    className="flex items-center rounded-full p-2 px-4 py-2 font-bold text-white bg-aqua-500 hover:bg-aqua-700"
                     onClick={() => dispatch(setModalOpen(!isModalOpen))}
                 >
                     <BsPlus className="inline-block align-text-top" />

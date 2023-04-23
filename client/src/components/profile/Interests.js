@@ -41,9 +41,9 @@ const InterestList = () => {
     return (
         <div className="flex flex-wrap">
             <div className="flex items-center justify-center p-5 text-center">
-                <h1 className="text-2xl font-bold mb-2">My Interests</h1>
+                <h1 className="mb-2 text-2xl font-bold">My Interests</h1>
             </div>
-            <div className="flex items-center justify-center flex-row flex-wrap">
+            <div className="flex flex-row flex-wrap items-center justify-center">
                 {interestsArray.map((interest) => (
                     <InterestCard
                         key={uuid4()}
@@ -65,18 +65,18 @@ const InterestList = () => {
                         />
                     ))}
             </div>
-            <div className="block p-5 ">
+            <div className="block p-5">
                 <p className="mr-1 text-sm">Or add new interest</p>
-                <div className="flex flex-start items-center m-4 rounded-md py-1 px-2 bg-gray-200">
+                <div className="m-4 flex items-center rounded-md bg-gray-200 px-2 py-1 flex-start">
                     <input
                         type="text"
                         placeholder="Add new interest"
-                        className="outline-none border-0 bg-transparent mr-1"
+                        className="mr-1 border-0 bg-transparent outline-none"
                         value={newInterest}
                         onChange={handleNewInterestChange}
                     />
                     <FaPlusCircle
-                        className="w-5 h-5 cursor-pointer"
+                        className="h-5 w-5 cursor-pointer"
                         onClick={handleAddInterest}
                     />
                 </div>

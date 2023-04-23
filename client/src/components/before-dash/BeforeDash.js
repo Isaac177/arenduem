@@ -32,22 +32,22 @@ const BeforeDash = () => {
 
     const roommateActions = [
         {
-            icon: <SearchOutlinedIcon className="text-aqua-500 mt-2" />,
+            icon: <SearchOutlinedIcon className="mt-2 text-aqua-500" />,
             title: 'Search for houses',
             description: 'Use our search filters to find houses that match your preferences',
         },
         {
-            icon: <GroupOutlinedIcon className="text-aqua-500 mt-2" />,
+            icon: <GroupOutlinedIcon className="mt-2 text-aqua-500" />,
             title: 'Find roommates',
             description: 'Find roommates that match your preferences and start chatting with them',
         },
         {
-            icon: <ChatOutlinedIcon className="text-aqua-500 mt-2" />,
+            icon: <ChatOutlinedIcon className="mt-2 text-aqua-500" />,
             title: 'Chat with roommates',
             description: 'Chat with your potential roommates to get to know them better',
         },
         {
-            icon: <MoveUpOutlinedIcon className="text-aqua-500 mt-2" />,
+            icon: <MoveUpOutlinedIcon className="mt-2 text-aqua-500" />,
             title: 'Move in',
             description: 'Once you find a house and roommates, you can move in and start living together',
         },
@@ -55,17 +55,17 @@ const BeforeDash = () => {
 
     const houseOwnerActions = [
         {
-            icon: <SearchOutlinedIcon className="text-aqua-500 mt-2" />,
+            icon: <SearchOutlinedIcon className="mt-2 text-aqua-500" />,
             title: 'List your house',
             description: 'Create a listing for your house to attract potential roommates',
         },
         {
-            icon: <GroupOutlinedIcon className="text-aqua-500 mt-2" />,
+            icon: <GroupOutlinedIcon className="mt-2 text-aqua-500" />,
             title: 'Find roommates',
             description: 'Find roommates that match your preferences and start chatting with them',
         },
         {
-            icon: <ChatOutlinedIcon className="text-aqua-500 mt-2" />,
+            icon: <ChatOutlinedIcon className="mt-2 text-aqua-500" />,
             title: 'Chat with roommates',
             description: 'Chat with your potential roommates to get to know them better',
         },
@@ -85,8 +85,8 @@ const BeforeDash = () => {
             style={{ width: '1080px', margin: '0 auto' }}
             className="block"
         >
-            <h1 className="text-4xl text-primary-900 font-bold mt-10">Choose your card</h1>
-            <div className="flex flex-col w-full hover:cursor-pointer gap-10">
+            <h1 className="mt-10 text-4xl font-bold text-primary-900">Choose your card</h1>
+            <div className="flex w-full flex-col gap-10 hover:cursor-pointer">
                 <Card
                     imageSrc={studentImg}
                     imageAlt="Student looking for a roommate"

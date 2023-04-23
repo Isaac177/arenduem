@@ -18,7 +18,7 @@ function InfoSidebar() {
 
     return (
         <>
-            <div className="fixed flex flex-col w-64 rounded-tl-lg bg-primaryGrey-600 h-screen rounded-bl-lg">
+            <div className="fixed flex h-screen w-64 flex-col rounded-tl-lg rounded-bl-lg bg-primaryGrey-600">
                 <div className="flex flex-col justify-between">
                 <ul className="flex flex-col">
                     <li

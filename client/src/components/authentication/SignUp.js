@@ -45,11 +45,11 @@ const SignUp = () => {
     };
 
     return (
-        <div className="flex items-center justify-center h-screen">
-            <div className="w-full max-w-xs bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
-                <h1 className="text-3xl text-center font-bold mb-4">Sign Up</h1>
+        <div className="flex h-screen items-center justify-center">
+            <div className="mb-4 w-full max-w-xs rounded bg-white px-8 pt-6 pb-8 shadow-md">
+                <h1 className="mb-4 text-center text-3xl font-bold">Sign Up</h1>
                 {success ? (
-                    <p className="text-green-600 mb-4">Sign up successful!</p>
+                    <p className="mb-4 text-green-600">Sign up successful!</p>
                 ) : null}
                 <Formik
                     initialValues={{ firstName: '', lastName: '', email: '', password: '', confirmPassword: '', isOwner: false }}
@@ -59,7 +59,7 @@ const SignUp = () => {
                     {({ errors, touched, isSubmitting, values, setFieldValue }) => (
                         <Form>
                             <div className="mb-4">
-                                <label className="block text-gray-700 font-bold mb-2" htmlFor="name">
+                                <label className="mb-2 block font-bold text-gray-700" htmlFor="name">
                                     First Name
                                 </label>
                                 <Field
@@ -74,11 +74,11 @@ const SignUp = () => {
                                     onChange={(e) => setFieldValue('firstName', e.target.value)}
                                 />
                                 <ErrorMessage name="firstName">
-                                    {msg => <p className="text-red-500 text-xs italic">{msg}</p>}
+                                    {msg => <p className="text-xs italic text-red-500">{msg}</p>}
                                 </ErrorMessage>
                             </div>
                             <div className="mb-4">
-                                <label className="block text-gray-700 font-bold mb-2" htmlFor="name">
+                                <label className="mb-2 block font-bold text-gray-700" htmlFor="name">
                                    Last Name
                                 </label>
                                 <Field
@@ -93,11 +93,11 @@ const SignUp = () => {
                                     onChange={(e) => setFieldValue('lastName', e.target.value)}
                                 />
                                 <ErrorMessage name="lastName">
-                                    {msg => <p className="text-red-500 text-xs italic">{msg}</p>}
+                                    {msg => <p className="text-xs italic text-red-500">{msg}</p>}
                                 </ErrorMessage>
                             </div>
                             <div className="mb-4">
-                                <label className="block text-gray-700 font-bold mb-2" htmlFor="email">
+                                <label className="mb-2 block font-bold text-gray-700" htmlFor="email">
                                     Email
                                 </label>
                                 <Field
@@ -112,12 +112,12 @@ const SignUp = () => {
                                     onChange={(e) => setFieldValue('email', e.target.value)}
                                 />
                                 <ErrorMessage name="email">
-                                    {msg => <p className="text-red-500 text-xs italic">{msg}</p>}
+                                    {msg => <p className="text-xs italic text-red-500">{msg}</p>}
                                 </ErrorMessage>
                             </div>
                             <div className="mb-4">
                                 <label
-                                    className="block text-gray-700 font-bold mb-2"
+                                    className="mb-2 block font-bold text-gray-700"
                                     htmlFor="password"
                                 >
                                     Password
@@ -134,12 +134,12 @@ const SignUp = () => {
                                     onChange={(e) => setFieldValue('password', e.target.value)}
                                 />
                                 <ErrorMessage name="password">
-                                    {msg => <p className="text-red-500 text-xs italic">{msg}</p>}
+                                    {msg => <p className="text-xs italic text-red-500">{msg}</p>}
                                 </ErrorMessage>
                             </div>
                             <div className="mb-4">
                                 <label
-                                    className="block text-gray-700 font-bold mb-2"
+                                    className="mb-2 block font-bold text-gray-700"
                                     htmlFor="confirmPassword"
                                 >
                                     Confirm Password
@@ -156,7 +156,7 @@ const SignUp = () => {
                                     onChange={(e) => setFieldValue('confirmPassword', e.target.value)}
                                 />
                                 <ErrorMessage name="confirmPassword">
-                                    {msg => <p className="text-red-500 text-xs italic">{msg}</p>}
+                                    {msg => <p className="text-xs italic text-red-500">{msg}</p>}
                                 </ErrorMessage>
                             </div>
                             <div className="mb-4 flex items-center">
@@ -169,29 +169,29 @@ const SignUp = () => {
                                     onChange={(e) => setFieldValue('isOwner', e.target.checked)}
                                 />
                                 <label
-                                    className="block text-gray-700 font-bold mb-2"
+                                    className="mb-2 block font-bold text-gray-700"
                                     htmlFor="isOwner"
                                 >
                                     Are you a room owner?
                                 </label>
                                 <ErrorMessage name="isOwner">
-                                    {msg => <p className="text-red-500 text-xs italic">{msg}</p>}
+                                    {msg => <p className="text-xs italic text-red-500">{msg}</p>}
                                 </ErrorMessage>
                             </div>
                             <div className="flex items-center justify-between">
-                                <p className="text-gray-700 text-sm">
+                                <p className="text-sm text-gray-700">
                                     Already have an account ?{' '}
                                     <a
-                                        className="text-aqua-500 hover:text-aqua-700 font-bold"
+                                        className="font-bold text-aqua-500 hover:text-aqua-700"
                                         href="/signin"
                                     >
                                         Login
                                     </a>
                                 </p>
                             </div>
-                            <div className="flex items-center justify-between mt-4">
+                            <div className="mt-4 flex items-center justify-between">
                                 <button
-                                    className="bg-aqua-500 hover:bg-aqua-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+                                    className="rounded px-4 py-2 font-bold text-white bg-aqua-500 hover:bg-aqua-700 focus:shadow-outline focus:outline-none"
                                     type="submit"
                                 >
                                     Sign Up
