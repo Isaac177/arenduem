@@ -107,17 +107,10 @@ B
 config/config.json,b/4/b46af4c0cf9c68fa9c458c1219f7c1d18ec484c2
 \
 ,client/src/components/form-steps/google.scss,8/5/853d0b3c9567cbc383f08e5b9a6197de0997ee4d
-A
-client/.gitignore,e/3/e32ec5c998c4774d8d1bedd59740d14d940c90ec
-:
-
-.gitignore,a/5/a5cc2925ca8258af241be7e5b0381edf30266302
 U
 %client/src/reducers/galleryReducer.js,e/9/e912d891c3367c330e83bd65d1c3d80dc6985263
 [
 +client/src/components/map/MyMapComponent.js,b/8/b87c2732347433ced89f5651b3a0d103f8dd38e3
-4
-.env,3/c/3c84dcdc6bbe3d7817c49dcdc327b926fea1808a
 C
 client/src/index.js,7/6/76cbb38a5cef42611c7af13985f39248682f4aa1
 C
@@ -136,8 +129,6 @@ T
 $client/src/assets/data/houseRules.js,0/c/0c00cfffbaf09f7ae4e0982db49d8d131dacf60f
 W
 'client/src/assets/data/propertyTypes.js,e/9/e96ccfca64ec34238fce3f27bf07d0b66f6ebe8f
-?
-client/src/.env,d/8/d81b4aff313d76306b258d3c4e870a50750b3c32
 H
 client/public/index.html,8/1/818a76598cddfc0ac5e6740251b5b4dc9ff67f2c
 Y
