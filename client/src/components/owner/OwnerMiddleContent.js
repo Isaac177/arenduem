@@ -14,7 +14,7 @@ const OwnerMiddleContent = () => {
 
 
      return (
-        <div className="col-span-8 bg-white rounded-lg h-screen">
+        <div className="col-span-8 bg-white h-screen">
             <MiddlePicture />
         </div>
     );

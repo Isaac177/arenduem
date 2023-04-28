@@ -6,6 +6,8 @@ const picturesRoutes = require('./routes/picturesRoutes');
 const interestRoutes = require('./routes/interestRoutes');
 const propertyRoutes = require('./routes/propertyRoutes');
 const passport = require('passport');
+const multer = require('multer');
+const upload = multer();
 const cors = require('cors');
 const { User, HousingStatus } = require("./models");
 const authController = require("./controllers/authController");
@@ -13,6 +15,7 @@ const userController = require("./controllers/userController");
 const interestController = require("./controllers/interestController");
 const {createProperty} = require("./controllers/propertyController");
 const propertyController = require("./controllers/propertyController");
+const path = require("path");
 require('dotenv').config();
 require('./config/passport')(passport);
 const app = express();
@@ -61,7 +64,7 @@ app.get('/users/:userId/interests', interestController.getInterests, interestRou
 
 // Properties routes
 
-app.post('/users/:userId/properties', propertyController.createProperty, propertyRoutes);
+app.post('/users/:userId/properties', upload.array('pictures'), propertyController.createProperty);
 app.get('/users/:userId/properties', propertyController.getProperties, propertyRoutes);
 app.delete('/users/:userId/properties/:propertyId', propertyController.deleteProperty, propertyRoutes);
 

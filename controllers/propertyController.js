@@ -9,13 +9,21 @@ const {
     Price,
     Service,
     PropertyDetail,
+    PropertyPicture,
     Preference,
     PhoneVerification,
 } = require('../models');
+const path = require("path");
+const fs = require("fs");
+
 
 exports.createProperty = async (req, res) => {
     try {
         const propertyData = req.body;
+
+        console.log('req.body:', req.body);
+        console.log('req.files:', req.files);
+
         const {
             propertyType,
             propertyAddress,
@@ -41,51 +49,67 @@ exports.createProperty = async (req, res) => {
             return res.status(403).json({ message: 'User is not allowed to create a property.' });
         }
 
-
         const property = await Property.create({ propertyType, userId });
 
-        const address = await Address.create({ ...propertyAddress, propertyId: property.id }, {
-            returning: ['id', 'country', 'city', 'street', 'floor', 'apartmentNumber', 'propertyId', 'createdAt', 'updatedAt']
-        });
+        const parsedPropertyAddress = JSON.parse(propertyAddress);
+        const address = await Address.create({ ...parsedPropertyAddress, propertyId: property.id });
 
-        const amenity = await Amenity.create({ ...propertyAmenities, propertyId: property.id }, {
-            returning: ['id', 'propertyId', 'homeType', 'bedroom', 'bathroom', 'roommates', 'livingRoom', 'kitchen', 'wifi', 'tv', 'airConditioning', 'smokeFree', 'laundry', 'elevator', 'parking', 'balcony', 'privateBathroom', 'privateKitchen', 'desktop', 'closet', 'createdAt', 'updatedAt']
-        });
+        const parsedPropertyAmenities = JSON.parse(propertyAmenities);
+        const amenity = await Amenity.create({ ...parsedPropertyAmenities, propertyId: property.id });
 
+        const parsedHouseRules = JSON.parse(houseRules);
+        const houseRule = await HouseRule.create({ ...parsedHouseRules, propertyId: property.id });
 
-        const houseRule = await HouseRule.create({ ...houseRules, propertyId: property.id }, {
-            returning: true
-        });
+        const parsedPropertyAvailability = JSON.parse(propertyAvailability);
+        const availability = await Availability.create({ ...parsedPropertyAvailability, propertyId: property.id });
 
-        const availability = await Availability.create({ ...propertyAvailability, propertyId: property.id }, {
-            returning: true
-        });
+        const parsedPrices = JSON.parse(prices);
+        const price = await Price.create({ ...parsedPrices, propertyId: property.id });
 
-        const price = await Price.create({ ...prices, propertyId: property.id }, {
-            returning: true
-        });
-
-        const service = await Service.create({ ...otherServices, propertyId: property.id }, {
-            returning: true
-        });
+        const parsedOtherServices = JSON.parse(otherServices);
+        const service = await Service.create({ ...parsedOtherServices, propertyId: property.id });
 
         const newPropertyDetails = {
-            ...propertyDetails,
-            pictures: propertyDetails.pictures,
+            ...(propertyDetails),
             propertyId: property.id,
         };
 
-        const propertyDetail = await PropertyDetail.create(newPropertyDetails, {
-            returning: true,
-        });
+        for (const key of Object.keys(propertyData)) {
+            if (key.startsWith('propertyDetails.')) {
+                const detailKey = key.substring('propertyDetails.'.length);
+                newPropertyDetails[detailKey] = JSON.parse(propertyData[key]);
+            }
+        }
 
-        const preference = await Preference.create({ ...preferences, propertyId: property.id }, {
-            returning: true
-        });
+        const propertyDetail = await PropertyDetail.create(newPropertyDetails);
 
-        const phoneVerificationRecord = await PhoneVerification.create({ ...phoneVerification, propertyId: property.id, userId }, {
-            returning: true
-        });
+        const propertyPictures = await Promise.all(
+            req.files
+                .filter(file => file.buffer)
+                .map(async file => {
+                    const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1e9);
+                    const fileExtension = path.extname(file.originalname);
+                    const filename = file.fieldname + '-' + uniqueSuffix + fileExtension;
+                    const filePath = path.join('uploads', filename);
+                    await fs.promises.writeFile(filePath, file.buffer);
+                    return {
+                        propertyDetailId: propertyDetail.id,
+                        fileUrl: filePath,
+                    };
+                })
+        );
+
+        if (propertyPictures.length > 0) {
+            await PropertyPicture.bulkCreate(propertyPictures);
+        } else {
+            console.error('No valid file paths found');
+        }
+
+        const parsedPreferences = JSON.parse(preferences);
+        const preference = await Preference.create({ ...parsedPreferences, propertyId: property.id });
+
+        const parsedPhoneVerification = JSON.parse(phoneVerification);
+        const phoneVerificationRecord = await PhoneVerification.create({ ...parsedPhoneVerification, propertyId: property.id, userId });
 
         res.status(201).json({
             message: 'Property created successfully',
@@ -97,9 +121,12 @@ exports.createProperty = async (req, res) => {
             price,
             service,
             propertyDetail,
+            propertyPictures,
             preference,
             phoneVerification: phoneVerificationRecord,
         });
+
+        console.log('propertyData:', propertyData);
     } catch (error) {
         console.error(error);
         res.status(500).json({ message: 'Server error' });
@@ -119,6 +146,7 @@ exports.getProperties = async (req, res) => {
                 { model: Price },
                 { model: Service },
                 { model: PropertyDetail },
+                { model: PropertyPicture},
                 { model: Preference },
                 { model: PhoneVerification },
             ],

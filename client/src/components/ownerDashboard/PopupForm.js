@@ -220,8 +220,8 @@ const PopupForm = ({ isOpen, onClose }) => {
                         },
                         preferences: {
                             tenantGender: '',
-                            tenantMinimumAge: 0,
-                            tenantMaximumAge: 0,
+                            tenantMinimumAge: 1,
+                            tenantMaximumAge: 100,
                             tenantOccupation: '',
                             tenantDrinkingStatus: '',
                             tenantSmokingStatus: '',
@@ -233,10 +233,11 @@ const PopupForm = ({ isOpen, onClose }) => {
                         }
                     }}
 
-                    validationSchema={getValidationSchemaForStep(step)}
+                    //validationSchema={getValidationSchemaForStep(step)}
                     onSubmit={(values, { setSubmitting }) => {
                         dispatch(createProperty(values));
                         setSubmitting(false);
+                        console.log(JSON.stringify(values, null, 2));
                         onClose();
                     }}
                 >

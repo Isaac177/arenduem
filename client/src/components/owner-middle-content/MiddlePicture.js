@@ -1,19 +1,24 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getProperties } from '../../actions/propertyActions';
+import {apiBaseUrl} from '../../config/config';
+
 
 const MiddlePicture = () => {
     const dispatch = useDispatch();
-    const properties = useSelector((state) => state.property.properties);
+    const properties = useSelector((state) => state.property.property);
+    console.log(properties)
 
     useEffect(() => {
         dispatch(getProperties());
     }, [dispatch]);
 
-    const firstProperty = properties && properties.length > 0 ? properties[0] : null;
-    const images = firstProperty ? firstProperty.PropertyDetail.pictures : [];
+    const firstProperty = properties && properties.properties && properties.properties.length > 0 ? properties.properties[0] : null;
+    const images = firstProperty ? firstProperty.PropertyDetail.pictures.map((picture) => picture.path) : []
+   // const images = firstProperty ? firstProperty.PropertyDetail.pictures : []
 
-    console.log(properties);
+
+    console.log(images)
 
     return (
         <div className="container">
@@ -21,7 +26,7 @@ const MiddlePicture = () => {
                 <div>
                     <img
                         className="w-full h-auto mb-4"
-                        src={images[0].preview}
+                        src={`localhost:8000/uploads/${images[0]}`}
                         alt="room"
                     />
                     <div className="grid grid-cols-4 gap-4">
@@ -29,7 +34,7 @@ const MiddlePicture = () => {
                             <img
                                 key={index}
                                 className="w-full h-auto"
-                                src={image.preview}
+                                src={`localhost:8000/uploads/${image}`}
                                 alt="room"
                             />
                         ))}

@@ -25,6 +25,8 @@
     "country-list": "^2.3.0",
     "date-fns": "^2.29.3",
     "dayjs": "^1.11.7",
+    "dotenv": "^16.0.3",
+    "form-data": "^4.0.0",
     "formik": "^2.2.9",
     "framer-motion": "^10.2.5",
     "google-libphonenumber": "^3.2.32",

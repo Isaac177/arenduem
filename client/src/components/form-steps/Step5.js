@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import { useFormikContext, Field } from 'formik';
 import { useDropzone } from 'react-dropzone';
 import {ThemeProvider, FormControl, TextField} from "@mui/material";
@@ -6,26 +6,26 @@ import theme from "../utils/theme";
 
 const Step5 = () => {
     const { getRootProps, getInputProps, open, acceptedFiles } = useDropzone({
-        accept: 'image/jpeg, image/png',
+        accept: 'image/jpeg, image/png, image/jpg',
         noClick: true,
         noKeyboard: true,
+        name: 'pictures',
         onDrop: (acceptedFiles) => {
-            setFieldValue(
-                'propertyDetails.pictures',
-                acceptedFiles.map((file) => ({
-                    path: file.path,
-                    size: file.size,
-                    preview: URL.createObjectURL(file),
-                }))
-            );
+            setFieldValue('propertyDetails.pictures', acceptedFiles);
         },
     });
 
     const {values, setFieldValue, errors} = useFormikContext();
 
+    useEffect(() => {
+        return () => {
+            values.propertyDetails.pictures.forEach((file) => URL.revokeObjectURL(file.preview));
+        };
+    }, [values.propertyDetails.pictures]);
+
     const files = values.propertyDetails?.pictures?.map((file) => (
-        <li key={file.path}>
-            {file.path} - {file.size} bytes
+        <li key={file.name}>
+            {file.name} - {file.size} bytes
         </li>
     ));
 
@@ -36,7 +36,7 @@ const Step5 = () => {
                 {...getRootProps()}
                 className="flex h-60 w-full flex-col items-center justify-center rounded-lg border-2 border-dashed border-gray-400"
             >
-                <input {...getInputProps()} />
+                <input {...getInputProps({ name: 'pictures' })} />
                 <p className="text-sm font-medium">
                     Drag and drop your images here
                 </p>

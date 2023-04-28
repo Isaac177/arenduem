@@ -37,27 +37,31 @@ const Step6 = () => {
                     </FormGroup>
                 </FormControl>
                 <h6 className="my-4 text-xl font-bold">What is your preferred age range?</h6>
-                <Field name="ageRange">
-                    {({ field, form }) => (
-                        <>
-                            <Slider
-                                value={field.value || [1, 100]}
-                                onChange={(event, newValue) => {
-                                    form.setFieldValue(field.name, newValue);
-                                }}
-                                valueLabelDisplay="auto"
-                                min={1}
-                                max={100}
-                                marks
-                                sx={{m: 2, width: '80%',}}
-                            />
-                            <div className="mx-auto mb-4 flex gap-20">
-                                <p className="text-sm text-gray-500">Minimum age: {field.value?.[0]}</p>
-                                <p className="text-sm text-gray-500">Maximum age: {field.value?.[1]}</p>
-                            </div>
-                        </>
-                    )}
-                </Field>
+                    <div>
+                        <Slider
+                            value={[
+                                values.preferences.tenantMinimumAge || 1,
+                                values.preferences.tenantMaximumAge || 100,
+                            ]}
+                            onChange={(event, newValue) => {
+                                setFieldValue("preferences.tenantMinimumAge", newValue[0]);
+                                setFieldValue("preferences.tenantMaximumAge", newValue[1]);
+                            }}
+                            valueLabelDisplay="auto"
+                            min={1}
+                            max={100}
+                            marks
+                            sx={{ m: 2, width: "80%" }}
+                        />
+                        <div className="mx-auto mb-4 flex gap-20">
+                            <p className="text-sm text-gray-500">
+                                Minimum age: {values.preferences.tenantMinimumAge}
+                            </p>
+                            <p className="text-sm text-gray-500">
+                                Maximum age: {values.preferences.tenantMaximumAge}
+                            </p>
+                        </div>
+                    </div>
                 <h6 className="mt-6 text-xl font-bold">Tenant occupation</h6>
                 <FormControl component="fieldset">
                     <FormGroup row>
