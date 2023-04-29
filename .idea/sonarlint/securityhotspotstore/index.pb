@@ -196,8 +196,6 @@ Y
 T
 $client/src/actions/galleryActions.js,6/9/69787fc62c2a2e530637a617159a5a423f03552a
 Q
-!client/src/actions/userActions.js,7/6/76643767db2d2cb617a2ec33b0b2b0ed9a6a5205
-Q
 !controllers/picturesController.js,8/c/8c2c2185a3bd4258f38368fb5f196f81d2303da5
 A
 models/amenity.js,f/b/fb78172a5759449f12ce75cad971e4c5c921d01b
@@ -211,8 +209,6 @@ K
 client/src/config/config.js,c/5/c53facbee3dd0c0ce5a03a8540b38997ab72b90f
 X
 (node_modules/express/lib/router/index.js,b/f/bf1cc0a5e4b1ab6630f6a1281c6eb3f48b174b92
-k
-;client/src/components/owner-middle-content/MiddlePicture.js,b/8/b8421873f4a002bc0873b7fc0465693430505947
 M
 controllers/authController.js,0/3/0337acf1f1f07013abb1b108a0023e639b60b2e0
 M
@@ -235,8 +231,6 @@ H
 ,migrations/20230406040619-create-property.js,9/c/9cd0bc1389eac001778f1d284d9433c9e472130e
 [
 +migrations/20230406040619-create-address.js,0/7/0752b97874e4c3447bbd026afabe2a91f1748a76
-U
-%client/src/actions/propertyActions.js,7/a/7a0428ce928b984fb54096cd17e42ad50991dbc9
 9
 	server.js,d/c/dc60ea9ee1ff6246bf342463277d5b914db2883d
 :

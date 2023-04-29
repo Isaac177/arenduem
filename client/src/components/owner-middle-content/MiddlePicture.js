@@ -7,15 +7,18 @@ import {apiBaseUrl} from '../../config/config';
 const MiddlePicture = () => {
     const dispatch = useDispatch();
     const properties = useSelector((state) => state.property.property);
+    const userId = useSelector((state) => state.auth.userId);
     console.log(properties)
 
     useEffect(() => {
+        if (userId)
         dispatch(getProperties());
-    }, [dispatch]);
+    }, [dispatch, userId]);
 
     const firstProperty = properties && properties.properties && properties.properties.length > 0 ? properties.properties[0] : null;
-    const images = firstProperty ? firstProperty.PropertyDetail.pictures.map((picture) => picture.path) : []
-   // const images = firstProperty ? firstProperty.PropertyDetail.pictures : []
+    const propertyDetails = firstProperty ? firstProperty.PropertyDetail : null;
+    const propertyPictures = propertyDetails ? propertyDetails.PropertyPictures : [];
+    const images = propertyPictures.map((picture) => picture.fileUrl);
 
 
     console.log(images)
@@ -26,7 +29,7 @@ const MiddlePicture = () => {
                 <div>
                     <img
                         className="w-full h-auto mb-4"
-                        src={`localhost:8000/uploads/${images[0]}`}
+                        src={`http://localhost:8000/${images[0]}`}
                         alt="room"
                     />
                     <div className="grid grid-cols-4 gap-4">
@@ -34,7 +37,7 @@ const MiddlePicture = () => {
                             <img
                                 key={index}
                                 className="w-full h-auto"
-                                src={`localhost:8000/uploads/${image}`}
+                                src={`http://localhost:8000/${image}`}
                                 alt="room"
                             />
                         ))}
