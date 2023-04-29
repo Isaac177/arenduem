@@ -17,6 +17,7 @@ const path = require("path");
 const fs = require("fs");
 
 
+
 exports.createProperty = async (req, res) => {
     try {
         const propertyData = req.body;
@@ -145,8 +146,7 @@ exports.getProperties = async (req, res) => {
                 { model: Availability },
                 { model: Price },
                 { model: Service },
-                { model: PropertyDetail },
-                { model: PropertyPicture},
+                { model: PropertyDetail, include: [{ model: PropertyPicture }] },
                 { model: Preference },
                 { model: PhoneVerification },
             ],

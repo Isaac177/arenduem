@@ -226,8 +226,6 @@ I
 _
 /client/src/components/before-dash/BeforeDash.js,c/5/c54aa272968810a6a921320544791babca704071
 A
-client/.gitignore,e/3/e32ec5c998c4774d8d1bedd59740d14d940c90ec
-A
 client/src/App.js,f/6/f6b8a135eb07bb80aa582994bcf1a8ccacd783ee
 W
 'client/src/views/user/OwnerDashboard.js,1/a/1ae785dfe9ce38e0d280abaab6b0a6337898efe0
@@ -285,3 +283,24 @@ M
 controllers/authController.js,0/3/0337acf1f1f07013abb1b108a0023e639b60b2e0
 H
 models/propertyDetail.js,e/e/eec091923df662d6ab182d62e8c85723b62da1a9
+O
+client/src/assets/data/steps.js,e/3/e3d9152b81a6128aca4e19be543f538f8cdb7c95
+Y
+)client/src/components/form-steps/Step5.js,9/b/9bab67746ea9306be19792f6a7ede4f66f6560a9
+a
+1client/src/components/ownerDashboard/PopupForm.js,5/4/546c2e37a261616eb48f5b52e2222ef828d88316
+[
++migrations/20230406040619-create-address.js,0/7/0752b97874e4c3447bbd026afabe2a91f1748a76
+\
+,migrations/20230406040619-create-property.js,9/c/9cd0bc1389eac001778f1d284d9433c9e472130e
+H
+routes/propertyRoutes.js,1/9/19af69cd1f8024e189a785da4a4d0b3d0aa13fa9
+U
+%client/src/actions/propertyActions.js,7/a/7a0428ce928b984fb54096cd17e42ad50991dbc9
+9
+	server.js,d/c/dc60ea9ee1ff6246bf342463277d5b914db2883d
+:
+
+.gitignore,a/5/a5cc2925ca8258af241be7e5b0381edf30266302
+A
+client/.gitignore,e/3/e32ec5c998c4774d8d1bedd59740d14d940c90ec

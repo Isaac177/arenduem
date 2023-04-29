@@ -4,8 +4,8 @@ const Sequelize = require('sequelize');
 module.exports = (sequelize, DataTypes) => {
     class Address extends Model {
         static associate(models) {
-            models.Property = require('./property')(sequelize, DataTypes);
-            Address.belongsTo(models.Property, { foreignKey: 'propertyId' });
+            /*models.Property = require('./property')(sequelize, DataTypes);
+            Address.hasOne(models.Property, { foreignKey: 'propertyId' });*/
         }
         toJSON() {
             const values = Object.assign({}, this.get());
