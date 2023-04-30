@@ -7,6 +7,10 @@ import PropertyDescription from "./PropertyDescription";
 import PropertyAmenities from "./PropertyAmenity";
 import HouseRules from "./HouseRules";
 import TenantPreferences from "./TenantPreferences";
+import PropertyServices from "./PropertyServices";
+import PropertyAddress from "./PropertyAddress";
+import PropertyAvailability from "./PropertyAvailability";
+import PropertyPrice from "./PropertyPrice";
 
 const OwnerMiddleContent = () => {
     const dispatch = useDispatch();
@@ -29,7 +33,17 @@ const OwnerMiddleContent = () => {
             <PropertyDescription propertyDetails={propertyDetails} />
             <PropertyAmenities firstProperty={firstProperty} />
             <HouseRules firstProperty={firstProperty} />
-            <TenantPreferences firstProperty={firstProperty} />
+            <div className='bg-white rounded-lg p-4 my-4'>
+                <TenantPreferences firstProperty={firstProperty} />
+                <div className="border-b-2 border-gray-200 my-4"></div>
+                <PropertyServices firstProperty={firstProperty} />
+                <div className="border-b-2 border-gray-200 my-4"></div>
+                <PropertyAddress firstProperty={firstProperty} />
+                <div className="border-b-2 border-gray-200 my-4"></div>
+                <PropertyAvailability firstProperty={firstProperty} />
+                <div className="border-b-2 border-gray-200 my-4"></div>
+                <PropertyPrice  firstProperty={firstProperty} />
+            </div>
         </div>
     );
 };

@@ -1,7 +1,6 @@
 import React from 'react';
-import TitleSection from "../owner/TitleSection";
 
-const MiddlePicture = ({ firstProperty, propertyDetails, images }) => {
+const MiddlePicture = ({ images }) => {
     return (
         <div className="container">
             {images.length > 0 && (

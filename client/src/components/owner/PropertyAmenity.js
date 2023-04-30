@@ -11,7 +11,7 @@ const PropertyAmenities = ({ firstProperty }) => {
 
     return (
         <div>
-            <h6 className="my-2 text-xl font-bold">Property amenities</h6>
+            <h6 className="my-2 text-xl font-bold text-white">Property amenities</h6>
             <FormGroup row>
                 {amenities.map((amenity) => (
                     <div

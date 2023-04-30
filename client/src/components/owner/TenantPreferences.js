@@ -16,12 +16,12 @@ const TenantPreferences = ({ firstProperty }) => {
 
     return (
         <div>
-            <h6 className="my-4 text-xl font-bold">Tenant preferences</h6>
+            <h6 className="my-4 text-xl font-bold text-aqua-500">Tenant preferences</h6>
             <FormGroup row>
                 {preferencesData.map((preference) => (
-                    <div key={preference.name} className="flex flex-row gap-2 items-center p-2 m-2">
-                        <p className="text-sm text-gray-500">{preference.label}: </p>
-                        <p className="font-bold">{renderPreferenceValue(preference)}</p>
+                    <div key={preference.name} className="flex flex-col gap-2 items-center p-2 m-2">
+                        <p className="font-bold">{preference.label}</p>
+                        <p className="text-gray-700 text-sm">{renderPreferenceValue(preference)}</p>
                     </div>
                 ))}
             </FormGroup>

@@ -11,7 +11,7 @@ const HouseRules = ({ firstProperty }) => {
 
     return (
         <div>
-            <h6 className="my-4 text-xl font-bold">House rules</h6>
+            <h6 className="my-4 text-xl font-bold text-white">House rules</h6>
             <FormGroup row>
                 {houseRules.map((rule) => (
                     <div key={rule.name} className={iconStyles(firstProperty[rule.name])}>

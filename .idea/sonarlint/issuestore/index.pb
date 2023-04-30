@@ -225,8 +225,6 @@ V
 &client/src/views/user/UserDashboard.js,9/4/94d9df5c9edea51b323d34c7e9393465d540750c
 R
 "client/src/reducers/userReducer.js,3/a/3af3e9d3f595ac02dfee7e96d822cc0e9c01d450
-]
--client/src/components/owner/OwnerAsideLeft.js,2/4/24a74024ec3e303dfd090c459d16a0d164ca318b
 L
 client/src/reducers/index.js,f/d/fddb094e79d9adb9ec669c65c9511e7135f8a137
 ^
