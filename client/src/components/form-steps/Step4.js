@@ -10,7 +10,6 @@ import DatePicker from 'react-datepicker';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCalendarAlt } from '@fortawesome/free-solid-svg-icons';
 import 'react-datepicker/dist/react-datepicker.css';
-import available from "../../assets/img/available.jpg";
 import './custom-datepicker.css';
 import theme from "../utils/theme";
 import { useFormikContext, Field } from 'formik';

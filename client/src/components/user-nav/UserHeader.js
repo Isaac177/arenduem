@@ -36,7 +36,7 @@ const UserHeader = () => {
     }, [dropdownRef]);
 
     return (
-        <header className="bg-opacity-50 text-white backdrop-blur-lg bg-primary-800 z-100">
+        <header className="bg-opacity-50 text-white backdrop-blur-lg bg-primary-800 z-100 py-2">
             <div className="container mx-auto flex flex-wrap items-center">
                 <div className="w-full lg:flex lg:w-auto lg:flex-grow lg:items-center">
                     <h1 className="text-lg lg:text-lg font-bold text-center text-white
@@ -47,7 +47,6 @@ const UserHeader = () => {
                 </div>
                 {isOwner ? (
                     <div className="flex flex-col items-center justify-center bg-gray-200">
-                        {/* Your additional content for owners */}
                     </div>
                 ) : (
                     <>

@@ -29,7 +29,7 @@ const Header = () => {
                 <UserHeader />
             ) : (
                 <header
-                    className={`header bg-primary-900 text-white text-center py-5 ${
+                    className={`header bg-primary-900 text-white text-center py-8 ${
                         shrink ? 'header-shrink' : ''
                     }`}
                 >

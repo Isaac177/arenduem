@@ -217,6 +217,12 @@ const PopupForm = ({ isOpen, onClose }) => {
                             pictures: [],
                             title: '',
                             description: '',
+                            size: 0,
+                            bedrooms: 0,
+                            bathrooms: 0,
+                            roommates: 0,
+                            furnished: false,
+                            bedType: '',
                         },
                         preferences: {
                             tenantGender: '',
