@@ -5,6 +5,8 @@ import MiddlePicture from '../owner-middle-content/MiddlePicture';
 import TitleSection from "./TitleSection";
 import PropertyDescription from "./PropertyDescription";
 import PropertyAmenities from "./PropertyAmenity";
+import HouseRules from "./HouseRules";
+import TenantPreferences from "./TenantPreferences";
 
 const OwnerMiddleContent = () => {
     const dispatch = useDispatch();
@@ -26,6 +28,8 @@ const OwnerMiddleContent = () => {
             <MiddlePicture firstProperty={firstProperty} propertyDetails={propertyDetails} images={images} />
             <PropertyDescription propertyDetails={propertyDetails} />
             <PropertyAmenities firstProperty={firstProperty} />
+            <HouseRules firstProperty={firstProperty} />
+            <TenantPreferences firstProperty={firstProperty} />
         </div>
     );
 };
