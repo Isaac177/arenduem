@@ -16,7 +16,7 @@ import PersonalData from "./components/profile/PersonalData";
 import {useDispatch, useSelector} from "react-redux";
 import BeforeDash from "./components/before-dash/BeforeDash";
 import OwnerDashboard from "./views/user/OwnerDashboard";
-import OwnerRooms from "./components/owner/OwnerRooms";
+import OwnerRooms from "./components/owner-middle-content/OwnerRooms";
 
 
 

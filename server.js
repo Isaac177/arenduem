@@ -15,7 +15,6 @@ const userController = require("./controllers/userController");
 const interestController = require("./controllers/interestController");
 const {createProperty} = require("./controllers/propertyController");
 const propertyController = require("./controllers/propertyController");
-const path = require("path");
 require('dotenv').config();
 require('./config/passport')(passport);
 const app = express();
@@ -66,6 +65,7 @@ app.get('/users/:userId/interests', interestController.getInterests, interestRou
 
 app.post('/users/:userId/properties', upload.array('pictures'), propertyController.createProperty);
 app.get('/users/:userId/properties', propertyController.getProperties, propertyRoutes);
+app.get('/users/:userId/properties', propertyController.getUserProperties, propertyRoutes);
 app.delete('/users/:userId/properties/:propertyId', propertyController.deleteProperty, propertyRoutes);
 
 const PORT = 8000;

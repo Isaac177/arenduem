@@ -39,6 +39,7 @@ const upload = multer({
 
 router.post('/users/:userId/properties', upload.array('pictures'), propertyController.createProperty);
 router.get('/users/:userId/properties', propertyController.getProperties);
+router.get('/users/:userId/properties', propertyController.getUserProperties);
 router.delete('/users/:userId/properties/:propertyId', propertyController.deleteProperty);
 
 module.exports = router;

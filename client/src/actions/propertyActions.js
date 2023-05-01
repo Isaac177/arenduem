@@ -37,6 +37,7 @@ export const createProperty = (propertyData) => async (dispatch, getState) => {
 };
 
 export const getProperties = () => async (dispatch, getState) => {
+    console.log("getProperties action called");
     try {
         const { userId } = getState().auth;
         const response = await axios.get(`${BASE_URL}/users/${userId}/properties`);
@@ -44,6 +45,21 @@ export const getProperties = () => async (dispatch, getState) => {
         console.log(JSON.stringify(response.data));
     } catch (error) {
         const errorMessage = error.response ? error.response.data.message : error.message;
+        console.error("Error in axios request:", error);
         dispatch({ type: 'GET_PROPERTIES_FAILURE', payload: errorMessage });
+    }
+}
+
+export const getUserProperties = () => async (dispatch, getState) => {
+    console.log("getUserProperties action called")
+    try {
+        const { userId } = getState().auth;
+        const response = await axios.get(`${BASE_URL}/users/${userId}/properties`);
+        dispatch({ type: 'GET_USER_PROPERTIES_SUCCESS', payload: response.data });
+        console.log(JSON.stringify(response.data));
+    } catch (error) {
+        const errorMessage = error.response ? error.response.data.message : error.message;
+        console.error("Error in axios request:", error);
+        dispatch({ type: 'GET_USER_PROPERTIES_FAILURE', payload: errorMessage });
     }
 }

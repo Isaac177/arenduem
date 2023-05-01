@@ -43,6 +43,11 @@ const propertyReducer = (state = initialState, action) => {
                 error: action.payload,
                 isPropertyLoading: false,
             }
+        case 'GET_USER_PROPERTIES_SUCCESS':
+            return { ...state, properties: action.payload };
+        case 'GET_USER_PROPERTIES_FAILURE':
+            return { ...state, error: action.payload };
+
         default:
             return state;
     }

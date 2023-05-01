@@ -1,30 +1,28 @@
-import React, { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { getProperties } from '../../actions/propertyActions';
+import React, {useContext} from 'react';
+import { useSelector } from 'react-redux';
+import { useLocation } from 'react-router-dom';
 import MiddlePicture from '../owner-middle-content/MiddlePicture';
-import TitleSection from "./TitleSection";
-import PropertyDescription from "./PropertyDescription";
-import PropertyAmenities from "./PropertyAmenity";
-import HouseRules from "./HouseRules";
-import TenantPreferences from "./TenantPreferences";
-import PropertyServices from "./PropertyServices";
-import PropertyAddress from "./PropertyAddress";
-import PropertyAvailability from "./PropertyAvailability";
-import PropertyPrice from "./PropertyPrice";
+import TitleSection from "../owner-middle-content/TitleSection";
+import PropertyDescription from "../owner-middle-content/PropertyDescription";
+import PropertyAmenities from "../owner-middle-content/PropertyAmenity";
+import HouseRules from "../owner-middle-content/HouseRules";
+import TenantPreferences from "../owner-middle-content/TenantPreferences";
+import PropertyServices from "../owner-middle-content/PropertyServices";
+import PropertyAddress from "../owner-middle-content/PropertyAddress";
+import PropertyAvailability from "../owner-middle-content/PropertyAvailability";
+import PropertyPrice from "../owner-middle-content/PropertyPrice";
+import PropertyContext from "./PropertyContext";
 
 const OwnerMiddleContent = () => {
-    const dispatch = useDispatch();
-    const properties = useSelector((state) => state.property.property);
-    const userId = useSelector((state) => state.auth.userId);
-
-    useEffect(() => {
-        if (userId) dispatch(getProperties());
-    }, [dispatch, userId]);
+    const properties = useContext(PropertyContext);
+    const location = useLocation();
+    const propertyId = location.pathname.split('/')[2]; // Get property ID from the URL
 
     const firstProperty = properties && properties.properties && properties.properties.length > 0 ? properties.properties[0] : null;
     const propertyDetails = firstProperty ? firstProperty.PropertyDetail : null;
     const propertyPictures = propertyDetails ? propertyDetails.PropertyPictures : [];
     const images = propertyPictures.map((picture) => picture.fileUrl);
+    console.log('firstProperty', firstProperty);
 
     return (
         <div className="col-span-8">
@@ -42,7 +40,7 @@ const OwnerMiddleContent = () => {
                 <div className="border-b-2 border-gray-200 my-4"></div>
                 <PropertyAvailability firstProperty={firstProperty} />
                 <div className="border-b-2 border-gray-200 my-4"></div>
-                <PropertyPrice  firstProperty={firstProperty} />
+                <PropertyPrice firstProperty={firstProperty} />
             </div>
         </div>
     );
