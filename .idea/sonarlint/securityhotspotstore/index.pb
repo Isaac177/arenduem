@@ -67,8 +67,6 @@ X
 (migrations/20230211204102-create-user.js,2/9/29597007042cdd6d2b9c281391829ae1c4889cfe
 Y
 )client/src/components/before-dash/Card.js,d/d/ddbe39f2c42f35798e440576a7dade22f8f47398
-D
-routes/userRoutes.js,e/9/e9eb043515685faf25833d70ef475596fc6e333d
 _
 /client/src/components/profile/ContentGallery.js,4/1/412ca9cf27b663f621a2a5639be18c734f640bb2
 R
@@ -117,8 +115,6 @@ H
 +migrations/20230406040620-create-amenity.js,f/4/f4e3c5ada19cc03df21c7a4ddecfa7ae9acb9139
 Y
 )migrations/20230406040620-create-price.js,0/8/08afce664c4c56c3a7a3f574a1b7cf1a6fb5f076
-@
-models/gender.js,e/8/e885ae6c24c10ce4162d8d6bd61c2c8ae7f164e3
 ?
 models/price.js,b/3/b38db4a2eb22cb3ea6e854f364f11198460d6217
 D
@@ -139,8 +135,6 @@ F
 .migrations/20230406040620-create-house-rule.js,a/4/a4487bf9b76ba9617d015b69672964b4ad6ecc12
 f
 6migrations/20230406040621-create-phone-verification.js,2/8/28b474b927ded79a89ced1d2aec0fc72d8143992
->
-models/user.js,5/8/58952233992370efa7ea98b3ec60c43d2d227d89
 K
 models/phoneVerification.js,2/6/264c3270fbbf0dec87356ff0f686b0ab60678f8e
 [
@@ -155,8 +149,6 @@ a
 1client/src/components/ownerDashboard/OwnerHero.js,d/6/d634919b2414f13a5dfd471561e1f291c4bb8a26
 V
 &client/src/views/user/UserDashboard.js,9/4/94d9df5c9edea51b323d34c7e9393465d540750c
-R
-"client/src/reducers/userReducer.js,3/a/3af3e9d3f595ac02dfee7e96d822cc0e9c01d450
 ]
 -client/src/components/profile/PersonalData.js,0/0/00ed5f8f30fe7675ed75557034cc5aff2f6d43b9
 Y
@@ -175,8 +167,6 @@ X
 (node_modules/express/lib/router/index.js,b/f/bf1cc0a5e4b1ab6630f6a1281c6eb3f48b174b92
 M
 controllers/authController.js,0/3/0337acf1f1f07013abb1b108a0023e639b60b2e0
-M
-controllers/userController.js,e/c/ec44b050defa6855748d2a8d6ff06d33bc8bba3a
 _
 /client/src/components/profile/ProfileImgCard.js,9/5/955ff207d08afa9e0f1f407b7863d55afb236eeb
 c
@@ -202,14 +192,10 @@ e
 5migrations/20230428033718-modify_property_pictures.js,7/1/71781325307235b04a9eaa09089698e4651759d8
 I
 models/propertypicture.js,8/f/8f5656de045f10f96af16ed338ff698ba4e8de3a
-Q
-!client/src/actions/userActions.js,7/6/76643767db2d2cb617a2ec33b0b2b0ed9a6a5205
 p
 @migrations/20230428033455-update_property_pictures_references.js,6/5/656629e36b472dd1422631aa13aeb3bc538e5a88
 B
 models/property.js,c/e/ce0364542d1bf1cf36ea5af9aa9b44887cdcebbf
-?
-models/index.js,e/4/e41453b900e7c418643d34a8cb9d68efc0b0ddd6
 r
 Bmigrations/20230428030946-remove-pictures-from-property-details.js,2/0/2025098c48d9eab112fb28a82d59f783d83b64aa
 A

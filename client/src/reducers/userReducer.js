@@ -2,7 +2,11 @@ import {
     FETCH_USER_DATA_SUCCESS,
     FETCH_USER_DATA_FAILURE,
     UPDATE_USER_FIELD,
-    UPDATE_IS_OWNER_SUCCESS, GET_HOUSING_STATUS_FAILURE, GET_HOUSING_STATUS_SUCCESS
+    UPDATE_IS_OWNER_SUCCESS,
+    GET_HOUSING_STATUS_FAILURE,
+    GET_HOUSING_STATUS_SUCCESS,
+    FETCH_USER_INFO_SUCCESS,
+    FETCH_USER_INFO_FAILURE
 } from '../actions/userActions';
 
 export const initialState = {
@@ -63,6 +67,19 @@ const userReducer = (state = initialState, action) => {
                 ...state,
                 error: action.payload,
             };
+
+        case FETCH_USER_INFO_SUCCESS:
+            return {
+                ...state,
+                userInfo: action.payload,
+            }
+
+        case FETCH_USER_INFO_FAILURE:
+            return {
+                ...state,
+                error: action.payload,
+            }
+
         default:
             return state;
     }

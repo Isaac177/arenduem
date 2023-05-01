@@ -20,12 +20,12 @@ const OwnerAsideLeft = () => {
                     {properties && properties.properties && properties.properties.length > 0 && (
                         <Link
                             to={`/property/${properties.properties[0].id}`}
-                            className={`relative block hover:opacity-100 ${
+                            className={`group relative block hover:opacity-100 ${
                                 isActive ? 'border-l-8 pb-4 border-aqua-500' : ''
                             }`}
                             onClick={() => setIsActive(true)}
                         >
-                            <div className="absolute bottom-0 w-full h-20 bg-gray-900 bg-opacity-70 flex justify-center items-center text-white opacity-0 transition-opacity duration-300 ease-in-out z-10">
+                            <div className="absolute bottom-0 w-full h-20 bg-gray-900 bg-opacity-70 flex justify-center items-center text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300 ease-in-out z-20 transform group-hover:translate-y-0 transition-all duration-300">
                                 <h2 className="text-lg font-bold text-center">{propertyTitle}</h2>
                             </div>
                             <img

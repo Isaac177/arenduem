@@ -11,6 +11,8 @@ export const UPDATE_IS_OWNER_SUCCESS = 'UPDATE_IS_OWNER_SUCCESS';
 export const UPDATE_IS_OWNER_FAILURE = 'UPDATE_IS_OWNER_FAILURE';
 export const GET_HOUSING_STATUS_SUCCESS = 'GET_HOUSING_STATUS_SUCCESS';
 export const GET_HOUSING_STATUS_FAILURE = 'GET_HOUSING_STATUS_FAILURE';
+export const FETCH_USER_INFO_SUCCESS = 'FETCH_USER_INFO_SUCCESS';
+export const FETCH_USER_INFO_FAILURE = 'FETCH_USER_INFO_FAILURE';
 
 export const setUserId = (userId) => ({
     type: SET_USER_ID,
@@ -119,5 +121,34 @@ export const getHousingStatus = () => async (dispatch, getState) => {
     }
 };
 
+export const fetchUserInfoById = (userId) => async (dispatch, getState) => {
+    try {
+        const { token } = getState().auth;
+        const response = await axios.get(`${BASE_URL}/${userId}`, {
+            headers: {
+                Authorization: `Bearer ${token}`,
+            },
+        });
+
+        console.log('userInfo', response.data);
+        dispatch({
+            type: FETCH_USER_INFO_SUCCESS,
+            payload: response.data,
+        });
+    } catch (error) {
+        console.error(error);
+        if (error.response && error.response.status === 401) {
+            dispatch({
+                type: FETCH_USER_INFO_FAILURE,
+                payload: error.response.data.message,
+            });
+        } else {
+            dispatch({
+                type: FETCH_USER_INFO_FAILURE,
+                payload: error.message,
+            });
+        }
+    }
+};
 
 

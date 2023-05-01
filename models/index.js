@@ -47,6 +47,7 @@ Object.keys(db).forEach(modelName => {
         db.Property.hasOne(db.PropertyDetail, { foreignKey: 'propertyId' });
         db.Property.hasOne(db.Preference, { foreignKey: 'propertyId' });
         db.Property.hasOne(db.PhoneVerification, { foreignKey: 'propertyId' });
+        db.Property.belongsTo(db.User, { foreignKey: 'userId' });
     }
 
     if (modelName === 'Address') {
@@ -89,7 +90,34 @@ Object.keys(db).forEach(modelName => {
     if (modelName === 'PropertyPicture') {
         db.PropertyPicture.belongsTo(db.PropertyDetail, { foreignKey: 'propertyDetailId' });
     }
-    // Add other associations for other models
+
+      if (modelName === 'User') {
+          db.User.hasOne(db.Gender, { foreignKey: 'userId', as: 'gender' });
+          db.User.hasMany(db.Picture, { foreignKey: 'userId', as: 'pictures' });
+          db.User.hasMany(db.HousingStatus, { foreignKey: 'userId', as: 'housingStatuses' });
+          db.User.hasMany(db.Interest, { foreignKey: 'userId', as: 'interests' });
+          db.User.hasMany(db.Property, { foreignKey: 'userId', as: 'properties' });
+      }
+
+      if (modelName === 'Picture') {
+        db.Picture.belongsTo(db.User, { foreignKey: 'userId' });
+    }
+
+    if (modelName === 'HousingStatus') {
+        db.HousingStatus.belongsTo(db.User, { foreignKey: 'userId' });
+    }
+
+    if (modelName === 'Interest') {
+        db.Interest.belongsTo(db.User, { foreignKey: 'userId' });
+    }
+
+    if (modelName === 'Property') {
+        db.Property.belongsTo(db.User, { foreignKey: 'userId' });
+    }
+
+    if (modelName === 'Gender') {
+        db.Gender.belongsTo(db.User, { foreignKey: 'userId' });
+    }
 
   }
   //console.log(`Associations for ${modelName}:`, db[modelName].associations);
