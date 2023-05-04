@@ -6,7 +6,9 @@ import {
     GET_HOUSING_STATUS_FAILURE,
     GET_HOUSING_STATUS_SUCCESS,
     FETCH_USER_INFO_SUCCESS,
-    FETCH_USER_INFO_FAILURE
+    FETCH_USER_INFO_FAILURE,
+    GET_ALL_USERS_SUCCESS,
+    GET_ALL_USERS_FAILURE,
 } from '../actions/userActions';
 
 export const initialState = {
@@ -80,6 +82,17 @@ const userReducer = (state = initialState, action) => {
                 error: action.payload,
             }
 
+        case GET_ALL_USERS_SUCCESS:
+            return {
+                ...state,
+                allUsers: action.payload,
+            }
+
+        case GET_ALL_USERS_FAILURE:
+            return {
+                ...state,
+                error: action.payload,
+            }
         default:
             return state;
     }

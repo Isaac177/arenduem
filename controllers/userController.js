@@ -146,3 +146,45 @@ exports.getUserInfoById = async (req, res) => {
         res.status(500).json({ message: error.message });
     }
 };
+
+exports.getAllUsers = async (req, res) => {
+    try {
+        const user = await User.findAll( {
+            include: [
+                {model: Gender, as: 'gender'},
+                { model: Picture, as: 'pictures' },
+                { model: HousingStatus, as: 'housingStatuses' },
+                { model: Interest, as: 'interests' },
+                {
+                    model: Property,
+                    as: 'properties',
+                    include: [
+                        { model: Address },
+                        { model: Amenity },
+                        { model: Availability },
+                        { model: HouseRule },
+                        { model: Preference },
+                        { model: Price },
+                        { model: Service },
+                        {
+                            model: PropertyDetail,
+                            include: [{ model: PropertyPicture }],
+                        },
+                        {
+                            model: PhoneVerification,
+                        },
+                    ],
+                },
+            ],
+        });
+        if (!user) {
+            throw new Error('No users found');
+        } else {
+            res.json(user);
+        }
+
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ message: error.message });
+    }
+}

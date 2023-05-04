@@ -136,9 +136,7 @@ exports.createProperty = async (req, res) => {
 
 exports.getProperties = async (req, res) => {
     try {
-        const userId = req.params.userId;
         const properties = await Property.findAll({
-            where: { userId },
             include: [
                 { model: Address },
                 { model: Amenity },
@@ -204,7 +202,6 @@ exports.deleteProperty = async (req, res) => {
             return res.status(404).json({ message: 'Property not found.' });
         }
 
-        // Add the snippet here to delete related records before deleting the property
         await Address.destroy({ where: { propertyId } });
         await Amenity.destroy({ where: { propertyId } });
         await HouseRule.destroy({ where: { propertyId } });
@@ -222,3 +219,28 @@ exports.deleteProperty = async (req, res) => {
         res.status(500).json({ message: 'Server error' });
     }
 }
+
+
+exports.updatePropertyDescription = async (req, res) => {
+    try {
+        const { propertyId } = req.params;
+        const { description } = req.body;
+
+        const propertyDetail = await PropertyDetail.findOne({ where: { propertyId } });
+
+        if (!propertyDetail) {
+            return res.status(404).json({ message: 'Property detail not found for this property.' });
+        }
+
+        await propertyDetail.update({ description });
+
+        res.status(200).json({
+            message: 'Property description updated successfully',
+            propertyDetail,
+        });
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ message: 'Server error' });
+    }
+};
+

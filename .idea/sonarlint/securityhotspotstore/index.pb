@@ -97,8 +97,6 @@ W
 'client/src/assets/data/propertyTypes.js,e/9/e96ccfca64ec34238fce3f27bf07d0b66f6ebe8f
 H
 client/public/index.html,8/1/818a76598cddfc0ac5e6740251b5b4dc9ff67f2c
-Q
-!controllers/interestController.js,5/4/54a7f2a2fb7536a5301aa9d05f93611109b2fc32
 G
 models/housingstatus.js,8/c/8c5d7bb7270a9a30e0541188b3c742d71e790c62
 H
@@ -137,14 +135,10 @@ W
 'client/src/views/user/OwnerDashboard.js,1/a/1ae785dfe9ce38e0d280abaab6b0a6337898efe0
 a
 1client/src/components/ownerDashboard/OwnerHero.js,d/6/d634919b2414f13a5dfd471561e1f291c4bb8a26
-V
-&client/src/views/user/UserDashboard.js,9/4/94d9df5c9edea51b323d34c7e9393465d540750c
 ]
 -client/src/components/profile/PersonalData.js,0/0/00ed5f8f30fe7675ed75557034cc5aff2f6d43b9
 T
 $client/src/actions/galleryActions.js,6/9/69787fc62c2a2e530637a617159a5a423f03552a
-Q
-!controllers/picturesController.js,8/c/8c2c2185a3bd4258f38368fb5f196f81d2303da5
 A
 models/amenity.js,f/b/fb78172a5759449f12ce75cad971e4c5c921d01b
 K
@@ -190,8 +184,6 @@ Y
 )client/src/assets/data/preferencesData.js,1/2/12a05db1dad2af5f821dcd9ab3534660c58d3caa
 h
 8client/src/components/owner-middle-content/HouseRules.js,4/f/4fa3094be48e4623b85d42e9e1532d44376971d0
-H
-routes/picturesRoutes.js,d/5/d5bbc46674c6ad2f5f6a58cd07ddcfe61bb5d0f7
 n
 >client/src/components/owner-middle-content/PropertyServices.js,8/f/8f3b7e67d0a5cae3555da047cb16d5b553f66cf4
 <
@@ -200,8 +192,6 @@ C
 client/src/store.js,4/a/4afe2750c2c347c6e38ea33d5c926b1ae43d2dfb
 ]
 -client/src/components/side-bar/SidebarMenu.js,6/4/64ef7a8200192e39250d0403a734a3ca35d8377d
-Q
-!controllers/propertyController.js,e/7/e7d694fc3ba46a18c2ecc747f60452fd6593b46d
 ]
 -client/src/components/owner/withProperties.js,e/0/e0c5e8155fb85fc6dfca4630cc10ed92969d80aa
 ^
@@ -212,23 +202,13 @@ B
 showAssociation.js,e/4/e4eae156d4dcab428f0c7d427be3a2c9c152e8b2
 T
 $client/src/assets/data/houseRules.js,0/c/0c00cfffbaf09f7ae4e0982db49d8d131dacf60f
-M
-controllers/userController.js,e/c/ec44b050defa6855748d2a8d6ff06d33bc8bba3a
-Q
-!client/src/actions/userActions.js,7/6/76643767db2d2cb617a2ec33b0b2b0ed9a6a5205
-R
-"client/src/reducers/userReducer.js,3/a/3af3e9d3f595ac02dfee7e96d822cc0e9c01d450
 R
 "client/src/components/home/Home.js,8/e/8e140dd2d1251bd2c24499e26986a0b37dfcab57
 T
 $client/src/components/header/Hero.js,1/e/1e618464d759cce8d5b2e8a191c143e5e4838f63
-A
-client/src/App.js,f/6/f6b8a135eb07bb80aa582994bcf1a8ccacd783ee
 ?
 client/src/.env,d/8/d81b4aff313d76306b258d3c4e870a50750b3c32
 C
 client/package.json,a/d/ad8a30996233c30cdd545dbf5f18765b86e6bf64
 F
 routes/openaiRoutes.js,f/d/fd105f6b7c1b61b6a605e1f2868dae7f5c2c0bcf
-9
-	server.js,d/c/dc60ea9ee1ff6246bf342463277d5b914db2883d

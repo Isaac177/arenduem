@@ -13,6 +13,8 @@ export const GET_HOUSING_STATUS_SUCCESS = 'GET_HOUSING_STATUS_SUCCESS';
 export const GET_HOUSING_STATUS_FAILURE = 'GET_HOUSING_STATUS_FAILURE';
 export const FETCH_USER_INFO_SUCCESS = 'FETCH_USER_INFO_SUCCESS';
 export const FETCH_USER_INFO_FAILURE = 'FETCH_USER_INFO_FAILURE';
+export const GET_ALL_USERS_SUCCESS = 'GET_ALL_USERS_SUCCESS';
+export const GET_ALL_USERS_FAILURE = 'GET_ALL_USERS_FAILURE';
 
 export const setUserId = (userId) => ({
     type: SET_USER_ID,
@@ -124,7 +126,7 @@ export const getHousingStatus = () => async (dispatch, getState) => {
 export const fetchUserInfoById = (userId) => async (dispatch, getState) => {
     try {
         const { token } = getState().auth;
-        const response = await axios.get(`${BASE_URL}/${userId}`, {
+        const response = await axios.get(`${BASE_URL}/${userId}/info`, {
             headers: {
                 Authorization: `Bearer ${token}`,
             },
@@ -150,5 +152,36 @@ export const fetchUserInfoById = (userId) => async (dispatch, getState) => {
         }
     }
 };
+
+export const getAllUsers = () => async (dispatch, getState) => {
+    try {
+        const { token } = getState().auth;
+        const response = await axios.get(`${BASE_URL}`, {
+            headers: {
+                Authorization: `Bearer ${token}`,
+            },
+        });
+
+        console.log('allUsers', response.data);
+        dispatch({
+            type: GET_ALL_USERS_SUCCESS,
+            payload: response.data,
+        });
+    } catch (error) {
+        console.error(error);
+        if (error.response && error.response.status === 401) {
+            dispatch({
+                type: GET_ALL_USERS_FAILURE,
+                payload: error.response.data.message,
+            });
+        } else {
+            dispatch({
+                type: GET_ALL_USERS_FAILURE,
+                payload: error.message,
+            });
+        }
+    }
+}
+
 
 

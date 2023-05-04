@@ -12,8 +12,10 @@ const UserHeader = () => {
     const dispatch = useDispatch();
 
     const isOwner = useSelector((state) => state.user.isOwner);
+    const user = useSelector((state) => state.user.userData);
 
-
+    const userPictureIsMain = user.pictures.find(picture => picture.isMain);
+    const userPicture = userPictureIsMain?.fileUrl;
     const handleLogout = async () => {
         try {
             await axios.get('http://localhost:8000/api/auth/signout');
@@ -75,7 +77,7 @@ const UserHeader = () => {
                         >
                             <img
                                 className="mr-2 h-8 w-8 rounded-full"
-                                src="https://via.placeholder.com/24"
+                                src={`http://localhost:8000/${userPicture}` || 'https://via.placeholder.com/150'}
                                 alt="User avatar"
                             />
                             <FiChevronDown size={16} />

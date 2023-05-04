@@ -144,7 +144,6 @@ router.get('/users/:userId/pictures', async (req, res) => {
             },
             include: {
                 model: User,
-                as: 'user'
             }
         });
         res.json(pictures);

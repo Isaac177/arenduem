@@ -11,13 +11,14 @@ import PropertyAddress from "../owner-middle-content/PropertyAddress";
 import PropertyAvailability from "../owner-middle-content/PropertyAvailability";
 import PropertyPrice from "../owner-middle-content/PropertyPrice";
 import PropertyContext from "./PropertyContext";
-import {useSelector} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
+import {getUserProperties, updatePropertyDescription} from "../../actions/propertyActions";
 
 const OwnerMiddleContent = ({handleCallUpdatePopupForm}) => {
-
+    const dispatch = useDispatch();
     const properties = useContext(PropertyContext);
     const location = useLocation();
-    const propertyId = location.pathname.split('/')[2];
+    //const propertyId = location.pathname.split('/')[2];
 
     const firstProperty = properties && properties.properties && properties.properties.length > 0 ? properties.properties[0] : null;
     const propertyDetails = firstProperty ? firstProperty.PropertyDetail : null;
@@ -28,6 +29,12 @@ const OwnerMiddleContent = ({handleCallUpdatePopupForm}) => {
     const propertySuggestionArray = Object.values(propertySuggestions);
     console.log('suggestion', propertySuggestionArray);
 
+    const propertyId = firstProperty ? firstProperty.id : null;
+
+    const handleUpdateDescription = (suggestion) => {
+        dispatch(updatePropertyDescription(propertyId, suggestion.description));
+        dispatch(getUserProperties());
+    };
 
     return (
         <div className="col-span-8">
@@ -55,7 +62,7 @@ const OwnerMiddleContent = ({handleCallUpdatePopupForm}) => {
                             <p key={i} className="text-xs text-amber-800">
                                 {suggestion.description} click{" "}
                                 <span className="text-aqua-500 cursor-pointer"
-                                      onClick={handleCallUpdatePopupForm}
+                                      onClick={()=>handleUpdateDescription(suggestion)}
                                 >here</span> to update
                             </p>
                         ))}

@@ -3,6 +3,7 @@ const router = express.Router();
 const multer = require('multer');
 const propertyController = require('../controllers/propertyController.js');
 const path = require("path");
+const {updatePropertyDescription} = require("../controllers/propertyController");
 
 
 const fileFilter = (req, file, cb) => {
@@ -38,8 +39,9 @@ const upload = multer({
 
 
 router.post('/users/:userId/properties', upload.array('pictures'), propertyController.createProperty);
-router.get('/users/:userId/properties', propertyController.getProperties);
+router.get('/properties', propertyController.getProperties);
 router.get('/users/:userId/properties', propertyController.getUserProperties);
+router.put('/users/:userId/properties/:propertyId/description', updatePropertyDescription);
 router.delete('/users/:userId/properties/:propertyId', propertyController.deleteProperty);
 
 module.exports = router;

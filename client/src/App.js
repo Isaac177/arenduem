@@ -17,6 +17,7 @@ import {useDispatch, useSelector} from "react-redux";
 import BeforeDash from "./components/before-dash/BeforeDash";
 import OwnerDashboard from "./views/user/OwnerDashboard";
 import OwnerRooms from "./components/owner-middle-content/OwnerRooms";
+import PropertyDetails from "./components/dash-content/PropertyDetails";
 
 
 
@@ -25,6 +26,7 @@ const UserDashboardWithAuth = withAuthorization(['user'], BeforeDash);
 function App() {
     const userRole = useSelector(state => state.auth.role);
     const userId = useSelector(state => state.auth.userId);
+    const propertyId = useSelector(state => state.user.allUsers);
 
     return (
         <Router>
@@ -38,6 +40,7 @@ function App() {
                         <Route path="*" element={<NotFound />} />
                         <Route exact path="/user/roles" element={<UserDashboardWithAuth />}/>
                         <Route exact path="/user/owner/*" element={<OwnerDashboard/>}/>
+                        <Route path="/:propertyId" element={<PropertyDetails />} />
                         <Route exact path="/:userId/*" element={<OwnerRooms userId={userId} />}/>
                          <Route exact path="/user/dashboard/*" element={<UserDashboard />}>
                             <Route path="profile/*" element={<CoverProfile />}>

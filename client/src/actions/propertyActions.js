@@ -37,10 +37,8 @@ export const createProperty = (propertyData) => async (dispatch, getState) => {
 };
 
 export const getProperties = () => async (dispatch, getState) => {
-    console.log("getProperties action called");
     try {
-        const { userId } = getState().auth;
-        const response = await axios.get(`${BASE_URL}/users/${userId}/properties`);
+        const response = await axios.get(`${BASE_URL}/properties`);
         dispatch({ type: 'GET_PROPERTIES_SUCCESS', payload: response.data });
         console.log(JSON.stringify(response.data));
     } catch (error) {
@@ -121,7 +119,7 @@ export const fetchSuggestions = async (prompt) => {
 };
 
 export const getDescriptionSuggestion = async (propertyDetails) => {
-    const prompt = `Create a descriptive summary of at least 50 words for the following property details: ${JSON.stringify(propertyDetails)}.`;
+    const prompt = `Create a descriptive summary of at least 150 words for the following property details: ${JSON.stringify(propertyDetails)}.`;
 
     try {
         const response = await fetchSuggestions(prompt);
@@ -130,6 +128,18 @@ export const getDescriptionSuggestion = async (propertyDetails) => {
     } catch (error) {
         console.error("Error fetching description suggestion:", error);
         return null;
+    }
+};
+
+export const updatePropertyDescription = (propertyId, description) => async (dispatch, getState) => {
+    try {
+        const { userId } = getState().auth;
+        const response = await axios.put(`${BASE_URL}/users/${userId}/properties/${propertyId}/description`, { description });
+
+        dispatch({ type: 'UPDATE_PROPERTY_DESCRIPTION_SUCCESS', payload: response.data });
+    } catch (error) {
+        const errorMessage = error.response ? error.response.data.message : error.message;
+        dispatch({ type: 'UPDATE_PROPERTY_DESCRIPTION_FAILURE', payload: errorMessage });
     }
 };
 

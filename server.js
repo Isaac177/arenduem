@@ -13,9 +13,9 @@ const { User, HousingStatus } = require("./models");
 const authController = require("./controllers/authController");
 const userController = require("./controllers/userController");
 const interestController = require("./controllers/interestController");
-const {createProperty} = require("./controllers/propertyController");
+const {createProperty, updatePropertyDescription} = require("./controllers/propertyController");
 const propertyController = require("./controllers/propertyController");
-const {getUserInfoById} = require("./controllers/userController");
+const {getUserInfoById, getAllUsers} = require("./controllers/userController");
 const openaiController = require("./controllers/openaiController");
 require('dotenv').config();
 require('./config/passport')(passport);
@@ -36,17 +36,13 @@ app.get('/', (req, res) => {
 app.use('/api/auth', authRoutes);
 
 // Users routes
-app.get('/users', (req, res) => {
-    User.findAll()
-        .then(users => res.json(users))
-        .catch(err => res.status(500).json({ message: err.message }));
-});
+app.get('/users', userController.getAllUsers);
 app.use("/users", userRoutes);
 app.post('/api/auth/signup', authController.signup);
 app.post('/api/auth/signin', authController.signin);
 app.get('/api/auth/signout', authController.signout);
 app.get('/users/:userId', userController.getUserById);
-app.get("users/:userId/", userController.getUserInfoById);
+app.get("users/:userId/info", userController.getUserInfoById);
 app.put('/users/:userId', userController.updateUserById);
 app.put('/users/role/:userId', userController.updateIsOwner);
 app.get('/housing-status/:userId', userController.getHousingStatus);
@@ -67,9 +63,11 @@ app.get('/users/:userId/interests', interestController.getInterests, interestRou
 // Properties routes
 
 app.post('/users/:userId/properties', upload.array('pictures'), propertyController.createProperty);
-app.get('/users/:userId/properties', propertyController.getProperties, propertyRoutes);
+app.get('/properties', propertyController.getProperties, propertyRoutes);
 app.get('/users/:userId/properties', propertyController.getUserProperties, propertyRoutes);
 app.delete('/users/:userId/properties/:propertyId', propertyController.deleteProperty, propertyRoutes);
+app.put('/users/:userId/properties/:propertyId/description', updatePropertyDescription);
+
 
 // OpenAi routes
 
