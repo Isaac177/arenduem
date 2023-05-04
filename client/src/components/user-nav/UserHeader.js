@@ -4,6 +4,7 @@ import {FiBell, FiChevronDown, FiLogOut, FiMessageCircle, FiUser} from 'react-ic
 import axios from "axios";
 import {useDispatch, useSelector} from "react-redux";
 import {logout} from "../../actions/userActions";
+import arendLogo from '../../assets/img/arendLogo.png';
 
 const UserHeader = () => {
     const [showMenu, setShowMenu] = useState(false);
@@ -39,11 +40,10 @@ const UserHeader = () => {
         <header className="bg-opacity-50 text-white backdrop-blur-lg bg-primary-800 z-100 py-2">
             <div className="container mx-auto flex flex-wrap items-center">
                 <div className="w-full lg:flex lg:w-auto lg:flex-grow lg:items-center">
-                    <h1 className="text-lg lg:text-lg font-bold text-center text-white
-                    tracking-tight cursor-pointer relative">
-                        arend<span className="text-aqua-500">Yem</span>
-                        <span className="absolute top-0 right-0 bottom-0 left-0 text-aqua-500 shadow-glow"></span>
-                    </h1>
+                    <img
+                        src={arendLogo} alt="Arend Logo"
+                        style={{width: '200px', height: '50px'}}
+                        className="mr-2 object-cover absolute" />
                 </div>
                 {isOwner ? (
                     <div className="flex flex-col items-center justify-center bg-gray-200">

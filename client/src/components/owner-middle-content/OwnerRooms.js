@@ -18,7 +18,7 @@ const OwnerRooms = () => {
     return (
         <PropertyContext.Provider value={properties}>
             <div className="grid grid-cols-12 gap-8">
-                 <OwnerAsideLeft />
+                <OwnerAsideLeft />
                 <OwnerMiddleContent />
                 <OwnerAsideRight />
             </div>

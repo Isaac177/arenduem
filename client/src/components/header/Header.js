@@ -49,7 +49,6 @@ const Header = () => {
                                 className="text-primary-900 text-white-100 hover:text-white focus:outline-none lg:hidden"
                                 onClick={() => setIsOpen(!isOpen)}
                             >
-                                {/* ... */}
                             </button>
                             <nav
                                 className={`${

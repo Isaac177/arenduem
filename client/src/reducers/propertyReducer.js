@@ -4,7 +4,8 @@ const initialState = {
     successMessage: '',
     errorMessage: '',
     isPropertyLoading: false,
-};
+    propertySuggestions: [],
+ };
 
 const propertyReducer = (state = initialState, action) => {
     switch (action.type) {
@@ -47,6 +48,21 @@ const propertyReducer = (state = initialState, action) => {
             return { ...state, properties: action.payload };
         case 'GET_USER_PROPERTIES_FAILURE':
             return { ...state, error: action.payload };
+
+        case 'SET_PROPERTY_SUGGESTION':
+            console.log('Updating state with suggestion:', action.payload);
+            return {
+                ...state,
+                propertySuggestions: {
+                    ...state.propertySuggestions,
+                    [action.payload.key]: action.payload.suggestion,
+                }
+            };
+
+        case 'SET_DESCRIPTION_SUGGESTION':
+            return { ...state, descriptionSuggestion: action.payload };
+        case 'CLEAR_SUGGESTIONS':
+            return { ...state, propertySuggestions: [], descriptionSuggestion: [] };
 
         default:
             return state;

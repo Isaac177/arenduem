@@ -2,11 +2,11 @@ import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { fetchUserInfoById } from '../../actions/userActions';
 import {Person, Wc} from '@material-ui/icons';
-import {Work} from "@mui/icons-material";
+import {WorkOutlined} from "@mui/icons-material";
 
 const OwnerAsideRight = () => {
     const userId = useSelector((state) => state.auth.userId);
-    const userInfo = useSelector((state) => state.user.userInfo);
+    const userInfo = useSelector((state) => state.user.userInfo) || {};
     const dispatch = useDispatch();
 
     useEffect(() => {
@@ -62,7 +62,7 @@ const OwnerAsideRight = () => {
                     )}
                     {userInfo.occupation && (
                         <div className="flex items-center gap-2">
-                            <Work className="text-gray-800" fontSize="small" />
+                            <WorkOutlined className="text-gray-800" fontSize="small" />
                             <span className='text-sm text-gray-500'>{userInfo.occupation}</span>
                         </div>
                     )}

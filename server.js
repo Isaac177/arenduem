@@ -16,6 +16,7 @@ const interestController = require("./controllers/interestController");
 const {createProperty} = require("./controllers/propertyController");
 const propertyController = require("./controllers/propertyController");
 const {getUserInfoById} = require("./controllers/userController");
+const openaiController = require("./controllers/openaiController");
 require('dotenv').config();
 require('./config/passport')(passport);
 const app = express();
@@ -69,6 +70,11 @@ app.post('/users/:userId/properties', upload.array('pictures'), propertyControll
 app.get('/users/:userId/properties', propertyController.getProperties, propertyRoutes);
 app.get('/users/:userId/properties', propertyController.getUserProperties, propertyRoutes);
 app.delete('/users/:userId/properties/:propertyId', propertyController.deleteProperty, propertyRoutes);
+
+// OpenAi routes
+
+app.post('/openai/suggestions', openaiController.fetchSuggestions);
+
 
 const PORT = 8000;
 app.listen(PORT, () => {

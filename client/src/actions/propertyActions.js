@@ -50,16 +50,89 @@ export const getProperties = () => async (dispatch, getState) => {
     }
 }
 
+const requestAISuggestion = async (label, value) => {
+    const prompt = `
+        Analyze the following property data:
+        ${label}: ${value}
+
+        Provide feedback and suggestions for improvements:
+    `;
+
+    return await fetchSuggestions(prompt);
+};
 export const getUserProperties = () => async (dispatch, getState) => {
-    console.log("getUserProperties action called")
     try {
         const { userId } = getState().auth;
         const response = await axios.get(`${BASE_URL}/users/${userId}/properties`);
         dispatch({ type: 'GET_USER_PROPERTIES_SUCCESS', payload: response.data });
-        console.log(JSON.stringify(response.data));
+
+        const fieldsToFetch = [
+            { key: 'propertyType', label: 'Property type' },
+            { key: 'Address.country', label: 'Country' },
+            { key: 'Address.city', label: 'City' },
+            { key: 'Price.pricePerMonth', label: 'Price per month' },
+            { key: 'description', label: 'Description' },
+        ];
+
+        for (const property of response.data.properties) {
+            let combinedPrompt = `Analyze the following property data:\n`;
+
+            for (const field of fieldsToFetch) {
+                const [parentKey, childKey] = field.key.split('.');
+                const fieldValue = childKey ? property[parentKey][childKey] : property[parentKey];
+                combinedPrompt += `${field.label}: ${fieldValue}\n`;
+            }
+
+            combinedPrompt += `
+                Provide feedback and suggestions for improvements for each field. 
+                Report if the city provided exists in the country provided.
+                Also, check if the data is consistent and accurate. 10 words maximum.
+                `;
+
+            const suggestion = await fetchSuggestions(combinedPrompt);
+            console.log(`Suggestions for property ${property.id}:`, suggestion);
+
+            const descriptionSuggestion = await getDescriptionSuggestion(property);
+            console.log(`Description suggestion for property ${property.id}:`, descriptionSuggestion);
+
+            const combinedSuggestions = {
+                property: suggestion,
+                description: descriptionSuggestion,
+            };
+
+            dispatch({ type: 'SET_PROPERTY_SUGGESTION', payload: { propertyId: property.id, suggestion: combinedSuggestions } });
+        }
     } catch (error) {
         const errorMessage = error.response ? error.response.data.message : error.message;
         console.error("Error in axios request:", error);
         dispatch({ type: 'GET_USER_PROPERTIES_FAILURE', payload: errorMessage });
     }
-}
+};
+
+export const fetchSuggestions = async (prompt) => {
+    try {
+        const response = await axios.post(`${BASE_URL}/openai/suggestions`, { prompt: prompt });
+        console.log('Received suggestion from API:', response.data.suggestion);
+        return response.data.suggestion;
+    } catch (error) {
+        console.error('Error fetching suggestions from server:', error);
+        return '';
+    }
+};
+
+export const getDescriptionSuggestion = async (propertyDetails) => {
+    const prompt = `Create a descriptive summary of at least 50 words for the following property details: ${JSON.stringify(propertyDetails)}.`;
+
+    try {
+        const response = await fetchSuggestions(prompt);
+        console.log('Received description suggestion from API:', response);
+        return response;
+    } catch (error) {
+        console.error("Error fetching description suggestion:", error);
+        return null;
+    }
+};
+
+
+
+
