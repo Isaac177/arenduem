@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, {useContext, useState} from 'react';
 import { useLocation } from 'react-router-dom';
 import TitleSection from "../owner-middle-content/TitleSection";
 import MiddlePicture from '../owner-middle-content/MiddlePicture';
@@ -11,10 +11,10 @@ import PropertyAddress from "../owner-middle-content/PropertyAddress";
 import PropertyAvailability from "../owner-middle-content/PropertyAvailability";
 import PropertyPrice from "../owner-middle-content/PropertyPrice";
 import PropertyContext from "./PropertyContext";
-import { fetchSuggestions } from "../../actions/propertyActions";
 import {useSelector} from "react-redux";
 
-const OwnerMiddleContent = () => {
+const OwnerMiddleContent = ({handleCallUpdatePopupForm}) => {
+
     const properties = useContext(PropertyContext);
     const location = useLocation();
     const propertyId = location.pathname.split('/')[2];
@@ -28,11 +28,6 @@ const OwnerMiddleContent = () => {
     const propertySuggestionArray = Object.values(propertySuggestions);
     console.log('suggestion', propertySuggestionArray);
 
-    propertySuggestionArray.map((suggestion) => {
-        console.log("Property suggestion:", suggestion.property);
-        console.log("Description suggestion:", suggestion.description);
-    });
-
 
     return (
         <div className="col-span-8">
@@ -42,18 +37,30 @@ const OwnerMiddleContent = () => {
                     <h2 className="font-bold text-xl mb-4">AI Check</h2>
                     <div className="flex flex-row gap-4">
                         {propertySuggestionArray.map((suggestion, index) => (
-                            <p key={index} className="text-small text-amber-800">
+                            <p key={index} className="text-xs text-amber-800">
                                 {suggestion.property} click{" "}
-                                <span className="text-aqua-500 cursor-pointer">here</span> to update
+                                <span className="text-aqua-500 cursor-pointer"
+                                      onClick={handleCallUpdatePopupForm}
+                                >here</span> to update
                             </p>
                         ))}
                     </div>
                 </div>
                 {firstProperty && <MiddlePicture firstProperty={firstProperty} propertyDetails={propertyDetails} images={images} />}
                 {firstProperty && <PropertyDescription firstProperty={firstProperty} propertyDetails={propertyDetails}/>}
-                {
-                    propertySuggestionArray.map((suggestion, i) => <p key={i} className='text-small text-amber-800'>{suggestion.description}</p>)
-                }
+                <div className="bg-gray-100 p-6 rounded-lg">
+                    <h2 className="font-bold text-xl mb-4">AI Check for Descriptions</h2>
+                    <div className="flex flex-row gap-4 flex-wrap">
+                        {propertySuggestionArray.map((suggestion, i) => (
+                            <p key={i} className="text-xs text-amber-800">
+                                {suggestion.description} click{" "}
+                                <span className="text-aqua-500 cursor-pointer"
+                                      onClick={handleCallUpdatePopupForm}
+                                >here</span> to update
+                            </p>
+                        ))}
+                    </div>
+                </div>
                 {firstProperty && <PropertyAmenities firstProperty={firstProperty} />}
                 {firstProperty && <HouseRules firstProperty={firstProperty} />}
                 <div className='bg-white rounded-lg p-4 my-4'>
@@ -68,6 +75,7 @@ const OwnerMiddleContent = () => {
                     {firstProperty && <PropertyPrice firstProperty={firstProperty} />}
                 </div>
             </div>
+
         </div>
     );
 };

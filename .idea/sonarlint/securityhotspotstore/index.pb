@@ -135,24 +135,18 @@ _
 /client/src/components/before-dash/BeforeDash.js,c/5/c54aa272968810a6a921320544791babca704071
 W
 'client/src/views/user/OwnerDashboard.js,1/a/1ae785dfe9ce38e0d280abaab6b0a6337898efe0
-d
-4client/src/components/ownerDashboard/OwnerContent.js,6/3/6321da6ca927d39bfff9ac4eb007e480173b6e04
 a
 1client/src/components/ownerDashboard/OwnerHero.js,d/6/d634919b2414f13a5dfd471561e1f291c4bb8a26
 V
 &client/src/views/user/UserDashboard.js,9/4/94d9df5c9edea51b323d34c7e9393465d540750c
 ]
 -client/src/components/profile/PersonalData.js,0/0/00ed5f8f30fe7675ed75557034cc5aff2f6d43b9
-Y
-)client/src/components/form-steps/Step1.js,7/b/7b3ce6c4ad102f7c7c41516044bacf54b9069278
 T
 $client/src/actions/galleryActions.js,6/9/69787fc62c2a2e530637a617159a5a423f03552a
 Q
 !controllers/picturesController.js,8/c/8c2c2185a3bd4258f38368fb5f196f81d2303da5
 A
 models/amenity.js,f/b/fb78172a5759449f12ce75cad971e4c5c921d01b
-Y
-)client/src/components/form-steps/Step6.js,4/2/42a0e14a238bba22fc1296dcbc2e37bddef78716
 K
 client/src/config/config.js,c/5/c53facbee3dd0c0ce5a03a8540b38997ab72b90f
 X
@@ -163,8 +157,6 @@ c
 3migrations/20230406040621-create-property-detail.js,5/e/5e59acfb5b3ed16afb39e603e92a23a132ef6b27
 H
 models/propertyDetail.js,e/e/eec091923df662d6ab182d62e8c85723b62da1a9
-Y
-)client/src/components/form-steps/Step5.js,9/b/9bab67746ea9306be19792f6a7ede4f66f6560a9
 O
 client/src/assets/data/steps.js,e/3/e3d9152b81a6128aca4e19be543f538f8cdb7c95
 \
@@ -174,8 +166,6 @@ O
 :
 
 .gitignore,a/5/a5cc2925ca8258af241be7e5b0381edf30266302
-A
-client/.gitignore,e/3/e32ec5c998c4774d8d1bedd59740d14d940c90ec
 b
 2migrations/20230427030902-alter-pictures-column.js,4/e/4ed6ee30aceedd1ab6473bb7b6f3cb3fbd1da68f
 e
@@ -194,12 +184,6 @@ e
 5migrations/20230428030116-create-property-pictures.js,1/f/1f8d9d823cd9b296b375bf759bca93e8f3cc94e5
 I
 client/tailwind.config.js,6/b/6b273cff573b0a837bad584f90d7d827bf358bb1
-Y
-)client/src/components/form-steps/Step3.js,7/4/743f18d2f68e09f4e72128352d3eeeafb40eacf9
-a
-1client/src/components/ownerDashboard/PopupForm.js,5/4/546c2e37a261616eb48f5b52e2222ef828d88316
-Y
-)client/src/components/form-steps/Step4.js,b/a/ba718ab4aaefed5653fe9473d1899b4e54eb6736
 S
 #client/src/assets/data/amenities.js,a/0/a0eb781b4c57841660662145188c60b8b7cdfd41
 Y
