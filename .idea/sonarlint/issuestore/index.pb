@@ -49,8 +49,6 @@ W
 'client/src/components/utils/Carousel.js,2/3/23a838582dcc19b73ff380dd6da79c3818cd80bf
 [
 +client/src/components/utils/ContentTitle.js,5/a/5a7b1b031d66ba8180ad94e071f63951aab32f28
-a
-1client/src/components/dash-content/QuickSearch.js,4/7/47abf5b8e43dbb3dfabfaa9a4e2b8637b76b0b90
 X
 (client/src/components/utils/Separator.js,f/9/f9a1dd61056480e1f9f11d55786c48b150fcc53e
 ^

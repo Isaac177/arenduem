@@ -40,7 +40,7 @@ function App() {
                         <Route path="*" element={<NotFound />} />
                         <Route exact path="/user/roles" element={<UserDashboardWithAuth />}/>
                         <Route exact path="/user/owner/*" element={<OwnerDashboard/>}/>
-                        <Route path="/:propertyId" element={<PropertyDetails />} />
+                        <Route path="/p/:propertyId" element={<PropertyDetails />} />
                         <Route exact path="/:userId/*" element={<OwnerRooms userId={userId} />}/>
                          <Route exact path="/user/dashboard/*" element={<UserDashboard />}>
                             <Route path="profile/*" element={<CoverProfile />}>

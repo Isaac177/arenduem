@@ -103,12 +103,8 @@ const OwnerRooms = () => {
 
     return (
         <PropertyContext.Provider value={properties}>
-            <div className="grid grid-cols-12 gap-8">
-                <OwnerAsideLeft />
                 <OwnerMiddleContent handleCallUpdatePopupForm={handleCallUpdatePopupForm} />
-                <OwnerAsideRight />
-            </div>
-            {isPopupFormOpen && (
+             {isPopupFormOpen && (
                 <UpdatePopupForm
                     property={selectedSuggestion?.propertyDetails}
                     initialValues={initialValues} // Add this line

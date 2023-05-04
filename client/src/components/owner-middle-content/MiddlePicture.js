@@ -40,7 +40,7 @@ const MiddlePicture = ({ images }) => {
                             </div>
                         ))}
                     </Carousel>
-                    <div className="grid grid-cols-4 gap-4 mt-4 p-2">
+                    <div className="grid grid-cols-4 gap-4 mt-4 p-2" style={{marginTop: '-20px'}}>
                         {images.map((image, index) => (
                                 <img
                                     key={index}

@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import AnnounceCard from "./AnnounceCard";
 import Separator from "../utils/Separator";
-import QuickSearch from "./QuickSearch";
 import { useDispatch, useSelector } from "react-redux";
 import { getAllUsers } from "../../actions/userActions";
 import {useNavigate} from "react-router-dom";
@@ -17,7 +16,7 @@ const LatestAnnouncements = () => {
     }, [dispatch]);
 
     const showPropertyDetails = (propertyId) => {
-        navigate(`/${propertyId}`);
+        navigate(`/p/${propertyId}`);
     };
     return (
         <>
@@ -48,9 +47,6 @@ const LatestAnnouncements = () => {
                         })}
                     </div>
                 </div>
-            </Separator>
-            <Separator>
-                <QuickSearch />
             </Separator>
         </>
     );

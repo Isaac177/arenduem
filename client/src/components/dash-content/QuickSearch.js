@@ -110,14 +110,13 @@ const QuickSearch = () => {
     });
 
     return (
-        <Separator>
         <form onSubmit={formik.handleSubmit}>
-            <div>
+            {/*<div>
                 <h1 className="flex items-start px-4 text-2xl font-bold">Quick Search</h1>
                 <hr className="ml-4 w-1/2 border border-aqua-500" />
-            </div>
-            <div className="mt-4 flex flex-col gap-4 rounded-md border border-gray-500 p-4" style={{width:'676px'}}>
-                <div className="flex flex-row gap-8">
+            </div>*/}
+            <div className="mt-4 flex flex-col gap-4 rounded-lg bg-aqua-100 shadow-xl p-4">
+                <div className="flex flex-col gap-8">
                     <div className='flex flex-col gap-2'>
                         <p className="flex items-start text-gray-500">Location</p>
                         <div className="flex items-center rounded-md bg-white p-2">
@@ -164,7 +163,7 @@ const QuickSearch = () => {
                         </div>
                     </div>
                 </div>
-                <div className="flex flex-row gap-8">
+                <div className="flex flex-col gap-8">
                     <div className='flex flex-col gap-2'>
                         <p className="flex items-start text-gray-500">Gender Preference</p>
                         <div className="flex items-center rounded-md bg-white p-2">
@@ -287,7 +286,7 @@ const QuickSearch = () => {
                         </div>
                     </div>
                 </div>
-                <div className="flex flex-row gap-8">
+                <div className="flex flex-col gap-8">
                     <div className='flex flex-col gap-2'>
                         <p className="flex items-start text-gray-500">Smoking Status</p>
                         <div className="flex items-center rounded-md bg-white p-2">
@@ -449,7 +448,6 @@ const QuickSearch = () => {
                 Search
             </button>
         </form>
-        </Separator>
     );
 };
 

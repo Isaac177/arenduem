@@ -13,6 +13,8 @@ import PropertyPrice from "../owner-middle-content/PropertyPrice";
 import PropertyContext from "./PropertyContext";
 import {useDispatch, useSelector} from "react-redux";
 import {getUserProperties, updatePropertyDescription} from "../../actions/propertyActions";
+import OwnerAsideLeft from "./OwnerAsideLeft";
+import OwnerAsideRight from "./OwnerAsideRight";
 
 const OwnerMiddleContent = ({handleCallUpdatePopupForm}) => {
     const dispatch = useDispatch();
@@ -37,52 +39,59 @@ const OwnerMiddleContent = ({handleCallUpdatePopupForm}) => {
     };
 
     return (
-        <div className="col-span-8">
-            <div style={{ width: '980px', margin: '0 auto' }}>
-                {firstProperty && <TitleSection firstProperty={firstProperty} propertyDetails={propertyDetails}/>}
-                <div className="bg-gray-100 p-6 rounded-lg">
-                    <h2 className="font-bold text-xl mb-4">AI Check</h2>
-                    <div className="flex flex-row gap-4">
-                        {propertySuggestionArray.map((suggestion, index) => (
-                            <p key={index} className="text-xs text-amber-800">
-                                {suggestion.property} click{" "}
-                                <span className="text-aqua-500 cursor-pointer"
-                                      onClick={handleCallUpdatePopupForm}
-                                >here</span> to update
-                            </p>
-                        ))}
-                    </div>
-                </div>
+        <div className='mx-auto'>
+            <div className='p-4 my-4 mx-auto'>
                 {firstProperty && <MiddlePicture firstProperty={firstProperty} propertyDetails={propertyDetails} images={images} />}
-                {firstProperty && <PropertyDescription firstProperty={firstProperty} propertyDetails={propertyDetails}/>}
-                <div className="bg-gray-100 p-6 rounded-lg">
-                    <h2 className="font-bold text-xl mb-4">AI Check for Descriptions</h2>
-                    <div className="flex flex-row gap-4 flex-wrap">
-                        {propertySuggestionArray.map((suggestion, i) => (
-                            <p key={i} className="text-xs text-amber-800">
-                                {suggestion.description} click{" "}
-                                <span className="text-aqua-500 cursor-pointer"
-                                      onClick={()=>handleUpdateDescription(suggestion)}
-                                >here</span> to update
-                            </p>
-                        ))}
+            </div>
+            <div className="grid grid-cols-12 gap-8">
+                <OwnerAsideLeft />
+            <div className="col-span-8">
+                <div style={{ width: '980px', margin: '0 auto' }}>
+                    {firstProperty && <TitleSection firstProperty={firstProperty} propertyDetails={propertyDetails}/>}
+                    <div className="bg-gray-100 p-6 rounded-lg">
+                        <h2 className="font-bold text-xl mb-4">AI Check</h2>
+                        <div className="flex flex-row gap-4">
+                            {propertySuggestionArray.map((suggestion, index) => (
+                                <p key={index} className="text-xs text-amber-800">
+                                    {suggestion.property} click{" "}
+                                    <span className="text-aqua-500 cursor-pointer"
+                                          onClick={handleCallUpdatePopupForm}
+                                    >here</span> to update
+                                </p>
+                            ))}
+                        </div>
                     </div>
-                </div>
-                {firstProperty && <PropertyAmenities firstProperty={firstProperty} />}
-                {firstProperty && <HouseRules firstProperty={firstProperty} />}
-                <div className='bg-white rounded-lg p-4 my-4'>
-                    {firstProperty && <TenantPreferences firstProperty={firstProperty} />}
-                    <div className="border-b-2 border-gray-200 my-4"></div>
-                    {firstProperty && <PropertyServices firstProperty={firstProperty} />}
-                    <div className="border-b-2 border-gray-200 my-4"></div>
-                    {firstProperty && <PropertyAddress firstProperty={firstProperty} />}
-                    <div className="border-b-2 border-gray-200 my-4"></div>
-                    {firstProperty && <PropertyAvailability firstProperty={firstProperty} />}
-                    <div className="border-b-2 border-gray-200 my-4"></div>
-                    {firstProperty && <PropertyPrice firstProperty={firstProperty} />}
+                    {firstProperty && <PropertyDescription firstProperty={firstProperty} propertyDetails={propertyDetails}/>}
+                    <div className="bg-gray-100 p-6 rounded-lg">
+                        <h2 className="font-bold text-xl mb-4">AI Check for Descriptions</h2>
+                        <div className="flex flex-row gap-4 flex-wrap">
+                            {propertySuggestionArray.map((suggestion, i) => (
+                                <p key={i} className="text-xs text-amber-800">
+                                    {suggestion.description} click{" "}
+                                    <span className="text-aqua-500 cursor-pointer"
+                                          onClick={()=>handleUpdateDescription(suggestion)}
+                                    >here</span> to update
+                                </p>
+                            ))}
+                        </div>
+                    </div>
+                    {firstProperty && <PropertyAmenities firstProperty={firstProperty} />}
+                    {firstProperty && <HouseRules firstProperty={firstProperty} />}
+                    <div className='bg-white rounded-lg p-4 my-4'>
+                        {firstProperty && <TenantPreferences firstProperty={firstProperty} />}
+                        <div className="border-b-2 border-gray-200 my-4"></div>
+                        {firstProperty && <PropertyServices firstProperty={firstProperty} />}
+                        <div className="border-b-2 border-gray-200 my-4"></div>
+                        {firstProperty && <PropertyAddress firstProperty={firstProperty} />}
+                        <div className="border-b-2 border-gray-200 my-4"></div>
+                        {firstProperty && <PropertyAvailability firstProperty={firstProperty} />}
+                        <div className="border-b-2 border-gray-200 my-4"></div>
+                        {firstProperty && <PropertyPrice firstProperty={firstProperty} />}
+                    </div>
                 </div>
             </div>
-
+                <OwnerAsideRight />
+            </div>
         </div>
     );
 };
