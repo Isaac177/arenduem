@@ -11,10 +11,10 @@ const UserHeader = () => {
     const dropdownRef = useRef(null);
     const dispatch = useDispatch();
 
-    const isOwner = useSelector((state) => state.user.isOwner);
-    const user = useSelector((state) => state.user.userData);
+    const isOwner = useSelector((state) => state.user?.isOwner);
+    const user = useSelector((state) => state.user?.userData);
 
-    const userPictureIsMain = user.pictures.find(picture => picture.isMain);
+    const userPictureIsMain = user.pictures?.find(picture => picture?.isMain);
     const userPicture = userPictureIsMain?.fileUrl;
     const handleLogout = async () => {
         try {

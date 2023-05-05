@@ -4,7 +4,7 @@ const TitleSection = ({ firstProperty, propertyDetails }) => {
 
     return (
         <>
-            <div className="flex my-4 flex-row justify-between border-l-8 pb-4 border-aqua-500 bg-white rounded-lg p-4">
+            <div className="flex my-4 flex-row justify-between border-l-8 pb-4 border-aqua-500 bg-white rounded-lg p-4 shadow-lg">
                 <div className='row flex flex-col gap-4'>
                     <p className="text-sm text-gray-500">{firstProperty && JSON.parse(firstProperty.propertyType).toUpperCase()}</p>
                     <h1 className="text-2xl font-bold text-primary-700">{propertyDetails && propertyDetails.title}</h1>

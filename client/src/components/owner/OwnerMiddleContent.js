@@ -39,11 +39,11 @@ const OwnerMiddleContent = ({handleCallUpdatePopupForm}) => {
     };
 
     return (
-        <div className='mx-auto'>
-            <div className='p-4 my-4 mx-auto'>
+        <div style={{margin: '0 auto'}}>
+            <div className='p-4 my-4 flex items-center align-middle justify-between'>
                 {firstProperty && <MiddlePicture firstProperty={firstProperty} propertyDetails={propertyDetails} images={images} />}
             </div>
-            <div className="grid grid-cols-12 gap-8">
+            <div className="grid grid-cols-12 gap-8 bg-white">
                 <OwnerAsideLeft />
             <div className="col-span-8">
                 <div style={{ width: '980px', margin: '0 auto' }}>

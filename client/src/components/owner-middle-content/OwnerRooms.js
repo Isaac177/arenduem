@@ -107,7 +107,7 @@ const OwnerRooms = () => {
              {isPopupFormOpen && (
                 <UpdatePopupForm
                     property={selectedSuggestion?.propertyDetails}
-                    initialValues={initialValues} // Add this line
+                    initialValues={initialValues}
                     onClose={() => setIsPopupFormOpen(false)}
                 />
             )}

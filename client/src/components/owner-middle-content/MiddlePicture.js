@@ -16,7 +16,7 @@ const MiddlePicture = ({ images }) => {
     };
 
     return (
-        <div className="container my-4">
+        <div className="my-4">
             {images.length > 0 && (
                 <div>
                     <Carousel
@@ -40,7 +40,7 @@ const MiddlePicture = ({ images }) => {
                             </div>
                         ))}
                     </Carousel>
-                    <div className="grid grid-cols-4 gap-4 mt-4 p-2" style={{marginTop: '-20px'}}>
+                    <div className="grid grid-cols-4 gap-4 mt-4 p-2 px-20" style={{marginTop: '-20px'}}>
                         {images.map((image, index) => (
                                 <img
                                     key={index}

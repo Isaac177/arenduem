@@ -31,7 +31,7 @@ const PropertyDetails = () => {
             <div className='p-4 my-4'>
                 {property && <MiddlePicture firstProperty={property} propertyDetails={propertyDetails} images={images} />}
             </div>
-        <div className="col-span-8">
+        <div className="bg-white py-10 rounded-lg mb-4">
             <div style={{ width: '980px', margin: '0 auto' }}>
                 {property && <TitleSection firstProperty={property} propertyDetails={propertyDetails} />}
                 {property && <PropertyDescription firstProperty={property} propertyDetails={propertyDetails} />}

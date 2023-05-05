@@ -24,15 +24,16 @@ const LatestAnnouncements = () => {
                 <div className="mt-8 flex flex-col border-b">
                     <div
                         className={`flex flex-row gap-6 flex-wrap p-12 animate-fade-in transform translate-y-0' : 'animate-fade-out transform translate-y-4'}`}>
-                        {users.map((user, index) => {
+                        {users && users.map((user, index) => {
                             const housePicture = user.properties[0]?.PropertyDetail?.PropertyPictures[0]?.fileUrl;
-                            const profilePicture = user.pictures.find(picture => picture.isMain)?.fileUrl;
+                            const profilePicture = user.pictures?.find(picture => picture.isMain)?.fileUrl;
                             const address = `${user.properties[0]?.Address.city}, ${user.properties[0]?.Address.street}`;
                             const author = `${user.firstName} ${user.lastName}`;
                             const budget = user.properties[0]?.Price?.pricePerMonth;
                             const propertyType = user.properties[0]?.propertyType.replace(/['"]+/g, '').replace(/\b\w/g, l => l.toUpperCase());
 
                             return (
+                                <>
                                 <AnnounceCard
                                     key={index}
                                     housePicture={housePicture}
@@ -43,6 +44,67 @@ const LatestAnnouncements = () => {
                                     propertyType={propertyType}
                                     showPropertyDetails={() => showPropertyDetails(user.properties[0]?.id)}
                                 />
+                            <AnnounceCard
+                                key={index}
+                                housePicture={housePicture}
+                                profilePicture={profilePicture}
+                                address={address}
+                                author={author}
+                                budget={budget}
+                                propertyType={propertyType}
+                                showPropertyDetails={() => showPropertyDetails(user.properties[0]?.id)}
+                            />
+                            <AnnounceCard
+                                key={index}
+                                housePicture={housePicture}
+                                profilePicture={profilePicture}
+                                address={address}
+                                author={author}
+                                budget={budget}
+                                propertyType={propertyType}
+                                showPropertyDetails={() => showPropertyDetails(user.properties[0]?.id)}
+                            />
+                                    <AnnounceCard
+                                        key={index}
+                                        housePicture={housePicture}
+                                        profilePicture={profilePicture}
+                                        address={address}
+                                        author={author}
+                                        budget={budget}
+                                        propertyType={propertyType}
+                                        showPropertyDetails={() => showPropertyDetails(user.properties[0]?.id)}
+                                    />
+                                    <AnnounceCard
+                                        key={index}
+                                        housePicture={housePicture}
+                                        profilePicture={profilePicture}
+                                        address={address}
+                                        author={author}
+                                        budget={budget}
+                                        propertyType={propertyType}
+                                        showPropertyDetails={() => showPropertyDetails(user.properties[0]?.id)}
+                                    />
+                                    <AnnounceCard
+                                        key={index}
+                                        housePicture={housePicture}
+                                        profilePicture={profilePicture}
+                                        address={address}
+                                        author={author}
+                                        budget={budget}
+                                        propertyType={propertyType}
+                                        showPropertyDetails={() => showPropertyDetails(user.properties[0]?.id)}
+                                    />
+                                    <AnnounceCard
+                                        key={index}
+                                        housePicture={housePicture}
+                                        profilePicture={profilePicture}
+                                        address={address}
+                                        author={author}
+                                        budget={budget}
+                                        propertyType={propertyType}
+                                        showPropertyDetails={() => showPropertyDetails(user.properties[0]?.id)}
+                                    />
+                                    </>
                             )
                         })}
                     </div>

@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { NavLink } from 'react-router-dom';
 import UserHeader from '../user-nav/UserHeader';
+import arendLogo from "../../assets/img/arendLogo.png";
 
 const Header = () => {
     const [isOpen, setIsOpen] = useState(false);
@@ -35,14 +36,12 @@ const Header = () => {
                 >
                     <div className="container mx-auto flex flex-wrap items-center">
                         <div className="w-full text-white-100 lg:flex lg:w-auto lg:flex-grow lg:items-center">
-                            <h1
-                                className={`text-2xl font-bold text-center text-white tracking-tight cursor-pointer relative ${
-                                    shrink ?  'logo-shrink' : 'logo'
-                                }`}
-                            >
-                                Room<span className="text-aqua-500">Finder</span>
-                                <span className="absolute top-0 right-0 bottom-0 left-0 text-aqua-500 shadow-glow"></span>
-                            </h1>
+                            <div className="w-full lg:flex lg:w-auto lg:flex-grow lg:items-center">
+                                <img
+                                    src={arendLogo} alt="Arend Logo"
+                                    style={{width: '200px', height: '50px'}}
+                                    className="mr-2 object-cover absolute" />
+                            </div>
                         </div>
                         <div className="w-full text-white-100 lg:w-auto">
                             <button

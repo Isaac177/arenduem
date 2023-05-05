@@ -37,13 +37,13 @@ const OwnerAsideRight = () => {
     };
 
     return (
-        <div className="col-span-2">
-            <div className="flex items-center p-4 border border-b mb-8 bg-white rounded-bl-lg">
+        <div className="col-span-2 mt-10">
+            {/*<div className="flex items-center p-4 border border-b mb-8 bg-white rounded-bl-lg">
                 <Person className="mr-2 text-aqua-500" fontSize="large" />
                 <h1 className="text-xl font-bold text-primary-700">Owner Details</h1>
-            </div>
+            </div>*/}
             <div className="grid grid-cols-1 gap-4">
-                <div className="bg-white rounded-l-lg shadow-lg">
+                <div className="bg-white rounded-l-lg border">
                     {mainPicture && (
                         <img
                             className="object-cover w-full rounded-tl-lg"

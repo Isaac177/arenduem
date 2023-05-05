@@ -6,12 +6,12 @@ const PropertyAmenities = ({ firstProperty }) => {
     const iconStyles = (isChecked) => {
         return isChecked
             ? 'flex flex-col items-center text-green-600 bg-green-50 border p-2 m-2 border-green-600 rounded-2xl cursor-pointer'
-            : 'flex flex-col items-center p-2 border m-2 border-gray-300 rounded-2xl cursor-pointer bg-gray-200';
+            : 'flex flex-col items-center p-2 border m-2 border-green-600 rounded-2xl cursor-pointer bg-transparent';
     };
 
     return (
         <div>
-            <h6 className="my-2 text-xl font-bold text-white">Property amenities</h6>
+            <h6 className="my-2 text-xl font-bold text-aqua-500">Property amenities</h6>
             <FormGroup row>
                 {amenities.map((amenity) => (
                     <div

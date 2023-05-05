@@ -10,12 +10,12 @@ const OwnerAsideLeft = () => {
     const propertyTitle = properties && properties.properties && properties.properties.length > 0 ? properties.properties[0].PropertyDetail.title : null;
 
     return (
-        <div  className="col-span-2 bg-white">
+        <div  className="col-span-2 bg-white mt-10">
             <div>
-                <div className="flex items-center p-4 border border-b mb-8">
+                {/*<div className="flex items-center p-4 border border-b mb-8">
                     <House className="mr-2 text-aqua-500" fontSize="large" />
                     <h1 className="text-xl font-bold text-primary-700">Your Properties</h1>
-                </div>
+                </div>*/}
                 <div className="grid grid-cols-1 gap-4">
                     {properties && properties.properties && properties.properties.length > 0 && (
                         <Link
@@ -31,7 +31,7 @@ const OwnerAsideLeft = () => {
                             <img
                                 src={`http://localhost:8000/${propertyImage}`}
                                 alt="property"
-                                className="object-cover p-2"
+                                className="object-cover p-2 rounded-lg"
                                 style={{ height: '150px', width: '100%' }}
                             />
                         </Link>
