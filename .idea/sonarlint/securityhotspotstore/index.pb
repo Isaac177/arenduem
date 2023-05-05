@@ -174,8 +174,6 @@ C
 -client/src/components/side-bar/SidebarMenu.js,6/4/64ef7a8200192e39250d0403a734a3ca35d8377d
 ]
 -client/src/components/owner/withProperties.js,e/0/e0c5e8155fb85fc6dfca4630cc10ed92969d80aa
-^
-.client/src/components/owner/PropertyContext.js,4/a/4abcbe1244840dbc5f9730322dcc824b3d5fc712
 =
 findUserId.js,a/e/ae4232fb559c12aa66a25b790f960aa2a055a06a
 B
@@ -198,8 +196,6 @@ D
 client/src/index.css,7/5/751657f4fd5a737220a43ddd2ad7926446725c56
 B
 client/src/App.css,2/a/2a082b18bfc3afa6b25d6c4584e995e6b6c4ee3e
-V
-&client/src/reducers/propertyReducer.js,8/9/89859367dc3da63825889341feacca6ff1c24b07
 Y
 )client/src/components/form-steps/Step1.js,7/b/7b3ce6c4ad102f7c7c41516044bacf54b9069278
 Y
@@ -236,8 +232,6 @@ Q
 !controllers/interestController.js,5/4/54a7f2a2fb7536a5301aa9d05f93611109b2fc32
 D
 routes/userRoutes.js,e/9/e9eb043515685faf25833d70ef475596fc6e333d
-R
-"client/src/reducers/userReducer.js,3/a/3af3e9d3f595ac02dfee7e96d822cc0e9c01d450
 q
 Aclient/src/components/owner-middle-content/PropertyDescription.js,b/1/b197bc32c564437be92b21ad06b13c823164cea3
 m
@@ -256,8 +250,6 @@ V
 ,client/src/components/user-nav/UserHeader.js,3/9/396160d31be1e04cf4585d252b617eaf1949e487
 V
 &client/src/views/user/UserDashboard.js,9/4/94d9df5c9edea51b323d34c7e9393465d540750c
-e
-5client/src/components/dash-content/PropertyDetails.js,d/4/d4ae510f26213e1c583834a7a7d71860567d4651
 a
 1client/src/components/dash-content/QuickSearch.js,4/7/47abf5b8e43dbb3dfabfaa9a4e2b8637b76b0b90
 H

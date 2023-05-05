@@ -14,17 +14,21 @@ import { useSelector } from "react-redux";
 
 const PropertyDetails = () => {
     const { propertyId } = useParams();
-    const users = useSelector((state) => state.user.allUsers);
+    const users = useSelector((state) => state.user.allUsers) || [];
 
-    const property = users
-        .flatMap((user) => user.properties)
-        .find((property) => property.id === Number(propertyId));
+    const property = Array.isArray(users.users)
+        ? [].concat(...users.users.map((user) => user?.properties)).find((property) => property?.id === Number(propertyId))
+        : null;
 
-    const propertyDetails = property ? property.PropertyDetail : null;
-    const propertyPictures = propertyDetails ? propertyDetails.PropertyPictures : [];
-    const images = propertyPictures.map((picture) => picture.fileUrl);
+
+    const propertyDetails = property ? property?.PropertyDetail : null;
+    const propertyPictures = propertyDetails ? propertyDetails?.PropertyPictures : [];
+    const images = propertyPictures?.map((picture) => picture?.fileUrl);
 
     console.log('property', property)
+    console.log('propertyId', propertyId);
+    console.log('users', users);
+
 
     return (
         <div className='container mx-auto'>

@@ -157,10 +157,10 @@ export const getAllUsers = () => async (dispatch) => {
     try {
         const response = await axios.get(`${BASE_URL}`);
 
-        console.log('allUsers', response.data);
+        console.log('allUsers', JSON.stringify(response.data));
         dispatch({
             type: GET_ALL_USERS_SUCCESS,
-            payload: response.data,
+            payload: response.data, // Access the data inside response.data
         });
     } catch (error) {
         console.error(error);

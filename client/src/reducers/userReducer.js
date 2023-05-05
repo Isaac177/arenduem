@@ -22,6 +22,8 @@ export const initialState = {
         moveInDate: '',
         budget: '',
     },
+    users: [],
+    allUsers: [],
     error: null,
 };
 
