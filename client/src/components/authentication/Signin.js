@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import { object, string } from 'yup';
-import api from "../../utils/api";
+import api from "../utils/api";
 import { useNavigate } from 'react-router-dom';
 import {setTokenAndRole, setUserId} from "../../actions/userActions";
 import {useDispatch} from "react-redux";

@@ -32,7 +32,7 @@ const OwnerHero = () => {
                     </button>
                     <button
                         className="mt-4 ml-4 rounded px-4 py-2 font-bold text-white bg-aqua-500 hover:bg-aqua-700"
-                        onClick={() => navigate(`/${userId}/`)}
+                        onClick={() => navigate(`/${userId}/properties`)}
                     >
                         See my rooms
                     </button>

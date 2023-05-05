@@ -1,14 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getUserProperties } from '../../actions/propertyActions';
-import OwnerAsideLeft from "../owner/OwnerAsideLeft";
 import OwnerMiddleContent from "../owner/OwnerMiddleContent";
-import OwnerAsideRight from "../owner/OwnerAsideRight";
 import PropertyContext from "../owner/PropertyContext";
 import UpdatePopupForm from "../update-form/UpdatePopupForm";
+import ServerError from "../utils/ServerError";
 
 
 const OwnerRooms = () => {
+    const [noPropertiesError, setNoPropertiesError] = useState(null);
     const [selectedSuggestion, setSelectedSuggestion] = useState(null);
     const [isPopupFormOpen, setIsPopupFormOpen] = useState(false);
     const dispatch = useDispatch();
@@ -16,7 +16,13 @@ const OwnerRooms = () => {
 
     useEffect(() => {
         dispatch(getUserProperties());
-    }, [dispatch]);
+        if (!properties || properties.length === 0) {
+            setNoPropertiesError('No properties found for this user.');
+        } else {
+            setNoPropertiesError(null);
+        }
+    }, [dispatch, properties]);
+
     const initialValues = {
         propertyType: "",
         propertyAddress: {
@@ -103,16 +109,23 @@ const OwnerRooms = () => {
 
     return (
         <PropertyContext.Provider value={properties}>
-                <OwnerMiddleContent handleCallUpdatePopupForm={handleCallUpdatePopupForm} />
-             {isPopupFormOpen && (
-                <UpdatePopupForm
-                    property={selectedSuggestion?.propertyDetails}
-                    initialValues={initialValues}
-                    onClose={() => setIsPopupFormOpen(false)}
-                />
+            {noPropertiesError ? (
+                <ServerError errorMessage={noPropertiesError} />
+            ) : (
+                <>
+                    <OwnerMiddleContent handleCallUpdatePopupForm={handleCallUpdatePopupForm} />
+                    {isPopupFormOpen && (
+                        <UpdatePopupForm
+                            property={selectedSuggestion?.propertyDetails}
+                            initialValues={initialValues}
+                            onClose={() => setIsPopupFormOpen(false)}
+                        />
+                    )}
+                </>
             )}
         </PropertyContext.Provider>
     );
+
 };
 
 export default OwnerRooms;

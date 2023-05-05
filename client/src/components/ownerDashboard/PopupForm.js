@@ -16,7 +16,7 @@ import {
     combinedValidationSchema,
     locationValidationSchema, phoneVerificationValidationSchema, picturesValidationSchema, preferencesValidationSchema,
     propertyValidationSchema
-} from "../../utils/ownerValidationSchemas";
+} from "../utils/ownerValidationSchemas";
 import * as Yup from 'yup';
 import Apartment from "../../assets/img/Apartment.jpg";
 import {Grid} from "@mui/material";

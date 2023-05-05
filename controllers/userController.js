@@ -149,9 +149,9 @@ exports.getUserInfoById = async (req, res) => {
 
 exports.getAllUsers = async (req, res) => {
     try {
-        const user = await User.findAll( {
+        const { rows: users, count } = await User.findAndCountAll({
             include: [
-                {model: Gender, as: 'gender'},
+                { model: Gender, as: 'gender' },
                 { model: Picture, as: 'pictures' },
                 { model: HousingStatus, as: 'housingStatuses' },
                 { model: Interest, as: 'interests' },
@@ -177,14 +177,15 @@ exports.getAllUsers = async (req, res) => {
                 },
             ],
         });
-        if (!user) {
+
+        if (!users || count === 0) {
             throw new Error('No users found');
         } else {
-            res.json(user);
+            res.json({ users, total: count });
         }
 
     } catch (error) {
         console.error(error);
         res.status(500).json({ message: error.message });
     }
-}
+};

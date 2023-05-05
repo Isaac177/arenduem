@@ -4,6 +4,7 @@ import userReducer from './userReducer';
 import galleryReducer from './galleryReducer';
 import interestReducer from './interestReducer';
 import propertyReducer from "./propertyReducer";
+import errorReducer from "./errorReducer";
 
 const rootReducer = combineReducers({
     auth: authReducer,
@@ -11,6 +12,7 @@ const rootReducer = combineReducers({
     gallery: galleryReducer,
     interest: interestReducer,
     property: propertyReducer,
+    error: errorReducer,
 });
 
 export default rootReducer;

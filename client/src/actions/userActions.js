@@ -153,14 +153,9 @@ export const fetchUserInfoById = (userId) => async (dispatch, getState) => {
     }
 };
 
-export const getAllUsers = () => async (dispatch, getState) => {
+export const getAllUsers = () => async (dispatch) => {
     try {
-        const { token } = getState().auth;
-        const response = await axios.get(`${BASE_URL}`, {
-            headers: {
-                Authorization: `Bearer ${token}`,
-            },
-        });
+        const response = await axios.get(`${BASE_URL}`);
 
         console.log('allUsers', response.data);
         dispatch({

@@ -21,6 +21,12 @@ module.exports = (sequelize, DataTypes) => {
         {
              title: Sequelize.STRING,
             description: Sequelize.TEXT,
+            size: Sequelize.INTEGER,
+            roommates: Sequelize.INTEGER,
+            bedrooms: Sequelize.INTEGER,
+            bathrooms: Sequelize.INTEGER,
+            bedType: Sequelize.STRING,
+            furnished: Sequelize.BOOLEAN,
             propertyId: Sequelize.INTEGER,
         },
         {

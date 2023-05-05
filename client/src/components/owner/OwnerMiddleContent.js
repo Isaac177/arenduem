@@ -40,7 +40,7 @@ const OwnerMiddleContent = ({handleCallUpdatePopupForm}) => {
 
     return (
         <div style={{margin: '0 auto'}}>
-            <div className='p-4 my-4 flex items-center align-middle justify-between'>
+            <div className='container p-4 my-4 flex items-center align-middle justify-between mx-auto'>
                 {firstProperty && <MiddlePicture firstProperty={firstProperty} propertyDetails={propertyDetails} images={images} />}
             </div>
             <div className="grid grid-cols-12 gap-8 bg-white">

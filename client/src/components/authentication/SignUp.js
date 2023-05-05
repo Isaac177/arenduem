@@ -2,7 +2,7 @@ import React, {useState} from 'react';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import {boolean, object, string} from 'yup';
 import * as yup from "yup";
-import api from "../../utils/api";
+import api from "../utils/api";
 import {useDispatch} from "react-redux";
 import {setUserId} from "../../actions/userActions";
 
@@ -161,7 +161,7 @@ const SignUp = () => {
                             </div>
                             <div className="mb-4 flex items-center">
                                 <input
-                                    className={`${errors.isOwner ? 'border-red-500' : 'border-gray-300'}`}
+                                    className={`${errors.isOwner ? 'border-red-500' : 'border-gray-300'} mr-2 flex items-center`}
                                     id="isOwner"
                                     type="checkbox"
                                     name="isOwner"

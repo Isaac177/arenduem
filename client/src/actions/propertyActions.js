@@ -1,6 +1,7 @@
 
 import axios from 'axios';
 import FormData from 'form-data';
+import {setServerError} from "./errorActions";
 
 
 const BASE_URL = 'http://localhost:8000';
@@ -61,6 +62,10 @@ const requestAISuggestion = async (label, value) => {
 export const getUserProperties = () => async (dispatch, getState) => {
     try {
         const { userId } = getState().auth;
+        const authState = getState().auth;
+
+        console.log("Auth state:", JSON.stringify(authState));
+
         const response = await axios.get(`${BASE_URL}/users/${userId}/properties`);
         dispatch({ type: 'GET_USER_PROPERTIES_SUCCESS', payload: response.data });
 
@@ -102,7 +107,7 @@ export const getUserProperties = () => async (dispatch, getState) => {
         }
     } catch (error) {
         const errorMessage = error.response ? error.response.data.message : error.message;
-        console.error("Error in axios request:", error);
+        dispatch(setServerError(error.message));
         dispatch({ type: 'GET_USER_PROPERTIES_FAILURE', payload: errorMessage });
     }
 };
