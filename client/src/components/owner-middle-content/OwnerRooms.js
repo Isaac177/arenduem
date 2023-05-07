@@ -16,12 +16,15 @@ const OwnerRooms = () => {
 
     useEffect(() => {
         dispatch(getUserProperties());
+    }, [dispatch]);
+
+    useEffect(() => {
         if (!properties || properties.length === 0) {
             setNoPropertiesError('No properties found for this user.');
         } else {
             setNoPropertiesError(null);
         }
-    }, [dispatch, properties]);
+    }, [properties]);
 
     const initialValues = {
         propertyType: "",
@@ -107,13 +110,15 @@ const OwnerRooms = () => {
         setIsPopupFormOpen(true);
     }
 
+    const userId = useSelector((state) => state.auth.user.id);
+    console.log(userId)
     return (
         <PropertyContext.Provider value={properties}>
             {noPropertiesError ? (
                 <ServerError errorMessage={noPropertiesError} />
             ) : (
                 <>
-                    <OwnerMiddleContent handleCallUpdatePopupForm={handleCallUpdatePopupForm} />
+                    <OwnerMiddleContent handleCallUpdatePopupForm={handleCallUpdatePopupForm} userId={userId}/>
                     {isPopupFormOpen && (
                         <UpdatePopupForm
                             property={selectedSuggestion?.propertyDetails}

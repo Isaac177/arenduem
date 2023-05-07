@@ -1,5 +1,5 @@
-import React, {useContext, useState} from 'react';
-import { useLocation } from 'react-router-dom';
+import React, {useContext, useEffect, useState} from 'react';
+import {useLocation, useParams} from 'react-router-dom';
 import TitleSection from "../owner-middle-content/TitleSection";
 import MiddlePicture from '../owner-middle-content/MiddlePicture';
 import PropertyDescription from "../owner-middle-content/PropertyDescription";
@@ -16,22 +16,33 @@ import {getUserProperties, updatePropertyDescription} from "../../actions/proper
 import OwnerAsideLeft from "./OwnerAsideLeft";
 import OwnerAsideRight from "./OwnerAsideRight";
 
-const OwnerMiddleContent = ({handleCallUpdatePopupForm}) => {
+const OwnerMiddleContent = ({handleCallUpdatePopupForm, userId}) => {
+    const [property, setProperty] = useState(null);
+
     const dispatch = useDispatch();
     const properties = useContext(PropertyContext);
-    const location = useLocation();
-    //const propertyId = location.pathname.split('/')[2];
+    const propertySuggestions = useSelector(state => state.property.propertySuggestions);
+    const { propertyId } = useParams();
+
+    useEffect(() => {
+        if (properties && properties.properties) {
+            const selectedPropertyId = propertyId ? parseInt(propertyId) : properties.properties[0].id;
+            const selectedProperty = properties.properties.find(property => property.id === selectedPropertyId);
+
+            if (selectedProperty) {
+                setProperty(selectedProperty);
+            }
+        }
+    }, [propertyId, properties]);
+
 
     const firstProperty = properties && properties.properties && properties.properties.length > 0 ? properties.properties[0] : null;
     const propertyDetails = firstProperty ? firstProperty.PropertyDetail : null;
     const propertyPictures = propertyDetails ? propertyDetails.PropertyPictures : [];
     const images = propertyPictures.map((picture) => picture.fileUrl);
 
-    const propertySuggestions = useSelector(state => state.property.propertySuggestions);
     const propertySuggestionArray = Object.values(propertySuggestions);
     console.log('suggestion', propertySuggestionArray);
-
-    const propertyId = firstProperty ? firstProperty.id : null;
 
     const handleUpdateDescription = (suggestion) => {
         dispatch(updatePropertyDescription(propertyId, suggestion.description));
@@ -44,7 +55,7 @@ const OwnerMiddleContent = ({handleCallUpdatePopupForm}) => {
                 {firstProperty && <MiddlePicture firstProperty={firstProperty} propertyDetails={propertyDetails} images={images} />}
             </div>
             <div className="grid grid-cols-12 gap-8 bg-white">
-                <OwnerAsideLeft />
+                <OwnerAsideLeft userId={userId}/>
             <div className="col-span-8">
                 <div style={{ width: '980px', margin: '0 auto' }}>
                     {firstProperty && <TitleSection firstProperty={firstProperty} propertyDetails={propertyDetails}/>}

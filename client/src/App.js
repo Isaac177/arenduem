@@ -18,6 +18,7 @@ import BeforeDash from "./components/before-dash/BeforeDash";
 import OwnerDashboard from "./views/user/OwnerDashboard";
 import OwnerRooms from "./components/owner-middle-content/OwnerRooms";
 import PropertyDetails from "./components/dash-content/PropertyDetails";
+import OwnerMiddleContent from "./components/owner/OwnerMiddleContent";
 
 
 
@@ -41,8 +42,9 @@ function App() {
                         <Route exact path="/user/roles" element={<UserDashboardWithAuth />}/>
                         <Route exact path="/user/owner/*" element={<OwnerDashboard/>}/>
                         <Route path="/p/:propertyId" element={<PropertyDetails />} />
-                        <Route exact path="/:userId/properties*" element={<OwnerRooms userId={userId} />}/>
-                         <Route exact path="/user/dashboard/*" element={<UserDashboard />}>
+                        <Route exact path="/:userId/properties/*" element={<OwnerRooms userId={userId} />}/>
+                        <Route path="/owner/property/:propertyId" element={<OwnerMiddleContent />} />
+                        <Route exact path="/user/dashboard/*" element={<UserDashboard />}>
                             <Route path="profile/*" element={<CoverProfile />}>
                                 <Route path="gallery/" element={<ContentGallery />} />
                                 <Route path="personaldata/:userId" element={<PersonalData />} />

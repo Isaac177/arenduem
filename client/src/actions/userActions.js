@@ -92,8 +92,7 @@ export const updateUser = (userData) => async (dispatch, getState) => {
 export const updateIsOwner = (userId, isOwner) => async (dispatch) => {
     try {
         const response = await axios.put(`${BASE_URL}/role/${userId}`, { isOwner });
-        console.log(isOwner);
-        dispatch({
+         dispatch({
             type: UPDATE_IS_OWNER_SUCCESS,
             payload: response.data,
         });
