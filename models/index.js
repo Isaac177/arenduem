@@ -35,7 +35,7 @@ Object.keys(db).forEach(modelName => {
   //console.log(`Model: ${modelName}`);
   if (db[modelName].associate) {
     //console.log(`Associating model: ${modelName}`);
-    // db[modelName].associate(db);
+    //db[modelName].associate(db);
 
     if (modelName === 'Property') {
       db.Property.hasOne(db.Address, { foreignKey: 'propertyId' });
@@ -48,6 +48,7 @@ Object.keys(db).forEach(modelName => {
         db.Property.hasOne(db.Preference, { foreignKey: 'propertyId' });
         db.Property.hasOne(db.PhoneVerification, { foreignKey: 'propertyId' });
         db.Property.belongsTo(db.User, { foreignKey: 'userId' });
+        db.Property.hasMany(db.PropertyPicture, { foreignKey: 'propertyId' });
     }
 
     if (modelName === 'Address') {
@@ -89,6 +90,7 @@ Object.keys(db).forEach(modelName => {
 
     if (modelName === 'PropertyPicture') {
         db.PropertyPicture.belongsTo(db.PropertyDetail, { foreignKey: 'propertyDetailId' });
+        db.PropertyPicture.belongsTo(db.Property, { foreignKey: 'propertyId' });
     }
 
       if (modelName === 'User') {

@@ -95,6 +95,7 @@ exports.createProperty = async (req, res) => {
                     await fs.promises.writeFile(filePath, file.buffer);
                     return {
                         propertyDetailId: propertyDetail.id,
+                        propertyId: property.id,
                         fileUrl: filePath,
                     };
                 })

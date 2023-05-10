@@ -20,6 +20,7 @@ import UpdateStep5 from "./UpdateStep5";
 import UpdateStep4 from "./UpdateStep4";
 import UpdateStep6 from "./UpdateStep6";
 import UpdateStep7 from "./UpdateStep7";
+import {useParams} from "react-router-dom";
 
 
 const fadeIn = keyframes`
@@ -86,7 +87,6 @@ const CloseButton = styled.button`
 `;
 
 const UpdatePopupForm = ({ initialValues, property, isOpen, onClose }) => {
-    console.log('update popup form');
     const [step, setStep] = useState(0);
     const [startDate, setStartDate] = useState(null);
     const [endDate, setEndDate] = useState(null);
@@ -95,6 +95,7 @@ const UpdatePopupForm = ({ initialValues, property, isOpen, onClose }) => {
     const dispatch = useDispatch();
     const successMessage = useSelector((state) => state.property.successMessage);
     const errorMessage = useSelector((state) => state.property.errorMessage);
+    const {propertyId} = useParams();
 
     const handleClose = () => {
         dispatch({ type: 'CLEAR_MESSAGES' });
@@ -122,8 +123,6 @@ const UpdatePopupForm = ({ initialValues, property, isOpen, onClose }) => {
             event.preventDefault();
         }
     };
-
-
 
 
     return (

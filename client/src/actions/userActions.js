@@ -131,7 +131,6 @@ export const fetchUserInfoById = (userId) => async (dispatch, getState) => {
             },
         });
 
-        console.log('userInfo', response.data);
         dispatch({
             type: FETCH_USER_INFO_SUCCESS,
             payload: response.data,
@@ -156,10 +155,9 @@ export const getAllUsers = () => async (dispatch) => {
     try {
         const response = await axios.get(`${BASE_URL}`);
 
-        console.log('allUsers', JSON.stringify(response.data));
         dispatch({
             type: GET_ALL_USERS_SUCCESS,
-            payload: response.data, // Access the data inside response.data
+            payload: response.data,
         });
     } catch (error) {
         console.error(error);

@@ -41,7 +41,6 @@ export const getProperties = () => async (dispatch, getState) => {
     try {
         const response = await axios.get(`${BASE_URL}/properties`);
         dispatch({ type: 'GET_PROPERTIES_SUCCESS', payload: response.data });
-        console.log(JSON.stringify(response.data));
     } catch (error) {
         const errorMessage = error.response ? error.response.data.message : error.message;
         console.error("Error in axios request:", error);
@@ -63,8 +62,6 @@ export const getUserProperties = () => async (dispatch, getState) => {
     try {
         const { userId } = getState().auth;
         const authState = getState().auth;
-
-        console.log("Auth state:", JSON.stringify(authState));
 
         const response = await axios.get(`${BASE_URL}/users/${userId}/properties`);
         dispatch({ type: 'GET_USER_PROPERTIES_SUCCESS', payload: response.data });
@@ -93,10 +90,8 @@ export const getUserProperties = () => async (dispatch, getState) => {
                 `;
 
             const suggestion = await fetchSuggestions(combinedPrompt);
-            console.log(`Suggestions for property ${property.id}:`, suggestion);
 
             const descriptionSuggestion = await getDescriptionSuggestion(property);
-            console.log(`Description suggestion for property ${property.id}:`, descriptionSuggestion);
 
             const combinedSuggestions = {
                 property: suggestion,
@@ -115,7 +110,6 @@ export const getUserProperties = () => async (dispatch, getState) => {
 export const fetchSuggestions = async (prompt) => {
     try {
         const response = await axios.post(`${BASE_URL}/openai/suggestions`, { prompt: prompt });
-        console.log('Received suggestion from API:', response.data.suggestion);
         return response.data.suggestion;
     } catch (error) {
         console.error('Error fetching suggestions from server:', error);
@@ -128,7 +122,6 @@ export const getDescriptionSuggestion = async (propertyDetails) => {
 
     try {
         const response = await fetchSuggestions(prompt);
-        console.log('Received description suggestion from API:', response);
         return response;
     } catch (error) {
         console.error("Error fetching description suggestion:", error);

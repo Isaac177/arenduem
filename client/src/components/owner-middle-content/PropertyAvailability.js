@@ -8,8 +8,8 @@ const formatDate = (dateStr) => {
     return date.toLocaleDateString();
 };
 
-const PropertyAvailability = ({ firstProperty }) => {
-    const availability = firstProperty.Availability;
+const PropertyAvailability = ({ property }) => {
+    const availability = property.Availability;
 
     return (
         <div className="py-2">

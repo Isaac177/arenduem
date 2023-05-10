@@ -3,8 +3,8 @@ import AttachMoneyIcon from '@material-ui/icons/AttachMoney';
 import CheckIcon from '@material-ui/icons/Check';
 import CloseIcon from '@material-ui/icons/Close';
 
-const PropertyPrice = ({ firstProperty }) => {
-    const price = firstProperty.Price;
+const PropertyPrice = ({ property }) => {
+    const price = property.Price;
 
     return (
         <div className="py-2">

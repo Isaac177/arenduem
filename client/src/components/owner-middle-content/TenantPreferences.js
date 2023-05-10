@@ -2,9 +2,9 @@ import React from 'react';
 import { FormGroup, FormControlLabel, Checkbox } from '@mui/material';
 import preferencesData from '../../assets/data/preferencesData';
 
-const TenantPreferences = ({ firstProperty }) => {
+const TenantPreferences = ({ property }) => {
     const renderPreferenceValue = (preference) => {
-        const preferenceValue = firstProperty.Preference[preference.name];
+        const preferenceValue = property?.Preference[preference.name];
         if (preference.name === 'tenantGender') {
             return preferenceValue.charAt(0).toUpperCase() + preferenceValue.slice(1);
         } else if (preference.name === 'tenantMinimumAge' || preference.name === 'tenantMaximumAge') {

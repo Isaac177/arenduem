@@ -10,7 +10,9 @@ const OwnerAsideRight = () => {
     const userInfo = useSelector((state) => state.user.userInfo) || {};
     const dispatch = useDispatch();
 
-    useEffect(() => {
+    console.log('userInfo', userInfo);
+
+     useEffect(() => {
         if (userId) {
             dispatch(fetchUserInfoById(userId));
         }

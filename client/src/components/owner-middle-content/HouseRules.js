@@ -2,7 +2,7 @@ import React from 'react';
 import { FormGroup, FormControlLabel, Checkbox } from '@mui/material';
 import houseRules from '../../assets/data/houseRules';
 
-const HouseRules = ({ firstProperty }) => {
+const HouseRules = ({ property }) => {
     const iconStyles = (isChecked) => {
         return isChecked
             ? 'flex flex-col items-center text-green-600 bg-green-50 border p-2 m-2 border-green-600 rounded-2xl cursor-pointer'
@@ -14,13 +14,13 @@ const HouseRules = ({ firstProperty }) => {
             <h6 className="my-4 text-xl font-bold text-aqua-500">House rules</h6>
             <FormGroup row>
                 {houseRules.map((rule) => (
-                    <div key={rule.name} className={iconStyles(firstProperty[rule.name])}>
+                    <div key={rule.name} className={iconStyles(property[rule.name])}>
                         <FormControlLabel
                             control={
                                 <Checkbox
                                     icon={rule.icon}
                                     checkedIcon={rule.icon}
-                                    checked={firstProperty[rule.name] || false}
+                                    checked={property[rule.name] || false}
                                     disabled
                                 />
                             }

@@ -3,8 +3,8 @@ import LocationOnIcon from '@material-ui/icons/LocationOn';
 import ApartmentIcon from '@material-ui/icons/Apartment';
 import BusinessIcon from '@material-ui/icons/Business';
 
-const PropertyAddress = ({ firstProperty }) => {
-    const address = firstProperty.Address;
+const PropertyAddress = ({ property }) => {
+    const address = property.Address;
 
     return (
         <div className="py-2">

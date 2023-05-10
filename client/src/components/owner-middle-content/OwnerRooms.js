@@ -5,14 +5,15 @@ import OwnerMiddleContent from "../owner/OwnerMiddleContent";
 import PropertyContext from "../owner/PropertyContext";
 import UpdatePopupForm from "../update-form/UpdatePopupForm";
 import ServerError from "../utils/ServerError";
+import {useParams} from "react-router-dom";
 
 
 const OwnerRooms = () => {
     const [noPropertiesError, setNoPropertiesError] = useState(null);
-    const [selectedSuggestion, setSelectedSuggestion] = useState(null);
-    const [isPopupFormOpen, setIsPopupFormOpen] = useState(false);
     const dispatch = useDispatch();
     const properties = useSelector((state) => state.property.properties);
+
+    const { propertyId } = useParams();
 
     useEffect(() => {
         dispatch(getUserProperties());
@@ -25,6 +26,11 @@ const OwnerRooms = () => {
             setNoPropertiesError(null);
         }
     }, [properties]);
+
+    const userId = properties.properties.length > 0 ? properties.properties[0].userId : null;
+
+    /*const userId = properties.properties.length > 0 ? properties.properties[0].userId : null;
+    const { propertyId } = useParams();*/
 
     const initialValues = {
         propertyType: "",
@@ -104,33 +110,15 @@ const OwnerRooms = () => {
             verificationCode: "",
         },
     };
-
-    const handleCallUpdatePopupForm = (suggestion) => {
-        setSelectedSuggestion(suggestion);
-        setIsPopupFormOpen(true);
-    }
-
-    const userId = useSelector((state) => state.auth.user.id);
-    console.log(userId)
-    return (
-        <PropertyContext.Provider value={properties}>
-            {noPropertiesError ? (
-                <ServerError errorMessage={noPropertiesError} />
-            ) : (
-                <>
-                    <OwnerMiddleContent handleCallUpdatePopupForm={handleCallUpdatePopupForm} userId={userId}/>
-                    {isPopupFormOpen && (
-                        <UpdatePopupForm
-                            property={selectedSuggestion?.propertyDetails}
-                            initialValues={initialValues}
-                            onClose={() => setIsPopupFormOpen(false)}
-                        />
-                    )}
-                </>
-            )}
-        </PropertyContext.Provider>
-    );
-
+     return (
+         <PropertyContext.Provider value={properties}>
+             {noPropertiesError ? (
+                 <ServerError errorMessage={noPropertiesError} />
+             ) : (
+                 <OwnerMiddleContent userId={userId} />
+             )}
+         </PropertyContext.Provider>
+        );
 };
 
 export default OwnerRooms;
