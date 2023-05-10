@@ -278,8 +278,6 @@ C
 client/package.json,a/d/ad8a30996233c30cdd545dbf5f18765b86e6bf64
 9
 	server.js,d/c/dc60ea9ee1ff6246bf342463277d5b914db2883d
-k
-;client/src/components/owner-middle-content/MiddlePicture.js,b/8/b8421873f4a002bc0873b7fc0465693430505947
 O
 controllers/openaiController.js,0/d/0d0539a0ad7c96a6641afc3749fe7e6026c1d631
 ]

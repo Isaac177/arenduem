@@ -10,7 +10,10 @@ const OwnerAsideLeft = ({ userId }) => {
         ? properties?.properties?.filter(property => property.userId === userId)
         : [];
 
-    return (
+    const defaultImage = 'https://via.placeholder.com/640x360?text=Default+Image+1';
+
+
+        return (
         <div className="col-span-2 bg-white mt-10">
             <div className="grid grid-cols-1 gap-4">
                 {userProperties.length > 0 && userProperties.map((property, index) => {
@@ -33,7 +36,7 @@ const OwnerAsideLeft = ({ userId }) => {
                                     <h2 className="text-lg font-bold text-center">{propertyTitle}</h2>
                                 </div>
                                 <img
-                                    src={`http://localhost:8000/${propertyImage}`}
+                                    src={propertyImage ? `http://localhost:8000/${propertyImage}` : defaultImage}
                                     alt="property"
                                     className="object-cover p-2 rounded-lg"
                                     style={{ height: '150px', width: '100%', borderRadius: '6px' }}

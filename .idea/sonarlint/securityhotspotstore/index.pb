@@ -214,8 +214,6 @@ Q
 !controllers/interestController.js,5/4/54a7f2a2fb7536a5301aa9d05f93611109b2fc32
 D
 routes/userRoutes.js,e/9/e9eb043515685faf25833d70ef475596fc6e333d
-k
-;client/src/components/owner-middle-content/MiddlePicture.js,b/8/b8421873f4a002bc0873b7fc0465693430505947
 V
 &client/src/components/header/Header.js,5/f/5f63eea74f861092d6d5bab71157305af4ebe117
 9
