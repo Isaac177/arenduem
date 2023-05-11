@@ -12,7 +12,6 @@ const OwnerAsideLeft = ({ userId }) => {
 
     const defaultImage = 'https://via.placeholder.com/640x360?text=Default+Image+1';
 
-
         return (
         <div className="col-span-2 bg-white mt-10">
             <div className="grid grid-cols-1 gap-4">

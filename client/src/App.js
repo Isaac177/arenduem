@@ -20,6 +20,11 @@ import OwnerRooms from "./components/owner-middle-content/OwnerRooms";
 import PropertyDetails from "./components/dash-content/PropertyDetails";
 import OwnerMiddleContent from "./components/owner/OwnerMiddleContent";
 import UpdatePopupForm from "./components/update-form/UpdatePopupForm";
+import InfoSection from "./components/profile/InfoSection";
+import PropertyDash from "./components/OwnerProperties/PropertyDash";
+import PropertyCover from "./components/OwnerProperties/PropertyCover";
+import ProContentGallery from "./components/OwnerProperties/ProContentGallery";
+import ProPersonalData from "./components/OwnerProperties/ProPersonalData";
 
 
 
@@ -42,8 +47,13 @@ function App() {
                         <Route exact path="/user/roles" element={<UserDashboardWithAuth />}/>
                         <Route exact path="/user/owner/*" element={<OwnerDashboard/>}/>
                         <Route path="/p/:propertyId" element={<PropertyDetails />} />
-                        <Route path="/:userId/properties/*" element={<OwnerRooms userId={userId} />}/>
-                        <Route exact path="/:userId/properties/:propertyId" element={<OwnerMiddleContent />} />
+                        <Route path="/:userId/properties/*" element={<PropertyDash userId={userId}/>}>
+                            <Route path='profile/*' element={<PropertyCover />}>
+                                <Route path='gallery' element={<ProContentGallery />} />
+                                <Route path='personaldata/:userId' element={<ProPersonalData />} />
+                            </Route>
+                        </Route>
+                        {/*<Route exact path="/:userId/properties/:propertyId" element={<OwnerMiddleContent />}/>*/}
                         <Route path="/owner/property/:propertyId/update" element={<UpdatePopupForm />} />
                         <Route exact path="/user/dashboard/*" element={<UserDashboard />}>
                             <Route path="profile/*" element={<CoverProfile />}>
