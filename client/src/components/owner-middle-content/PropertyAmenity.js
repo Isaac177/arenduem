@@ -16,18 +16,18 @@ const PropertyAmenities = ({ property }) => {
                 {amenities.map((amenity) => (
                     <div
                         key={amenity.name}
-                        className={iconStyles(property[amenity.name])}
+                        className={iconStyles(property[amenity?.name])}
                     >
                         <FormControlLabel
                             control={
                                 <Checkbox
-                                    icon={amenity.icon}
-                                    checkedIcon={amenity.icon}
-                                    checked={property[amenity.name] || false}
+                                    icon={amenity?.icon}
+                                    checkedIcon={amenity?.icon}
+                                    checked={property[amenity?.name] || false}
                                     disabled
                                 />
                             }
-                            label={amenity.label}
+                            label={amenity?.label}
                         />
                     </div>
                 ))}

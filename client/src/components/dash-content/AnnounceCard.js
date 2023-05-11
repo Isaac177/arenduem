@@ -1,14 +1,17 @@
 import React from 'react';
 import { FiDollarSign, FiMapPin } from 'react-icons/fi';
 
-const AnnounceCard = ({ propertyTitle, housePicture, showPropertyDetails, profilePicture, address, author, budget, propertyType, billIncluded, roommates}) => {
+const AnnounceCard = ({ isDefaultImage, propertyTitle, housePicture, showPropertyDetails, profilePicture, address, author, budget, propertyType, billIncluded, roommates}) => {
 
     const BASE_URL = 'http://localhost:8000';
+
+
+
     return (
         <div className="w-72 text-xs cursor-pointer rounded-lg bg-white transition duration-300 ease-in-out hover:scale-105 hover:shadow-lg"
         onClick={showPropertyDetails}>
             <div className="mb-2">
-                <img src={`${BASE_URL}/${housePicture}`} alt="House" className="h-40 w-full rounded-t-lg object-cover" />
+                <img src={`${isDefaultImage ? housePicture : `${BASE_URL}/${housePicture}`}`} alt="House" className="h-40 w-full rounded-t-lg object-cover" />
             </div>
             <div className="mb-2 p-2">
                 <div className="mb-4 flex items-center h-6">

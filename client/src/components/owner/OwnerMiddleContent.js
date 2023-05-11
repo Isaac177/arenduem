@@ -13,8 +13,7 @@ import PropertyPrice from "../owner-middle-content/PropertyPrice";
 import PropertyContext from "./PropertyContext";
 import {useDispatch, useSelector} from "react-redux";
 import {getUserProperties, updatePropertyDescription} from "../../actions/propertyActions";
-import OwnerAsideLeft from "./OwnerAsideLeft";
-import OwnerAsideRight from "./OwnerAsideRight";
+
 
 const   OwnerMiddleContent = ({ userId, updateCurrentPropertyId }) => {
     const [property, setProperty] = useState(null);
@@ -57,7 +56,6 @@ const   OwnerMiddleContent = ({ userId, updateCurrentPropertyId }) => {
                 {property && <MiddlePicture key={property.id} property={property} propertyDetails={propertyDetails} images={images} />}
             </div>
             <div className="grid grid-cols-12 gap-8 bg-white">
-                <OwnerAsideLeft userId={userId} updatePropertyId={updateCurrentPropertyId} />
                 <div className="col-span-8">
                     <div style={{ width: '980px', margin: '0 auto' }}>
                         {property && <TitleSection property={property} propertyDetails={propertyDetails} />}
@@ -103,7 +101,6 @@ const   OwnerMiddleContent = ({ userId, updateCurrentPropertyId }) => {
                         </div>
                     </div>
                 </div>
-                <OwnerAsideRight />
             </div>
         </div>
     );

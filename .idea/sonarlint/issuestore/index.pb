@@ -308,8 +308,6 @@ d
 4client/src/components/ownerDashboard/OwnerContent.js,6/3/6321da6ca927d39bfff9ac4eb007e480173b6e04
 V
 &client/src/reducers/propertyReducer.js,8/9/89859367dc3da63825889341feacca6ff1c24b07
-b
-2client/src/components/dash-content/AnnounceCard.js,3/2/324288cd343e22d8dd7d17e8470288a55a57eea0
 e
 5client/src/components/dash-content/PropertyDetails.js,d/4/d4ae510f26213e1c583834a7a7d71860567d4651
 R
@@ -318,8 +316,6 @@ a
 1client/src/components/ownerDashboard/PopupForm.js,5/4/546c2e37a261616eb48f5b52e2222ef828d88316
 U
 %client/src/actions/propertyActions.js,7/a/7a0428ce928b984fb54096cd17e42ad50991dbc9
-m
-=client/src/components/owner-middle-content/PropertyAmenity.js,8/8/8847507b19d9f5620fb67899a7a3a1f54ac7abe0
 h
 8client/src/components/owner-middle-content/HouseRules.js,4/f/4fa3094be48e4623b85d42e9e1532d44376971d0
 D
@@ -332,8 +328,6 @@ n
 >client/src/components/owner-middle-content/PropertyServices.js,8/f/8f3b7e67d0a5cae3555da047cb16d5b553f66cf4
 m
 =client/src/components/owner-middle-content/PropertyAddress.js,7/7/776bf7503d3fc3ccb675d425d058525f50b05b73
-j
-:client/src/components/owner-middle-content/TitleSection.js,d/3/d310973c6d617270ba12ec7ea0a9007f7b9df41e
 q
 Aclient/src/components/owner-middle-content/PropertyDescription.js,b/1/b197bc32c564437be92b21ad06b13c823164cea3
 a
