@@ -121,4 +121,4 @@ const OwnerRooms = () => {
         );
 };
 
-export default OwnerRooms;
+

@@ -19,6 +19,7 @@ const PropertyAnnounce = () => {
     const showPropertyDetails = (propertyId) => {
         navigate(`/${userId}/properties/${propertyId}`);
     };
+
     const loggedInUser = users?.find(user => user.id === userId);
     const loggedInUserProperties = loggedInUser?.properties || [];
     const profilePicture = loggedInUser?.pictures?.find(picture => picture.isMain)?.fileUrl;

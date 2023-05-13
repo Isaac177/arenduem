@@ -1,4 +1,4 @@
-import React, {useContext, useEffect, useState} from 'react';
+import React, {useContext, useEffect, useMemo, useState} from 'react';
 import {useLocation, useNavigate, useParams} from 'react-router-dom';
 import TitleSection from "../owner-middle-content/TitleSection";
 import MiddlePicture from '../owner-middle-content/MiddlePicture';
@@ -10,30 +10,29 @@ import PropertyServices from "../owner-middle-content/PropertyServices";
 import PropertyAddress from "../owner-middle-content/PropertyAddress";
 import PropertyAvailability from "../owner-middle-content/PropertyAvailability";
 import PropertyPrice from "../owner-middle-content/PropertyPrice";
-import PropertyContext from "./PropertyContext";
 import {useDispatch, useSelector} from "react-redux";
 import {getUserProperties, updatePropertyDescription} from "../../actions/propertyActions";
+import {getAllUsers} from "../../actions/userActions";
 
 
-const   OwnerMiddleContent = ({ userId, updateCurrentPropertyId }) => {
-    const [property, setProperty] = useState(null);
-
+const OwnerMiddleContent = ({ userId, updateCurrentPropertyId }) => {
     const dispatch = useDispatch();
-    const properties = useContext(PropertyContext);
+    const allUsers = useSelector((state) => state.user.allUsers);
     const propertySuggestions = useSelector(state => state.property.propertySuggestions);
     const { propertyId } = useParams();
 
     useEffect(() => {
-        if (properties && properties.properties) {
-            const selectedPropertyId = updateCurrentPropertyId ? parseInt(updateCurrentPropertyId) : properties.properties[0].id;
-            const selectedProperty = properties.properties.find(property => property.id === selectedPropertyId);
+        dispatch(getAllUsers());
+    }, [dispatch]);
 
-            if (selectedProperty) {
-                console.log('Selected property:', selectedProperty);
-                setProperty(selectedProperty);
-            }
+    const property = useMemo(() => {
+        if (allUsers && allUsers.users) {
+            return allUsers.users
+                .flatMap(user => user.properties)
+                .find(property => property.id.toString() === propertyId);
         }
-    }, [updateCurrentPropertyId, properties]);
+        return null;
+    }, [allUsers, propertyId]);
 
     const propertyDetails = property ? property.PropertyDetail : null;
     const propertyPictures = propertyDetails ? propertyDetails.PropertyPictures : [];
@@ -47,15 +46,17 @@ const   OwnerMiddleContent = ({ userId, updateCurrentPropertyId }) => {
     };
 
     console.log('propertyId:', propertyId);
+    console.log('property', property);
 
     const navigate = useNavigate();
+
 
     return (
         <div style={{ margin: '0 auto' }} key={propertyId}>
             <div className='container p-4 my-4 flex items-center align-middle justify-between mx-auto'>
                 {property && <MiddlePicture key={property.id} property={property} propertyDetails={propertyDetails} images={images} />}
             </div>
-            <div className="grid grid-cols-12 gap-8 bg-white">
+            <div className="grid grid-cols-12 gap-8 bg-white mx-auto p-12 rounded-lg">
                 <div className="col-span-8">
                     <div style={{ width: '980px', margin: '0 auto' }}>
                         {property && <TitleSection property={property} propertyDetails={propertyDetails} />}
