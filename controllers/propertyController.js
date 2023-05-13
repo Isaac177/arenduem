@@ -245,3 +245,33 @@ exports.updatePropertyDescription = async (req, res) => {
     }
 };
 
+exports.fetchPropertyById = async (req, res) => {
+    try {
+        const { propertyId } = req.params;
+
+        const property = await Property.findOne({
+            where: { id: propertyId },
+            include: [
+                { model: Address },
+                { model: Amenity },
+                { model: HouseRule },
+                { model: Availability },
+                { model: Price },
+                { model: Service },
+                { model: PropertyDetail, include: [{ model: PropertyPicture }] },
+                { model: Preference },
+                { model: PhoneVerification },
+            ],
+        });
+
+        if (!property) {
+            return res.status(404).json({ message: 'Property not found.' });
+        }
+
+        res.status(200).json({ property });
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ message: 'Server error' });
+    }
+}
+

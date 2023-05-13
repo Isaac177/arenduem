@@ -33,15 +33,17 @@ const storage = multer.diskStorage({
 const upload = multer({
     storage: storage,
     fileFilter,
-    limits: { fileSize: 1024 * 1024 * 5 }, // Optional: limit file size to 5 MB
-    dest: 'uploads/', // Add this line to save files to disk
+    limits: { fileSize: 1024 * 1024 * 5 },
+    dest: 'uploads/',
 });
 
 
 router.post('/users/:userId/properties', upload.array('pictures'), propertyController.createProperty);
 router.get('/properties', propertyController.getProperties);
 router.get('/users/:userId/properties', propertyController.getUserProperties);
+router.get('/properties/:propertyId', propertyController.fetchPropertyById);
 router.put('/users/:userId/properties/:propertyId/description', updatePropertyDescription);
 router.delete('/users/:userId/properties/:propertyId', propertyController.deleteProperty);
+
 
 module.exports = router;

@@ -5,8 +5,6 @@ const AnnounceCard = ({ isDefaultImage, propertyTitle, housePicture, showPropert
 
     const BASE_URL = 'http://localhost:8000';
 
-
-
     return (
         <div className="w-72 text-xs cursor-pointer rounded-lg bg-white transition duration-300 ease-in-out hover:scale-105 hover:shadow-lg"
         onClick={showPropertyDetails}>

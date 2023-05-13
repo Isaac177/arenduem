@@ -61,7 +61,6 @@ const requestAISuggestion = async (label, value) => {
 export const getUserProperties = () => async (dispatch, getState) => {
     try {
         const { userId } = getState().auth;
-        const authState = getState().auth;
 
         const response = await axios.get(`${BASE_URL}/users/${userId}/properties`);
         dispatch({ type: 'GET_USER_PROPERTIES_SUCCESS', payload: response.data });
@@ -140,6 +139,17 @@ export const updatePropertyDescription = (propertyId, description) => async (dis
         dispatch({ type: 'UPDATE_PROPERTY_DESCRIPTION_FAILURE', payload: errorMessage });
     }
 };
+
+export const fetchPropertyById = (propertyId) => async (dispatch, getState) => {
+    try {
+        const response = await axios.get(`${BASE_URL}/properties/${propertyId}`);
+        dispatch({ type: 'GET_PROPERTY_BY_ID_SUCCESS', payload: response.data });
+        console.log('propertyById', response.data);
+    } catch (error) {
+        const errorMessage = error.response ? error.response.data.message : error.message;
+        dispatch({ type: 'GET_PROPERTY_BY_ID_FAILURE', payload: errorMessage });
+    }
+}
 
 
 

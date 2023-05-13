@@ -226,16 +226,12 @@ Y
 0client/src/components/update-form/UpdateStep1.js,1/6/16b22cbd676129343d45bb2f93b9bf1808c194c4
 Y
 )client/src/components/form-steps/Step1.js,7/b/7b3ce6c4ad102f7c7c41516044bacf54b9069278
-`
-0client/src/components/update-form/UpdateStep2.js,a/a/aac100738f692a2002fd04b5b3e5f15b61b93a81
 Y
 )client/src/components/form-steps/Step2.js,d/9/d93ffceb2cf5b5ecbe2f28f6a35cf1190e418e78
 `
 0client/src/components/update-form/UpdateStep3.js,8/6/868bcf1fd4964a19f00480aa4d11e67484005ab9
 Y
 )client/src/components/form-steps/Step4.js,b/a/ba718ab4aaefed5653fe9473d1899b4e54eb6736
-`
-0client/src/components/update-form/UpdateStep5.js,6/b/6b62c871893dca4e1da209c314244b18f1985dee
 Y
 )client/src/components/form-steps/Step5.js,9/b/9bab67746ea9306be19792f6a7ede4f66f6560a9
 `
@@ -244,8 +240,6 @@ Y
 )client/src/components/form-steps/Step7.js,e/3/e309f46b3ac4a76096cb1faf25ed382331d780c6
 `
 0client/src/components/update-form/UpdateStep6.js,4/1/412369230e21bb72b83efa12de8c2a81768dbe24
-`
-0client/src/components/update-form/UpdateStep4.js,e/2/e263bb17ed95452c988cef5c135fd9c8403fc9b9
 Q
 !controllers/interestController.js,5/4/54a7f2a2fb7536a5301aa9d05f93611109b2fc32
 Q
@@ -264,8 +258,6 @@ A
 client/.gitignore,e/3/e32ec5c998c4774d8d1bedd59740d14d940c90ec
 C
 client/package.json,a/d/ad8a30996233c30cdd545dbf5f18765b86e6bf64
-9
-	server.js,d/c/dc60ea9ee1ff6246bf342463277d5b914db2883d
 O
 controllers/openaiController.js,0/d/0d0539a0ad7c96a6641afc3749fe7e6026c1d631
 ]
@@ -306,14 +298,8 @@ H
 .client/src/components/owner/PropertyContext.js,4/a/4abcbe1244840dbc5f9730322dcc824b3d5fc712
 d
 4client/src/components/ownerDashboard/OwnerContent.js,6/3/6321da6ca927d39bfff9ac4eb007e480173b6e04
-V
-&client/src/reducers/propertyReducer.js,8/9/89859367dc3da63825889341feacca6ff1c24b07
 R
 "client/src/reducers/userReducer.js,3/a/3af3e9d3f595ac02dfee7e96d822cc0e9c01d450
-a
-1client/src/components/ownerDashboard/PopupForm.js,5/4/546c2e37a261616eb48f5b52e2222ef828d88316
-U
-%client/src/actions/propertyActions.js,7/a/7a0428ce928b984fb54096cd17e42ad50991dbc9
 h
 8client/src/components/owner-middle-content/HouseRules.js,4/f/4fa3094be48e4623b85d42e9e1532d44376971d0
 D
@@ -332,16 +318,10 @@ a
 1client/src/components/ownerDashboard/OwnerHero.js,d/6/d634919b2414f13a5dfd471561e1f291c4bb8a26
 I
 models/propertypicture.js,8/f/8f5656de045f10f96af16ed338ff698ba4e8de3a
-d
-4client/src/components/update-form/UpdatePopupForm.js,2/5/250697b011983c5e042d1e3cc9c490b3620e4079
 e
 5migrations/20230428030116-create-property-pictures.js,1/f/1f8d9d823cd9b296b375bf759bca93e8f3cc94e5
-H
-routes/propertyRoutes.js,1/9/19af69cd1f8024e189a785da4a4d0b3d0aa13fa9
 ?
 models/index.js,e/4/e41453b900e7c418643d34a8cb9d68efc0b0ddd6
-Q
-!controllers/propertyController.js,e/7/e7d694fc3ba46a18c2ecc747f60452fd6593b46d
 o
 ?client/src/components/owner-middle-content/TenantPreferences.js,e/d/ed5c1c66c00fc23db40ca917d6babb63df3296f2
 M
@@ -376,8 +356,6 @@ C
 -client/src/components/side-bar/SidebarMenu.js,6/4/64ef7a8200192e39250d0403a734a3ca35d8377d
 \
 ,client/src/components/profile/InfoSidebar.js,c/7/c707f3c748a300489bc38b4055d490877acd53ef
-b
-2client/src/components/dash-content/AnnounceCard.js,3/2/324288cd343e22d8dd7d17e8470288a55a57eea0
 \
 ,client/src/components/profile/InfoSection.js,6/8/684b1500e338bc15f113060860ad71c2e49166ac
 e

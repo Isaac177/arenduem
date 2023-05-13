@@ -7,6 +7,7 @@ import ProContentGallery from "./ProContentGallery";
 import ProPersonalData from "./ProPersonalData";
 import OwnerMiddleContent from "../owner/OwnerMiddleContent";
 import OwnerAsideRight from "../owner/OwnerAsideRight";
+import UpdatePopupForm  from "../update-form/UpdatePopupForm";
 
 
 
@@ -20,7 +21,7 @@ const PropertyDash = () => {
                 <div className="col-span-8 flex flex-col items-center justify-between">
                     <Routes>
                         <Route path="/" element={<PropertyAnnounce />} />
-                        <Route path=':propertyId/*' element={<OwnerMiddleContent />} />
+                        <Route path=':propertyId/*' element={<OwnerMiddleContent />}/>
                         <Route path="/profile/*" element={<PropertyCover />}>
                             <Route path="gallery" element={<ProContentGallery />} />
                             <Route path="personaldata" element={<ProPersonalData />} />

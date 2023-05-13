@@ -6,7 +6,7 @@ import { getNames } from 'country-list';
 
 
 const UpdateStep2 = ({ errors }) => {
-    const [countryInput, setCountryInput] = useState('');
+     const [countryInput, setCountryInput] = useState('');
 
     const { values, setFieldValue } = useFormikContext();
     const countryNames = getNames();

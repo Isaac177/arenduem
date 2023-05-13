@@ -13,12 +13,15 @@ import PropertyPrice from "../owner-middle-content/PropertyPrice";
 import {useDispatch, useSelector} from "react-redux";
 import {getUserProperties, updatePropertyDescription} from "../../actions/propertyActions";
 import {getAllUsers} from "../../actions/userActions";
+import UpdatePopupForm from "../update-form/UpdatePopupForm";
 
 
-const OwnerMiddleContent = ({ userId, updateCurrentPropertyId }) => {
+const OwnerMiddleContent = ({updateCurrentPropertyId }) => {
+    const [showUpdatePopup, setShowUpdatePopup] = useState(false);
     const dispatch = useDispatch();
     const allUsers = useSelector((state) => state.user.allUsers);
     const propertySuggestions = useSelector(state => state.property.propertySuggestions);
+    const userId = useSelector((state) => state.auth.userId);
     const { propertyId } = useParams();
 
     useEffect(() => {
@@ -48,10 +51,9 @@ const OwnerMiddleContent = ({ userId, updateCurrentPropertyId }) => {
     console.log('propertyId:', propertyId);
     console.log('property', property);
 
-    const navigate = useNavigate();
-
 
     return (
+        <>
         <div style={{ margin: '0 auto' }} key={propertyId}>
             <div className='container p-4 my-4 flex items-center align-middle justify-between mx-auto'>
                 {property && <MiddlePicture key={property.id} property={property} propertyDetails={propertyDetails} images={images} />}
@@ -67,7 +69,7 @@ const OwnerMiddleContent = ({ userId, updateCurrentPropertyId }) => {
                                     <p key={index} className="text-xs text-amber-800">
                                         {suggestion.property} click{" "}
                                         <span className="text-aqua-500 cursor-pointer"
-                                              onClick={() => navigate(`/owner/property/${propertyId}/update`)}
+                                              onClick={() => setShowUpdatePopup(true)}
                                         >here</span> to update
                                     </p>
                                 ))}
@@ -104,7 +106,12 @@ const OwnerMiddleContent = ({ userId, updateCurrentPropertyId }) => {
                 </div>
             </div>
         </div>
-    );
+            <UpdatePopupForm
+                isOpen={showUpdatePopup}
+                onClose={() => setShowUpdatePopup(false)}
+            />
+        </>
+            );
 };
 
 export default OwnerMiddleContent;

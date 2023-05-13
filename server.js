@@ -65,6 +65,7 @@ app.get('/users/:userId/interests', interestController.getInterests, interestRou
 app.post('/users/:userId/properties', upload.array('pictures'), propertyController.createProperty);
 app.get('/properties', propertyController.getProperties, propertyRoutes);
 app.get('/users/:userId/properties', propertyController.getUserProperties, propertyRoutes);
+app.get('/properties/:propertyId', propertyController.fetchPropertyById, propertyRoutes);
 app.delete('/users/:userId/properties/:propertyId', propertyController.deleteProperty, propertyRoutes);
 app.put('/users/:userId/properties/:propertyId/description', updatePropertyDescription);
 

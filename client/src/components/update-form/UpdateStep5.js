@@ -11,7 +11,13 @@ const UpdateStep5 = () => {
         noKeyboard: true,
         name: 'pictures',
         onDrop: (acceptedFiles) => {
-            setFieldValue('propertyDetails.pictures', acceptedFiles);
+            const filesWithPreviews = acceptedFiles.map((file) => {
+                return {
+                    ...file,
+                    preview: URL.createObjectURL(file),
+                };
+            });
+            setFieldValue("propertyDetails.pictures", filesWithPreviews);
         },
     });
 
@@ -23,11 +29,33 @@ const UpdateStep5 = () => {
         };
     }, [values.propertyDetails.pictures]);
 
-    const files = values.propertyDetails?.pictures?.map((file) => (
+/*    const files = values.propertyDetails?.pictures?.map((file) => (
         <li key={file.name}>
             {file.name} - {file.size} bytes
         </li>
+    ));*/
+
+    const files = values.propertyDetails?.pictures?.map((file, index) => (
+        <div key={file.name} className="relative inline-block mx-2 mb-2">
+            <img
+                src={file.preview}
+                alt={file.name}
+                className="w-24 h-24 object-cover rounded-md"
+            />
+            <button
+                className="absolute top-0 right-0 text-red-500 bg-white rounded-full p-1 focus:outline-none"
+                onClick={() => {
+                    const updatedFiles = values.propertyDetails.pictures.filter(
+                        (_, i) => i !== index
+                    );
+                    setFieldValue("propertyDetails.pictures", updatedFiles);
+                }}
+            >
+                &times;
+            </button>
+        </div>
     ));
+
 
     return (
         <ThemeProvider theme={theme}>

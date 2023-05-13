@@ -64,6 +64,13 @@ const propertyReducer = (state = initialState, action) => {
         case 'CLEAR_SUGGESTIONS':
             return { ...state, propertySuggestions: [], descriptionSuggestion: [] };
 
+        case 'PROPERTY_DETAILS_REQUEST':
+            return { loading: true, ...state };
+        case 'PROPERTY_DETAILS_SUCCESS':
+            return { loading: false, property: action.payload };
+        case 'PROPERTY_DETAILS_FAIL':
+            return { loading: false, error: action.payload };
+
         default:
             return state;
     }

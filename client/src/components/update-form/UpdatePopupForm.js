@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, {useEffect, useState} from 'react';
 import { Formik, Form } from 'formik';
 import styled from '@emotion/styled';
 import { keyframes } from '@emotion/react';
@@ -11,7 +11,7 @@ import formImg from "../../assets/img/formImg.jpg";
 import peopleImg from "../../assets/img/peopleImg.jpg";
 import location from "../../assets/img/location.jpg";
 import phone from "../../assets/img/phone.jpg";
-import {createProperty} from "../../actions/propertyActions";
+import {createProperty, fetchPropertyById} from "../../actions/propertyActions";
 import MessagePopup from "../utils/MessagePopup";
 import UpdateStep1 from "./UpdateStep1";
 import UpdateStep2 from "./UpdateStep2";
@@ -86,7 +86,11 @@ const CloseButton = styled.button`
   font-size: 1.5rem;
 `;
 
-const UpdatePopupForm = ({ initialValues, property, isOpen, onClose }) => {
+
+
+const UpdatePopupForm = ({ isOpen, onClose }) => {
+    const [fetchedData, setFetchedData] = useState(null);
+
     const [step, setStep] = useState(0);
     const [startDate, setStartDate] = useState(null);
     const [endDate, setEndDate] = useState(null);
@@ -96,6 +100,42 @@ const UpdatePopupForm = ({ initialValues, property, isOpen, onClose }) => {
     const successMessage = useSelector((state) => state.property.successMessage);
     const errorMessage = useSelector((state) => state.property.errorMessage);
     const {propertyId} = useParams();
+
+    const fetchedProperty = useSelector((state) => state.property.property);
+
+    console.log('Fetched property:', fetchedProperty);
+
+    useEffect(() => {
+        if (propertyId) {
+            dispatch(fetchPropertyById(propertyId));
+        }
+    }, [dispatch, propertyId]);
+
+    const mapFetchedDataToInitialValues = (data) => {
+        return {
+            ...data,
+            propertyAddress: data.address,
+            propertyAmenities: data.amenity,
+            houseRules: data.houseRule,
+            propertyAvailability: data.availability,
+            prices: data.price,
+            otherServices: data.service,
+            propertyDetails: {
+                ...data.propertyDetail,
+                pictures: data.propertyPictures.map((picture) => picture.fileUrl),
+            },
+            preferences: data.preference,
+            phoneVerification: data.phoneVerification,
+        };
+    };
+
+    useEffect(() => {
+        if (fetchedProperty) {
+            setFetchedData(mapFetchedDataToInitialValues(fetchedProperty));
+        }
+    }, [fetchedProperty]);
+
+
 
     const handleClose = () => {
         dispatch({ type: 'CLEAR_MESSAGES' });
@@ -124,16 +164,90 @@ const UpdatePopupForm = ({ initialValues, property, isOpen, onClose }) => {
         }
     };
 
-
     return (
         <ModalOverlay>
             <Modal onClick={(e) => e.stopPropagation()}>
-                <Formik
-                    initialValues={{
-                        ...initialValues,
-                        ...property
-                    }}
-                    //validationSchema={getValidationSchemaForStep(step)}
+                    <Formik
+                        initialValues={fetchedData || {
+                            propertyType: '',
+                            propertyAddress: {
+                                country: '',
+                                city: '',
+                                street: '',
+                                floor: 0,
+                                apartmentNumber: 0
+                            },
+                            propertyAmenities: {
+                                homeType: false,
+                                bedroom: false,
+                                bathroom: false,
+                                roommates: false,
+                                livingRoom: false,
+                                kitchen: false,
+                                wifi: false,
+                                tv: false,
+                                airConditioning: false,
+                                smokeFree: false,
+                                laundry: false,
+                                elevator: false,
+                                parking: false,
+                                balcony: false,
+                                privateBathroom: false,
+                                privateKitchen: false,
+                                desktop: false,
+                                closet: false,
+                            },
+                            houseRules: {
+                                noSmoking: false,
+                                pets: false,
+                                children: false,
+                                smoking: false,
+                                events: false,
+                                noDrinking: false,
+                            },
+                            propertyAvailability: {
+                                startDate: null,
+                                endDate: null,
+                                minStay: 0,
+                                maxStay: 0
+                            },
+                            prices: {
+                                pricePerMonth: 0,
+                                billsIncluded: false,
+                                deposit: 0
+                            },
+                            otherServices: {
+                                rentalContract: false,
+                                cleaningService: false,
+                                maintenance: false
+                            },
+                            propertyDetails: {
+                                pictures: [],
+                                title: '',
+                                description: '',
+                                size: 0,
+                                bedrooms: 0,
+                                bathrooms: 0,
+                                roommates: 0,
+                                furnished: false,
+                                bedType: '',
+                            },
+                            preferences: {
+                                tenantGender: '',
+                                tenantMinimumAge: 1,
+                                tenantMaximumAge: 100,
+                                tenantOccupation: '',
+                                tenantDrinkingStatus: '',
+                                tenantSmokingStatus: '',
+                            },
+                            phoneVerification: {
+                                country: '',
+                                phoneNumber: '',
+                                verificationCode: ''
+                            },
+                        }}
+
+                        //validationSchema={getValidationSchemaForStep(step)}
                     onSubmit={(values, { setSubmitting }) => {
                         dispatch(createProperty(values));
                         setSubmitting(false);
@@ -144,9 +258,7 @@ const UpdatePopupForm = ({ initialValues, property, isOpen, onClose }) => {
                     {({ isSubmitting, errors, isValid, submitForm, values, setFieldValue }) => (
                         <Form onKeyDown={handleKeyDown}>
                             <CloseButton onClick={onClose}>
-                                <CloseIcon
-                                    size={80}
-                                />
+                                <CloseIcon size={100}/>
                             </CloseButton>
                             {step === 0 ? ''  : <h1 className="mb-4 text-center text-2xl font-bold">Property Type: {values.propertyType}</h1>}
                             <Title>Step {step + 1} of {totalSteps}</Title>
@@ -155,16 +267,17 @@ const UpdatePopupForm = ({ initialValues, property, isOpen, onClose }) => {
                             <Grid container spacing={3}>
                                 <Grid item xs={12} sm={6}>
                                     <div className="mx-auto overflow-y-scroll" style={{height: '600px'}}>
-                                        {step === 1 && <UpdateStep2 errors={errors} />}
-                                        {step === 2 && <UpdateStep3 errors={errors} />}
+                                        {step === 1 && <UpdateStep2 errors={errors} values={values} setFieldValue={setFieldValue}/>}
+                                        {step === 2 && <UpdateStep3 errors={errors} values={values} setFieldValue={setFieldValue}/>}
                                         {step === 3 && <UpdateStep4 errors={errors}
                                                               startDate={startDate}
                                                               setStartDate={setStartDate}
                                                               endDate={endDate}
-                                                              setEndDate={setEndDate}/>}
-                                        {step === 4 && <UpdateStep5 />}
-                                        {step === 5 && <UpdateStep6 />}
-                                        {step === 6 && <UpdateStep7 />}
+                                                              setEndDate={setEndDate}
+                                                                values={values}/>}
+                                        {step === 4 && <UpdateStep5 values={values}/>}
+                                        {step === 5 && <UpdateStep6 values={values}/>}
+                                        {step === 6 && <UpdateStep7 values={values}/>}
                                     </div>
                                 </Grid>
                                 <Grid item xs={12} sm={6}>
@@ -204,11 +317,13 @@ const UpdatePopupForm = ({ initialValues, property, isOpen, onClose }) => {
                         </Form>
                     )}
                 </Formik>
-                {showMessage && <MessagePopup
+                {showMessage && (
+                    <MessagePopup
                     errorMessage={errorMessage}
                     successMessage={successMessage}
                     handleClose={handleClose}
-                />}
+                    />
+                    )}
             </Modal>
         </ModalOverlay>
     );
