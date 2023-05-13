@@ -1,5 +1,8 @@
+import {UPDATE_PROPERTY} from "../actions/propertyActions";
+
 const initialState = {
     property: null,
+    properties: [],
     error: null,
     successMessage: '',
     errorMessage: '',
@@ -70,6 +73,17 @@ const propertyReducer = (state = initialState, action) => {
             return { loading: false, property: action.payload };
         case 'PROPERTY_DETAILS_FAIL':
             return { loading: false, error: action.payload };
+
+        case UPDATE_PROPERTY: {
+            const updatedProperties = state.properties.map((property) =>
+                property.id === action.payload.id ? action.payload : property
+            );
+
+            return {
+                ...state,
+                properties: updatedProperties,
+            };
+        }
 
         default:
             return state;

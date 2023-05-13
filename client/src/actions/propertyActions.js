@@ -3,6 +3,8 @@ import axios from 'axios';
 import FormData from 'form-data';
 import {setServerError} from "./errorActions";
 
+export const UPDATE_PROPERTY = "UPDATE_PROPERTY";
+
 
 const BASE_URL = 'http://localhost:8000';
 export const createProperty = (propertyData) => async (dispatch, getState) => {
@@ -150,6 +152,38 @@ export const fetchPropertyById = (propertyId) => async (dispatch, getState) => {
         dispatch({ type: 'GET_PROPERTY_BY_ID_FAILURE', payload: errorMessage });
     }
 }
+
+export const updateProperty = (propertyId, propertyData) => async (dispatch, getState) => {
+    try {
+        const { userId } = getState().auth;
+        const formData = new FormData();
+
+        Object.keys(propertyData).forEach((key) => {
+            if (key === "propertyDetails") {
+                const { pictures, ...otherDetails } = propertyData[key];
+                pictures.forEach((picture) => {
+                    formData.append("pictures", picture);
+                });
+                Object.keys(otherDetails).forEach((detailKey) => {
+                    formData.append(`${key}.${detailKey}`, JSON.stringify(otherDetails[detailKey]));
+                });
+            } else {
+                formData.append(key, JSON.stringify(propertyData[key]));
+            }
+        });
+
+        for (let [key, value] of formData.entries()) {
+            console.log(`${key}: ${value}`);
+        }
+
+        const response = await axios.put(`${BASE_URL}/users/${userId}/properties/${propertyId}`, formData);
+
+        dispatch({ type: UPDATE_PROPERTY, payload: response.data });
+    } catch (error) {
+        const errorMessage = error.response ? error.response.data.message : error.message;
+        dispatch({ type: "UPDATE_PROPERTY_FAILURE", payload: errorMessage });
+    }
+};
 
 
 

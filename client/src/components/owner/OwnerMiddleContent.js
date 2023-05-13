@@ -51,6 +51,12 @@ const OwnerMiddleContent = ({updateCurrentPropertyId }) => {
     console.log('propertyId:', propertyId);
     console.log('property', property);
 
+    const handleOncloseForm = () => {
+        setShowUpdatePopup(false);
+        dispatch(getUserProperties());
+        dispatch(getAllUsers());
+    }
+
 
     return (
         <>
@@ -108,7 +114,7 @@ const OwnerMiddleContent = ({updateCurrentPropertyId }) => {
         </div>
             <UpdatePopupForm
                 isOpen={showUpdatePopup}
-                onClose={() => setShowUpdatePopup(false)}
+                onClose={handleOncloseForm}
             />
         </>
             );

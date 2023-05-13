@@ -42,6 +42,7 @@ router.post('/users/:userId/properties', upload.array('pictures'), propertyContr
 router.get('/properties', propertyController.getProperties);
 router.get('/users/:userId/properties', propertyController.getUserProperties);
 router.get('/properties/:propertyId', propertyController.fetchPropertyById);
+router.put('/properties/:propertyId', upload.array('pictures'), propertyController.updateProperty);
 router.put('/users/:userId/properties/:propertyId/description', updatePropertyDescription);
 router.delete('/users/:userId/properties/:propertyId', propertyController.deleteProperty);
 

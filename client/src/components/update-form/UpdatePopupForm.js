@@ -11,7 +11,7 @@ import formImg from "../../assets/img/formImg.jpg";
 import peopleImg from "../../assets/img/peopleImg.jpg";
 import location from "../../assets/img/location.jpg";
 import phone from "../../assets/img/phone.jpg";
-import {createProperty, fetchPropertyById} from "../../actions/propertyActions";
+import {createProperty, fetchPropertyById, updateProperty} from "../../actions/propertyActions";
 import MessagePopup from "../utils/MessagePopup";
 import UpdateStep1 from "./UpdateStep1";
 import UpdateStep2 from "./UpdateStep2";
@@ -164,6 +164,7 @@ const UpdatePopupForm = ({ isOpen, onClose }) => {
         }
     };
 
+
     return (
         <ModalOverlay>
             <Modal onClick={(e) => e.stopPropagation()}>
@@ -248,13 +249,35 @@ const UpdatePopupForm = ({ isOpen, onClose }) => {
                         }}
 
                         //validationSchema={getValidationSchemaForStep(step)}
-                    onSubmit={(values, { setSubmitting }) => {
-                        dispatch(createProperty(values));
-                        setSubmitting(false);
-                        console.log(JSON.stringify(values, null, 2));
-                        onClose();
-                    }}
-                >
+                        onSubmit={async (values, { setSubmitting }) => {
+                            const formData = new FormData();
+                            for (const key in values) {
+                                if (key === "propertyDetails") {
+                                    for (const subKey in values[key]) {
+                                        if (subKey === "pictures") {
+                                            values[key][subKey].forEach((file, index) => {
+                                                formData.append(`pictures[${index}]`, file);
+                                            });
+                                        } else {
+                                            formData.append(`${key}.${subKey}`, JSON.stringify(values[key][subKey]));
+                                        }
+                                    }
+                                } else {
+                                    formData.append(key, JSON.stringify(values[key]));
+                                }
+                            }
+
+                            if (propertyId) {
+                                await dispatch(updateProperty(propertyId, formData));
+                            } else {
+                                await dispatch(createProperty(formData));
+                            }
+
+                            setSubmitting(false);
+                            console.log(JSON.stringify(values, null, 2));
+                            onClose();
+                        }}
+                    >
                     {({ isSubmitting, errors, isValid, submitForm, values, setFieldValue }) => (
                         <Form onKeyDown={handleKeyDown}>
                             <CloseButton onClick={onClose}>

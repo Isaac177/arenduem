@@ -275,3 +275,133 @@ exports.fetchPropertyById = async (req, res) => {
     }
 }
 
+exports.updateProperty = async (req, res) => {
+    try {
+        const propertyData = req.body;
+        const propertyId = req.params.propertyId;
+
+        const {
+            propertyType,
+            propertyAddress,
+            propertyAmenities,
+            houseRules,
+            propertyAvailability,
+            prices,
+            otherServices,
+            propertyDetails,
+            preferences,
+            phoneVerification,
+        } = propertyData;
+
+        const property = await Property.findByPk(propertyId);
+
+        if (!property) {
+            return res.status(404).json({ message: "Property not found" });
+        }
+
+        await property.update({ propertyType });
+
+        const parsedPropertyAddress = JSON.parse(propertyAddress);
+        const address = await Address.findOne({ where: { propertyId } });
+        if (address) {
+            await address.update(parsedPropertyAddress);
+        }
+
+        const parsedPropertyAmenities = JSON.parse(propertyAmenities);
+        const amenity = await Amenity.findOne({ where: { propertyId } });
+        if (amenity) {
+            await amenity.update(parsedPropertyAmenities);
+        }
+
+        const parsedHouseRules = JSON.parse(houseRules);
+        const houseRule = await HouseRule.findOne({ where: { propertyId } });
+        if (houseRule) {
+            await houseRule.update(parsedHouseRules);
+        }
+
+        const parsedPropertyAvailability = JSON.parse(propertyAvailability);
+        const availability = await Availability.findOne({ where: { propertyId } });
+        if (availability) {
+            await availability.update(parsedPropertyAvailability);
+        }
+
+        const parsedPrices = JSON.parse(prices);
+        const price = await Price.findOne({ where: { propertyId } });
+        if (price) {
+            await price.update(parsedPrices);
+        }
+
+        const parsedOtherServices = JSON.parse(otherServices);
+        const service = await Service.findOne({ where: { propertyId } });
+        if (service) {
+            await service.update(parsedOtherServices);
+        }
+
+        const newPropertyDetails = { ...propertyDetails };
+        for (const key of Object.keys(propertyData)) {
+            if (key.startsWith("propertyDetails.")) {
+                const detailKey = key.substring("propertyDetails.".length);
+                newPropertyDetails[detailKey] = JSON.parse(propertyData[key]);
+            }
+        }
+
+        const propertyDetail = await PropertyDetail.findOne({ where: { propertyId } });
+        if (propertyDetail) {
+            await propertyDetail.update(newPropertyDetails);
+        }
+
+        const propertyPictures = await Promise.all(
+            req.files
+                .filter((file) => file.buffer)
+                .map(async (file) => {
+                    const uniqueSuffix = Date.now() + "-" + Math.round(Math.random() * 1e9);
+                    const fileExtension = path.extname(file.originalname);
+                    const filename = file.fieldname + "-" + uniqueSuffix + fileExtension;
+                    const filePath = path.join("uploads", filename);
+                    await fs.promises.writeFile(filePath, file.buffer);
+                    return {
+                        propertyDetailId: propertyDetail.id,
+                        propertyId: property.id,
+                        fileUrl: filePath,
+                    };
+                })
+        );
+
+        if (propertyPictures.length > 0) {
+            await PropertyPicture.destroy({ where: { propertyId } });
+            await PropertyPicture.bulkCreate(propertyPictures);
+        } else {
+            console.error('No valid file paths found');
+        }
+
+        const parsedPreferences = JSON.parse(preferences);
+        const preference = await Preference.findOne({ where: { propertyId } });
+        if (preference) {
+            await preference.update(parsedPreferences);
+        }
+
+        const parsedPhoneVerification = JSON.parse(phoneVerification);
+        const phoneVerificationRecord = await PhoneVerification.findOne({ where: { propertyId } });
+        if (phoneVerificationRecord) {
+            await phoneVerificationRecord.update(parsedPhoneVerification);
+        }
+
+        res.status(200).json({
+            message: 'Property updated successfully',
+            property,
+            address,
+            amenity,
+            houseRule,
+            availability,
+            price,
+            service,
+            propertyDetail,
+            propertyPictures,
+            preference,
+            phoneVerification: phoneVerificationRecord,
+        });
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ message: 'Server error' });
+    }
+};
