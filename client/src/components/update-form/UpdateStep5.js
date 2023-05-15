@@ -1,23 +1,21 @@
-import React, {useEffect} from 'react';
+import React, {useEffect, useState} from 'react';
 import { useFormikContext, Field } from 'formik';
 import { useDropzone } from 'react-dropzone';
 import {ThemeProvider, FormControl, TextField} from "@mui/material";
 import theme from "../utils/theme";
 
 const UpdateStep5 = () => {
+    const [filePreviews, setFilePreviews] = useState([]);
+
     const { getRootProps, getInputProps, open, acceptedFiles } = useDropzone({
         accept: 'image/jpeg, image/png, image/jpg',
         noClick: true,
         noKeyboard: true,
         name: 'pictures',
         onDrop: (acceptedFiles) => {
-            const filesWithPreviews = acceptedFiles.map((file) => {
-                return {
-                    ...file,
-                    preview: URL.createObjectURL(file),
-                };
-            });
-            setFieldValue("propertyDetails.pictures", filesWithPreviews);
+            setFieldValue("propertyDetails.pictures", acceptedFiles);
+            const newPreviews = acceptedFiles.map((file) => URL.createObjectURL(file));
+            setFilePreviews(newPreviews);
         },
     });
 
@@ -25,20 +23,21 @@ const UpdateStep5 = () => {
 
     useEffect(() => {
         return () => {
-            values.propertyDetails.pictures.forEach((file) => URL.revokeObjectURL(file.preview));
+            filePreviews.forEach((preview) => URL.revokeObjectURL(preview));
         };
-    }, [values.propertyDetails.pictures]);
+    }, [filePreviews]);
 
-/*    const files = values.propertyDetails?.pictures?.map((file) => (
-        <li key={file.name}>
-            {file.name} - {file.size} bytes
-        </li>
-    ));*/
+
+    /*    const files = values.propertyDetails?.pictures?.map((file) => (
+            <li key={file.name}>
+                {file.name} - {file.size} bytes
+            </li>
+        ));*/
 
     const files = values.propertyDetails?.pictures?.map((file, index) => (
         <div key={file.name} className="relative inline-block mx-2 mb-2">
             <img
-                src={file.preview}
+                src={filePreviews[index]}
                 alt={file.name}
                 className="w-24 h-24 object-cover rounded-md"
             />

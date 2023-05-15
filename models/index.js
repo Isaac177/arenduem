@@ -89,7 +89,6 @@ Object.keys(db).forEach(modelName => {
     }
 
     if (modelName === 'PropertyPicture') {
-        db.PropertyPicture.belongsTo(db.PropertyDetail, { foreignKey: 'propertyDetailId' });
         db.PropertyPicture.belongsTo(db.Property, { foreignKey: 'propertyId' });
     }
 

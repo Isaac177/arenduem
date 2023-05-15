@@ -22,7 +22,7 @@ const MiddlePicture = ({ images }) => {
         carouselRef.current.moveTo(index);
     };
 
-    const displayImages = images.length > 0 ? images : defaultImages;
+    const displayImages = images?.length > 0 ? images : defaultImages;
 
     return (
         <div className="my-4">
@@ -41,7 +41,7 @@ const MiddlePicture = ({ images }) => {
                         <div key={index}>
                             <img
                                 className="w-full h-auto mb-4 rounded-lg"
-                                src={images.length > 0 ? `http://localhost:8000/${image}` : image}
+                                src={images?.length > 0 ? `http://localhost:8000/${image}` : image}
                                 alt="room"
                                 style={{ height: 'auto', width: '100%', objectFit: 'contain' }}
                             />
@@ -55,7 +55,7 @@ const MiddlePicture = ({ images }) => {
                             className={`w-full h-auto rounded-lg cursor-pointer ${
                                 index === selectedImage ? 'border-4 border-green-500' : ''
                             }`}
-                            src={images.length > 0 ? `http://localhost:8000/${image}` : image}
+                            src={images?.length > 0 ? `http://localhost:8000/${image}` : image}
                             alt="room"
                             style={{ height: '200px', width: '400px', objectFit: 'cover' }}
                             onClick={() => handleThumbnailClick(index)}

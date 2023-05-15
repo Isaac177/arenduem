@@ -73,7 +73,7 @@ app.put('/users/:userId/properties/:propertyId/description', updatePropertyDescr
 
 // OpenAi routes
 
-app.post('/openai/suggestions', openaiController.fetchSuggestions);
+//app.post('/openai/suggestions', openaiController.fetchSuggestions);
 
 
 const PORT = 8000;

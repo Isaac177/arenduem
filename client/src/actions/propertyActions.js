@@ -134,7 +134,6 @@ export const updatePropertyDescription = (propertyId, description) => async (dis
     try {
         const { userId } = getState().auth;
         const response = await axios.put(`${BASE_URL}/users/${userId}/properties/${propertyId}/description`, { description });
-
         dispatch({ type: 'UPDATE_PROPERTY_DESCRIPTION_SUCCESS', payload: response.data });
     } catch (error) {
         const errorMessage = error.response ? error.response.data.message : error.message;
@@ -146,16 +145,14 @@ export const fetchPropertyById = (propertyId) => async (dispatch, getState) => {
     try {
         const response = await axios.get(`${BASE_URL}/properties/${propertyId}`);
         dispatch({ type: 'GET_PROPERTY_BY_ID_SUCCESS', payload: response.data });
-        console.log('propertyById', response.data);
     } catch (error) {
         const errorMessage = error.response ? error.response.data.message : error.message;
         dispatch({ type: 'GET_PROPERTY_BY_ID_FAILURE', payload: errorMessage });
     }
 }
 
-export const updateProperty = (propertyId, propertyData) => async (dispatch, getState) => {
+export const updateProperty = (propertyId, propertyData) => async (dispatch) => {
     try {
-        const { userId } = getState().auth;
         const formData = new FormData();
 
         Object.keys(propertyData).forEach((key) => {
@@ -176,7 +173,8 @@ export const updateProperty = (propertyId, propertyData) => async (dispatch, get
             console.log(`${key}: ${value}`);
         }
 
-        const response = await axios.put(`${BASE_URL}/users/${userId}/properties/${propertyId}`, formData);
+        const response = await axios.put(`${BASE_URL}/properties/${propertyId}`, formData);
+        console.log("Update response:", JSON.stringify(response.data));
 
         dispatch({ type: UPDATE_PROPERTY, payload: response.data });
     } catch (error) {

@@ -75,8 +75,10 @@ const propertyReducer = (state = initialState, action) => {
             return { loading: false, error: action.payload };
 
         case UPDATE_PROPERTY: {
+            console.log("Updated property payload:", JSON.stringify(action.payload));
+            const updatedProperty = action.payload.property;
             const updatedProperties = state.properties.map((property) =>
-                property.id === action.payload.id ? action.payload : property
+                property.id === updatedProperty.id ? updatedProperty : property
             );
 
             return {

@@ -31,15 +31,15 @@ const OwnerMiddleContent = ({updateCurrentPropertyId }) => {
     const property = useMemo(() => {
         if (allUsers && allUsers.users) {
             return allUsers.users
-                .flatMap(user => user.properties)
-                .find(property => property.id.toString() === propertyId);
+                .flatMap(user => user?.properties)
+                .find(property => property?.id.toString() === propertyId);
         }
         return null;
     }, [allUsers, propertyId]);
 
     const propertyDetails = property ? property.PropertyDetail : null;
     const propertyPictures = propertyDetails ? propertyDetails.PropertyPictures : [];
-    const images = propertyPictures.map((picture) => picture.fileUrl);
+    const images = propertyPictures?.map((picture) => picture?.fileUrl);
 
     const propertySuggestionArray = Object.values(propertySuggestions);
 
@@ -48,13 +48,10 @@ const OwnerMiddleContent = ({updateCurrentPropertyId }) => {
         dispatch(getUserProperties());
     };
 
-    console.log('propertyId:', propertyId);
-    console.log('property', property);
-
     const handleOncloseForm = () => {
         setShowUpdatePopup(false);
-        dispatch(getUserProperties());
-        dispatch(getAllUsers());
+        /*dispatch(getUserProperties());
+        dispatch(getAllUsers());*/
     }
 
 
@@ -73,7 +70,7 @@ const OwnerMiddleContent = ({updateCurrentPropertyId }) => {
                             <div className="flex flex-row gap-4">
                                 {propertySuggestionArray.map((suggestion, index) => (
                                     <p key={index} className="text-xs text-amber-800">
-                                        {suggestion.property} click{" "}
+                                        {suggestion?.property} click{" "}
                                         <span className="text-aqua-500 cursor-pointer"
                                               onClick={() => setShowUpdatePopup(true)}
                                         >here</span> to update
@@ -87,7 +84,7 @@ const OwnerMiddleContent = ({updateCurrentPropertyId }) => {
                             <div className="flex flex-row gap-4 flex-wrap">
                                 {propertySuggestionArray.map((suggestion, i) => (
                                     <p key={i} className="text-xs text-amber-800">
-                                        {suggestion.description} click{" "}
+                                        {suggestion?.description} click{" "}
                                         <span className="text-aqua-500 cursor-pointer"
                                               onClick={() => handleUpdateDescription(suggestion)}
                                         >here</span> to update

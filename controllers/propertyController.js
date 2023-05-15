@@ -145,7 +145,8 @@ exports.getProperties = async (req, res) => {
                 { model: Availability },
                 { model: Price },
                 { model: Service },
-                { model: PropertyDetail, include: [{ model: PropertyPicture }] },
+                { model: PropertyDetail},
+                { model: PropertyPicture },
                 { model: Preference },
                 { model: PhoneVerification },
             ],
@@ -174,7 +175,8 @@ exports.getUserProperties = async (req, res) => {
                 { model: Availability },
                 { model: Price },
                 { model: Service },
-                { model: PropertyDetail, include: [{ model: PropertyPicture }] },
+                { model: PropertyDetail},
+                { model: PropertyPicture },
                 { model: Preference },
                 { model: PhoneVerification },
             ],
@@ -301,37 +303,37 @@ exports.updateProperty = async (req, res) => {
 
         await property.update({ propertyType });
 
-        const parsedPropertyAddress = JSON.parse(propertyAddress);
+        const parsedPropertyAddress = propertyAddress ? JSON.parse(propertyAddress) : null;
         const address = await Address.findOne({ where: { propertyId } });
         if (address) {
             await address.update(parsedPropertyAddress);
         }
 
-        const parsedPropertyAmenities = JSON.parse(propertyAmenities);
+        const parsedPropertyAmenities = propertyAmenities ? JSON.parse(propertyAmenities) : null;
         const amenity = await Amenity.findOne({ where: { propertyId } });
         if (amenity) {
             await amenity.update(parsedPropertyAmenities);
         }
 
-        const parsedHouseRules = JSON.parse(houseRules);
+        const parsedHouseRules = houseRules ? JSON.parse(houseRules) : null;
         const houseRule = await HouseRule.findOne({ where: { propertyId } });
         if (houseRule) {
             await houseRule.update(parsedHouseRules);
         }
 
-        const parsedPropertyAvailability = JSON.parse(propertyAvailability);
+        const parsedPropertyAvailability = propertyAvailability ? JSON.parse(propertyAvailability) : null;
         const availability = await Availability.findOne({ where: { propertyId } });
         if (availability) {
             await availability.update(parsedPropertyAvailability);
         }
 
-        const parsedPrices = JSON.parse(prices);
+        const parsedPrices = prices ? JSON.parse(prices) : null;
         const price = await Price.findOne({ where: { propertyId } });
         if (price) {
             await price.update(parsedPrices);
         }
 
-        const parsedOtherServices = JSON.parse(otherServices);
+        const parsedOtherServices = otherServices ? JSON.parse(otherServices) : null;
         const service = await Service.findOne({ where: { propertyId } });
         if (service) {
             await service.update(parsedOtherServices);
@@ -366,6 +368,8 @@ exports.updateProperty = async (req, res) => {
                     };
                 })
         );
+        console.log("Files received:", req.files);
+        console.log("Files saved:", propertyPictures);
 
         if (propertyPictures.length > 0) {
             await PropertyPicture.destroy({ where: { propertyId } });
@@ -374,13 +378,13 @@ exports.updateProperty = async (req, res) => {
             console.error('No valid file paths found');
         }
 
-        const parsedPreferences = JSON.parse(preferences);
+        const parsedPreferences = preferences ? JSON.parse(preferences) : null;
         const preference = await Preference.findOne({ where: { propertyId } });
         if (preference) {
             await preference.update(parsedPreferences);
         }
 
-        const parsedPhoneVerification = JSON.parse(phoneVerification);
+        const parsedPhoneVerification = phoneVerification ? JSON.parse(phoneVerification) : null;
         const phoneVerificationRecord = await PhoneVerification.findOne({ where: { propertyId } });
         if (phoneVerificationRecord) {
             await phoneVerificationRecord.update(parsedPhoneVerification);

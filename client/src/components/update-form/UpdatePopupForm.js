@@ -103,8 +103,6 @@ const UpdatePopupForm = ({ isOpen, onClose }) => {
 
     const fetchedProperty = useSelector((state) => state.property.property);
 
-    console.log('Fetched property:', fetchedProperty);
-
     useEffect(() => {
         if (propertyId) {
             dispatch(fetchPropertyById(propertyId));
@@ -168,116 +166,121 @@ const UpdatePopupForm = ({ isOpen, onClose }) => {
     return (
         <ModalOverlay>
             <Modal onClick={(e) => e.stopPropagation()}>
-                    <Formik
-                        initialValues={fetchedData || {
-                            propertyType: '',
-                            propertyAddress: {
-                                country: '',
-                                city: '',
-                                street: '',
-                                floor: 0,
-                                apartmentNumber: 0
-                            },
-                            propertyAmenities: {
-                                homeType: false,
-                                bedroom: false,
-                                bathroom: false,
-                                roommates: false,
-                                livingRoom: false,
-                                kitchen: false,
-                                wifi: false,
-                                tv: false,
-                                airConditioning: false,
-                                smokeFree: false,
-                                laundry: false,
-                                elevator: false,
-                                parking: false,
-                                balcony: false,
-                                privateBathroom: false,
-                                privateKitchen: false,
-                                desktop: false,
-                                closet: false,
-                            },
-                            houseRules: {
-                                noSmoking: false,
-                                pets: false,
-                                children: false,
-                                smoking: false,
-                                events: false,
-                                noDrinking: false,
-                            },
-                            propertyAvailability: {
-                                startDate: null,
-                                endDate: null,
-                                minStay: 0,
-                                maxStay: 0
-                            },
-                            prices: {
-                                pricePerMonth: 0,
-                                billsIncluded: false,
-                                deposit: 0
-                            },
-                            otherServices: {
-                                rentalContract: false,
-                                cleaningService: false,
-                                maintenance: false
-                            },
-                            propertyDetails: {
-                                pictures: [],
-                                title: '',
-                                description: '',
-                                size: 0,
-                                bedrooms: 0,
-                                bathrooms: 0,
-                                roommates: 0,
-                                furnished: false,
-                                bedType: '',
-                            },
-                            preferences: {
-                                tenantGender: '',
-                                tenantMinimumAge: 1,
-                                tenantMaximumAge: 100,
-                                tenantOccupation: '',
-                                tenantDrinkingStatus: '',
-                                tenantSmokingStatus: '',
-                            },
-                            phoneVerification: {
-                                country: '',
-                                phoneNumber: '',
-                                verificationCode: ''
-                            },
-                        }}
+                <Formik
+                    initialValues={fetchedData || {
+                        propertyType: '',
+                        propertyAddress: {
+                            country: '',
+                            city: '',
+                            street: '',
+                            floor: 0,
+                            apartmentNumber: 0
+                        },
+                        propertyAmenities: {
+                            homeType: false,
+                            bedroom: false,
+                            bathroom: false,
+                            roommates: false,
+                            livingRoom: false,
+                            kitchen: false,
+                            wifi: false,
+                            tv: false,
+                            airConditioning: false,
+                            smokeFree: false,
+                            laundry: false,
+                            elevator: false,
+                            parking: false,
+                            balcony: false,
+                            privateBathroom: false,
+                            privateKitchen: false,
+                            desktop: false,
+                            closet: false,
+                        },
+                        houseRules: {
+                            noSmoking: false,
+                            pets: false,
+                            children: false,
+                            smoking: false,
+                            events: false,
+                            noDrinking: false,
+                        },
+                        propertyAvailability: {
+                            startDate: null,
+                            endDate: null,
+                            minStay: 0,
+                            maxStay: 0
+                        },
+                        prices: {
+                            pricePerMonth: 0,
+                            billsIncluded: false,
+                            deposit: 0
+                        },
+                        otherServices: {
+                            rentalContract: false,
+                            cleaningService: false,
+                            maintenance: false
+                        },
+                        propertyDetails: {
+                            pictures: [],
+                            title: '',
+                            description: '',
+                            size: 0,
+                            bedrooms: 0,
+                            bathrooms: 0,
+                            roommates: 0,
+                            furnished: false,
+                            bedType: '',
+                        },
+                        preferences: {
+                            tenantGender: '',
+                            tenantMinimumAge: 1,
+                            tenantMaximumAge: 100,
+                            tenantOccupation: '',
+                            tenantDrinkingStatus: '',
+                            tenantSmokingStatus: '',
+                        },
+                        phoneVerification: {
+                            country: '',
+                            phoneNumber: '',
+                            verificationCode: ''
+                        },
+                    }}
 
-                        //validationSchema={getValidationSchemaForStep(step)}
-                        onSubmit={async (values, { setSubmitting }) => {
-                            const formData = new FormData();
-                            for (const key in values) {
-                                if (key === "propertyDetails") {
-                                    for (const subKey in values[key]) {
-                                        if (subKey === "pictures") {
-                                            values[key][subKey].forEach((file, index) => {
-                                                formData.append(`pictures[${index}]`, file);
-                                            });
-                                        } else {
-                                            formData.append(`${key}.${subKey}`, JSON.stringify(values[key][subKey]));
-                                        }
+                    //validationSchema={getValidationSchemaForStep(step)}
+                    onSubmit={async (values, { setSubmitting }) => {
+                        const formData = new FormData();
+                        console.log('images:', values.propertyDetails.pictures);
+                        for (const key in values) {
+                            if (key === "propertyDetails") {
+                                for (const subKey in values[key]) {
+                                    if (subKey === "pictures") {
+                                        values[key][subKey].forEach((file) => {
+                                            formData.append("pictures", file);
+                                        });
+                                    } else {
+                                        formData.append(`${key}.${subKey}`, JSON.stringify(values[key][subKey]));
                                     }
-                                } else {
-                                    formData.append(key, JSON.stringify(values[key]));
                                 }
-                            }
-
-                            if (propertyId) {
-                                await dispatch(updateProperty(propertyId, formData));
                             } else {
-                                await dispatch(createProperty(formData));
+                                formData.append(key, JSON.stringify(values[key]));
                             }
+                        }
 
-                            setSubmitting(false);
-                            console.log(JSON.stringify(values, null, 2));
-                            onClose();
-                        }}
-                    >
+                       /* for (let [key, value] of formData.entries()) {
+                            console.log(`Form data: ${key}:`, value); // Add this line
+                        }*/
+
+                        if (propertyId) {
+                            await dispatch(updateProperty(propertyId, formData));
+                        } else {
+                            await dispatch(createProperty(formData));
+                        }
+
+                        setSubmitting(false);
+                        //console.log(JSON.stringify(values, null, 2));
+                        onClose();
+                    }}
+                >
                     {({ isSubmitting, errors, isValid, submitForm, values, setFieldValue }) => (
                         <Form onKeyDown={handleKeyDown}>
                             <CloseButton onClick={onClose}>

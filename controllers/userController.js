@@ -166,13 +166,9 @@ exports.getAllUsers = async (req, res) => {
                         { model: Preference },
                         { model: Price },
                         { model: Service },
-                        {
-                            model: PropertyDetail,
-                            include: [{ model: PropertyPicture }],
-                        },
-                        {
-                            model: PhoneVerification,
-                        },
+                        {model: PropertyDetail },
+                        {model: PropertyPicture},
+                        {model: PhoneVerification},
                     ],
                 },
             ],
