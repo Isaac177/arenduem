@@ -16,12 +16,11 @@ import {getAllUsers} from "../../actions/userActions";
 import UpdatePopupForm from "../update-form/UpdatePopupForm";
 
 
-const OwnerMiddleContent = ({updateCurrentPropertyId }) => {
+const OwnerMiddleContent = () => {
     const [showUpdatePopup, setShowUpdatePopup] = useState(false);
     const dispatch = useDispatch();
     const allUsers = useSelector((state) => state.user.allUsers);
     const propertySuggestions = useSelector(state => state.property.propertySuggestions);
-    const userId = useSelector((state) => state.auth.userId);
     const { propertyId } = useParams();
 
     useEffect(() => {

@@ -4,7 +4,7 @@ import preferencesData from '../../assets/data/preferencesData';
 
 const TenantPreferences = ({ property }) => {
     const renderPreferenceValue = (preference) => {
-        const preferenceValue = property?.Preference[preference.name];
+        const preferenceValue = property?.Preference?.[preference.name];
         if (preference.name === 'tenantGender') {
             return preferenceValue.charAt(0).toUpperCase() + preferenceValue.slice(1);
         } else if (preference.name === 'tenantMinimumAge' || preference.name === 'tenantMaximumAge') {

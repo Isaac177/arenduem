@@ -43,14 +43,12 @@ function App() {
                         <Route exact path="/signin" element={<SignIn />} />
                         <Route exact path="/user/roles" element={<UserDashboardWithAuth />}/>
                         <Route exact path="/user/owner/*" element={<OwnerDashboard/>}/>
-                        <Route path="/p/:propertyId" element={<PropertyDetails />} />
                         <Route path="/:userId/properties/*" element={<PropertyDash userId={userId}/>}>
                             <Route path='profile/*' element={<PropertyCover />}>
                                 <Route path='gallery' element={<ProContentGallery />} />
                                 <Route path='personaldata/:userId' element={<ProPersonalData />} />
                             </Route>
                         </Route>
-                        {/*<Route exact path="/:userId/properties/:propertyId" element={<OwnerMiddleContent />}/>*/}
                         <Route path="/owner/property/:propertyId/update" element={<UpdatePopupForm />} />
                         <Route exact path="/user/dashboard/*" element={<UserDashboard />}>
                             <Route path="profile/*" element={<CoverProfile />}>

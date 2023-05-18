@@ -24,21 +24,7 @@ const Card = ({ imageSrc, imageAlt, title, subtitle, contentOrder, actions, hand
     }, [controls, inView]);
 
     return (
-        <motion.div
-            ref={ref}
-            animate={controls}
-            variants={{
-                hidden: {
-                    opacity: contentOrder === 'image-first' ? 0 : 1,
-                    x: contentOrder === 'image-first' ? '-100%' : '100%',
-                    transition: { duration: 0.5 },
-                },
-                visible: {
-                    opacity: 1,
-                    x: '0',
-                    transition: { duration: 0.5 },
-                },
-            }}
+        <div
             className="mt-10 mb-10 hover:border-aqua-500 hover:border hover:shadow-2xl"
             onClick={handleClick}
         >
@@ -62,7 +48,7 @@ const Card = ({ imageSrc, imageAlt, title, subtitle, contentOrder, actions, hand
                     ))}
                 </div>
             </div>
-        </motion.div>
+        </div>
     );
 };
 

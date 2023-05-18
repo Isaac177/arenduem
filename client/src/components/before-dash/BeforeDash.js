@@ -11,6 +11,8 @@ import Card from './Card';
 import {useDispatch, useSelector} from "react-redux";
 import {useNavigate} from "react-router-dom";
 import {updateIsOwner} from "../../actions/userActions";
+import ScrollAnimation from "react-animate-on-scroll";
+import {Element} from "react-scroll";
 
 const BeforeDash = () => {
     const controls = useAnimation();
@@ -81,12 +83,25 @@ const BeforeDash = () => {
         }
     };
     return (
-        <div
+        <Element
             style={{ width: '1080px', margin: '0 auto' }}
             className="block"
         >
-            <h1 className="mt-10 text-4xl font-bold text-primary-900">Choose your card</h1>
+            <h1
+                className="mt-10 text-4xl font-bold"
+                style={{
+                    background: 'linear-gradient(to right, #0F8E6E, black)',
+                    WebkitBackgroundClip: 'text',
+                    WebkitTextFillColor: 'transparent',
+                }}
+            >Choose your card</h1>
             <div className="flex w-full flex-col gap-10 hover:cursor-pointer">
+                <ScrollAnimation
+                    animateIn="animate__fadeInLeft"
+                    animateOut="animate__fadeOutLeft"
+                    animateOnce={false}
+                    duration={1.5}
+                    delay={100}>
                 <Card
                     imageSrc={studentImg}
                     imageAlt="Student looking for a roommate"
@@ -96,6 +111,13 @@ const BeforeDash = () => {
                     actions={roommateActions}
                     handleClick={()=>handleClick(false)}
                 />
+                </ScrollAnimation>
+                <ScrollAnimation
+                    animateIn="animate__fadeInRight"
+                    animateOut="animate__fadeOutRight"
+                    animateOnce={false}
+                    duration={1.5}
+                    delay={100}>
                 <Card
                     imageSrc={roomOwner}
                     imageAlt="House owner seeking roommates"
@@ -105,8 +127,9 @@ const BeforeDash = () => {
                     actions={houseOwnerActions}
                     handleClick={()=>handleClick(true)}
                 />
+                </ScrollAnimation>
             </div>
-        </div>
+        </Element>
     );
 };
 

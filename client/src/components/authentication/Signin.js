@@ -48,10 +48,6 @@ const Signin = () => {
         }
     };
 
-    const responseFacebook = async (response) => {
-        // Handle Facebook login response
-        console.log(response);
-    };
 
     return (
         <div className="flex h-screen items-center justify-center backdrop:opacity-25 backdrop-blur-sm loginBack">
@@ -120,17 +116,6 @@ const Signin = () => {
                                         Forgot Password?
                                     </a>
                                 </p>
-                            </div>
-                            <div className="mt-4 flex items-center justify-between">
-                                <FacebookLogin
-                                    appId={FACEBOOK_APP_ID}
-                                    autoLoad={false}
-                                    fields="name,email,picture"
-                                    callback={responseFacebook}
-                                    className="rounded bg-blue-500 px-4 py-2 font-bold text-white hover:bg-blue-700 focus:shadow-outline focus:outline-none"
-                                    icon="fa-facebook"
-                                    textButton=" Login with Facebook"
-                                />
                             </div>
 
                             <div className="flex items-center justify-between">

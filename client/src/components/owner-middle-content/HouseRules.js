@@ -14,7 +14,7 @@ const HouseRules = ({ property }) => {
             <h6 className="my-4 text-xl font-bold text-aqua-500">House rules</h6>
             <FormGroup row>
                 {houseRules.map((rule) => (
-                    <div key={rule.name} className={iconStyles(property[rule.name])}>
+                    <div key={rule?.name} className={iconStyles(property[rule?.name])}>
                         <FormControlLabel
                             control={
                                 <Checkbox

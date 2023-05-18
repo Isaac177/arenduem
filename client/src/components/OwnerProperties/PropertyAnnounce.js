@@ -24,8 +24,6 @@ const PropertyAnnounce = () => {
     const loggedInUserProperties = loggedInUser?.properties || [];
     const profilePicture = loggedInUser?.pictures?.find(picture => picture.isMain)?.fileUrl;
     const author = `${loggedInUser?.firstName} ${loggedInUser?.lastName ? loggedInUser.lastName.charAt(0) + '.' : ''}`;
-    // log propertyPictures
-
 
     return (
         <>

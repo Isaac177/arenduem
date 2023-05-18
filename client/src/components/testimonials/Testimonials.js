@@ -1,11 +1,19 @@
 import React from 'react';
 import testimonies from '../../assets/data/testimonies';
+import ScrollAnimation from 'react-animate-on-scroll';
+import "animate.css/animate.min.css";
+import {Element} from "react-scroll";
 
 const Testimonials = () => {
     return (
-        <div className="flex flex-wrap justify-around items-center p-4 mt-48">
+        <Element className="flex flex-wrap justify-around items-center p-4 mt-48">
             {testimonies.map((testimony, index) => (
-                <div key={index}
+                <ScrollAnimation
+                    key={index}
+                    animateIn="animate__fadeInUp"
+                    animateOnce={false}
+                    duration={1.5}
+                    delay={300 * index}
                      className="flex flex-col items-center m-4 p-4 bg-white rounded-lg w-64 relative border-2 border-aqua-500 shadow-lg"
                 >
                     <div className="absolute -top-12">
@@ -20,9 +28,9 @@ const Testimonials = () => {
                             <span className="text-6xl text-amber-400 leading-none">&rdquo;</span>
                         </blockquote>
                     </div>
-                </div>
+                </ScrollAnimation>
             ))}
-        </div>
+        </Element>
     );
 };
 

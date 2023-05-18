@@ -1,13 +1,16 @@
 import React from 'react';
 import SidebarMenu from "../../components/side-bar/SidebarMenu";
 import CoverProfile from "../../components/profile/CoverProfile";
-import {Routes, Route} from "react-router-dom";
+import {Routes, Route, useLocation} from "react-router-dom";
 import LatestAnnouncements from "../../components/dash-content/LatestAnnouncements";
 import ContentGallery from "../../components/profile/ContentGallery";
 import PersonalData from "../../components/profile/PersonalData";
 import QuickSearch from "../../components/dash-content/QuickSearch";
+import PropertyDetails from "../../components/dash-content/PropertyDetails";
+import OwnerAsideRight  from "../../components/owner/OwnerAsideRight";
 
 const UserDashboard = () => {
+    let location = useLocation();
     return (
         <div className="bg-gray-200">
             <div className="grid grid-cols-12 gap-8 min-h-screen py-10">
@@ -17,6 +20,7 @@ const UserDashboard = () => {
                 <div className="col-span-8 flex flex-col items-center justify-between">
                     <Routes>
                         <Route path="/" element={<LatestAnnouncements />} />
+                        <Route path=":propertyId/" element={<PropertyDetails />} />
                         <Route path="/profile/*" element={<CoverProfile />}>
                             <Route path="gallery" element={<ContentGallery />} />
                             <Route path="personaldata" element={<PersonalData />} />
@@ -24,7 +28,8 @@ const UserDashboard = () => {
                     </Routes>
                 </div>
                 <aside className="col-span-2 flex flex-col justify-between">
-                    <QuickSearch />
+                    {location.pathname === "/" && <QuickSearch />}
+                    {location.pathname === "/user/dashboard/78" && <OwnerAsideRight />}
                 </aside>
             </div>
         </div>

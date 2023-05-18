@@ -16,7 +16,7 @@ const PropertyAmenities = ({ property }) => {
                 {amenities.map((amenity) => (
                     <div
                         key={amenity.name}
-                        className={iconStyles(property[amenity?.name])}
+                        className={iconStyles(property?.[amenity?.name])}
                     >
                         <FormControlLabel
                             control={
