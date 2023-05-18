@@ -21,15 +21,25 @@ require('dotenv').config();
 require('./config/passport')(passport);
 const app = express();
 
-
+let allowedOrigins = ['http://localhost:3000'];
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(passport.initialize());
 app.use('/uploads', express.static('uploads'));
+
 app.use(cors({
-    origin: 'http://localhost:3000',
+    origin: function (origin, callback) {
+        if (!origin) return callback(null, true);
+        if (allowedOrigins.indexOf(origin) === -1) {
+            let msg = 'The CORS policy for this site does not ' +
+                'allow access from the specified Origin.';
+            return callback(new Error(msg), false);
+        }
+        return callback(null, true);
+    },
     credentials: true
 }));
+
 app.get('/', (req, res) => {
     res.send('Hello World!');
 });

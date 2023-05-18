@@ -7,7 +7,6 @@ import ProContentGallery from "./ProContentGallery";
 import ProPersonalData from "./ProPersonalData";
 import OwnerMiddleContent from "../owner/OwnerMiddleContent";
 import OwnerAsideRight from "../owner/OwnerAsideRight";
-import UpdatePopupForm  from "../update-form/UpdatePopupForm";
 
 
 
