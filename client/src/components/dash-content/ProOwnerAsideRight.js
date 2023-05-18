@@ -1,18 +1,25 @@
 import {useDispatch, useSelector} from "react-redux";
-import React, {useEffect} from "react";
+import React, {useEffect, useMemo} from "react";
 import {fetchUserInfoById} from "../../actions/userActions";
 import interestsArray from "../../assets/data/insterestsArray";
+import {Wc} from "@material-ui/icons";
+import {WorkOutlined} from "@mui/icons-material";
+
 
 const ProOwnerAsideRight = () => {
-    const userId = useSelector((state) => state.auth.userId);
-    const userInfo = useSelector((state) => state.user.userInfo) || {};
     const dispatch = useDispatch();
+    const users = useSelector((state) => state.user.allUsers.users) || [];
+    const currentPropertyOwnerId = useSelector((state) => state.user.currentPropertyOwnerId);
+    const owner = useMemo(() => users.find((user) => user.id === currentPropertyOwnerId), [users, currentPropertyOwnerId]);
 
     useEffect(() => {
-        if (userId) {
-            dispatch(fetchUserInfoById(userId));
+        if (owner) {
+            dispatch(fetchUserInfoById(owner.id));
         }
-    }, [userId, dispatch]);
+    }, [owner, dispatch]);
+
+    // Select userInfo from state here
+    const userInfo = useSelector((state) => state.user.userInfo) || {};
 
     const mainPicture = userInfo.pictures && userInfo.pictures.find((picture) => picture.isMain);
 
@@ -39,6 +46,9 @@ const ProOwnerAsideRight = () => {
         const interest = interestsArray.find((i) => i.name === interestName);
         return interest ? interest.icon : null;
     };
+
+    console.log('owner', owner);
+    console.log('userInfo', userInfo);
 
     return (
         <div className="col-span-2 mt-10">

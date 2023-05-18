@@ -1,4 +1,4 @@
-import React, {useMemo} from 'react';
+import React, {useEffect, useMemo} from 'react';
 import { useParams } from 'react-router-dom';
 import TitleSection from "../owner-middle-content/TitleSection";
 import MiddlePicture from '../owner-middle-content/MiddlePicture';
@@ -10,10 +10,11 @@ import PropertyServices from "../owner-middle-content/PropertyServices";
 import PropertyAddress from "../owner-middle-content/PropertyAddress";
 import PropertyAvailability from "../owner-middle-content/PropertyAvailability";
 import PropertyPrice from "../owner-middle-content/PropertyPrice";
-import { useSelector } from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 
 const PropertyDetails = () => {
     const { propertyId } = useParams();
+    const dispatch = useDispatch();
     const users = useSelector((state) => state.user?.allUsers) || [];
 
     const property = useMemo(() => {
@@ -31,6 +32,27 @@ const PropertyDetails = () => {
     console.log('propertyId', propertyId);
     console.log('users', users);
     console.log('propertyDetails', propertyDetails);
+
+    useEffect(() => {
+        dispatch(storeUserIdInState(property.userId));
+        dispatch(storePropertyIdInState(propertyId));
+    }, [property]);
+
+    const storeUserIdInState = (userId) => {
+        return {
+            type: 'STORE_USER_ID',
+            payload: userId,
+        };
+    }
+
+    const storePropertyIdInState = (propertyId) => {
+        return {
+            type: 'STORE_PROPERTY_ID',
+            payload: propertyId,
+        };
+    }
+
+    console.log('currentPropertyId', propertyId);
     return (
         <div className='container mx-auto'>
             <div className='p-4 my-4'>

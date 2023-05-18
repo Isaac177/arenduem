@@ -7,10 +7,15 @@ import ContentGallery from "../../components/profile/ContentGallery";
 import PersonalData from "../../components/profile/PersonalData";
 import QuickSearch from "../../components/dash-content/QuickSearch";
 import PropertyDetails from "../../components/dash-content/PropertyDetails";
-import OwnerAsideRight  from "../../components/owner/OwnerAsideRight";
+import ProOwnerAsideRight from "../../components/dash-content/ProOwnerAsideRight";
+import {useSelector} from "react-redux";
 
 const UserDashboard = () => {
     let location = useLocation();
+    const currentPropertyId = useSelector(state => state.user.currentPropertyId);
+    const propertyId = currentPropertyId ? currentPropertyId : '';
+
+    console.log('currentPropertyId', currentPropertyId);
     return (
         <div className="bg-gray-200">
             <div className="grid grid-cols-12 gap-8 min-h-screen py-10">
@@ -29,7 +34,7 @@ const UserDashboard = () => {
                 </div>
                 <aside className="col-span-2 flex flex-col justify-between">
                     {location.pathname === "/" && <QuickSearch />}
-                    {location.pathname === "/user/dashboard/78" && <OwnerAsideRight />}
+                    {location.pathname.includes(`/user/dashboard/${propertyId}`) && <ProOwnerAsideRight />}
                 </aside>
             </div>
         </div>

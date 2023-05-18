@@ -8,8 +8,7 @@ import {
     FETCH_USER_INFO_SUCCESS,
     FETCH_USER_INFO_FAILURE,
     GET_ALL_USERS_SUCCESS,
-    GET_ALL_USERS_FAILURE,
-} from '../actions/userActions';
+ } from '../actions/userActions';
 
 export const initialState = {
     userData: {
@@ -90,10 +89,15 @@ const userReducer = (state = initialState, action) => {
                 allUsers: action.payload,
             }
 
-        case GET_ALL_USERS_FAILURE:
+        case 'STORE_USER_ID':
             return {
                 ...state,
-                error: action.payload,
+                currentPropertyOwnerId: action.payload,
+            };
+        case 'STORE_PROPERTY_ID':
+            return {
+                ...state,
+                currentPropertyId: action.payload,
             }
         default:
             return state;
