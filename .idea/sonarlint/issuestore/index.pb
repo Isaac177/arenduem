@@ -29,12 +29,8 @@ Y
 )seeders/20230212073735-drinking-status.js,6/b/6bedbfd72fce872084615954f87ca0e1840df0ad
 Y
 )client/src/assets/img/cool-background.svg,d/a/da5a8b7d25fa93052ae2f4e7fb9c1891088d8a49
-_
-/client/src/components/workSection/HowItWorks.js,e/c/ec626369099e26b53bef6a5594e7dbd62c922d81
 B
 config/passport.js,1/4/147ce951f78dabd82ad5ab83ac75d4def8af5f84
-Z
-*client/src/components/workSection/Steps.js,6/c/6c16eb527b8f5a563511abcc62e4b4ec5cfb340d
 b
 2migrations/20230211204135-create-housing-status.js,9/4/9497e3cb3556315b866b1ba5dd9d4bc1f4b17a7a
 U
@@ -165,8 +161,6 @@ K
 client/src/config/config.js,c/5/c53facbee3dd0c0ce5a03a8540b38997ab72b90f
 X
 (node_modules/express/lib/router/index.js,b/f/bf1cc0a5e4b1ab6630f6a1281c6eb3f48b174b92
-O
-client/src/assets/data/steps.js,e/3/e3d9152b81a6128aca4e19be543f538f8cdb7c95
 [
 +migrations/20230406040619-create-address.js,0/7/0752b97874e4c3447bbd026afabe2a91f1748a76
 \

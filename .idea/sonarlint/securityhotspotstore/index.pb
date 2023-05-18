@@ -119,8 +119,6 @@ K
 client/src/config/config.js,c/5/c53facbee3dd0c0ce5a03a8540b38997ab72b90f
 X
 (node_modules/express/lib/router/index.js,b/f/bf1cc0a5e4b1ab6630f6a1281c6eb3f48b174b92
-O
-client/src/assets/data/steps.js,e/3/e3d9152b81a6128aca4e19be543f538f8cdb7c95
 \
 ,migrations/20230406040619-create-property.js,9/c/9cd0bc1389eac001778f1d284d9433c9e472130e
 [

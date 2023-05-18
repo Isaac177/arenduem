@@ -19,23 +19,24 @@ const Highlight = () => {
     };
 
     return (
-        <div
-        >
+        <Element>
             <div
                  className="mx-auto w-full p-8 bg-primaryGrey-100">
-                <Element name="highlight" className="highlight my-24">
+                <Element name="highlight" className="highlight pb-24">
                     <ScrollAnimation
-                        animateIn='animate__slideInUp'
+                        animateIn='animate__fadeInUp'
+                        animateOut='animate__fadeOutDown'
                         animateOnce={false}
+                        delay={100}
                         duration={1.5}>
-                        <h1 className="mt-24 mb-4 text-center text-6xl font-bold">
+                        <h1 className="pt-24 mb-4 text-center text-6xl font-bold">
                             Our New <span className="text-aqua-500">Roommates</span> </h1>
-                        <p className="mb-8 text-center text-xs">
+                        <p className="pb-8 text-center text-xs">
                             Find here the most recent roommates that have joined our community.
                         </p>
                     </ScrollAnimation>
                 </Element>
-                <div className="flex items-center justify-center gap-12">
+                <div className="flex items-center justify-center gap-12 pb-32">
                     <button
                         className="rounded-full border-2 p-2 text-gray-600 border-primaryGrey-700 hover:text-gray-900 active:bg-gray-200"
                         onClick={goToPrevious}
@@ -50,9 +51,10 @@ const Highlight = () => {
                             .map((item, index) => (
                                 <ScrollAnimation
                                     key={index}
-                                    animateIn="animate__slideInUp"
+                                    animateIn="animate__fadeInUp"
                                     animateOnce={false}
                                     duration={1.5}
+                                    delay={300 * index}
                                 >
                                     <HighlightCard {...item} />
                                 </ScrollAnimation>
@@ -67,7 +69,7 @@ const Highlight = () => {
                     </button>
                 </div>
             </div>
-        </div>
+        </Element>
     );
 };
 

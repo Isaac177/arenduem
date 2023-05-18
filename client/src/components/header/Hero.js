@@ -8,6 +8,7 @@ const Hero = () => {
             animateIn='animate__fadeIn'
             animateOnce={false}
             duration={1.5}
+            delay={100}
             className='heroBg h-screen backdrop-blur ${styles.heroBg}'
             transition={{ duration: 2 }}
         >
@@ -15,9 +16,11 @@ const Hero = () => {
                 <div className="w-1/2 text-white">
                     <ScrollAnimation
                         name="hero"
-                        animateIn='animate__slideInLeft'
+                        animateIn='animate__fadeInLeft'
+                        animateOut='animate__fadeOutRight'
                         animateOnce={false}
                         duration={1.5}
+                        delay={200}
                         transition={{ duration: 2 }}>
                         <h1 className="mb-4 text-5xl font-bold">
                         Find your <span className="text-aqua-500">perfect roommate</span>, together at home

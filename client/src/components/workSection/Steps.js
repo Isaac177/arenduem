@@ -1,34 +1,34 @@
-import { useState } from "react";
-import { motion } from "framer-motion";
+
 import steps from "../../assets/data/steps";
+import { Element } from "react-scroll";
+import ScrollAnimation from "react-animate-on-scroll";
 
 const Steps = () => {
-    const [showAnimation, setShowAnimation] = useState(false);
-
-    const handleClick = () => {
-        setShowAnimation(true);
-    };
-
     return (
-        <div className="flex flex-col items-center justify-center">
-            <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-4">
-                {steps.map((step, index) => (
-                    <motion.div
-                        key={index}
-                        className="flex flex-col items-center rounded-lg bg-white p-6 shadow-lg"
-                        onClick={handleClick}
-                        animate={{ y: showAnimation ? -10 : 0 }}
-                        transition={{ duration: 0.5 }}
-                    >
-                        <div className="mb-4 rounded-full bg-indigo-500 p-3 text-white">
-                            {step.icon}
-                        </div>
-                        <h3 className="mb-2 text-xl font-bold">{step.title}</h3>
-                        <p className="text-center text-gray-600">{step.description}</p>
-                    </motion.div>
-                ))}
-            </div>
-        </div>
+        <Element className="flex flex-col gap-6 items-center w-1/2">
+            {steps.map((step, index) => (
+                <div
+                    key={index}
+                    className={`flex ${index % 2 === 0 ? 'flex-row' : 'flex-row-reverse'} items-center bg-white p-6 gap-24`}
+                >
+                    <ScrollAnimation
+                        animateIn="animate__fadeInLeft"
+                        animateOnce={false}
+                        duration={1.5}
+                        className="flex">
+                        <img src={step.icon} alt={step.title} style={{ height: "170px", width: "350px" }}/>
+                    </ScrollAnimation>
+                    <ScrollAnimation
+                        animateIn="animate__fadeInRight"
+                        animateOnce={false}
+                        duration={1.5}
+                        className="ml-4">
+                        <h1 className="mb-2 text-2xl font-bold text-white bg-aqua-500 p-2 rounded-full">{step.number} - {step.title}</h1>
+                        <p className="text-center text-sm text-gray-600">{step.description}</p>
+                    </ScrollAnimation>
+                </div>
+            ))}
+        </Element>
     );
 };
 
