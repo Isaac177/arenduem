@@ -126,8 +126,9 @@ exports.getUserInfoById = async (req, res) => {
                         { model: Service },
                         {
                             model: PropertyDetail,
-                            include: [{ model: PropertyPicture }],
+
                         },
+                        { model: PropertyPicture },
                         {
                             model: PhoneVerification,
                         },
@@ -166,7 +167,8 @@ exports.getAllUsers = async (req, res) => {
                         { model: Preference },
                         { model: Price },
                         { model: Service },
-                        {model: PropertyDetail, include: [{ model: PropertyPicture }]},
+                        {model: PropertyDetail },
+                        { model: PropertyPicture },
                         {model: PhoneVerification},
                     ],
                 },
@@ -184,3 +186,33 @@ exports.getAllUsers = async (req, res) => {
         res.status(500).json({ message: error.message });
     }
 };
+
+// Get user property's pictures
+
+exports.getUserPropertyPictures = async (req, res) => {
+    const { userId } = req.params;
+    try {
+        const user = await User.findByPk(userId, {
+            include: [
+                {
+                    model: Property,
+                    as: 'properties',
+                    include: [
+                        {
+                            model: PropertyPicture,
+                        },
+                    ],
+                },
+            ],
+        });
+        if (!user) {
+            throw new Error(`User with ID ${userId} not found`);
+        } else {
+            res.json(user);
+        }
+
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ message: error.message });
+    }
+}

@@ -1,16 +1,26 @@
-import React, { useEffect } from 'react';
+import React, {useEffect, useRef, useState} from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { fetchUserInfoById } from '../../actions/userActions';
 import {Person, Wc} from '@material-ui/icons';
 import {WorkOutlined} from "@mui/icons-material";
 import interestsArray from "../../assets/data/insterestsArray";
+import {Element} from "react-scroll";
+import ScrollAnimation from "react-animate-on-scroll";
+import useClickOutside from "../../hooks/useClickOutside";
+import PhoneIcon from '@material-ui/icons/Phone';
+
 
 const OwnerAsideRight = () => {
     const userId = useSelector((state) => state.auth.userId);
     const userInfo = useSelector((state) => state.user.userInfo) || {};
     const dispatch = useDispatch();
 
-     useEffect(() => {
+    const [showPhoneNumber, setShowPhoneNumber] = useState(false);
+    const phoneNumberRef = useRef(null);
+
+    useClickOutside(phoneNumberRef, () => setShowPhoneNumber(false));
+
+    useEffect(() => {
         if (userId) {
             dispatch(fetchUserInfoById(userId));
         }
@@ -41,10 +51,15 @@ const OwnerAsideRight = () => {
         const interest = interestsArray.find((i) => i.name === interestName);
         return interest ? interest.icon : null;
     };
+    let phoneNumbers = userInfo.properties?.map(property => property?.PhoneVerification?.phoneNumber);
 
     return (
-        <div className="col-span-2 mt-10">
-            <div className="grid grid-cols-1 gap-4">
+        <Element className="col-span-2 mt-10">
+            <ScrollAnimation
+                animateIn="animate__fadeInRight"
+                delay={100}
+                animateOnce={true}
+                className="grid grid-cols-1 gap-4">
                 <div className="bg-white rounded-l-lg border">
                     {mainPicture && (
                         <img
@@ -105,10 +120,28 @@ const OwnerAsideRight = () => {
                                 </div>
                             </div>
                         </div>
+                        <div className="my-6" ref={phoneNumberRef}>
+                            {phoneNumbers && phoneNumbers.length > 0 && (
+                                <div className="flex flex-col gap-2">
+                                    <p className="font-bold text-primary-700">Phone Numbers</p>
+                                    {showPhoneNumber ? (
+                                        phoneNumbers.map((phoneNumber, index) => (
+                                            <p key={index} className='text-sm text-gray-500'>{phoneNumber}</p>
+                                        ))
+                                    ) : (
+                                        <button className="flex items-center gap-2 text-sm text-white bg-primary-600 rounded-2xl p-4"
+                                                onClick={() => setShowPhoneNumber(true)}>
+                                            <PhoneIcon/>
+                                            <span>Show phone numbers</span>
+                                        </button>
+                                    )}
+                                </div>
+                            )}
+                        </div>
                     </div>
                 </div>
-            </div>
-        </div>
+            </ScrollAnimation>
+        </Element>
     );
 };
 

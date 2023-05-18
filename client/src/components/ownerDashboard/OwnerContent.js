@@ -3,6 +3,8 @@ import MapsHomeWorkOutlinedIcon from '@mui/icons-material/MapsHomeWorkOutlined';
 import SupervisedUserCircleOutlinedIcon from '@mui/icons-material/SupervisedUserCircleOutlined';
 import MarkUnreadChatAltOutlinedIcon from '@mui/icons-material/MarkUnreadChatAltOutlined';
 import PopupForm from "./PopupForm";
+import {Element} from "react-scroll";
+import ScrollAnimation from "react-animate-on-scroll";
 
 const features = [
     {
@@ -29,27 +31,48 @@ const OwnerContent = () => {
     const [isOpen, setIsOpen] = React.useState(false);
 
     return (
-        <div className="container flex flex-col items-center justify-center pt-20 text-primary-700" style={{ width: '1080px', margin: '0 auto' }}>
+        <Element className="container flex flex-col items-center justify-center pt-20 text-primary-700" style={{ width: '1080px', margin: '0 auto' }}>
             <div className="flex flex-wrap items-center">
                 <div className="w-full px-4">
-                    <h1 className="text-3xl font-bold">Why ArendyEm?</h1>
-                    <p className="mt-4 mb-4 text-sm leading-relaxed">
+                    <ScrollAnimation
+                        animateIn="animate__fadeInUp"
+                        duration={1}
+                        delay={100}
+                        animateOnce={false}
+                        className="text-3xl font-bold">
+                        Why ArendyEm?
+                    </ScrollAnimation>
+                    <ScrollAnimation
+                        animateIn="animate__fadeInUp"
+                        duration={1}
+                        delay={200}
+                        className="mt-4 mb-4 text-sm leading-relaxed">
                         ArendyEm is designed to make finding your perfect roommate a breeze. Our platform helps you easily list your room, find compatible roommates, and chat with potential matches.
-                    </p>
+                    </ScrollAnimation>
                     <div className="flex flex-wrap items-center">
                         <div className="mt-4 flex w-full flex-row">
-                            {features.map(({ IconComponent, title, description }) => (
-                                <div key={title} className="px-6">
+                            {features.map(({ IconComponent, title, description, index }) => (
+                                <ScrollAnimation
+                                    animateIn="animate__fadeInUp"
+                                    duration={1}
+                                    animateOnce={false}
+                                    key={index} className="px-6"
+                                    delay={300 * index}>
                                     <IconComponent style={{ fontSize: '60px' }} />
                                     <h6 className="mt-5 text-xl font-semibold text-gray-800">{title}</h6>
                                     <p className="mt-2 mb-4 text-sm text-gray-600">{description}</p>
-                                </div>
+                                </ScrollAnimation>
                             ))}
                         </div>
                     </div>
                 </div>
             </div>
-            <div className="mt-10 flex flex-wrap items-center">
+            <ScrollAnimation
+                animateIn="animate__fadeInUp"
+                duration={1}
+                delay={100}
+                animateOnce={false}
+                className="mt-10 flex flex-wrap items-center">
                 <div className="mt-10 w-full rounded-lg bg-gray-200 p-8">
                     <h2 className="mb-4 text-2xl font-bold">Start your roommate search now</h2>
                     <p className="mb-6 text-sm text-gray-600">
@@ -74,14 +97,14 @@ const OwnerContent = () => {
                         <p className="text-sm text-white">- Jane, New York City</p>
                     </div>
                 </div>
-            </div>
+            </ScrollAnimation>
             {isOpen && (
                 <PopupForm
                     isOpen={isOpen}
                     onClose={() => setIsOpen(false)}
                 />
             )}
-        </div>
+        </Element>
     );
 };
 

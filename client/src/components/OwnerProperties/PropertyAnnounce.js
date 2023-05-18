@@ -4,6 +4,8 @@ import Separator from "../utils/Separator";
 import { useDispatch, useSelector } from "react-redux";
 import { getAllUsers } from "../../actions/userActions";
 import { useNavigate } from "react-router-dom";
+import ScrollAnimation from "react-animate-on-scroll";
+import {Element} from "react-scroll";
 
 const PropertyAnnounce = () => {
     const navigate = useNavigate();
@@ -28,11 +30,9 @@ const PropertyAnnounce = () => {
     return (
         <>
             <Separator>
-                <div className="mt-8 flex flex-col border-b">
+                <Element className="mt-8 flex flex-col border-b">
                     <div className={`flex flex-row gap-6 flex-wrap p-12 animate-fade-in transform translate-y-0' : 'animate-fade-out transform translate-y-4'}`}>
                         {loggedInUserProperties.map((property, index) => {
-                            console.log('propertyPictures', property?.PropertyDetail?.PropertyPictures);
-
                             const housePicture = (property?.PropertyDetail?.PropertyPictures && property?.PropertyDetail?.PropertyPictures.length > 0)
                                 ? property?.PropertyDetail?.PropertyPictures[0]?.fileUrl : '';
                             const defaultHousePicture = 'https://via.placeholder.com/640x360?text=Default+Image+1';
@@ -44,6 +44,12 @@ const PropertyAnnounce = () => {
                             const billIncluded = property?.Price?.billsIncluded ? 'Bills Included' : 'Bills Not Included';
 
                             return (
+                                <ScrollAnimation
+                                    key={`${userId}-${index}`}
+                                    animateIn="animate__fadeIn"
+                                    delay={index * 800}
+                                    duration={1}
+                                    animateOnce={true}>
                                 <AnnounceCard
                                     key={`${userId}-${index}`}
                                     housePicture={housePicture ? housePicture : defaultHousePicture}
@@ -58,10 +64,11 @@ const PropertyAnnounce = () => {
                                     roommates={roommates}
                                     billIncluded={billIncluded}
                                 />
+                                </ScrollAnimation>
                             );
                         })}
                     </div>
-                </div>
+                </Element>
             </Separator>
         </>
     );

@@ -1,9 +1,14 @@
 import React from 'react';
+import ScrollAnimation from "react-animate-on-scroll";
 
 const TitleSection = ({ property, propertyDetails }) => {
 
     return (
-        <>
+        <ScrollAnimation
+            animateIn="animate__fadeInUp"
+            duration={2}
+            animateOnce
+            >
             <div className="flex my-4 flex-row justify-between border-l-8 pb-4 border-aqua-500 bg-white rounded-lg p-4 shadow-lg">
                 <div className='row flex flex-col gap-4'>
                     <p className="text-xs text-gray-500">{property && JSON.parse(property?.propertyType).toUpperCase()}</p>
@@ -17,7 +22,7 @@ const TitleSection = ({ property, propertyDetails }) => {
                     <h1 className="text-2xl font-bold text-aqua-500">{property && property?.Price?.pricePerMonth} kzt<span className="text-2xl text-gray-500">/month</span></h1>
                 </div>
             </div>
-        </>
+        </ScrollAnimation>
     );
 };
 

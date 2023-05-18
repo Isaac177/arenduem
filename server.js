@@ -56,6 +56,7 @@ app.get("users/:userId/info", userController.getUserInfoById);
 app.put('/users/:userId', userController.updateUserById);
 app.put('/users/role/:userId', userController.updateIsOwner);
 app.get('/housing-status/:userId', userController.getHousingStatus);
+app.get('/users/propertyPicture', userController.getUserPropertyPictures);
 
 // Pictures routes
 

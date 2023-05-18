@@ -16,7 +16,6 @@ import PersonalData from "./components/profile/PersonalData";
 import {useSelector} from "react-redux";
 import BeforeDash from "./components/before-dash/BeforeDash";
 import OwnerDashboard from "./views/user/OwnerDashboard";
-import PropertyDetails from "./components/dash-content/PropertyDetails";
 import UpdatePopupForm from "./components/update-form/UpdatePopupForm";
 import PropertyDash from "./components/OwnerProperties/PropertyDash";
 import PropertyCover from "./components/OwnerProperties/PropertyCover";
@@ -30,7 +29,6 @@ const UserDashboardWithAuth = withAuthorization(['user'], BeforeDash);
 function App() {
     const userRole = useSelector(state => state.auth.role);
     const userId = useSelector(state => state.auth.userId);
-
 
     return (
         <Router>

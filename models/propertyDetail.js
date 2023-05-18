@@ -10,11 +10,6 @@ module.exports = (sequelize, DataTypes) => {
             PropertyDetail.belongsTo(models.Property, {
                 foreignKey: 'propertyId',
             });
-
-            PropertyDetail.hasMany(models.PropertyPicture, {
-                foreignKey: 'propertyDetailId',
-                as: 'propertyPictures',
-            });
         }
     }
     PropertyDetail.init(

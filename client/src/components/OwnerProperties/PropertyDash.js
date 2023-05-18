@@ -7,12 +7,17 @@ import ProContentGallery from "./ProContentGallery";
 import ProPersonalData from "./ProPersonalData";
 import OwnerMiddleContent from "../owner/OwnerMiddleContent";
 import OwnerAsideRight from "../owner/OwnerAsideRight";
+import ScrollAnimation from "react-animate-on-scroll";
 
 
 
 const PropertyDash = () => {
     return (
-        <div className="bg-gray-200">
+        <ScrollAnimation
+            animateIn="animate__fadeIn"
+            duration={2}
+            animateOnce
+            className="bg-gray-200">
             <div className="grid grid-cols-12 gap-8 min-h-screen py-10">
                 <aside className="col-span-2 flex flex-col justify-between">
                     <PropertySide />
@@ -29,7 +34,7 @@ const PropertyDash = () => {
                 </div>
                 <OwnerAsideRight />
             </div>
-        </div>
+        </ScrollAnimation>
     );
 };
 

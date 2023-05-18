@@ -76,7 +76,7 @@ const UserHeader = () => {
                             onClick={() => setShowMenu(!showMenu)}
                         >
                             <img
-                                className="mr-2 h-8 w-8 rounded-full"
+                                className="mr-2 h-8 w-8 rounded-full object-cover"
                                 src={`http://localhost:8000/${userPicture}` || 'https://via.placeholder.com/150'}
                                 alt="User avatar"
                             />

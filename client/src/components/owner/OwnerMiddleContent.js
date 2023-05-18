@@ -1,5 +1,5 @@
-import React, {useContext, useEffect, useMemo, useState} from 'react';
-import {useLocation, useNavigate, useParams} from 'react-router-dom';
+import React, {useEffect, useMemo, useState} from 'react';
+import {useParams} from 'react-router-dom';
 import TitleSection from "../owner-middle-content/TitleSection";
 import MiddlePicture from '../owner-middle-content/MiddlePicture';
 import PropertyDescription from "../owner-middle-content/PropertyDescription";
@@ -14,6 +14,7 @@ import {useDispatch, useSelector} from "react-redux";
 import {getUserProperties, updatePropertyDescription} from "../../actions/propertyActions";
 import {getAllUsers} from "../../actions/userActions";
 import UpdatePopupForm from "../update-form/UpdatePopupForm";
+import ScrollAnimation from "react-animate-on-scroll";
 
 
 const OwnerMiddleContent = () => {
@@ -56,7 +57,11 @@ const OwnerMiddleContent = () => {
 
     return (
         <>
-        <div style={{ margin: '0 auto' }} key={propertyId}>
+        <ScrollAnimation
+            animateIn="animate__fadeIn"
+            duration={2}
+            animateOnce={true}
+            style={{ margin: '0 auto' }} key={propertyId}>
             <div className='container p-4 my-4 flex items-center align-middle justify-between mx-auto'>
                 {property && <MiddlePicture key={property.id} property={property} propertyDetails={propertyDetails} images={images} />}
             </div>
@@ -68,12 +73,17 @@ const OwnerMiddleContent = () => {
                             <h2 className="font-bold text-xl mb-4">AI Check</h2>
                             <div className="flex flex-row gap-4">
                                 {propertySuggestionArray.map((suggestion, index) => (
-                                    <p key={index} className="text-xs text-amber-800">
+                                    <ScrollAnimation
+                                        animateIn="animate__fadeInUp"
+                                        duration={2}
+                                        animateOnce={true}
+                                        delay={index * 500}
+                                        key={index} className="text-xs text-amber-800">
                                         {suggestion?.property} click{" "}
                                         <span className="text-aqua-500 cursor-pointer"
                                               onClick={() => setShowUpdatePopup(true)}
                                         >here</span> to update
-                                    </p>
+                                    </ScrollAnimation>
                                 ))}
                             </div>
                         </div>
@@ -82,12 +92,17 @@ const OwnerMiddleContent = () => {
                             <h2 className="font-bold text-xl mb-4">AI Check for Descriptions</h2>
                             <div className="flex flex-row gap-4 flex-wrap">
                                 {propertySuggestionArray.map((suggestion, i) => (
-                                    <p key={i} className="text-xs text-amber-800">
+                                    <ScrollAnimation
+                                        animateIn="animate__fadeInUp"
+                                        duration={2}
+                                        animateOnce={true}
+                                        delay={i * 500}
+                                        key={i} className="text-xs text-amber-800">
                                         {suggestion?.description} click{" "}
                                         <span className="text-aqua-500 cursor-pointer"
                                               onClick={() => handleUpdateDescription(suggestion)}
                                         >here</span> to update
-                                    </p>
+                                    </ScrollAnimation>
                                 ))}
                             </div>
                         </div>
@@ -107,7 +122,7 @@ const OwnerMiddleContent = () => {
                     </div>
                 </div>
             </div>
-        </div>
+        </ScrollAnimation>
             <UpdatePopupForm
                 isOpen={showUpdatePopup}
                 onClose={handleOncloseForm}
