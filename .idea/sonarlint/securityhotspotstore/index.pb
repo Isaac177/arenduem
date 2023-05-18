@@ -31,8 +31,6 @@ V
 &migrations/20230318071918-Interests.js,8/4/84e599dbc011065ba036f923b7f59396718d5b02
 B
 models/interest.js,3/f/3f1ea3ca7a4ec107b3043de9212763cd4d40c290
-V
-&client/src/components/footer/Footer.js,9/b/9b17be6ab52fe509f6b03a03cc6308a2c49204d6
 X
 (client/src/components/header/HeroForm.js,1/0/1033f3edaf1af402fbf849b3f01bcf0ba847f0f9
 a
@@ -136,8 +134,6 @@ r
 Bmigrations/20230428030946-remove-pictures-from-property-details.js,2/0/2025098c48d9eab112fb28a82d59f783d83b64aa
 A
 models/address.js,1/6/16b66fefb64fe0a5ad178e8d02cf84e4ea61241b
-I
-client/tailwind.config.js,6/b/6b273cff573b0a837bad584f90d7d827bf358bb1
 S
 #client/src/assets/data/amenities.js,a/0/a0eb781b4c57841660662145188c60b8b7cdfd41
 Y
@@ -158,8 +154,6 @@ $client/src/assets/data/houseRules.js,0/c/0c00cfffbaf09f7ae4e0982db49d8d131dacf
 models/user.js,5/8/58952233992370efa7ea98b3ec60c43d2d227d89
 M
 controllers/authController.js,0/3/0337acf1f1f07013abb1b108a0023e639b60b2e0
-B
-client/src/App.css,2/a/2a082b18bfc3afa6b25d6c4584e995e6b6c4ee3e
 Y
 )client/src/components/form-steps/Step1.js,7/b/7b3ce6c4ad102f7c7c41516044bacf54b9069278
 Y
@@ -246,8 +240,6 @@ r
 Bclient/src/components/owner-middle-content/PropertyAvailability.js,4/9/497dafba27b094b3d0816dc2d52273dd938fd436
 k
 ;client/src/components/owner-middle-content/PropertyPrice.js,0/2/02f8ead30d17e49a37556e6d653b41a1c6e89e8b
-D
-client/src/index.css,7/5/751657f4fd5a737220a43ddd2ad7926446725c56
 q
 Aclient/src/components/owner-middle-content/PropertyDescription.js,b/1/b197bc32c564437be92b21ad06b13c823164cea3
 a

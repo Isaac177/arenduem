@@ -73,8 +73,6 @@ B
 models/interest.js,3/f/3f1ea3ca7a4ec107b3043de9212763cd4d40c290
 V
 &migrations/20230318071918-Interests.js,8/4/84e599dbc011065ba036f923b7f59396718d5b02
-V
-&client/src/components/footer/Footer.js,9/b/9b17be6ab52fe509f6b03a03cc6308a2c49204d6
 X
 (client/src/components/header/HeroForm.js,1/0/1033f3edaf1af402fbf849b3f01bcf0ba847f0f9
 ^
@@ -178,8 +176,6 @@ p
 @migrations/20230428033455-update_property_pictures_references.js,6/5/656629e36b472dd1422631aa13aeb3bc538e5a88
 B
 models/property.js,c/e/ce0364542d1bf1cf36ea5af9aa9b44887cdcebbf
-I
-client/tailwind.config.js,6/b/6b273cff573b0a837bad584f90d7d827bf358bb1
 Y
 )client/src/assets/data/preferencesData.js,1/2/12a05db1dad2af5f821dcd9ab3534660c58d3caa
 S
@@ -198,8 +194,6 @@ $client/src/assets/data/houseRules.js,0/c/0c00cfffbaf09f7ae4e0982db49d8d131dacf
 models/gender.js,e/8/e885ae6c24c10ce4162d8d6bd61c2c8ae7f164e3
 M
 controllers/authController.js,0/3/0337acf1f1f07013abb1b108a0023e639b60b2e0
-B
-client/src/App.css,2/a/2a082b18bfc3afa6b25d6c4584e995e6b6c4ee3e
 >
 models/user.js,5/8/58952233992370efa7ea98b3ec60c43d2d227d89
 Y
@@ -280,8 +274,6 @@ R
 "client/src/reducers/userReducer.js,3/a/3af3e9d3f595ac02dfee7e96d822cc0e9c01d450
 h
 8client/src/components/owner-middle-content/HouseRules.js,4/f/4fa3094be48e4623b85d42e9e1532d44376971d0
-D
-client/src/index.css,7/5/751657f4fd5a737220a43ddd2ad7926446725c56
 k
 ;client/src/components/owner-middle-content/PropertyPrice.js,0/2/02f8ead30d17e49a37556e6d653b41a1c6e89e8b
 r

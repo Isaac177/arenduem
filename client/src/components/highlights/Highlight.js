@@ -20,8 +20,7 @@ const Highlight = () => {
 
     return (
         <Element>
-            <div
-                 className="mx-auto w-full p-8 bg-primaryGrey-100">
+            <div className="mx-auto w-full bg-primary-900 relative">
                 <Element name="highlight" className="highlight pb-24">
                     <ScrollAnimation
                         animateIn='animate__fadeInUp'
@@ -29,8 +28,14 @@ const Highlight = () => {
                         animateOnce={false}
                         delay={100}
                         duration={1.5}>
-                        <h1 className="pt-24 mb-4 text-center text-6xl font-bold">
-                            Our New <span className="text-aqua-500">Roommates</span> </h1>
+                        <h1 className="pt-24 mb-4 text-center text-6xl font-bold"
+                            style={{
+                                background: 'linear-gradient(to right, black, #A3E4D7)',
+                                WebkitBackgroundClip: 'text',
+                                WebkitTextFillColor: 'transparent',
+                            }}>
+                            Our New <span className="text-aqua-500">Roommates</span>
+                        </h1>
                         <p className="pb-8 text-center text-xs">
                             Find here the most recent roommates that have joined our community.
                         </p>
@@ -68,6 +73,9 @@ const Highlight = () => {
                         <FiChevronRight size={24} />
                     </button>
                 </div>
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320" style={{transform: "scaleY(-1)"}}>
+                    <path fill="#ffffff" fillOpacity="1" d="M0,96L80,122.7C160,149,320,203,480,213.3C640,224,800,192,960,181.3C1120,171,1280,181,1360,186.7L1440,192L1440,0L1360,0C1280,0,1120,0,960,0C800,0,640,0,480,0C320,0,160,0,80,0L0,0Z"></path>
+                </svg>
             </div>
         </Element>
     );
