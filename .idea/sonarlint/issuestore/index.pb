@@ -29,10 +29,6 @@ Y
 )seeders/20230212073735-drinking-status.js,6/b/6bedbfd72fce872084615954f87ca0e1840df0ad
 Y
 )client/src/assets/img/cool-background.svg,d/a/da5a8b7d25fa93052ae2f4e7fb9c1891088d8a49
-R
-"client/src/assets/data/profiles.js,5/9/59ea551c5573132bb582035577c66d02948c34c1
-a
-1client/src/components/highlights/HighlightCard.js,d/b/db81e010beaa3c6fed5ff1a998143a9c827ebdf8
 _
 /client/src/components/workSection/HowItWorks.js,e/c/ec626369099e26b53bef6a5594e7dbd62c922d81
 B
