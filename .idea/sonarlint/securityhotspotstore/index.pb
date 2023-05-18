@@ -320,8 +320,6 @@ k
 ;client/src/components/owner-middle-content/MiddlePicture.js,b/8/b8421873f4a002bc0873b7fc0465693430505947
 D
 routes/userRoutes.js,e/9/e9eb043515685faf25833d70ef475596fc6e333d
-A
-client/src/App.js,f/6/f6b8a135eb07bb80aa582994bcf1a8ccacd783ee
 U
 %client/src/actions/propertyActions.js,7/a/7a0428ce928b984fb54096cd17e42ad50991dbc9
 Q

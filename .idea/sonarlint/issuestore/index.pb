@@ -362,8 +362,6 @@ a
 1client/src/components/owner/OwnerMiddleContent.js,9/7/9791a3e8470aafa67ad72a2c6beb23d9552f7cb7
 D
 routes/userRoutes.js,e/9/e9eb043515685faf25833d70ef475596fc6e333d
-A
-client/src/App.js,f/6/f6b8a135eb07bb80aa582994bcf1a8ccacd783ee
 U
 %client/src/actions/propertyActions.js,7/a/7a0428ce928b984fb54096cd17e42ad50991dbc9
 Q

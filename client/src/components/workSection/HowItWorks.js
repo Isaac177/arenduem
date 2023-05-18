@@ -6,7 +6,7 @@ import ScrollAnimation from "react-animate-on-scroll";
 const HowItWorks = () => {
 
     return (
-        <div className="mx-auto w-full p-8 bg-white flex flex-col items-center">
+        <div className="mx-auto w-full p-8 bg-white flex flex-col items-center" style={{ marginTop: '-5rem'}}>
             <ScrollAnimation
                 animateIn="animate__fadeInUp"
                 animateOut="animate__fadeOutDown"
