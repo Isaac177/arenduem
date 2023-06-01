@@ -1,4 +1,9 @@
-import {UPDATE_PROPERTY} from "../actions/propertyActions";
+import {
+    DELETE_PROPERTY_FAILURE,
+    DELETE_PROPERTY_START,
+    DELETE_PROPERTY_SUCCESS,
+    UPDATE_PROPERTY
+} from "../actions/propertyActions";
 
 const initialState = {
     property: null,
@@ -8,6 +13,9 @@ const initialState = {
     errorMessage: '',
     isPropertyLoading: false,
     propertySuggestions: [],
+    deleting: false,
+    deleteSuccess: null,
+    deleteError: null,
  };
 
 const propertyReducer = (state = initialState, action) => {
@@ -73,7 +81,10 @@ const propertyReducer = (state = initialState, action) => {
             return { loading: false, property: action.payload };
         case 'PROPERTY_DETAILS_FAIL':
             return { loading: false, error: action.payload };
-
+        case 'GET_PROPERTY_BY_ID_SUCCESS':
+            return { ...state, property: action.payload };
+        case 'GET_PROPERTY_BY_ID_FAILURE':
+            return { ...state, error: action.payload };
         case UPDATE_PROPERTY: {
             console.log("Updated property payload:", JSON.stringify(action.payload));
             const updatedProperty = action.payload.property;
@@ -83,9 +94,30 @@ const propertyReducer = (state = initialState, action) => {
 
             return {
                 ...state,
+                property: state.property?.id === updatedProperty.id ? updatedProperty : state.property,
                 properties: updatedProperties,
             };
         }
+
+        case DELETE_PROPERTY_START:
+            return {
+                ...state,
+                deleting: true,
+                deleteSuccess: null,
+                deleteError: null,
+            };
+        case DELETE_PROPERTY_SUCCESS:
+            return {
+                ...state,
+                deleting: false,
+                deleteSuccess: action.payload,
+            };
+        case DELETE_PROPERTY_FAILURE:
+            return {
+                ...state,
+                deleting: false,
+                deleteError: action.payload,
+            };
 
         default:
             return state;

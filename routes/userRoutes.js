@@ -16,6 +16,6 @@ router.get("/:userId/info", getUserInfoById);
 
 router.get("/users", getAllUsers);
 
-router.get("/users/propertyPicture", getUserPropertyPictures);
+router.get("/users/:userId/prop", getUserPropertyPictures);
 
 module.exports = router;

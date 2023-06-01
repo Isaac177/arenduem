@@ -79,7 +79,7 @@ export const removeInterest = (id, interest) => async (dispatch, getState) => {
         });
         dispatch({
             type: REMOVE_INTEREST,
-            payload: { id }, // Update the payload to include the id
+            payload: { id },
         });
     } catch (err) {
         console.error(err);

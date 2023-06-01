@@ -25,13 +25,8 @@ const PropertyDetails = () => {
     }, [users, propertyId]);
 
     const propertyDetails = property ? property?.PropertyDetail : null;
-    const propertyPictures = propertyDetails ? propertyDetails?.PropertyPictures : [];
+    const propertyPictures = property ? property?.PropertyPictures : [];
     const images = propertyPictures?.map((picture) => picture?.fileUrl);
-
-    console.log('property', JSON.stringify(property));
-    console.log('propertyId', propertyId);
-    console.log('users', users);
-    console.log('propertyDetails', propertyDetails);
 
     useEffect(() => {
         dispatch(storeUserIdInState(property.userId));

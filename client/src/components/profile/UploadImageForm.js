@@ -5,13 +5,8 @@ import {
     setModalOpen,
 } from '../../actions/galleryActions';
 import {useDispatch, useSelector} from "react-redux";
-import FullSizeImage from "./FullSizeImage";
-import axios from "axios";
 import {FiCheck} from "react-icons/fi";
-import {toast, ToastContainer} from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import DeleteModal from "./DeleteModal";
-import uuid4 from "uuid4";
 import {motion} from "framer-motion";
 const UploadImageForm = ({ isModalOpen, handleUploadImage, selectedFile, handleFileChange, isMain, isCover }) => {
     const dispatch = useDispatch();

@@ -88,52 +88,35 @@ const CloseButton = styled.button`
 
 
 
-const UpdatePopupForm = ({ isOpen, onClose }) => {
-    const [fetchedData, setFetchedData] = useState(null);
-
+const UpdatePopupForm = ({ isOpen, onClose, property }) => {
     const [step, setStep] = useState(0);
     const [startDate, setStartDate] = useState(null);
     const [endDate, setEndDate] = useState(null);
     const [showMessage, setShowMessage] = useState(false);
 
     const dispatch = useDispatch();
-    const successMessage = useSelector((state) => state.property.successMessage);
-    const errorMessage = useSelector((state) => state.property.errorMessage);
-    const {propertyId} = useParams();
+    const successMessage = useSelector((state) => state.property?.successMessage);
+    const errorMessage = useSelector((state) => state.property?.errorMessage);
 
-    const fetchedProperty = useSelector((state) => state.property.property);
-
-    useEffect(() => {
-        if (propertyId) {
-            dispatch(fetchPropertyById(propertyId));
-        }
-    }, [dispatch, propertyId]);
-
-    const mapFetchedDataToInitialValues = (data) => {
+    const mapDataToInitialValues = (data) => {
         return {
             ...data,
-            propertyAddress: data.address,
-            propertyAmenities: data.amenity,
-            houseRules: data.houseRule,
-            propertyAvailability: data.availability,
-            prices: data.price,
-            otherServices: data.service,
+            propertyAddress: data?.address,
+            propertyAmenities: data?.amenity,
+            houseRules: data?.houseRule,
+            propertyAvailability: data?.availability,
+            prices: data?.price,
+            otherServices: data?.service,
             propertyDetails: {
-                ...data.propertyDetail,
-                pictures: data.propertyPictures.map((picture) => picture.fileUrl),
+                ...data?.propertyDetail,
+                pictures: data?.propertyPictures?.map((picture) => picture?.fileUrl),
             },
-            preferences: data.preference,
-            phoneVerification: data.phoneVerification,
+            preferences: data?.preference,
+            phoneVerification: data?.phoneVerification,
         };
     };
 
-    useEffect(() => {
-        if (fetchedProperty) {
-            setFetchedData(mapFetchedDataToInitialValues(fetchedProperty));
-        }
-    }, [fetchedProperty]);
-
-
+    const initialValues = property ? mapDataToInitialValues(property) : {};
 
     const handleClose = () => {
         dispatch({ type: 'CLEAR_MESSAGES' });
@@ -167,7 +150,8 @@ const UpdatePopupForm = ({ isOpen, onClose }) => {
         <ModalOverlay>
             <Modal onClick={(e) => e.stopPropagation()}>
                 <Formik
-                    initialValues={fetchedData || {
+                    enableReinitialize={true}
+                    initialValues={initialValues || {
                         propertyType: '',
                         propertyAddress: {
                             country: '',
@@ -245,8 +229,6 @@ const UpdatePopupForm = ({ isOpen, onClose }) => {
                             verificationCode: ''
                         },
                     }}
-
-                    //validationSchema={getValidationSchemaForStep(step)}
                     onSubmit={async (values, { setSubmitting }) => {
                         const formData = new FormData();
                         console.log('images:', values.propertyDetails.pictures);
@@ -266,14 +248,8 @@ const UpdatePopupForm = ({ isOpen, onClose }) => {
                             }
                         }
 
-                       /* for (let [key, value] of formData.entries()) {
-                            console.log(`Form data: ${key}:`, value); // Add this line
-                        }*/
-
-                        if (propertyId) {
-                            await dispatch(updateProperty(propertyId, formData));
-                        } else {
-                            await dispatch(createProperty(formData));
+                        if (property) {
+                            formData.append('id', property.id);
                         }
 
                         setSubmitting(false);
@@ -293,8 +269,8 @@ const UpdatePopupForm = ({ isOpen, onClose }) => {
                             <Grid container spacing={3}>
                                 <Grid item xs={12} sm={6}>
                                     <div className="mx-auto overflow-y-scroll" style={{height: '600px'}}>
-                                        {step === 1 && <UpdateStep2 errors={errors} values={values} setFieldValue={setFieldValue}/>}
-                                        {step === 2 && <UpdateStep3 errors={errors} values={values} setFieldValue={setFieldValue}/>}
+                                        {step === 1  && <UpdateStep2 errors={errors} values={values} setFieldValue={setFieldValue}/>}
+                                        {step === 2  && <UpdateStep3 errors={errors} values={values} setFieldValue={setFieldValue}/>}
                                         {step === 3 && <UpdateStep4 errors={errors}
                                                               startDate={startDate}
                                                               setStartDate={setStartDate}

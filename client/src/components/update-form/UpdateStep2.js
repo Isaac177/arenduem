@@ -9,6 +9,8 @@ const UpdateStep2 = ({ errors }) => {
      const [countryInput, setCountryInput] = useState('');
 
     const { values, setFieldValue } = useFormikContext();
+
+    console.log('values', values)
     const countryNames = getNames();
 
     const handleCountryChange = (selectedCountry) => {

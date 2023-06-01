@@ -1,6 +1,6 @@
 import React from 'react';
 
-const DeleteModal = ({ onDelete, onCancel, isMain, isCover}) => {
+const DeleteModal = ({ onDelete, onCancel, isMain, isCover, delSubText}) => {
     let deleteImageText;
     if (isMain) {
         deleteImageText = 'Delete Main Image';
@@ -33,7 +33,7 @@ const DeleteModal = ({ onDelete, onCancel, isMain, isCover}) => {
                                 {deleteImageText}
                             </h3>
                             <div className="mt-2">
-                                <p className="text-sm leading-5 text-gray-500">Are you sure you want to delete this image?</p>
+                                <p className="text-sm leading-5 text-gray-500">{delSubText}</p>
                             </div>
                         </div>
                     </div>

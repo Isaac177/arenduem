@@ -4,6 +4,9 @@ import FormData from 'form-data';
 import {setServerError} from "./errorActions";
 
 export const UPDATE_PROPERTY = "UPDATE_PROPERTY";
+export const DELETE_PROPERTY_START = "DELETE_PROPERTY_START";
+export const DELETE_PROPERTY_SUCCESS = "DELETE_PROPERTY_SUCCESS";
+export const DELETE_PROPERTY_FAILURE = "DELETE_PROPERTY_FAILURE";
 
 
 const BASE_URL = 'http://localhost:8000';
@@ -67,6 +70,7 @@ export const getUserProperties = () => async (dispatch, getState) => {
         const response = await axios.get(`${BASE_URL}/users/${userId}/properties`);
         dispatch({ type: 'GET_USER_PROPERTIES_SUCCESS', payload: response.data });
 
+        console.log('response.data.properties:', response.data.properties)
         const fieldsToFetch = [
             { key: 'propertyType', label: 'Property type' },
             { key: 'Address.country', label: 'Country' },
@@ -98,6 +102,8 @@ export const getUserProperties = () => async (dispatch, getState) => {
                 property: suggestion,
                 description: descriptionSuggestion,
             };
+
+            console.log('combinedSuggestions:', combinedSuggestions);
 
             dispatch({ type: 'SET_PROPERTY_SUGGESTION', payload: { propertyId: property.id, suggestion: combinedSuggestions } });
         }
@@ -143,8 +149,11 @@ export const updatePropertyDescription = (propertyId, description) => async (dis
 
 export const fetchPropertyById = (propertyId) => async (dispatch, getState) => {
     try {
+        console.log('propertyId: ', propertyId);
+
         const response = await axios.get(`${BASE_URL}/properties/${propertyId}`);
         dispatch({ type: 'GET_PROPERTY_BY_ID_SUCCESS', payload: response.data });
+        console.log('response.data: ', response.data)
     } catch (error) {
         const errorMessage = error.response ? error.response.data.message : error.message;
         dispatch({ type: 'GET_PROPERTY_BY_ID_FAILURE', payload: errorMessage });
@@ -183,6 +192,48 @@ export const updateProperty = (propertyId, propertyData) => async (dispatch) => 
     }
 };
 
+export function deleteProperty(userId, propertyId) {
+    return async dispatch => {
+        dispatch(deletePropertyStart());
+
+        try {
+            const response = await fetch(`${BASE_URL}/users/${userId}/properties/${propertyId}`, {
+                method: 'DELETE'
+            });
+
+            if (!response.ok) {
+                throw new Error(`HTTP error! status: ${response.status}`);
+            }
+
+            const data = await response.json();
+
+            dispatch(deletePropertySuccess(data.message));
+
+        } catch (error) {
+            dispatch(deletePropertyFailure(error.toString()));
+        }
+    };
+}
+
+function deletePropertyStart() {
+    return {
+        type: DELETE_PROPERTY_START
+    };
+}
+
+function deletePropertySuccess(message) {
+    return {
+        type: DELETE_PROPERTY_SUCCESS,
+        payload: message
+    };
+}
+
+function deletePropertyFailure(error) {
+    return {
+        type: DELETE_PROPERTY_FAILURE,
+        payload: error
+    };
+}
 
 
 

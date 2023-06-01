@@ -33,8 +33,8 @@ const PropertyAnnounce = () => {
                 <Element className="mt-8 flex flex-col border-b">
                     <div className={`flex flex-row gap-6 flex-wrap p-12 animate-fade-in transform translate-y-0' : 'animate-fade-out transform translate-y-4'}`}>
                         {loggedInUserProperties.map((property, index) => {
-                            const housePicture = (property?.PropertyDetail?.PropertyPictures && property?.PropertyDetail?.PropertyPictures.length > 0)
-                                ? property?.PropertyDetail?.PropertyPictures[0]?.fileUrl : '';
+                            const housePicture = (property?.PropertyPictures && property?.PropertyPictures.length > 0)
+                                ? property?.PropertyPictures[0]?.fileUrl : '';
                             const defaultHousePicture = 'https://via.placeholder.com/640x360?text=Default+Image+1';
                             const address = `${property?.Address?.city}, ${property?.Address?.street}`;
                             const budget = property?.Price?.pricePerMonth;

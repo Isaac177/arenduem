@@ -56,7 +56,7 @@ app.get("users/:userId/info", userController.getUserInfoById);
 app.put('/users/:userId', userController.updateUserById);
 app.put('/users/role/:userId', userController.updateIsOwner);
 app.get('/housing-status/:userId', userController.getHousingStatus);
-app.get('/users/propertyPicture', userController.getUserPropertyPictures);
+app.get('/users/:userId/prop', userController.getUserPropertyPictures);
 
 // Pictures routes
 
@@ -84,7 +84,7 @@ app.put('/users/:userId/properties/:propertyId/description', updatePropertyDescr
 
 // OpenAi routes
 
-//app.post('/openai/suggestions', openaiController.fetchSuggestions);
+app.post('/openai/suggestions', openaiController.fetchSuggestions);
 
 
 const PORT = 8000;

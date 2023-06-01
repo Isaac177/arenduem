@@ -30,7 +30,7 @@ const LatestAnnouncements = () => {
                             const author = `${user?.firstName} ${user?.lastName ? user?.lastName.charAt(0) + '.' : ''}`;
 
                             return user.properties.map((property, propertyIndex) => {
-                                const housePicture = property?.PropertyDetail?.PropertyPictures?.[0]?.fileUrl;
+                                const housePicture = property?.PropertyPictures?.[0]?.fileUrl;
                                 const address = `${property?.Address?.city}, ${property.Address?.street}`;
                                 const budget = property?.Price?.pricePerMonth;
                                 const propertyType = property?.propertyType?.replace(/['"]+/g, '').replace(/\b\w/g, l => l.toUpperCase());

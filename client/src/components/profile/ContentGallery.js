@@ -219,6 +219,7 @@ const ContentGallery = () => {
                                     onCancel={() => setShowDeleteModal(false)}
                                     isMain={image.isMain}
                                     isCover={image.isCover}
+                                    delSubText="Are you sure you want to delete this image?"
                                 />
                             )}
                         </div>

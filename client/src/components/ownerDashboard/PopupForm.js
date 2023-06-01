@@ -239,7 +239,7 @@ const PopupForm = ({ isOpen, onClose }) => {
                         }
                     }}
 
-                    //validationSchema={getValidationSchemaForStep(step)}
+                    validationSchema={getValidationSchemaForStep(step)}
                     onSubmit={(values, { setSubmitting }) => {
                         dispatch(createProperty(values));
                         setSubmitting(false);
@@ -299,7 +299,7 @@ const PopupForm = ({ isOpen, onClose }) => {
                                         disabled={isSubmitting || !isValid}
                                         onClick={(e) => {
                                             handleNextStep(e, submitForm, setFieldValue, values);
-                                            setShowMessage(!showMessage);
+                                            //setShowMessage(!showMessage);
                                         }}
                                         type={step === 7 ? 'submit' : 'button'}
                                     >
@@ -310,11 +310,11 @@ const PopupForm = ({ isOpen, onClose }) => {
                         </Form>
                     )}
                 </Formik>
-                {showMessage && <MessagePopup
+                {/*{showMessage && <MessagePopup
                     errorMessage={errorMessage}
                     successMessage={successMessage}
                     handleClose={handleClose}
-                />}
+                />}*/}
             </Modal>
         </ModalOverlay>
     );

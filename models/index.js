@@ -48,7 +48,7 @@ Object.keys(db).forEach(modelName => {
         db.Property.hasOne(db.Preference, { foreignKey: 'propertyId' });
         db.Property.hasOne(db.PhoneVerification, { foreignKey: 'propertyId' });
         db.Property.belongsTo(db.User, { foreignKey: 'userId' });
-        db.Property.hasMany(db.PropertyPicture, { foreignKey: 'propertyId' });
+        db.Property.hasMany(db.PropertyPicture, { foreignKey: 'propertyId'});
     }
 
     if (modelName === 'Address') {
@@ -77,7 +77,6 @@ Object.keys(db).forEach(modelName => {
 
     if (modelName === 'PropertyDetail') {
         db.PropertyDetail.belongsTo(db.Property, { foreignKey: 'propertyId' });
-        //db.PropertyDetail.hasMany(db.PropertyPicture, { foreignKey: 'propertyId' });
     }
 
     if (modelName === 'Preference') {
@@ -121,7 +120,7 @@ Object.keys(db).forEach(modelName => {
     }
 
   }
-  console.log(`Associations for ${modelName}:`, db[modelName].associations);
+  //console.log(`Associations for ${modelName}:`, db[modelName].associations);
 });
 
 db.sequelize = sequelize;

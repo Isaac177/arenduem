@@ -167,9 +167,9 @@ exports.getAllUsers = async (req, res) => {
                         { model: Preference },
                         { model: Price },
                         { model: Service },
-                        {model: PropertyDetail },
+                        { model: PropertyDetail },
                         { model: PropertyPicture },
-                        {model: PhoneVerification},
+                        { model: PhoneVerification},
                     ],
                 },
             ],
@@ -187,7 +187,6 @@ exports.getAllUsers = async (req, res) => {
     }
 };
 
-// Get user property's pictures
 
 exports.getUserPropertyPictures = async (req, res) => {
     const { userId } = req.params;
@@ -196,15 +195,13 @@ exports.getUserPropertyPictures = async (req, res) => {
             include: [
                 {
                     model: Property,
-                    as: 'properties',
-                    include: [
-                        {
-                            model: PropertyPicture,
-                        },
+                    as: 'properties', include: [
+                        { model: PropertyPicture },
                     ],
                 },
             ],
         });
+
         if (!user) {
             throw new Error(`User with ID ${userId} not found`);
         } else {

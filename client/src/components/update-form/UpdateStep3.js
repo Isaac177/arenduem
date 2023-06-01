@@ -16,6 +16,7 @@ import houseRules from "../../assets/data/houseRules";
 
 const UpdateStep3 = ({errors}) => {
     const { values, setFieldValue } = useFormikContext();
+    console.log('values3', values)
 
     const theme = createTheme({
         palette: {
@@ -216,24 +217,24 @@ const UpdateStep3 = ({errors}) => {
                         {amenities.map((amenity) => (
                             <div
                                 key={amenity.name}
-                                className={iconStyles(values.propertyAmenities[amenity.name])}
+                                className={iconStyles(values.propertyAmenities?.[amenity?.name])}
                             >
                                 <FormControlLabel
                                     control={
                                         <Checkbox
-                                            icon={amenity.icon}
-                                            checkedIcon={amenity.icon}
-                                            checked={values.propertyAmenities[amenity.name] || false}
+                                            icon={amenity?.icon}
+                                            checkedIcon={amenity?.icon}
+                                            checked={values.propertyAmenities?.[amenity?.name] || false}
                                             value={amenity?.name}
-                                            name={`propertyAmenities.${amenity.name}`}
+                                            name={`propertyAmenities.${amenity?.name}`}
                                             onChange={(e) =>
                                                 setFieldValue(`propertyAmenities.${amenity?.name}`, e.target.checked)
                                             }
                                         />
                                     }
-                                    label={amenity.label}
+                                    label={amenity?.label}
                                 />
-                                {errors.propertyAmenities?.[amenity.name] && <p className="text-sm text-red-500">{errors.propertyAmenities?.[amenity.name]}</p>}
+                                {errors.propertyAmenities?.[amenity?.name] && <p className="text-sm text-red-500">{errors.propertyAmenities?.[amenity.name]}</p>}
                             </div>
                         ))}
                     </FormGroup>
@@ -242,19 +243,19 @@ const UpdateStep3 = ({errors}) => {
                     <h6 className="my-4 text-xl font-bold">House rules</h6>
                     <FormGroup row>
                         {houseRules.map((rule) => (
-                            <div key={rule.name} className={iconStyles(values.houseRules[rule.name])}>
+                            <div key={rule.name} className={iconStyles(values.houseRules?.[rule?.name])}>
                                 <FormControlLabel
                                     control={
                                         <Checkbox
-                                            icon={rule.icon}
-                                            checkedIcon={rule.icon}
-                                            checked={values.houseRules[rule.name] || false}
+                                            icon={rule?.icon}
+                                            checkedIcon={rule?.icon}
+                                            checked={values.houseRules?.[rule?.name] || false}
                                             value={rule?.name}
-                                            name={`houseRules.${rule.name}`}
+                                            name={`houseRules.${rule?.name}`}
                                             onChange={(e) => setFieldValue(`houseRules.${rule?.name}`, e.target.checked)}
                                         />
                                     }
-                                    label={rule.label}
+                                    label={rule?.label}
                                 />
                                 {errors.houseRules?.[rule.name] && <p className="text-sm text-red-500">{errors.houseRules?.[rule.name]}</p>}
                             </div>

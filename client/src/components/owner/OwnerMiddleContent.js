@@ -11,21 +11,25 @@ import PropertyAddress from "../owner-middle-content/PropertyAddress";
 import PropertyAvailability from "../owner-middle-content/PropertyAvailability";
 import PropertyPrice from "../owner-middle-content/PropertyPrice";
 import {useDispatch, useSelector} from "react-redux";
-import {getUserProperties, updatePropertyDescription} from "../../actions/propertyActions";
+import {deleteProperty, getUserProperties, updatePropertyDescription} from "../../actions/propertyActions";
 import {getAllUsers} from "../../actions/userActions";
 import UpdatePopupForm from "../update-form/UpdatePopupForm";
 import ScrollAnimation from "react-animate-on-scroll";
+import DeleteModal from "../profile/DeleteModal";
 
 
 const OwnerMiddleContent = () => {
+    const [showDeleteModal, setShowDeleteModal] = useState(false);
     const [showUpdatePopup, setShowUpdatePopup] = useState(false);
     const dispatch = useDispatch();
     const allUsers = useSelector((state) => state.user.allUsers);
     const propertySuggestions = useSelector(state => state.property.propertySuggestions);
     const { propertyId } = useParams();
+    const userId = useSelector((state) => state.auth.user.id);
 
     useEffect(() => {
         dispatch(getAllUsers());
+        dispatch(getUserProperties());
     }, [dispatch]);
 
     const property = useMemo(() => {
@@ -38,7 +42,7 @@ const OwnerMiddleContent = () => {
     }, [allUsers, propertyId]);
 
     const propertyDetails = property ? property.PropertyDetail : null;
-    const propertyPictures = propertyDetails ? propertyDetails.PropertyPictures : [];
+    const propertyPictures = property ? property.PropertyPictures : [];
     const images = propertyPictures?.map((picture) => picture?.fileUrl);
 
     const propertySuggestionArray = Object.values(propertySuggestions);
@@ -54,7 +58,17 @@ const OwnerMiddleContent = () => {
         dispatch(getAllUsers());*/
     }
 
+    console.log('suggest', propertySuggestions);
 
+    console.log('parent property', property);
+
+    const handleDelete = () => {
+        dispatch(deleteProperty(userId, propertyId));
+        setShowDeleteModal(false);
+    };
+    const handleCancel = () => {
+        setShowDeleteModal(false);
+    };
     return (
         <>
         <ScrollAnimation
@@ -73,17 +87,13 @@ const OwnerMiddleContent = () => {
                             <h2 className="font-bold text-xl mb-4">AI Check</h2>
                             <div className="flex flex-row gap-4">
                                 {propertySuggestionArray.map((suggestion, index) => (
-                                    <ScrollAnimation
-                                        animateIn="animate__fadeInUp"
-                                        duration={2}
-                                        animateOnce={true}
-                                        delay={index * 500}
+                                    <div
                                         key={index} className="text-xs text-amber-800">
                                         {suggestion?.property} click{" "}
                                         <span className="text-aqua-500 cursor-pointer"
                                               onClick={() => setShowUpdatePopup(true)}
                                         >here</span> to update
-                                    </ScrollAnimation>
+                                    </div>
                                 ))}
                             </div>
                         </div>
@@ -92,17 +102,13 @@ const OwnerMiddleContent = () => {
                             <h2 className="font-bold text-xl mb-4">AI Check for Descriptions</h2>
                             <div className="flex flex-row gap-4 flex-wrap">
                                 {propertySuggestionArray.map((suggestion, i) => (
-                                    <ScrollAnimation
-                                        animateIn="animate__fadeInUp"
-                                        duration={2}
-                                        animateOnce={true}
-                                        delay={i * 500}
+                                    <div
                                         key={i} className="text-xs text-amber-800">
                                         {suggestion?.description} click{" "}
                                         <span className="text-aqua-500 cursor-pointer"
                                               onClick={() => handleUpdateDescription(suggestion)}
                                         >here</span> to update
-                                    </ScrollAnimation>
+                                    </div>
                                 ))}
                             </div>
                         </div>
@@ -119,13 +125,34 @@ const OwnerMiddleContent = () => {
                             <div className="border-b-2 border-gray-200 my-4"></div>
                             {property && <PropertyPrice property={property} />}
                         </div>
+                        <div className="col-span-4 flex gap-4">
+                            <button className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded-lg"
+                                    onClick={() => setShowDeleteModal(true)}>
+                                Delete Property
+                            </button>
+                            {showDeleteModal && <DeleteModal
+                                onDelete={handleDelete}
+                                onCancel={handleCancel}
+                                delSubText="Are you sure you want to delete this property?"
+                            />}
+                            <button className="bg-aqua-500 hover:bg-aqua-800 text-white font-bold py-2 px-4 rounded-lg"
+                                    onClick={() => setShowUpdatePopup(true)}>
+                                Update Property
+                            </button>
+                            {showUpdatePopup && <UpdatePopupForm
+                                isOpen={showUpdatePopup}
+                                onClose={handleOncloseForm}
+                                property={property}
+                            />}
+                        </div>
                     </div>
                 </div>
-            </div>
+                </div>
         </ScrollAnimation>
             <UpdatePopupForm
                 isOpen={showUpdatePopup}
                 onClose={handleOncloseForm}
+                property={property}
             />
         </>
             );

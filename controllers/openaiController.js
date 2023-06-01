@@ -4,7 +4,7 @@ const configuration = new Configuration({
 });
 const openai = new OpenAIApi(configuration);
 
-const fetchSuggestions = async (req, res) => {
+exports.fetchSuggestions = async (req, res) => {
     try {
         const prompt = req.body.prompt;
         const response = await openai.createCompletion({
@@ -24,6 +24,3 @@ const fetchSuggestions = async (req, res) => {
     }
 };
 
-module.exports = {
-    fetchSuggestions,
-};

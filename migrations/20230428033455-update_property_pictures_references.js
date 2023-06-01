@@ -1,10 +1,11 @@
 'use strict';
 
-/** @type {import('sequelize-cli').Migration} */
-
 module.exports = {
   up: async (queryInterface, Sequelize) => {
-    await queryInterface.removeConstraint('PropertyPictures', 'PropertyPictures_propertyId_fkey');
+    const constraints = await queryInterface.getForeignKeysForTables(['PropertyPictures']);
+    if (constraints['PropertyPictures'].includes('PropertyPictures_propertyId_fkey')) {
+      await queryInterface.removeConstraint('PropertyPictures', 'PropertyPictures_propertyId_fkey');
+    }
     await queryInterface.renameColumn('PropertyPictures', 'propertyId', 'propertyDetailId');
     await queryInterface.addConstraint('PropertyPictures', {
       fields: ['propertyDetailId'],
@@ -20,7 +21,10 @@ module.exports = {
   },
 
   down: async (queryInterface, Sequelize) => {
-    await queryInterface.removeConstraint('PropertyPictures', 'PropertyPictures_propertyDetailId_fkey');
+    const constraints = await queryInterface.getForeignKeysForTables(['PropertyPictures']);
+    if (constraints['PropertyPictures'].includes('PropertyPictures_propertyDetailId_fkey')) {
+      await queryInterface.removeConstraint('PropertyPictures', 'PropertyPictures_propertyDetailId_fkey');
+    }
     await queryInterface.renameColumn('PropertyPictures', 'propertyDetailId', 'propertyId');
     await queryInterface.addConstraint('PropertyPictures', {
       fields: ['propertyId'],

@@ -160,7 +160,6 @@ export const getAllUsers = () => async (dispatch) => {
             type: GET_ALL_USERS_SUCCESS,
             payload: response.data,
         });
-        console.log('all users', JSON.stringify(response.data));
     } catch (error) {
         console.error(error);
         if (error.response && error.response.status === 401) {
