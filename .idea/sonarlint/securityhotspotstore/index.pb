@@ -25,8 +25,6 @@ V
 &migrations/20230318071918-Interests.js,8/4/84e599dbc011065ba036f923b7f59396718d5b02
 B
 models/interest.js,3/f/3f1ea3ca7a4ec107b3043de9212763cd4d40c290
-X
-(client/src/components/header/HeroForm.js,1/0/1033f3edaf1af402fbf849b3f01bcf0ba847f0f9
 a
 1client/src/components/profile/EmailPreferences.js,0/d/0d2f36a0cbfc9240e93be2cd91372935009bc6e7
 W
@@ -216,12 +214,8 @@ h
 0client/src/components/update-form/UpdateStep4.js,e/2/e263bb17ed95452c988cef5c135fd9c8403fc9b9
 Z
 *client/src/components/workSection/Steps.js,6/c/6c16eb527b8f5a563511abcc62e4b4ec5cfb340d
-B
-client/src/App.css,2/a/2a082b18bfc3afa6b25d6c4584e995e6b6c4ee3e
 V
 &client/src/components/footer/Footer.js,9/b/9b17be6ab52fe509f6b03a03cc6308a2c49204d6
-D
-client/src/index.css,7/5/751657f4fd5a737220a43ddd2ad7926446725c56
 I
 client/tailwind.config.js,6/b/6b273cff573b0a837bad584f90d7d827bf358bb1
 U
@@ -230,8 +224,6 @@ O
 client/src/assets/data/steps.js,e/3/e3d9152b81a6128aca4e19be543f538f8cdb7c95
 R
 "client/src/assets/data/profiles.js,5/9/59ea551c5573132bb582035577c66d02948c34c1
-_
-/client/src/components/workSection/HowItWorks.js,e/c/ec626369099e26b53bef6a5594e7dbd62c922d81
 ^
 .client/src/components/authentication/Signin.js,c/c/cc0ed757059b5deb7322a5477e7497d8db21e27a
 b
@@ -242,8 +234,6 @@ _
 /client/src/components/before-dash/BeforeDash.js,c/5/c54aa272968810a6a921320544791babca704071
 Y
 )client/src/components/before-dash/Card.js,d/d/ddbe39f2c42f35798e440576a7dade22f8f47398
-a
-1client/src/components/highlights/HighlightCard.js,d/b/db81e010beaa3c6fed5ff1a998143a9c827ebdf8
 h
 8client/src/components/owner-middle-content/HouseRules.js,4/f/4fa3094be48e4623b85d42e9e1532d44376971d0
 m

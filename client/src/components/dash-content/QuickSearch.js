@@ -111,10 +111,6 @@ const QuickSearch = () => {
 
     return (
         <form onSubmit={formik.handleSubmit}>
-            {/*<div>
-                <h1 className="flex items-start px-4 text-2xl font-bold">Quick Search</h1>
-                <hr className="ml-4 w-1/2 border border-aqua-500" />
-            </div>*/}
             <div className="mt-4 flex flex-col gap-4 rounded-lg bg-aqua-100 shadow-xl p-4">
                 <div className="flex flex-col gap-8">
                     <div className='flex flex-col gap-2'>

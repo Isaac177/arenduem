@@ -30,11 +30,10 @@ const Highlight = () => {
                 <Element name="highlight" className="highlight pb-24">
                     <ScrollAnimation
                         animateIn='animate__fadeInUp'
-                        animateOut='animate__fadeOutDown'
                         animateOnce={false}
                         delay={100}
                         duration={1.5}>
-                        <h1 className="pt-24 mb-4 text-center text-6xl font-bold"
+                        <h1 className="pt-24 mb-4 text-center text-6xl font-bold sm:text-3xl"
                             style={{
                                     background: 'linear-gradient(to right, white, #0F8E6E)',
                                     WebkitBackgroundClip: 'text',
@@ -46,8 +45,8 @@ const Highlight = () => {
                         </p>
                     </ScrollAnimation>
                 </Element>
-                <div className="flex flex-col items-center justify-center gap-8 sm:gap-16 md:gap-24 pb-32">
-                    <div className="flex flex-col gap-8 sm:gap-16 md:gap-24 sm:flex-row">
+                <div className="flex flex-col items-center justify-center gap-8 sm:gap-24 md:gap-24 pb-32">
+                    <div className="flex flex-col gap-8 sm:gap-32 md:gap-24 sm:flex-row">
                         {profiles
                             .concat(profiles)
                             .slice(startIndex, startIndex + 3)
@@ -58,6 +57,7 @@ const Highlight = () => {
                                     animateOnce={false}
                                     duration={1.5}
                                     delay={300 * index}
+                                    className="sm:gap-24"
                                 >
                                     <HighlightCard {...item} />
                                 </ScrollAnimation>

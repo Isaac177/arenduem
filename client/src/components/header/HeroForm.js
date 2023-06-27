@@ -76,7 +76,7 @@ const HeroForm = ({history}) => {
     });
 
     return (
-        <div className="w-2/3 rounded-3xl bg-opacity-50 p-12 text-white backdrop-blur-lg bg-primary-700">
+        <div className="rounded-3xl bg-opacity-50 p-12 text-white backdrop-blur-lg bg-primary-700 lg:w-3/2">
             <h2 className="mb-4 text-2xl font-bold">Find a Roommate</h2>
             <Formik
                 initialValues={{
@@ -117,6 +117,7 @@ const HeroForm = ({history}) => {
                                         root: classes.checkboxRoot,
                                         checked: classes.checkboxChecked,
                                     }}
+                                    style={{ accentColor: '#19BA99' }}
                                 />
                                 <label htmlFor="owner" className="text-xl">
                                     Yes, I'm a room owner

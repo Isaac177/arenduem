@@ -10,6 +10,8 @@ const Header = () => {
     const [isOpen, setIsOpen] = useState(false);
     const [shrink, setShrink] = useState(false);
     const [isMobile, setIsMobile] = useState(false);
+    const [scrollPosition, setScrollPosition] = useState(0);
+
     const userRole = localStorage.getItem('role');
 
     const navItems = [
@@ -17,6 +19,19 @@ const Header = () => {
         { to: '/about', label: 'About' },
         { to: '/contact', label: 'Contact' },
     ];
+
+    useEffect(() => {
+        const handleScroll = () => {
+            const position = window.pageYOffset;
+            setScrollPosition(position);
+        };
+
+        window.addEventListener('scroll', handleScroll, { passive: true });
+
+        return () => {
+            window.removeEventListener('scroll', handleScroll);
+        };
+    }, []);
 
     useEffect(() => {
         const handleResize = () => {
@@ -47,7 +62,9 @@ const Header = () => {
                 <UserHeader />
             ) : (
                 <header
-                    className={`header bg-primary-900 text-white text-center transition-all duration-500 ${
+                    className={`header bg-primary-900 text-white text-center transition-all duration-500 md:px-16 lg:px-24 xl:px-32 
+                ${scrollPosition > 50 ? 'fixed top-0 w-full z-50' : ''}
+                ${
                         shrink ? 'header-shrink' : ''
                     }`}
                 >
@@ -71,14 +88,13 @@ const Header = () => {
                             </button>
                             {isOpen && (
                                 <div
-                                    className={`fixed top-0 right-0 bg-primary-900 z-50 p-4 w-1/2 h-screen overflow-auto lg:hidden transform transition-transform duration-500 
-${isOpen ? 'translate-x-0' : 'translate-x-full'}`}
+                                    className={`fixed top-0 right-0 bg-primary-900 z-50 p-4 w-1/2 h-screen overflow-auto lg:hidden transform transition-transform duration-500 ${isOpen ? 'translate-x-0' : 'translate-x-full'}`}
                                 >
                                     <button className="absolute top-0 right-0 m-4" onClick={toggleMenu}>
                                         <CloseIcon style={{ color: '#fff', fontSize: 30 }} />
                                     </button>
                                     {navItems.map(({ to, label }) => (
-                                        <NavLink key={to} exact to={to} className="mt-4 block hover:text-aqua-500">
+                                        <NavLink key={to} exact to={to} className="mt-4 block hover:text-aqua-500 animate ease-in duration-500">
                                             {label}
                                         </NavLink>
                                     ))}
@@ -94,7 +110,6 @@ ${isOpen ? 'translate-x-0' : 'translate-x-full'}`}
                             )}
 
                             <nav className="hidden lg:flex">
-                                {/* Same nav items as in dropdown menu */}
                                 {navItems.map(({ to, label }) => (
                                     <NavLink key={to} exact to={to} className="mt-4 mr-4 block hover:text-aqua-500 hov lg:mt-0 lg:inline-block">
                                         {label}
