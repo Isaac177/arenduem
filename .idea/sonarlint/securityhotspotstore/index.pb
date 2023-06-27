@@ -127,12 +127,6 @@ $client/src/assets/data/houseRules.js,0/c/0c00cfffbaf09f7ae4e0982db49d8d131dacf
 M
 controllers/authController.js,0/3/0337acf1f1f07013abb1b108a0023e639b60b2e0
 Y
-)client/src/components/form-steps/Step1.js,7/b/7b3ce6c4ad102f7c7c41516044bacf54b9069278
-Y
-)client/src/components/form-steps/Step2.js,d/9/d93ffceb2cf5b5ecbe2f28f6a35cf1190e418e78
-Y
-)client/src/components/form-steps/Step4.js,b/a/ba718ab4aaefed5653fe9473d1899b4e54eb6736
-Y
 )client/src/components/form-steps/Step5.js,9/b/9bab67746ea9306be19792f6a7ede4f66f6560a9
 Y
 )client/src/components/form-steps/Step6.js,4/2/42a0e14a238bba22fc1296dcbc2e37bddef78716
@@ -148,10 +142,6 @@ Q
 !controllers/picturesController.js,8/c/8c2c2185a3bd4258f38368fb5f196f81d2303da5
 Q
 !controllers/interestController.js,5/4/54a7f2a2fb7536a5301aa9d05f93611109b2fc32
-V
-&client/src/components/header/Header.js,5/f/5f63eea74f861092d6d5bab71157305af4ebe117
-a
-1client/src/components/dash-content/QuickSearch.js,4/7/47abf5b8e43dbb3dfabfaa9a4e2b8637b76b0b90
 H
 routes/picturesRoutes.js,d/5/d5bbc46674c6ad2f5f6a58cd07ddcfe61bb5d0f7
 A
@@ -162,10 +152,6 @@ C
 -client/src/components/profile/InterestCard.js,3/0/30fa90193d3068ec180587bbcf359875955ebb37
 Y
 )client/src/assets/data/insterestsArray.js,6/7/676532cebb04fb9c13681924deb1d3f4ef87ab9d
-a
-1client/src/components/dash-content/DashContent.js,f/e/fe2b7bef1ba8ebf44d061d1a0cf30f15bdde64d8
-Y
-)client/src/components/form-steps/Step3.js,7/4/743f18d2f68e09f4e72128352d3eeeafb40eacf9
 m
 =migrations/20230505151531-add_bed_type_to_property_details.js,5/0/508313772fb0720e08ed0c6500088ba7781ba060
 ^
@@ -230,8 +216,6 @@ h
 0client/src/components/update-form/UpdateStep4.js,e/2/e263bb17ed95452c988cef5c135fd9c8403fc9b9
 Z
 *client/src/components/workSection/Steps.js,6/c/6c16eb527b8f5a563511abcc62e4b4ec5cfb340d
-T
-$client/src/components/header/Hero.js,1/e/1e618464d759cce8d5b2e8a191c143e5e4838f63
 B
 client/src/App.css,2/a/2a082b18bfc3afa6b25d6c4584e995e6b6c4ee3e
 V
@@ -240,8 +224,6 @@ D
 client/src/index.css,7/5/751657f4fd5a737220a43ddd2ad7926446725c56
 I
 client/tailwind.config.js,6/b/6b273cff573b0a837bad584f90d7d827bf358bb1
-R
-"client/src/components/home/Home.js,8/e/8e140dd2d1251bd2c24499e26986a0b37dfcab57
 U
 %client/src/assets/data/testimonies.js,b/6/b68b5ca651ddf10cf0095d07d0d921eeea8c0adb
 O
@@ -250,8 +232,6 @@ R
 "client/src/assets/data/profiles.js,5/9/59ea551c5573132bb582035577c66d02948c34c1
 _
 /client/src/components/workSection/HowItWorks.js,e/c/ec626369099e26b53bef6a5594e7dbd62c922d81
-]
--client/src/components/highlights/Highlight.js,8/f/8ff8553f2a5478518701b26c3b8bfa346c9bff54
 ^
 .client/src/components/authentication/Signin.js,c/c/cc0ed757059b5deb7322a5477e7497d8db21e27a
 b
@@ -272,12 +252,6 @@ o
 ?client/src/components/owner-middle-content/TenantPreferences.js,e/d/ed5c1c66c00fc23db40ca917d6babb63df3296f2
 R
 "client/src/reducers/userReducer.js,3/a/3af3e9d3f595ac02dfee7e96d822cc0e9c01d450
-h
-8client/src/components/dash-content/ProOwnerAsideRight.js,e/7/e7aae8a99dfb8e804f44bff99294c3dc6c4e84e2
-V
-&client/src/views/user/UserDashboard.js,9/4/94d9df5c9edea51b323d34c7e9393465d540750c
-A
-client/src/App.js,f/6/f6b8a135eb07bb80aa582994bcf1a8ccacd783ee
 W
 'client/src/views/user/OwnerDashboard.js,1/a/1ae785dfe9ce38e0d280abaab6b0a6337898efe0
 e
@@ -354,3 +328,29 @@ _
 0client/src/components/profile/UploadImageForm.js,1/b/1b3eba2bbc8705e4655085d0a60b447c75f76bce
 d
 4client/src/components/update-form/UpdatePopupForm.js,2/5/250697b011983c5e042d1e3cc9c490b3620e4079
+?
+models/index.js,e/4/e41453b900e7c418643d34a8cb9d68efc0b0ddd6
+e
+5client/src/components/dash-content/PropertyDetails.js,d/4/d4ae510f26213e1c583834a7a7d71860567d4651
+Q
+!controllers/propertyController.js,e/7/e7d694fc3ba46a18c2ecc747f60452fd6593b46d
+\
+,client/src/components/profile/DeleteModal.js,3/3/33d8b836451f9d6c900f7b810e86cd83f8eb9249
+O
+controllers/openaiController.js,0/d/0d0539a0ad7c96a6641afc3749fe7e6026c1d631
+Q
+!client/src/actions/userActions.js,7/6/76643767db2d2cb617a2ec33b0b2b0ed9a6a5205
+U
+%client/src/actions/propertyActions.js,7/a/7a0428ce928b984fb54096cd17e42ad50991dbc9
+a
+1client/src/components/owner/OwnerMiddleContent.js,9/7/9791a3e8470aafa67ad72a2c6beb23d9552f7cb7
+H
+routes/propertyRoutes.js,1/9/19af69cd1f8024e189a785da4a4d0b3d0aa13fa9
+V
+&client/src/reducers/propertyReducer.js,8/9/89859367dc3da63825889341feacca6ff1c24b07
+<
+package.json,7/0/7030d0b2f71b999ff89a343de08c414af32fc93a
+A
+client/src/App.js,f/6/f6b8a135eb07bb80aa582994bcf1a8ccacd783ee
+V
+&client/src/views/user/UserDashboard.js,9/4/94d9df5c9edea51b323d34c7e9393465d540750c

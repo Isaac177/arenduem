@@ -2,10 +2,14 @@ import React, { useState, useEffect } from 'react';
 import { NavLink } from 'react-router-dom';
 import UserHeader from '../user-nav/UserHeader';
 import arendLogo from "../../assets/img/arendLogo.png";
+import CloseIcon from '@mui/icons-material/Close';
+import MenuIcon from '@mui/icons-material/Menu';
+
 
 const Header = () => {
     const [isOpen, setIsOpen] = useState(false);
     const [shrink, setShrink] = useState(false);
+    const [isMobile, setIsMobile] = useState(false);
     const userRole = localStorage.getItem('role');
 
     const navItems = [
@@ -15,14 +19,27 @@ const Header = () => {
     ];
 
     useEffect(() => {
+        const handleResize = () => {
+            setIsMobile(window.innerWidth < 768);
+        };
+        handleResize(); // Initialize isMobile state
+        window.addEventListener('resize', handleResize);
+
         const handleScroll = () => {
             setShrink(window.scrollY > 100);
         };
         window.addEventListener('scroll', handleScroll);
+
         return () => {
             window.removeEventListener('scroll', handleScroll);
+            window.removeEventListener('resize', handleResize);
         };
     }, []);
+
+    const toggleMenu = () => {
+        setIsOpen(!isOpen);
+    };
+
 
     return (
         <>
@@ -30,55 +47,64 @@ const Header = () => {
                 <UserHeader />
             ) : (
                 <header
-                    className={`header bg-primary-900 text-white text-center py-8 ${
+                    className={`header bg-primary-900 text-white text-center transition-all duration-500 ${
                         shrink ? 'header-shrink' : ''
                     }`}
                 >
-                    <div className="container mx-auto flex flex-wrap items-center">
-                        <div className="w-full text-white-100 lg:flex lg:w-auto lg:flex-grow lg:items-center">
-                            <div className="w-full lg:flex lg:w-auto lg:flex-grow lg:items-center">
+                    <div className="container mx-auto flex flex-wrap items-center justify-between">
+                        <div className="flex flex-grow items-center justify-center lg:justify-start">
+                            <div className="w-full lg:w-auto">
                                 <img
-                                    src={arendLogo} alt="Arend Logo"
-                                    style={{width: '200px', height: '50px'}}
-                                    className="mr-2 object-cover absolute" />
+                                    src={arendLogo}
+                                    alt="Arend Logo"
+                                    className="w-24 h-24 lg:w-80 lg:h-20 object-cover" />
                             </div>
                         </div>
-                        <div className="w-full text-white-100 lg:w-auto">
+                        <div className="relative lg:w-auto">
                             <button
-                                className="text-primary-900 text-white-100 hover:text-white focus:outline-none lg:hidden"
-                                onClick={() => setIsOpen(!isOpen)}
+                                className='text-primary-900 text-white-100 hover:text-white focus:outline-none absolute top-0 right-0 mr-4 lg:hidden'
+                                onClick={toggleMenu}
                             >
+                                {!isOpen && (
+                                    <MenuIcon style={{ color: '#fff', fontSize: 30 }} />
+                                )}
                             </button>
-                            <nav
-                                className={`${
-                                    isOpen ? 'block' : 'hidden'
-                                } lg:block lg:flex lg:items-center lg:w-auto`}
-                            >
-                                <div className="text-base lg:flex-grow">
+                            {isOpen && (
+                                <div
+                                    className={`fixed top-0 right-0 bg-primary-900 z-50 p-4 w-1/2 h-screen overflow-auto lg:hidden transform transition-transform duration-500 
+${isOpen ? 'translate-x-0' : 'translate-x-full'}`}
+                                >
+                                    <button className="absolute top-0 right-0 m-4" onClick={toggleMenu}>
+                                        <CloseIcon style={{ color: '#fff', fontSize: 30 }} />
+                                    </button>
                                     {navItems.map(({ to, label }) => (
-                                        <NavLink
-                                            key={to}
-                                            exact
-                                            to={to}
-                                            className="mt-4 mr-4 block hover:text-aqua-500 hover:text-white lg:mt-0 lg:inline-block"
-                                        >
+                                        <NavLink key={to} exact to={to} className="mt-4 block hover:text-aqua-500">
                                             {label}
                                         </NavLink>
                                     ))}
+                                    <div className="px-4">
+                                        <NavLink exact to="/signin" className="mx-4 mt-4 inline-block rounded border border-white px-4 py-2 text-sm leading-none text-white hover:text-primary-900 hover:border-transparent hover:bg-white">
+                                            Sign In
+                                        </NavLink>
+                                        <NavLink exact to="/signup" className="mx-4 mt-4 inline-block rounded border border-white px-4 py-2 text-sm leading-none text-white hover:text-primary-900 hover:border-transparent hover:bg-white">
+                                            Sign Up
+                                        </NavLink>
+                                    </div>
                                 </div>
-                                <div>
-                                    <NavLink
-                                        exact
-                                        to="/signin"
-                                        className="mx-4 mt-4 inline-block rounded border border-white px-4 py-2 text-sm leading-none text-white hover:text-primary-900 hover:border-transparent hover:bg-white lg:mt-0"
-                                    >
+                            )}
+
+                            <nav className="hidden lg:flex">
+                                {/* Same nav items as in dropdown menu */}
+                                {navItems.map(({ to, label }) => (
+                                    <NavLink key={to} exact to={to} className="mt-4 mr-4 block hover:text-aqua-500 hov lg:mt-0 lg:inline-block">
+                                        {label}
+                                    </NavLink>
+                                ))}
+                                <div className="px-4 lg:px-0">
+                                    <NavLink exact to="/signin" className="mx-4 mt-4 inline-block rounded border border-white px-4 py-2 text-sm leading-none text-white hover:text-primary-900 hover:border-transparent hover:bg-white lg:mt-0">
                                         Sign In
                                     </NavLink>
-                                    <NavLink
-                                        exact
-                                        to="/signup"
-                                        className="mx-4 mt-4 inline-block rounded border border-white px-4 py-2 text-sm leading-none text-white hover:text-primary-900 hover:border-transparent hover:bg-white lg:mt-0"
-                                    >
+                                    <NavLink exact to="/signup" className="mx-4 mt-4 inline-block rounded border border-white px-4 py-2 text-sm leading-none text-white hover:text-primary-900 hover:border-transparent hover:bg-white lg:mt-0">
                                         Sign Up
                                     </NavLink>
                                 </div>
@@ -90,5 +116,4 @@ const Header = () => {
         </>
     );
 };
-
 export default Header;

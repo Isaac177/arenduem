@@ -46,8 +46,8 @@ const Highlight = () => {
                         </p>
                     </ScrollAnimation>
                 </Element>
-                <div className="flex items-center justify-center gap-24 pb-32">
-                    <div className="flex flex-row gap-24">
+                <div className="flex flex-col items-center justify-center gap-8 sm:gap-16 md:gap-24 pb-32">
+                    <div className="flex flex-col gap-8 sm:gap-16 md:gap-24 sm:flex-row">
                         {profiles
                             .concat(profiles)
                             .slice(startIndex, startIndex + 3)
@@ -63,7 +63,7 @@ const Highlight = () => {
                                 </ScrollAnimation>
                             ))}
                     </div>
-                    <img src={apartSvg} className="absolute left-0 bottom-0 w-1/4" alt="apartSvg" style={{ opacity: 0.3}}/>
+                    <img src={apartSvg} className="absolute left-0 bottom-0 w-4/5 sm:w-2/3 md:w-1/2 lg:w-1/4" alt="apartSvg" style={{ opacity: 0.3}}/>
                 </div>
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 50 1440 270" style={{transform: "scaleY(-1)"}}>
                     <path fill="#ffffff" fillOpacity="1" d="M0,96L80,122.7C160,149,320,203,480,213.3C640,224,800,192,960,181.3C1120,171,1280,181,1360,186.7L1440,192L1440,0L1360,0C1280,0,1120,0,960,0C800,0,640,0,480,0C320,0,160,0,80,0L0,0Z"></path>

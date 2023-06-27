@@ -20,17 +20,17 @@ import Separator from "../utils/Separator";
 
 
 
-
+/*
 const genderOptions = [
     { value: 'male', label: 'Male' },
     { value: 'female', label: 'Female' },
     { value: 'other', label: 'Other' },
-];
+];*/
 
-const studentOptions = [
+/*const studentOptions = [
     { value: 'yes', label: 'Yes' },
     { value: 'no', label: 'No' },
-];
+];*/
 
 const smokingOptions = [
     { value: 'never', label: 'Never' },
@@ -46,10 +46,10 @@ const drinkingOptions = [
     { value: 'very often', label: 'Very often' },
 ];
 
-const petOptions = [
+/*const petOptions = [
     { value: 'yes', label: 'Yes' },
     { value: 'no', label: 'No' },
-];
+];*/
 
 const interestOptions = [
     { value: 'sports', label: 'Sports' },
@@ -78,10 +78,10 @@ const QuickSearch = () => {
 
     const initialValues = {
         location: '',
-        genderPreference: '',
+        //genderPreference: '',
         studentStatus: '',
         smokingPreference: '',
-        petPreference: '',
+        //petPreference: '',
         interests: '',
         lengthOfStay: '',
         rentBudgetFrom: 0,
@@ -164,7 +164,7 @@ const QuickSearch = () => {
                     </div>
                 </div>
                 <div className="flex flex-col gap-8">
-                    <div className='flex flex-col gap-2'>
+                    {/*<div className='flex flex-col gap-2'>
                         <p className="flex items-start text-gray-500">Gender Preference</p>
                         <div className="flex items-center rounded-md bg-white p-2">
                             <FaVenusMars className="mr-2 text-aqua-500" />
@@ -196,7 +196,7 @@ const QuickSearch = () => {
                                 ))}
                             </Select>
                         </div>
-                    </div>
+                    </div>*/}
                     <div className='flex flex-col gap-2'>
                         <p className="flex items-start text-gray-500">Age</p>
                         <div className="flex items-center rounded-md bg-white p-2">
@@ -256,7 +256,7 @@ const QuickSearch = () => {
                             </div>
                         </div>
                     </div>
-                    <div className='flex flex-col gap-2'>
+                    {/*<div className='flex flex-col gap-2'>
                         <p className="flex items-start text-gray-500">Student Status</p>
                         <div className="flex items-center rounded-md bg-white p-2">
                             <HiAcademicCap className="mr-2 text-aqua-500" />
@@ -284,7 +284,7 @@ const QuickSearch = () => {
                                 components={{ IndicatorSeparator: null, DropdownIndicator: () => <FaChevronDown className="cursor-pointer" /> }}
                             />
                         </div>
-                    </div>
+                    </div>*/}
                 </div>
                 <div className="flex flex-col gap-8">
                     <div className='flex flex-col gap-2'>
@@ -345,7 +345,7 @@ const QuickSearch = () => {
                             />
                         </div>
                     </div>
-                    <div className='flex flex-col gap-2'>
+                    {/*<div className='flex flex-col gap-2'>
                         <p className="flex items-start text-gray-500">Pet Preferences</p>
                         <div className="flex items-center rounded-md bg-white p-2">
                             <FaPaw className="mr-2 text-aqua-500" />
@@ -373,7 +373,7 @@ const QuickSearch = () => {
                                 components={{ IndicatorSeparator: null, DropdownIndicator: () => <FaChevronDown className="cursor-pointer" /> }}
                             />
                         </div>
-                    </div>
+                    </div>*/}
                     <div className='flex flex-col gap-2'>
                         <p className="flex items-start text-gray-500">Length of Stay</p>
                         <div className="flex items-center rounded-md bg-white p-2">

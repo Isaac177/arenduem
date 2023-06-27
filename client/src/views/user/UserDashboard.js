@@ -33,8 +33,7 @@ const UserDashboard = () => {
                     </Routes>
                 </div>
                 <aside className="col-span-2 flex flex-col justify-between">
-                    {/^\/user\/dashboard$/.test(location.pathname) ? <QuickSearch /> : null}
-                    {location.pathname.includes(`/user/dashboard/${propertyId}`) ? <ProOwnerAsideRight /> :<QuickSearch /> }
+                     {location.pathname.includes(`/user/dashboard/${propertyId}`) ? <ProOwnerAsideRight /> :<QuickSearch /> }
                 </aside>
             </div>
         </div>
