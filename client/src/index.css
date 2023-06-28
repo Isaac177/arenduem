@@ -108,3 +108,16 @@
   }
 }
 
+
+.cardWidth {
+  width: 1080px;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+@media screen and (max-width: 768px) {
+  .cardWidth {
+    width: 100%;
+  }
+}

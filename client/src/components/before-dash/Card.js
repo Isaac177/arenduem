@@ -1,14 +1,11 @@
 import React from 'react';
 import {motion, useAnimation} from 'framer-motion';
 import {useInView} from "react-intersection-observer";
-import { useLocation, useNavigate } from 'react-router-dom';
 
 
 
 const Card = ({ imageSrc, imageAlt, title, subtitle, contentOrder, actions, handleClick }) => {
     const controls = useAnimation();
-    const location = useLocation();
-    const navigate = useNavigate();
 
 
     const [ref, inView] = useInView({
@@ -25,18 +22,29 @@ const Card = ({ imageSrc, imageAlt, title, subtitle, contentOrder, actions, hand
 
     return (
         <div
-            className="mt-10 mb-10 hover:border-aqua-500 hover:border hover:shadow-2xl"
-            onClick={handleClick}
-        >
-        <div className={`flex ${contentOrder === 'image-first' ? 'flex-row' : 'flex-row-reverse'} justify-between`}>
-                <div style={{ position: 'relative' }}>
-                    <img src={imageSrc} alt={imageAlt} className={`rounded-l-lg ${contentOrder === 'image-first' ? 'rounded-r-none' : 'rounded-r-lg rounded-l-none cover non-repeat'}`}
-                         style={{ width: '700px', height: '400px', objectFit: 'cover', backgroundRepeat: 'no-repeat', filter: 'brightness(50%)' }} />
+            className="mt-10 mb-10 hover:border-aqua-500 hover:border hover:shadow-2xl w-full"
+            onClick={handleClick}>
+            <div className={`sm:flex ${contentOrder === 'image-first' ? 'sm:flex-row' : 'sm:flex-row-reverse'} justify-between `}
+                 style={{
+                     width: window.innerWidth < 640 ? '100%' : '100%',
+                     margin: window.innerWidth < 640 ? 'auto 0' : 'auto',
+            }}
+            >
+                <div className={`w-full sm:w-auto`} style={{ position: 'relative' }}>
+                    <img src={imageSrc} alt={imageAlt}
+                         className={`sm:margin-x-auto sm:rounded-lg rounded-l-lg ${contentOrder === 'image-first' ? 'lg:rounded-r-none' : 'rounded-r-lg rounded-l-none cover non-repeat'}`}
+                         style={{
+                             width: window.innerWidth < 640 ? 'auto' : '100%',
+                             height: window.innerWidth < 640 ? '300px' : '400px',
+                              objectFit: 'cover', backgroundRepeat: 'no-repeat',
+                             filter: 'brightness(50%)',
+                    }}
+                    />
                     <div style={{ position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%, -50%)', color: '#fff', width: '100%' }}>
-                        <h1 className="m-10 text-4xl font-bold">{title}<span className="text-aqua-500">{subtitle}</span></h1>
+                        <h1 className="m-10 text-2xl lg:text-4xl font-bold">{title}<span className="text-aqua-500 text-2xl lg:text-4xl">{subtitle}</span></h1>
                     </div>
                 </div>
-                <div className={`flex flex-col w-1/2 ${contentOrder === 'image-first' ? 'rounded-r-lg' : 'rounded-l-lg'} bg-white p-10`}>
+                <div className={`w-full sm:w-1/2 ${contentOrder === 'image-first' ? 'sm:rounded-r-lg' : 'sm:rounded-l-lg'} bg-white p-10`}>
                     {actions.map((action, index) => (
                         <div key={index} className="mt-5 flex w-full flex-row justify-between gap-8">
                             {action.icon}

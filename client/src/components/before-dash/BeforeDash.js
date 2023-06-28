@@ -84,18 +84,18 @@ const BeforeDash = () => {
     };
     return (
         <Element
-            style={{ width: '1080px', margin: '0 auto' }}
-            className="block"
+            className="cardWidth"
         >
             <h1
-                className="mt-10 text-4xl font-bold"
+                className="mt-10 text-4xl font-bold sm:text-center"
                 style={{
                     background: 'linear-gradient(to right, #0F8E6E, black)',
                     WebkitBackgroundClip: 'text',
                     WebkitTextFillColor: 'transparent',
                 }}
             >Choose your card</h1>
-            <div className="flex w-full flex-col gap-10 hover:cursor-pointer">
+            <div className="flex w-full flex-col gap-10 hover:cursor-pointer sm:margin-x-auto"
+                  >
                 <ScrollAnimation
                     animateIn="animate__fadeInLeft"
                     animateOut="animate__fadeOutLeft"

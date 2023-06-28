@@ -94,15 +94,15 @@ const Header = () => {
                                         <CloseIcon style={{ color: '#fff', fontSize: 30 }} />
                                     </button>
                                     {navItems.map(({ to, label }) => (
-                                        <NavLink key={to} exact to={to} className="mt-4 block hover:text-aqua-500 animate ease-in duration-500">
+                                        <NavLink key={to} exact to={to} className="mt-4 block hover:text-aqua-500 animate ease-in duration-500" onClick={()=> setIsOpen(!isOpen)}>
                                             {label}
                                         </NavLink>
                                     ))}
                                     <div className="px-4">
-                                        <NavLink exact to="/signin" className="mx-4 mt-4 inline-block rounded border border-white px-4 py-2 text-sm leading-none text-white hover:text-primary-900 hover:border-transparent hover:bg-white">
+                                        <NavLink exact to="/signin" className="mx-4 mt-4 inline-block rounded border border-white px-4 py-2 text-sm leading-none text-white hover:text-primary-900 hover:border-transparent hover:bg-white" onClick={()=> setIsOpen(!isOpen)}>
                                             Sign In
                                         </NavLink>
-                                        <NavLink exact to="/signup" className="mx-4 mt-4 inline-block rounded border border-white px-4 py-2 text-sm leading-none text-white hover:text-primary-900 hover:border-transparent hover:bg-white">
+                                        <NavLink exact to="/signup" className="mx-4 mt-4 inline-block rounded border border-white px-4 py-2 text-sm leading-none text-white hover:text-primary-900 hover:border-transparent hover:bg-white" onClick={()=> setIsOpen(!isOpen)}>
                                             Sign Up
                                         </NavLink>
                                     </div>

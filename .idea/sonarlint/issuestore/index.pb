@@ -264,10 +264,6 @@ R
 "client/src/assets/data/profiles.js,5/9/59ea551c5573132bb582035577c66d02948c34c1
 ^
 .client/src/components/authentication/Signin.js,c/c/cc0ed757059b5deb7322a5477e7497d8db21e27a
-_
-/client/src/components/before-dash/BeforeDash.js,c/5/c54aa272968810a6a921320544791babca704071
-Y
-)client/src/components/before-dash/Card.js,d/d/ddbe39f2c42f35798e440576a7dade22f8f47398
 h
 8client/src/components/owner-middle-content/HouseRules.js,4/f/4fa3094be48e4623b85d42e9e1532d44376971d0
 o
@@ -386,8 +382,6 @@ Y
 )client/src/components/form-steps/Step1.js,7/b/7b3ce6c4ad102f7c7c41516044bacf54b9069278
 B
 client/src/App.css,2/a/2a082b18bfc3afa6b25d6c4584e995e6b6c4ee3e
-V
-&client/src/components/header/Header.js,5/f/5f63eea74f861092d6d5bab71157305af4ebe117
 X
 (client/src/components/header/HeroForm.js,1/0/1033f3edaf1af402fbf849b3f01bcf0ba847f0f9
 T
