@@ -186,8 +186,6 @@ H
 routes/picturesRoutes.js,d/5/d5bbc46674c6ad2f5f6a58cd07ddcfe61bb5d0f7
 A
 client/.gitignore,e/3/e32ec5c998c4774d8d1bedd59740d14d940c90ec
-C
-client/package.json,a/d/ad8a30996233c30cdd545dbf5f18765b86e6bf64
 ]
 -client/src/components/profile/InterestCard.js,3/0/30fa90193d3068ec180587bbcf359875955ebb37
 Y
@@ -254,8 +252,6 @@ h
 8client/src/components/owner-middle-content/OwnerRooms.js,6/8/6839d359f2dbdf58854c3b7cd892d6d485be7907
 `
 0client/src/components/update-form/UpdateStep4.js,e/2/e263bb17ed95452c988cef5c135fd9c8403fc9b9
-Z
-*client/src/components/workSection/Steps.js,6/c/6c16eb527b8f5a563511abcc62e4b4ec5cfb340d
 V
 &client/src/components/footer/Footer.js,9/b/9b17be6ab52fe509f6b03a03cc6308a2c49204d6
 I
@@ -268,10 +264,6 @@ R
 "client/src/assets/data/profiles.js,5/9/59ea551c5573132bb582035577c66d02948c34c1
 ^
 .client/src/components/authentication/Signin.js,c/c/cc0ed757059b5deb7322a5477e7497d8db21e27a
-b
-2client/src/components/testimonials/Testimonials.js,f/0/f09c049b3302cbe074e346450e18fff4ae80b78b
-_
-/client/src/components/testimonials/Testimony.js,1/2/12ba7f464ca2e8b0bcd4d504c0fc6dd1f551297b
 _
 /client/src/components/before-dash/BeforeDash.js,c/5/c54aa272968810a6a921320544791babca704071
 Y
@@ -386,3 +378,17 @@ A
 client/src/App.js,f/6/f6b8a135eb07bb80aa582994bcf1a8ccacd783ee
 ?
 models/index.js,e/4/e41453b900e7c418643d34a8cb9d68efc0b0ddd6
+k
+;client/src/components/owner-middle-content/MiddlePicture.js,b/8/b8421873f4a002bc0873b7fc0465693430505947
+Y
+)client/src/components/form-steps/Step2.js,d/9/d93ffceb2cf5b5ecbe2f28f6a35cf1190e418e78
+Y
+)client/src/components/form-steps/Step1.js,7/b/7b3ce6c4ad102f7c7c41516044bacf54b9069278
+B
+client/src/App.css,2/a/2a082b18bfc3afa6b25d6c4584e995e6b6c4ee3e
+V
+&client/src/components/header/Header.js,5/f/5f63eea74f861092d6d5bab71157305af4ebe117
+X
+(client/src/components/header/HeroForm.js,1/0/1033f3edaf1af402fbf849b3f01bcf0ba847f0f9
+T
+$client/src/components/header/Hero.js,1/e/1e618464d759cce8d5b2e8a191c143e5e4838f63

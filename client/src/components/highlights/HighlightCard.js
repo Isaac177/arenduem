@@ -3,7 +3,7 @@ import { EmailOutlined, PersonOutline, LocationOnOutlined } from '@material-ui/i
 
 const HighlightCard = ({age, name, image, description, city}) => {
     return (
-        <div className="my-12 flex h-96 w-64 flex-col items-center p-8 shadow-lg">
+        <div className="my-16 flex h-96 w-64 flex-col items-center p-8 shadow-lg">
             <div style={{ height: "300px", width: "300px" }}>
                 <img className="object-cover rounded-lg" src={image} alt="profile" style={{ height: "300px", width: "300px" }} />
             </div>

@@ -14,7 +14,7 @@ const Testimonials = () => {
                     animateOnce={false}
                     duration={1.5}
                     delay={300 * index}
-                     className="flex flex-col items-center m-4 p-4 bg-white rounded-lg w-64 relative border-2 border-aqua-500 shadow-lg"
+                     className="flex flex-col items-center m-4 p-4 mb-12 bg-white rounded-lg w-64 relative border-2 border-aqua-500 shadow-lg"
                 >
                     <div className="absolute -top-12">
                         <img className="w-24 h-24 rounded-full border-4 border-aqua-500"
