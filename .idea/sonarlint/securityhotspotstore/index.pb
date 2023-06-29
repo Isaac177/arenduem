@@ -274,8 +274,6 @@ H
 models/propertyDetail.js,e/e/eec091923df662d6ab182d62e8c85723b62da1a9
 q
 Aclient/src/components/owner-middle-content/PropertyDescription.js,b/1/b197bc32c564437be92b21ad06b13c823164cea3
-\
-,client/src/components/user-nav/UserHeader.js,3/9/396160d31be1e04cf4585d252b617eaf1949e487
 d
 4client/src/components/ownerDashboard/OwnerContent.js,6/3/6321da6ca927d39bfff9ac4eb007e480173b6e04
 D
@@ -344,3 +342,15 @@ T
 $client/src/components/header/Hero.js,1/e/1e618464d759cce8d5b2e8a191c143e5e4838f63
 X
 (client/src/components/header/HeroForm.js,1/0/1033f3edaf1af402fbf849b3f01bcf0ba847f0f9
+a
+1client/src/components/dash-content/QuickSearch.js,4/7/47abf5b8e43dbb3dfabfaa9a4e2b8637b76b0b90
+Y
+)client/src/components/form-steps/Step4.js,b/a/ba718ab4aaefed5653fe9473d1899b4e54eb6736
+Y
+)client/src/components/form-steps/Step3.js,7/4/743f18d2f68e09f4e72128352d3eeeafb40eacf9
+a
+1client/src/components/highlights/HighlightCard.js,d/b/db81e010beaa3c6fed5ff1a998143a9c827ebdf8
+]
+-client/src/components/highlights/Highlight.js,8/f/8ff8553f2a5478518701b26c3b8bfa346c9bff54
+C
+client/package.json,a/d/ad8a30996233c30cdd545dbf5f18765b86e6bf64

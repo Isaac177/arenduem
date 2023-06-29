@@ -62,7 +62,7 @@ const Header = () => {
                 <UserHeader />
             ) : (
                 <header
-                    className={`header bg-primary-900 text-white text-center transition-all duration-500 md:px-16 lg:px-24 xl:px-32 
+                    className={`header bg-opacity-50 backdrop-blur-lg bg-primary-800 z-100 text-white text-center transition-all duration-500 md:px-16 lg:px-24 xl:px-32 
                 ${scrollPosition > 50 ? 'fixed top-0 w-full z-50' : ''}
                 ${
                         shrink ? 'header-shrink' : ''

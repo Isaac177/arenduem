@@ -5,6 +5,7 @@ import {useInView} from "react-intersection-observer";
 
 
 const Card = ({ imageSrc, imageAlt, title, subtitle, contentOrder, actions, handleClick }) => {
+    const isMobile = window.innerWidth < 640;
     const controls = useAnimation();
 
 
@@ -56,6 +57,22 @@ const Card = ({ imageSrc, imageAlt, title, subtitle, contentOrder, actions, hand
                     ))}
                 </div>
             </div>
+            {isMobile && (
+                <motion.button
+                    ref={ref}
+                    animate={controls}
+                    initial="hidden"
+                    variants={{
+                        visible: { opacity: 1, y: 0 },
+                        hidden: { opacity: 0, y: 100 },
+                    }}
+                    transition={{ duration: 0.5 }}
+                    className="w-full bg-aqua-500 hover:bg-aqua-600 text-white font-bold py-2 px-4 rounded-b-lg"
+                onClick={handleClick}
+                >
+                    validate
+                </motion.button>
+            )}
         </div>
     );
 };
