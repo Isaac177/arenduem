@@ -216,8 +216,6 @@ r
 Bclient/src/components/owner-middle-content/PropertyAvailability.js,4/9/497dafba27b094b3d0816dc2d52273dd938fd436
 n
 >client/src/components/owner-middle-content/PropertyServices.js,8/f/8f3b7e67d0a5cae3555da047cb16d5b553f66cf4
-m
-=client/src/components/owner-middle-content/PropertyAddress.js,7/7/776bf7503d3fc3ccb675d425d058525f50b05b73
 ]
 -client/src/components/owner/OwnerAsideLeft.js,2/4/24a74024ec3e303dfd090c459d16a0d164ca318b
 ]
@@ -262,16 +260,10 @@ R
 "client/src/assets/data/profiles.js,5/9/59ea551c5573132bb582035577c66d02948c34c1
 ^
 .client/src/components/authentication/Signin.js,c/c/cc0ed757059b5deb7322a5477e7497d8db21e27a
-h
-8client/src/components/owner-middle-content/HouseRules.js,4/f/4fa3094be48e4623b85d42e9e1532d44376971d0
 o
 ?client/src/components/owner-middle-content/TenantPreferences.js,e/d/ed5c1c66c00fc23db40ca917d6babb63df3296f2
 R
 "client/src/reducers/userReducer.js,3/a/3af3e9d3f595ac02dfee7e96d822cc0e9c01d450
-m
-=client/src/components/owner-middle-content/PropertyAmenity.js,8/8/8847507b19d9f5620fb67899a7a3a1f54ac7abe0
-j
-:client/src/components/owner-middle-content/TitleSection.js,d/3/d310973c6d617270ba12ec7ea0a9007f7b9df41e
 e
 5client/src/components/OwnerProperties/PropertySide.js,7/b/7b462f805d1115d3f052907a79fb6105c0414368
 T
@@ -306,8 +298,6 @@ M
 controllers/userController.js,e/c/ec44b050defa6855748d2a8d6ff06d33bc8bba3a
 H
 models/propertyDetail.js,e/e/eec091923df662d6ab182d62e8c85723b62da1a9
-q
-Aclient/src/components/owner-middle-content/PropertyDescription.js,b/1/b197bc32c564437be92b21ad06b13c823164cea3
 W
 'client/src/views/user/OwnerDashboard.js,1/a/1ae785dfe9ce38e0d280abaab6b0a6337898efe0
 d
@@ -340,8 +330,6 @@ _
 0client/src/components/profile/UploadImageForm.js,1/b/1b3eba2bbc8705e4655085d0a60b447c75f76bce
 d
 4client/src/components/update-form/UpdatePopupForm.js,2/5/250697b011983c5e042d1e3cc9c490b3620e4079
-e
-5client/src/components/dash-content/PropertyDetails.js,d/4/d4ae510f26213e1c583834a7a7d71860567d4651
 Q
 !controllers/propertyController.js,e/7/e7d694fc3ba46a18c2ecc747f60452fd6593b46d
 \
@@ -362,8 +350,6 @@ U
 %client/src/actions/propertyActions.js,7/a/7a0428ce928b984fb54096cd17e42ad50991dbc9
 ?
 models/index.js,e/4/e41453b900e7c418643d34a8cb9d68efc0b0ddd6
-k
-;client/src/components/owner-middle-content/MiddlePicture.js,b/8/b8421873f4a002bc0873b7fc0465693430505947
 Y
 )client/src/components/form-steps/Step2.js,d/9/d93ffceb2cf5b5ecbe2f28f6a35cf1190e418e78
 Y

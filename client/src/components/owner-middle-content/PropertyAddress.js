@@ -9,7 +9,7 @@ const PropertyAddress = ({ property }) => {
     return (
         <div className="py-2">
             <h6 className="my-4 text-xl font-bold text-aqua-500">Property address</h6>
-            <div className="text-sm font-semibold flex flex-row gap-6">
+            <div className="text-sm font-semibold flex flex-col sm:flex-row gap-6"> {/* Change here */}
                 <div className="flex items-center">
                     <LocationOnIcon className="mr-2" />
                     <p className='text-gray-500'>

@@ -51,8 +51,8 @@ const ProOwnerAsideRight = () => {
     console.log('userInfo', userInfo);
 
     return (
-        <div className="col-span-2 mt-10">
-            <div className="grid grid-cols-1 gap-4">
+        <div className="col-span-2 mt-10 md:mt-12 lg:mt-16">
+            <div className="grid grid-cols-1 gap-4 md:gap-6 lg:gap-8">
                 <div className="bg-white rounded-l-lg border">
                     {mainPicture && (
                         <img
@@ -62,52 +62,52 @@ const ProOwnerAsideRight = () => {
                             style={{ height: '280px', width: '100%' }}
                         />
                     )}
-                    <div className='p-4'>
-                        <div className='flex flex-row my-6'>
+                    <div className='p-4 md:p-6 lg:p-8'>
+                        <div className='flex flex-row my-6 md:my-8 lg:my-10'>
                             {userInfo.gender && (
-                                <div className="flex items-center gap-2">
+                                <div className="flex items-center gap-2 md:gap-4 lg:gap-6">
                                     <Wc className="text-aqua-500" fontSize="small" />
                                     <span>{userInfo.gender}</span>
                                 </div>
                             )}
                             {userInfo.occupation && (
-                                <div className="flex items-center gap-2">
+                                <div className="flex items-center gap-2 md:gap-4 lg:gap-6">
                                     <WorkOutlined className="text-gray-800" fontSize="small" />
-                                    <span className='text-sm text-gray-500'>{userInfo.occupation}</span>
+                                    <span className='text-sm md:text-base lg:text-lg text-gray-500'>{userInfo.occupation}</span>
                                 </div>
                             )}
                         </div>
-                        <div className='my-6'>
+                        <div className='my-6 md:my-8 lg:my-10'>
                             {userInfo.firstName && userInfo.dateOfBirth && (
-                                <h1 className='text-2xl font-bold text-primary-700'>{userInfo.firstName}, {calculateAge(userInfo.dateOfBirth)}
+                                <h1 className='text-2xl md:text-3xl lg:text-4xl font-bold text-primary-700'>{userInfo.firstName}, {calculateAge(userInfo.dateOfBirth)}
                                 </h1>
                             )}
                         </div>
-                        <div className='my-6 flex flex-row'>
+                        <div className='my-6 md:my-8 lg:my-10 flex flex-row'>
                             {userInfo.createdAt && (
-                                <div className='flex flex-col border-l-primary-700 gap-2'>
+                                <div className='flex flex-col border-l-primary-700 gap-2 md:gap-4 lg:gap-6'>
                                     <p className='font-bold text-primary-700'>Member since</p>
-                                    <p className='text-sm text-gray-500'>{formatDate(userInfo.createdAt)}</p>
+                                    <p className='text-sm md:text-base lg:text-lg text-gray-500'>{formatDate(userInfo.createdAt)}</p>
                                 </div>
                             )}
                         </div>
 
-                        <div className='my-6'>
+                        <div className='my-6 md:my-8 lg:my-10'>
                             {userInfo.aboutMe && (
-                                <div className='flex flex-col gap-2'>
+                                <div className='flex flex-col gap-2 md:gap-4 lg:gap-6'>
                                     <p className='font-bold text-primary-700'>About me</p>
-                                    <p className='text-sm text-gray-500'>{userInfo.aboutMe}</p>
+                                    <p className='text-sm md:text-base lg:text-lg text-gray-500'>{userInfo.aboutMe}</p>
                                 </div>
                             )}
                         </div>
-                        <div className="my-6">
-                            <div className="flex flex-col gap-2">
+                        <div className="my-6 md:my-8 lg:my-10">
+                            <div className="flex flex-col gap-2 md:gap-4 lg:gap-6">
                                 <p className="font-bold text-primary-700">Interests</p>
-                                <div className="flex flex-wrap gap-2">
+                                <div className="flex flex-wrap gap-2 md:gap-4 lg:gap-6">
                                     {userInfo.interests && userInfo.interests.map((interest) => (
-                                        <div key={interest.id} className="flex items-center gap-2 border border-primary-600 rounded-2xl p-4">
+                                        <div key={interest.id} className="flex items-center gap-2 md:gap-4 lg:gap-6 border border-primary-600 rounded-2xl p-4">
                                             {getInterestIcon(interest.name)}
-                                            <span className="text-sm text-gray-500">{interest.name}</span>
+                                            <span className="text-sm md:text-base lg:text-lg text-gray-500">{interest.name}</span>
                                         </div>
                                     ))}
                                 </div>

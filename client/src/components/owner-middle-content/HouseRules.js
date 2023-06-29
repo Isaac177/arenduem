@@ -10,7 +10,7 @@ const HouseRules = ({ property }) => {
     };
 
     return (
-        <div>
+        <div className='p-4 lg:p-0'>
             <h6 className="my-4 text-xl font-bold text-aqua-500">House rules</h6>
             <FormGroup row>
                 {houseRules.map((rule) => (

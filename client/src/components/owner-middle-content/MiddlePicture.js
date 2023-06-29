@@ -55,7 +55,7 @@ const MiddlePicture = ({ images }) => {
                         </ScrollAnimation>
                     ))}
                 </Carousel>
-                <div className="grid grid-cols-4 gap-4 mt-4 p-2 px-20" style={{ marginTop: '-20px' }}>
+                <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4 mt-4 p-2 px-2 md:px-20" style={{ marginTop: '-20px' }}>
                     {displayImages.map((image, index) => (
                         <ScrollAnimation
                             key={index}
@@ -64,16 +64,16 @@ const MiddlePicture = ({ images }) => {
                             duration={2}
                             animateOnce={true}
                         >
-                        <img
-                            key={index}
-                            className={`w-full h-auto rounded-lg cursor-pointer ${
-                                index === selectedImage ? 'border-4 border-green-500' : ''
-                            }`}
-                            src={images?.length > 0 ? `http://localhost:8000/${image}` : image}
-                            alt="room"
-                            style={{ height: '200px', width: '400px', objectFit: 'cover' }}
-                            onClick={() => handleThumbnailClick(index)}
-                        />
+                            <img
+                                key={index}
+                                className={`w-full h-auto rounded-lg cursor-pointer ${
+                                    index === selectedImage ? 'border-4 border-green-500' : ''
+                                }`}
+                                src={images?.length > 0 ? `http://localhost:8000/${image}` : image}
+                                alt="room"
+                                style={{ height: '200px', width: '100%', objectFit: 'cover' }}
+                                onClick={() => handleThumbnailClick(index)}
+                            />
                         </ScrollAnimation>
                     ))}
                 </div>

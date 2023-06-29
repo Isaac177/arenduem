@@ -49,29 +49,29 @@ const PropertyDetails = () => {
 
     console.log('currentPropertyId', propertyId);
     return (
-        <div className='container mx-auto'>
+        <div className='container mx-auto px-4 md:px-0'>
             <div className='p-4 my-4'>
                 {property && <MiddlePicture property={property} propertyDetails={propertyDetails} images={images} />}
             </div>
-        <div className="bg-white py-10 rounded-lg mb-4">
-            <div style={{ width: '980px', margin: '0 auto' }}>
-                {property && <TitleSection property={property} propertyDetails={propertyDetails} />}
-                {property && <PropertyDescription property={property} propertyDetails={propertyDetails} />}
-                {property && <PropertyAmenities property={property} />}
-                {property && <HouseRules property={property} />}
-                <div className='bg-white rounded-lg p-4 my-4'>
-                    {property && <TenantPreferences property={property} />}
-                    <div className="border-b-2 border-gray-200 my-4"></div>
-                    {property && <PropertyServices property={property} />}
-                    <div className="border-b-2 border-gray-200 my-4"></div>
-                    {property && <PropertyAddress property={property} />}
-                    <div className="border-b-2 border-gray-200 my-4"></div>
-                    {property && <PropertyAvailability property={property} />}
-                    <div className="border-b-2 border-gray-200 my-4"></div>
-                    {property && <PropertyPrice property={property} />}
+            <div className="bg-white py-10 rounded-lg mb-4">
+                <div className="w-full max-w-screen-md mx-auto">
+                    {property && <TitleSection property={property} propertyDetails={propertyDetails} />}
+                    {property && <PropertyDescription property={property} propertyDetails={propertyDetails} />}
+                    {property && <PropertyAmenities property={property} />}
+                    {property && <HouseRules property={property} />}
+                    <div className='bg-white rounded-lg p-4 my-4'>
+                        {property && <TenantPreferences property={property} />}
+                        <div className="border-b-2 border-gray-200 my-4"></div>
+                        {property && <PropertyServices property={property} />}
+                        <div className="border-b-2 border-gray-200 my-4"></div>
+                        {property && <PropertyAddress property={property} />}
+                        <div className="border-b-2 border-gray-200 my-4"></div>
+                        {property && <PropertyAvailability property={property} />}
+                        <div className="border-b-2 border-gray-200 my-4"></div>
+                        {property && <PropertyPrice property={property} />}
+                    </div>
                 </div>
             </div>
-        </div>
         </div>
     );
 };
