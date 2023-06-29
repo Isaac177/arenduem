@@ -14,15 +14,17 @@ const UserDashboard = () => {
     let location = useLocation();
     const currentPropertyId = useSelector(state => state.user.currentPropertyId);
     const propertyId = currentPropertyId ? currentPropertyId : '';
+    const isMobile = window.innerWidth < 768;
+    const isTablet = window.innerWidth < 1024;
 
     console.log('currentPropertyId', currentPropertyId);
     return (
         <div className="bg-gray-200">
-            <div className="grid grid-cols-12 gap-8 min-h-screen py-10">
-                <aside className="col-span-2 flex flex-col justify-between">
+            <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 min-h-screen py-10">
+                <aside className="lg:col-span-2 flex flex-col justify-between">
                     <SidebarMenu />
                 </aside>
-                <div className="col-span-8 flex flex-col items-center justify-between">
+                <div className="lg:col-span-8 col-span-full flex items-center justify-between">
                     <Routes>
                         <Route path="/" element={<LatestAnnouncements />} />
                         <Route path=":propertyId/" element={<PropertyDetails />} />
@@ -32,8 +34,8 @@ const UserDashboard = () => {
                         </Route>
                     </Routes>
                 </div>
-                <aside className="col-span-2 flex flex-col justify-between">
-                     {location.pathname.includes(`/user/dashboard/${propertyId}`) ? <ProOwnerAsideRight /> :<QuickSearch /> }
+                <aside className="lg:col-span-2 flex flex-col justify-between">
+                    {location.pathname.includes(`/user/dashboard/${propertyId}`) ? <ProOwnerAsideRight /> : <QuickSearch /> }
                 </aside>
             </div>
         </div>

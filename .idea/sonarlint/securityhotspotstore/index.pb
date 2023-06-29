@@ -194,8 +194,6 @@ Z
 *client/src/components/profile/Interests.js,a/a/aa11f069b729de80350b239391dc64dbbbad51a3
 C
 client/src/store.js,4/a/4afe2750c2c347c6e38ea33d5c926b1ae43d2dfb
-]
--client/src/components/side-bar/SidebarMenu.js,6/4/64ef7a8200192e39250d0403a734a3ca35d8377d
 \
 ,client/src/components/profile/InfoSection.js,6/8/684b1500e338bc15f113060860ad71c2e49166ac
 \
@@ -234,8 +232,6 @@ W
 'client/src/views/user/OwnerDashboard.js,1/a/1ae785dfe9ce38e0d280abaab6b0a6337898efe0
 e
 5client/src/components/OwnerProperties/PropertyDash.js,b/5/b50fbf259739f673cdff6fdbfff512e3f3e8485d
-b
-2client/src/components/dash-content/AnnounceCard.js,3/2/324288cd343e22d8dd7d17e8470288a55a57eea0
 j
 :client/src/components/owner-middle-content/TitleSection.js,d/3/d310973c6d617270ba12ec7ea0a9007f7b9df41e
 e
@@ -268,8 +264,6 @@ B
 models/property.js,c/e/ce0364542d1bf1cf36ea5af9aa9b44887cdcebbf
 M
 controllers/userController.js,e/c/ec44b050defa6855748d2a8d6ff06d33bc8bba3a
-i
-9client/src/components/dash-content/LatestAnnouncements.js,a/9/a9d7d8a424809bedf8bd6ac185ccc2d186be2424
 H
 models/propertyDetail.js,e/e/eec091923df662d6ab182d62e8c85723b62da1a9
 q
@@ -326,10 +320,6 @@ V
 &client/src/reducers/propertyReducer.js,8/9/89859367dc3da63825889341feacca6ff1c24b07
 <
 package.json,7/0/7030d0b2f71b999ff89a343de08c414af32fc93a
-A
-client/src/App.js,f/6/f6b8a135eb07bb80aa582994bcf1a8ccacd783ee
-V
-&client/src/views/user/UserDashboard.js,9/4/94d9df5c9edea51b323d34c7e9393465d540750c
 k
 ;client/src/components/owner-middle-content/MiddlePicture.js,b/8/b8421873f4a002bc0873b7fc0465693430505947
 Y

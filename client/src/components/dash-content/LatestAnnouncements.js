@@ -22,9 +22,9 @@ const LatestAnnouncements = () => {
     return (
         <>
             <Separator>
-                <div className="mt-8 flex flex-col border-b">
+                <div className="mt-8 flex border-b">
                     <div
-                        className={`flex flex-row gap-6 flex-wrap p-12 animate-fade-in transform translate-y-0' : 'animate-fade-out transform translate-y-4'}`}>
+                        className={`flex-col flex lg:flex-row gap-6 flex-wrap p-12 animate-fade-in translate-y-0' : 'animate-fade-out transform translate-y-4'}`}>
                         {users && users?.map((user, index) => {
                             const profilePicture = user?.pictures?.find(picture => picture.isMain)?.fileUrl;
                             const author = `${user?.firstName} ${user?.lastName ? user?.lastName.charAt(0) + '.' : ''}`;
