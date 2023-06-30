@@ -36,16 +36,6 @@
   font-size: 1.5rem;
 }
 
-
-/*
-.header {
-  backdrop-filter: blur(10px);
-  color: white;
-  padding: 20px 0;
-  text-align: center;
-}
-*/
-
 .logo-text {
   font-size: 2rem;
   font-weight: 700;
@@ -91,6 +81,14 @@
   border-radius: 292px 0 24px 0;
   width: 922px;
   left: 158px;
+}
+
+@media screen and (max-width: 768px) {
+  .moon {
+    width: 220px;
+    left: 158px;
+    height: 60px;
+  }
 }
 
 .show-all {

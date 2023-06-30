@@ -193,7 +193,7 @@ const ContentGallery = () => {
     return (
         <div>
             <h1 className="m-4 text-2xl font-bold">My Gallery</h1>
-            <div className="flex flex-row flex-wrap items-center gap-4 wrap">
+            <div className="flex flex-col sm:flex-row flex-wrap items-center gap-4 wrap">
                 {images.map((image, index) => {
                     return (
                         <div key={uuid4()}>
@@ -226,8 +226,7 @@ const ContentGallery = () => {
                     )
                 })}
             </div>
-
-            {isModalOpen && (
+    {isModalOpen && (
                 <Formik
                     initialValues={{
                         isMain: isMain || false,

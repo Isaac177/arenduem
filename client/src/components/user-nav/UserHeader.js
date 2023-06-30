@@ -14,7 +14,7 @@ const UserHeader = () => {
     const isOwner = useSelector((state) => state.user?.isOwner);
     const user = useSelector((state) => state.user?.userData);
 
-    const userPictureIsMain = user.pictures?.find(picture => picture?.isMain);
+    const userPictureIsMain = user?.pictures?.find(picture => picture?.isMain);
     const userPicture = userPictureIsMain?.fileUrl;
     const handleLogout = async () => {
         try {
@@ -81,16 +81,14 @@ const UserHeader = () => {
                                         <NavLink
                                             exact={true}
                                             to="/user/profile"
-                                            className="block w-full px-4 py-2 text-gray-800
-                                    hover:bg-primary-700 hover:text-white"
+                                            className="block w-full px-4 py-2 text-gray-80 hover:bg-primary-700 hover:text-white"
                                         >
                                             <FiUser size={16} className="mr-2 inline-block" />
                                             Profile
                                         </NavLink>
                                         <button
                                             onClick={handleLogout}
-                                            className="block w-full text-left px-4 py-2 text-gray-800
-                                    hover:bg-primary-700 hover:text-white"
+                                            className="block w-full text-left px-4 py-2 text-gray-80 hover:bg-primary-700 hover:text-white"
                                         >
                                             <FiLogOut size={16} className="mr-2 inline-block" />
                                             Logout
