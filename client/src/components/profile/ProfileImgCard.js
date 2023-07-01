@@ -19,9 +19,24 @@ const ProfileImgCard = ({
     isMain, isCover
                         }) => {
     const [isHovered, setIsHovered] = useState(false);
+    const [clickPosition, setClickPosition] = useState({ x: 0, y: 0 });
+    const [isMobile, setIsMobile] = useState(window.innerWidth < 768);
+    const [isTablet, setIsTablet] = useState(window.innerWidth < 1024);
+
     const dispatch = useDispatch();
     const showImgModal = useSelector((state) => state.gallery.showImgModal);
 
+    useEffect(() => {
+        const handleResize = () => {
+            setIsMobile(window.innerWidth < 768);
+            setIsTablet(window.innerWidth < 1024);
+            window.addEventListener('resize', handleResize);
+        };
+
+        return () => {
+            window.removeEventListener('resize', handleResize);
+        }
+    }, []);
 
     const handleCardClick = () => {
         dispatch(setShowImgModal(true));
@@ -31,6 +46,15 @@ const ProfileImgCard = ({
     const handleMoreClick = (event) => {
         event.stopPropagation();
         handleShowImageOptions(pictureId);
+
+        if (isMobile || isTablet) {
+            const position = {
+                x: event.clientX,
+                y: event.clientY
+            };
+
+            setClickPosition(position);
+        }
     };
 
     const handleMouseLeave = () => {
@@ -64,9 +88,8 @@ const ProfileImgCard = ({
         <div className="relative">
             <div
                 className="flex flex-row items-center justify-center hover:border-aqua-500 hover:scale-105 hover:transform hover:cursor-pointer hover:shadow-lg hover:transition-all hover:duration-300 hover:ease-in-out"
-                onMouseEnter={() => setIsHovered(true)}
-                onMouseLeave={handleMouseLeave}
-                onClick={handleCardClick}
+                onMouseEnter={() => !isMobile && setIsHovered(true)}
+                onMouseLeave={() => !isMobile && setIsHovered(false)}
             >
                 <div className="relative h-60 w-60 overflow-hidden rounded-xl border-4 border-white">
                     <img
@@ -88,7 +111,7 @@ const ProfileImgCard = ({
                         </div>
                     )}
                 </div>
-                {isHovered && (
+                {(isHovered || isMobile || isTablet) && (
                     <div className="absolute top-0 right-0 m-2 text-white">
                         <FiMoreVertical
                             onClick={handleMoreClick}
@@ -98,6 +121,7 @@ const ProfileImgCard = ({
                         {showImgModal && (
                             <PictureOptionsModal
                                 pictureId={pictureId}
+                                clickPosition={clickPosition}
                                 onClose={() => dispatch(setShowImgModal(false))}
                                 handleDeleteImage={handleDeleteImage}
                                 handleSetIsMain={() => handleSetMain(pictureId)}

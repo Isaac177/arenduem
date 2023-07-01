@@ -44,7 +44,7 @@ function SidebarMenu() {
     return (
         <>
             <motion.div
-                className={`${isMobile && isTablet ? "bg-gray-200 z-50 border-none rounded-br-lg" : ''} fixed flex flex-col border-r border-primaryGrey-900`}
+                className={`${isMobile && isTablet ? "fixed bg-gray-200 z-50 border-none rounded-br-lg" : ''} fixed flex flex-col border-r border-primaryGrey-900`}
                 animate={{ width: isOpen ? "auto" : "0" }}
                 transition={{ duration: 0.3 }}
             >

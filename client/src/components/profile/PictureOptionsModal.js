@@ -1,8 +1,10 @@
 import React, { useRef, useEffect } from 'react';
 import { motion } from 'framer-motion';
 
-const PictureOptionsModal = ({handleDeleteImage, handleSetIsMain, handleSetIsCover, onClose}) => {
+const PictureOptionsModal = ({handleDeleteImage, clickPosition, handleSetIsMain, handleSetIsCover, onClose}) => {
     const modalRef = useRef();
+    const isMobile = window.innerWidth < 768;
+    const isTablet = window.innerWidth < 1024;
 
     useEffect(() => {
         const handleClickOutside = (event) => {
@@ -25,6 +27,7 @@ const PictureOptionsModal = ({handleDeleteImage, handleSetIsMain, handleSetIsCov
             animate={{ scale: 1 }}
             transition={{ duration: 0.2 }}
             exit={{ scale: 0 }}
+            style={{ top: clickPosition.y, left: clickPosition.x }}
         >
             <div ref={modalRef} className="rounded-md bg-white shadow-lg">
                 <button

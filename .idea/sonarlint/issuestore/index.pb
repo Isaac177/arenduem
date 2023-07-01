@@ -39,8 +39,6 @@ W
 'client/src/components/utils/Carousel.js,2/3/23a838582dcc19b73ff380dd6da79c3818cd80bf
 [
 +client/src/components/utils/ContentTitle.js,5/a/5a7b1b031d66ba8180ad94e071f63951aab32f28
-X
-(client/src/components/utils/Separator.js,f/9/f9a1dd61056480e1f9f11d55786c48b150fcc53e
 ^
 .migrations/20230224181450-add-role-to-users.js,0/d/0da5a78b04ff35868bdbe430ed0ff59e92fefc68
 q
@@ -51,8 +49,6 @@ Amigrations/20230307180836-add-is-main-and-is-cover-to-pictures.js,6/a/6a2c7c47
 models/media.js,5/2/520d024105946b36c6cb783930621dd5a0441782
 A
 models/message.js,4/a/4a441d248f1f22039321f3c42842f9d65d4dbbd8
-d
-4client/src/components/profile/PictureOptionsModal.js,c/b/cb8d9421e985503c9027b098161a83262640fe05
 >
 routes/auth.js,8/b/8bbe7473c2ec08c224aead7ec6d668fb50f27965
 ^
@@ -224,8 +220,6 @@ h
 8client/src/components/OwnerProperties/ProCoverSection.js,8/f/8f106758baab9a5158676d8b50e8c341f7850138
 h
 8client/src/components/OwnerProperties/ProPersonalData.js,0/7/07604b56d73db0857473e191ee0ba4f2770a96fd
-_
-/client/src/components/profile/ProfileImgCard.js,9/5/955ff207d08afa9e0f1f407b7863d55afb236eeb
 Z
 *client/src/components/profile/Interests.js,a/a/aa11f069b729de80350b239391dc64dbbbad51a3
 C
@@ -242,8 +236,6 @@ h
 0client/src/components/update-form/UpdateStep4.js,e/2/e263bb17ed95452c988cef5c135fd9c8403fc9b9
 V
 &client/src/components/footer/Footer.js,9/b/9b17be6ab52fe509f6b03a03cc6308a2c49204d6
-I
-client/tailwind.config.js,6/b/6b273cff573b0a837bad584f90d7d827bf358bb1
 U
 %client/src/assets/data/testimonies.js,b/6/b68b5ca651ddf10cf0095d07d0d921eeea8c0adb
 O
@@ -384,3 +376,5 @@ b
 2client/src/components/dash-content/AnnounceCard.js,3/2/324288cd343e22d8dd7d17e8470288a55a57eea0
 i
 9client/src/components/dash-content/LatestAnnouncements.js,a/9/a9d7d8a424809bedf8bd6ac185ccc2d186be2424
+_
+/client/src/components/before-dash/BeforeDash.js,c/5/c54aa272968810a6a921320544791babca704071

@@ -11,8 +11,6 @@ A
 models/message.js,4/a/4a441d248f1f22039321f3c42842f9d65d4dbbd8
 [
 +migrations/20230211204221-create-picture.js,7/8/78ec241d8b64e4d5e2bd84315b9767b95592777d
-d
-4client/src/components/profile/PictureOptionsModal.js,c/b/cb8d9421e985503c9027b098161a83262640fe05
 >
 routes/auth.js,8/b/8bbe7473c2ec08c224aead7ec6d668fb50f27965
 ^
@@ -182,8 +180,6 @@ h
 8client/src/components/OwnerProperties/ProCoverSection.js,8/f/8f106758baab9a5158676d8b50e8c341f7850138
 h
 8client/src/components/OwnerProperties/ProPersonalData.js,0/7/07604b56d73db0857473e191ee0ba4f2770a96fd
-_
-/client/src/components/profile/ProfileImgCard.js,9/5/955ff207d08afa9e0f1f407b7863d55afb236eeb
 Z
 *client/src/components/profile/Interests.js,a/a/aa11f069b729de80350b239391dc64dbbbad51a3
 C
@@ -200,8 +196,6 @@ h
 0client/src/components/update-form/UpdateStep4.js,e/2/e263bb17ed95452c988cef5c135fd9c8403fc9b9
 V
 &client/src/components/footer/Footer.js,9/b/9b17be6ab52fe509f6b03a03cc6308a2c49204d6
-I
-client/tailwind.config.js,6/b/6b273cff573b0a837bad584f90d7d827bf358bb1
 U
 %client/src/assets/data/testimonies.js,b/6/b68b5ca651ddf10cf0095d07d0d921eeea8c0adb
 O
@@ -342,3 +336,5 @@ m
 =client/src/components/owner-middle-content/PropertyAddress.js,7/7/776bf7503d3fc3ccb675d425d058525f50b05b73
 h
 8client/src/components/dash-content/ProOwnerAsideRight.js,e/7/e7aae8a99dfb8e804f44bff99294c3dc6c4e84e2
+_
+/client/src/components/before-dash/BeforeDash.js,c/5/c54aa272968810a6a921320544791babca704071
