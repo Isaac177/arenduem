@@ -4,6 +4,8 @@ import Separator from "../utils/Separator";
 import { useDispatch, useSelector } from "react-redux";
 import { getAllUsers } from "../../actions/userActions";
 import { useNavigate } from "react-router-dom";
+import ScrollAnimation from "react-animate-on-scroll";
+import {Element} from "react-scroll";
 
 const LatestAnnouncements = () => {
     const navigate = useNavigate();
@@ -23,8 +25,7 @@ const LatestAnnouncements = () => {
         <>
             <Separator>
                 <div className="mt-8 flex border-b">
-                    <div
-                        className={`flex-col flex lg:flex-row gap-6 flex-wrap p-12 animate-fade-in translate-y-0' : 'animate-fade-out transform translate-y-4'}`}>
+                    <div className={`flex-col flex lg:flex-row gap-6 flex-wrap p-12 animate-fade-in translate-y-0' : 'animate-fade-out transform translate-y-4'}`}>
                         {users && users?.map((user, index) => {
                             const profilePicture = user?.pictures?.find(picture => picture.isMain)?.fileUrl;
                             const author = `${user?.firstName} ${user?.lastName ? user?.lastName.charAt(0) + '.' : ''}`;

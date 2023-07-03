@@ -11,8 +11,6 @@ import {
     FiHelpCircle,
     FiLock,
     FiUser,
-    FiChevronRight,
-    FiChevronLeft,
 } from "react-icons/fi";
 import { motion } from "framer-motion";
 import {AiOutlineMenu} from "react-icons/ai";

@@ -23,9 +23,9 @@ const OwnerHero = () => {
                     animateIn="animate__fadeInLeft"
                     animateOut="animate__fadeOutLeft"
                     duration={2}
-                    animateOnce={false} style={{width:'1080px', margin:'0 auto'}} className="pb-20 text-start">
-                    <h1 className="mb-4 text-5xl font-bold text-white">
-                        List your <span className="text-aqua-500">room</span> or <span className="text-aqua-500">apartment</span> for
+                    animateOnce={false} className="pb-20 text-start">
+                    <h1 className="w-full p-4 mb-4 text-4xl md:text-5xl font-bold text-white">
+                        List your <span className="text-aqua-500">room</span> or <br className="md:hidden"/><span className="text-aqua-500">apartment</span> for
                         free
                     </h1>
                     <button

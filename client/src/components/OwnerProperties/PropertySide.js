@@ -35,6 +35,8 @@ function PropertySide() {
 
     let location = useLocation();
     const [isOpen, setIsOpen] = useState(false);
+    const isMobile = window.innerWidth < 768;
+    const isTablet = window.innerWidth < 1024;
 
     const handleToggleSidebar = () => {
         setIsOpen(!isOpen);
@@ -43,7 +45,7 @@ function PropertySide() {
     return (
         <>
             <motion.div
-                className="fixed flex flex-col border-r border-primaryGrey-900"
+                className={`${isMobile && isTablet ? "fixed bg-gray-200 z-50 border-none rounded-br-lg" : ''} fixed flex flex-col border-r border-primaryGrey-900`}
                 animate={{ width: isOpen ? "auto" : "0" }}
                 transition={{ duration: 0.3 }}
             >

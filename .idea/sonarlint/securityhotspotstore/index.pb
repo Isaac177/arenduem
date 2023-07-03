@@ -200,10 +200,6 @@ o
 ?client/src/components/owner-middle-content/TenantPreferences.js,e/d/ed5c1c66c00fc23db40ca917d6babb63df3296f2
 R
 "client/src/reducers/userReducer.js,3/a/3af3e9d3f595ac02dfee7e96d822cc0e9c01d450
-W
-'client/src/views/user/OwnerDashboard.js,1/a/1ae785dfe9ce38e0d280abaab6b0a6337898efe0
-e
-5client/src/components/OwnerProperties/PropertyDash.js,b/5/b50fbf259739f673cdff6fdbfff512e3f3e8485d
 e
 5client/src/components/OwnerProperties/PropertySide.js,7/b/7b462f805d1115d3f052907a79fb6105c0414368
 S
@@ -212,8 +208,6 @@ T
 $client/src/hooks/useImageUploader.js,f/f/ff81fc0ec0aaecae26c229d3926dd30eaa725ad4
 ^
 .client/src/components/owner/OwnerAsideRight.js,2/c/2c8a1d1eb58e1e1254180221d6fc7b1ec030c6d0
-a
-1client/src/components/ownerDashboard/OwnerHero.js,d/6/d634919b2414f13a5dfd471561e1f291c4bb8a26
 c
 3migrations/20230406040621-create-property-detail.js,5/e/5e59acfb5b3ed16afb39e603e92a23a132ef6b27
 e
@@ -236,8 +230,6 @@ M
 controllers/userController.js,e/c/ec44b050defa6855748d2a8d6ff06d33bc8bba3a
 H
 models/propertyDetail.js,e/e/eec091923df662d6ab182d62e8c85723b62da1a9
-d
-4client/src/components/ownerDashboard/OwnerContent.js,6/3/6321da6ca927d39bfff9ac4eb007e480173b6e04
 D
 routes/userRoutes.js,e/9/e9eb043515685faf25833d70ef475596fc6e333d
 U
@@ -276,8 +268,6 @@ Q
 !client/src/actions/userActions.js,7/6/76643767db2d2cb617a2ec33b0b2b0ed9a6a5205
 U
 %client/src/actions/propertyActions.js,7/a/7a0428ce928b984fb54096cd17e42ad50991dbc9
-a
-1client/src/components/owner/OwnerMiddleContent.js,9/7/9791a3e8470aafa67ad72a2c6beb23d9552f7cb7
 H
 routes/propertyRoutes.js,1/9/19af69cd1f8024e189a785da4a4d0b3d0aa13fa9
 V
@@ -308,14 +298,8 @@ C
 client/package.json,a/d/ad8a30996233c30cdd545dbf5f18765b86e6bf64
 a
 1client/src/components/ownerDashboard/PopupForm.js,5/4/546c2e37a261616eb48f5b52e2222ef828d88316
-i
-9client/src/components/dash-content/LatestAnnouncements.js,a/9/a9d7d8a424809bedf8bd6ac185ccc2d186be2424
 b
 2client/src/components/dash-content/AnnounceCard.js,3/2/324288cd343e22d8dd7d17e8470288a55a57eea0
-e
-5client/src/components/dash-content/PropertyDetails.js,d/4/d4ae510f26213e1c583834a7a7d71860567d4651
-k
-;client/src/components/owner-middle-content/MiddlePicture.js,b/8/b8421873f4a002bc0873b7fc0465693430505947
 j
 :client/src/components/owner-middle-content/TitleSection.js,d/3/d310973c6d617270ba12ec7ea0a9007f7b9df41e
 q
@@ -328,10 +312,6 @@ m
 =client/src/components/owner-middle-content/PropertyAddress.js,7/7/776bf7503d3fc3ccb675d425d058525f50b05b73
 h
 8client/src/components/dash-content/ProOwnerAsideRight.js,e/7/e7aae8a99dfb8e804f44bff99294c3dc6c4e84e2
-_
-/client/src/components/before-dash/BeforeDash.js,c/5/c54aa272968810a6a921320544791babca704071
-V
-&client/src/views/user/UserDashboard.js,9/4/94d9df5c9edea51b323d34c7e9393465d540750c
 X
 (client/src/components/utils/Separator.js,f/9/f9a1dd61056480e1f9f11d55786c48b150fcc53e
 I

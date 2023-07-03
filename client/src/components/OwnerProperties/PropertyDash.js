@@ -18,11 +18,11 @@ const PropertyDash = () => {
             duration={2}
             animateOnce
             className="bg-gray-200">
-            <div className="grid grid-cols-12 gap-8 min-h-screen py-10">
-                <aside className="col-span-2 flex flex-col justify-between">
+            <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 min-h-screen py-10">
+                <aside className="lg:col-span-2 flex flex-col justify-between">
                     <PropertySide />
                 </aside>
-                <div className="col-span-8 flex flex-col items-center justify-between">
+                <div className="lg:col-span-8 col-span-full flex items-center justify-between">
                     <Routes>
                         <Route path="/" element={<PropertyAnnounce />} />
                         <Route path=':propertyId/*' element={<OwnerMiddleContent />}/>
@@ -32,7 +32,9 @@ const PropertyDash = () => {
                         </Route>
                     </Routes>
                 </div>
-                <OwnerAsideRight />
+                <aside className="lg:col-span-2 flex flex-col justify-between">
+                    <OwnerAsideRight />
+                </aside>
             </div>
         </ScrollAnimation>
     );

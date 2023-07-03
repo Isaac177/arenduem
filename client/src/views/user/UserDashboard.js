@@ -14,8 +14,6 @@ const UserDashboard = () => {
     let location = useLocation();
     const currentPropertyId = useSelector(state => state.user.currentPropertyId);
     const propertyId = currentPropertyId ? currentPropertyId : '';
-    const isMobile = window.innerWidth < 768;
-    const isTablet = window.innerWidth < 1024;
 
     console.log('currentPropertyId', currentPropertyId);
     return (

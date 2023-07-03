@@ -31,8 +31,8 @@ const OwnerContent = () => {
     const [isOpen, setIsOpen] = React.useState(false);
 
     return (
-        <Element className="container flex flex-col items-center justify-center pt-20 text-primary-700" style={{ width: '1080px', margin: '0 auto' }}>
-            <div className="flex flex-wrap items-center">
+        <Element className="container mx-auto px-4 sm:px-6 lg:px-8 py-20 text-primary-700 flex flex-col items-center justify-center">
+            <div className="flex flex-wrap items-center w-full lg:w-[1080px]">
                 <div className="w-full px-4">
                     <ScrollAnimation
                         animateIn="animate__fadeInUp"
@@ -50,7 +50,7 @@ const OwnerContent = () => {
                         ArendyEm is designed to make finding your perfect roommate a breeze. Our platform helps you easily list your room, find compatible roommates, and chat with potential matches.
                     </ScrollAnimation>
                     <div className="flex flex-wrap items-center">
-                        <div className="mt-4 flex w-full flex-row">
+                        <div className="lg:mt-4 flex w-full lg:flex-row flex-col items-center justify-center">
                             {features.map(({ IconComponent, title, description, index }) => (
                                 <ScrollAnimation
                                     animateIn="animate__fadeInUp"
@@ -107,5 +107,6 @@ const OwnerContent = () => {
         </Element>
     );
 };
+
 
 export default OwnerContent;

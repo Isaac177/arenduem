@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import AnnounceCard from '../dash-content/AnnounceCard';
 import Separator from "../utils/Separator";
 import { useDispatch, useSelector } from "react-redux";
@@ -10,8 +10,8 @@ import {Element} from "react-scroll";
 const PropertyAnnounce = () => {
     const navigate = useNavigate();
     const dispatch = useDispatch();
-    const userId = useSelector((state) => state.auth.userId);
-    const allUsers = useSelector((state) => state.user.allUsers);
+    const userId = useSelector((state) => state.auth?.userId);
+    const allUsers = useSelector((state) => state.user?.allUsers);
     const users = allUsers?.users;
 
     useEffect(() => {
@@ -30,8 +30,8 @@ const PropertyAnnounce = () => {
     return (
         <>
             <Separator>
-                <Element className="mt-8 flex flex-col border-b">
-                    <div className={`flex flex-row gap-6 flex-wrap p-12 animate-fade-in transform translate-y-0' : 'animate-fade-out transform translate-y-4'}`}>
+                <Element className="mt-8 flex border-b">
+                    <div className={`flex-col flex lg:flex-row gap-6 flex-wrap p-12 animate-fade-in translate-y-0' : 'animate-fade-out transform translate-y-4'}`}>
                         {loggedInUserProperties.map((property, index) => {
                             const housePicture = (property?.PropertyPictures && property?.PropertyPictures.length > 0)
                                 ? property?.PropertyPictures[0]?.fileUrl : '';

@@ -11,6 +11,7 @@ import PropertyAddress from "../owner-middle-content/PropertyAddress";
 import PropertyAvailability from "../owner-middle-content/PropertyAvailability";
 import PropertyPrice from "../owner-middle-content/PropertyPrice";
 import {useDispatch, useSelector} from "react-redux";
+import ScrollAnimation from "react-animate-on-scroll";
 
 const PropertyDetails = () => {
     const { propertyId } = useParams();
@@ -49,12 +50,17 @@ const PropertyDetails = () => {
 
     console.log('currentPropertyId', propertyId);
     return (
-        <div className='container mx-auto px-4 md:px-0'>
-            <div className='p-4 my-4'>
+        <ScrollAnimation
+            animateIn="animate__fadeIn"
+            duration={2}
+            animateOnce={true}
+            style={{ margin: '0 auto' }} key={propertyId}>
+            <div className='container p-4 my-4 flex items-center align-middle justify-between mx-auto'>
                 {property && <MiddlePicture property={property} propertyDetails={propertyDetails} images={images} />}
             </div>
-            <div className="bg-white py-10 rounded-lg mb-4">
-                <div className="w-full max-w-screen-md mx-auto">
+            <div className="grid grid-cols-12 gap-8 bg-white mx-auto p-12 rounded-lg">
+                <div className="col-span-8">
+                    <div style={{ width: '980px', margin: '0 auto' }}>
                     {property && <TitleSection property={property} propertyDetails={propertyDetails} />}
                     {property && <PropertyDescription property={property} propertyDetails={propertyDetails} />}
                     {property && <PropertyAmenities property={property} />}
@@ -72,7 +78,8 @@ const PropertyDetails = () => {
                     </div>
                 </div>
             </div>
-        </div>
+            </div>
+        </ScrollAnimation>
     );
 };
 
