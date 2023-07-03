@@ -13,16 +13,12 @@ A
 +migrations/20230211204221-create-picture.js,7/8/78ec241d8b64e4d5e2bd84315b9767b95592777d
 >
 routes/auth.js,8/b/8bbe7473c2ec08c224aead7ec6d668fb50f27965
-^
-.client/src/components/profile/FullSizeImage.js,2/c/2c291c015356f83961649705db1df19d0dd2d658
 L
 middleware/authMiddleware.js,4/9/4930bbf875888d8e0a6a978ddfc86c0749f8db55
 Q
 !middleware/authTokenMiddleware.js,3/8/38b42046142e2b761de47dac13aa8caa50579da6
 V
 &migrations/20230318071918-Interests.js,8/4/84e599dbc011065ba036f923b7f59396718d5b02
-B
-models/interest.js,3/f/3f1ea3ca7a4ec107b3043de9212763cd4d40c290
 a
 1client/src/components/profile/EmailPreferences.js,0/d/0d2f36a0cbfc9240e93be2cd91372935009bc6e7
 W
@@ -174,14 +170,10 @@ k
 ;client/src/components/owner-middle-content/PropertyPrice.js,0/2/02f8ead30d17e49a37556e6d653b41a1c6e89e8b
 ]
 -client/src/components/owner/OwnerAsideLeft.js,2/4/24a74024ec3e303dfd090c459d16a0d164ca318b
-]
--client/src/components/profile/PersonalData.js,0/0/00ed5f8f30fe7675ed75557034cc5aff2f6d43b9
 h
 8client/src/components/OwnerProperties/ProCoverSection.js,8/f/8f106758baab9a5158676d8b50e8c341f7850138
 h
 8client/src/components/OwnerProperties/ProPersonalData.js,0/7/07604b56d73db0857473e191ee0ba4f2770a96fd
-Z
-*client/src/components/profile/Interests.js,a/a/aa11f069b729de80350b239391dc64dbbbad51a3
 C
 client/src/store.js,4/a/4afe2750c2c347c6e38ea33d5c926b1ae43d2dfb
 g
@@ -338,3 +330,9 @@ h
 8client/src/components/dash-content/ProOwnerAsideRight.js,e/7/e7aae8a99dfb8e804f44bff99294c3dc6c4e84e2
 _
 /client/src/components/before-dash/BeforeDash.js,c/5/c54aa272968810a6a921320544791babca704071
+V
+&client/src/views/user/UserDashboard.js,9/4/94d9df5c9edea51b323d34c7e9393465d540750c
+X
+(client/src/components/utils/Separator.js,f/9/f9a1dd61056480e1f9f11d55786c48b150fcc53e
+I
+client/tailwind.config.js,6/b/6b273cff573b0a837bad584f90d7d827bf358bb1

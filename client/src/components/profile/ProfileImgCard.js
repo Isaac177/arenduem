@@ -98,13 +98,11 @@ const ProfileImgCard = ({
                         className="h-full w-full object-cover"
                         onClick={handleViewImage}
                     />
-                    {/* Add text on image if isMain */}
                     {isMain && (
                         <div className="absolute bottom-0 left-0 flex h-10 w-full items-center justify-center bg-black bg-opacity-50">
                             <p className="text-sm text-white">Main Image</p>
                         </div>
                     )}
-                    {/* Add text on image if isCover */}
                     {isCover && (
                         <div className="absolute top-0 left-0 flex h-10 w-full items-center justify-center bg-black bg-opacity-50">
                             <p className="text-sm text-white">Cover Image</p>

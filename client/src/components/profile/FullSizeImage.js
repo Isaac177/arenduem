@@ -21,7 +21,7 @@ const FullSizeImage = ({ src, alt, onClose, onPrev, onNext, isPrevDisabled, isNe
     return (
         <div className="fixed inset-0 z-50 flex items-center justify-center">
             <div className="absolute inset-0 bg-black opacity-75" onClick={onClose}></div>
-            <div ref={containerRef} className="relative h-3/4 max-h-full w-3/4 max-w-full">
+            <div ref={containerRef} className="relative sm:h-full md:h-3/4 max-h-full sm:w-full md:w-3/4 max-w-full">
                 <button
                     className="absolute top-0 right-0 rounded-full p-2 text-white bg-aqua-500 hover:bg-aqua-700"
                     onClick={onClose}
@@ -37,7 +37,7 @@ const FullSizeImage = ({ src, alt, onClose, onPrev, onNext, isPrevDisabled, isNe
                         <BsChevronLeft />
                     </button>
                     <img src={`http://localhost:8000/${src}`}
-                         alt={alt} className="h-full" />
+                         alt={alt} className="h-full w-full object-cover" />
                     <button
                         className="rounded-full p-2 text-white bg-aqua-500 hover:bg-aqua-700"
                         onClick={onNext}

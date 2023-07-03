@@ -48,16 +48,16 @@ const PersonalData = () => {
         </div>
     );
 
-    const smallText = 'text-gray-600 text-sm font-medium text-left';
+    const smallText = 'text-gray-600 text-sm font-medium text-left ml-24 lg:ml-0';
     const inputStyles = 'rounded-lg bg-gray-300 p-2 mb-2 focus:outline-aqua-300 focus:ring-2 focus:ring-aqua-300 focus:ring-opacity-50 w-1/2'
 
     return (
         <div>
             {!userData ? <IsLoading /> : (
-                <div className="align-start">
-                    <h1 className="m-4 text-2xl font-bold">My Personal Data</h1>
+                <div className="align-start sm:align-center">
+                    <h1 className="m-4 lg:text-2xl font-bold text-xl ml-28 lg:ml-0">My Personal Data</h1>
                     <form onSubmit={handleSubmit}>
-                        <div className="p-4 text-lg align-start">
+                        <div className="text-center p-4 text-sm lg:text-left lg:text-lg lg:align-start">
                             <p className={smallText}>First Name:</p>
                             <input
                                 type="text"

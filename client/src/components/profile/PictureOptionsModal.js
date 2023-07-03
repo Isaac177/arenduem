@@ -12,11 +12,16 @@ const PictureOptionsModal = ({handleDeleteImage, clickPosition, handleSetIsMain,
                 onClose();
             }
         };
-        document.addEventListener('mousedown', handleClickOutside);
+
+        if (isMobile || isTablet) {
+            document.addEventListener('mousedown', handleClickOutside);
+        }
+
         return () => {
             document.removeEventListener('mousedown', handleClickOutside);
-        };
+        }
     }, [modalRef, onClose]);
+
 
 
     return (
@@ -32,20 +37,20 @@ const PictureOptionsModal = ({handleDeleteImage, clickPosition, handleSetIsMain,
             <div ref={modalRef} className="rounded-md bg-white shadow-lg">
                 <button
                     className="block w-full text-left py-2 px-4 hover:bg-gray-200 hover:rounded-t-md
-                    hover:text-aqua-500"
-                    onClick={handleSetIsMain}
+    hover:text-aqua-500"
+                    onClick={(e) => { e.stopPropagation(); handleSetIsMain(e); }}
                 >
                     Set as Profile
                 </button>
                 <button
                     className="block w-full px-4 py-2 text-left hover:text-aqua-500 hover:bg-gray-200"
-                    onClick={handleSetIsCover}
+                    onClick={(e) => { e.stopPropagation(); handleSetIsCover(e); }}
                 >
                     Set as Cover
                 </button>
                 <button
                     className="block w-full px-4 py-2 text-left hover:rounded-b-md hover:bg-gray-200 hover:text-red-500"
-                    onClick={handleDeleteImage}
+                    onClick={(e) => { e.stopPropagation(); handleDeleteImage(e); }}
                 >
                     Delete
                 </button>

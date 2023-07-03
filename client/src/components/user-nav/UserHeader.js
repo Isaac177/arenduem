@@ -57,7 +57,6 @@ const UserHeader = () => {
                                 <FiMessageCircle size={20} />
                                 <span className="absolute top-0 right-0 -mt-1 -mr-1 bg-red-500 rounded-full text-white px-2 py-1 text-xs font-bold">3</span>
                             </button>
-
                             <button className="relative inline-flex items-center text-sm px-4 py-2 leading-none rounded-full text-white border-white hover:text-primary-900 hover:bg-white mr-4">
                                 <FiBell size={20} />
                                 <span className="absolute top-0 right-0 -mt-1 -mr-1 bg-red-500 rounded-full text-white px-2 py-1 text-xs font-bold">5</span>
