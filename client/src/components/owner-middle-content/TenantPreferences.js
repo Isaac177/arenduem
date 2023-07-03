@@ -15,7 +15,7 @@ const TenantPreferences = ({ property }) => {
     };
 
     return (
-        <div>
+        <div className='lg:w-full'>
             <h6 className="my-4 text-xl font-bold text-aqua-500">Tenant preferences</h6>
             <FormGroup row>
                 {preferencesData.map((preference) => (

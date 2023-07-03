@@ -6,14 +6,10 @@ import ProInfoSection from "./ProInfoSection";
 
 const PropertyCover = () => {
     return (
-        <>
-            <Separator>
-                <ProCoverSection />
-            </Separator>
-            <Separator>
-                <ProInfoSection />
-            </Separator>
-        </>
+        <div className='flex flex-col'>
+            <ProCoverSection />
+            <ProInfoSection />
+        </div>
     );
 };
 

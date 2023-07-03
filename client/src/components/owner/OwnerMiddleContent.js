@@ -75,15 +75,16 @@ const OwnerMiddleContent = () => {
             animateIn="animate__fadeIn"
             duration={2}
             animateOnce={true}
+            className="w-96 md:w-full ml-0 lg:w-full"
             style={{ margin: '0 auto' }} key={propertyId}>
-            <div className='container p-4 my-4 flex items-center align-middle justify-between mx-auto'>
+            <div className='lg:p-4 my-4 flex items-center align-middle justify-between mx-auto'>
                 {property && <MiddlePicture key={property.id} property={property} propertyDetails={propertyDetails} images={images} />}
             </div>
             <div className="grid grid-cols-12 gap-8 bg-white mx-auto p-12 rounded-lg">
                 <div className="col-span-8">
-                    <div style={{ width: '980px', margin: '0 auto' }}>
+                    <div style={{ margin: '0 auto' }}>
                         {property && <TitleSection property={property} propertyDetails={propertyDetails} />}
-                        <div className="bg-gray-100 p-6 rounded-lg">
+                        <div className="bg-gray-100 p-6 rounded-lg lg:w-full">
                             <h2 className="font-bold text-xl mb-4">AI Check</h2>
                             <div className="flex flex-row gap-4">
                                 {propertySuggestionArray.map((suggestion, index) => (
@@ -98,7 +99,7 @@ const OwnerMiddleContent = () => {
                             </div>
                         </div>
                         {property && <PropertyDescription property={property} propertyDetails={propertyDetails} />}
-                        <div className="bg-gray-100 p-6 rounded-lg">
+                        <div className="bg-gray-100 p-6 rounded-lg w-72 lg:w-full">
                             <h2 className="font-bold text-xl mb-4">AI Check for Descriptions</h2>
                             <div className="flex flex-row gap-4 flex-wrap">
                                 {propertySuggestionArray.map((suggestion, i) => (
@@ -114,15 +115,15 @@ const OwnerMiddleContent = () => {
                         </div>
                         {property && <PropertyAmenities property={property} />}
                         {property && <HouseRules property={property} />}
-                        <div className='bg-white rounded-lg p-4 my-4'>
+                        <div className='bg-white rounded-lg p-4 my-4 w-72 lg:w-full'>
                             {property && <TenantPreferences property={property} />}
-                            <div className="border-b-2 border-gray-200 my-4"></div>
+                            <div className="border-b-2 border-gray-200 my-4 w-72 lg:w-full"></div>
                             {property && <PropertyServices property={property} />}
-                            <div className="border-b-2 border-gray-200 my-4"></div>
+                            <div className="border-b-2 border-gray-200 my-4 w-72 lg:w-full"></div>
                             {property && <PropertyAddress property={property} />}
-                            <div className="border-b-2 border-gray-200 my-4"></div>
+                            <div className="border-b-2 border-gray-200 my-4 w-72 lg:w-full"></div>
                             {property && <PropertyAvailability property={property} />}
-                            <div className="border-b-2 border-gray-200 my-4"></div>
+                            <div className="border-b-2 border-gray-200 my-4 w-72 lg:w-full"></div>
                             {property && <PropertyPrice property={property} />}
                         </div>
                         <div className="col-span-4 flex gap-4">

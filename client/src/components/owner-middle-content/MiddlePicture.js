@@ -27,7 +27,7 @@ const MiddlePicture = ({ images }) => {
 
     return (
         <div className="my-4">
-            <div>
+            <div className='m-0 p-0'>
                 <Carousel
                     ref={carouselRef}
                     selectedItem={selectedImage}
@@ -37,6 +37,7 @@ const MiddlePicture = ({ images }) => {
                     infiniteLoop={true}
                     showIndicators={false}
                     onChange={handleCarouselChange}
+                    className="max-w-full"
                 >
                     {displayImages.map((image, index) => (
                         <ScrollAnimation
@@ -50,8 +51,9 @@ const MiddlePicture = ({ images }) => {
                                 className="w-full h-auto mb-4 rounded-lg"
                                 src={images?.length > 0 ? `http://localhost:8000/${image}` : image}
                                 alt="room"
-                                style={{ height: 'auto', width: '100%', objectFit: 'contain' }}
+                                style={{ height: 'auto', maxWidth: '100%', objectFit: 'contain' }}
                             />
+
                         </ScrollAnimation>
                     ))}
                 </Carousel>

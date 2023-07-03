@@ -60,20 +60,20 @@ const PropertyDetails = () => {
             </div>
             <div className="grid grid-cols-12 gap-8 bg-white mx-auto p-12 rounded-lg">
                 <div className="col-span-8">
-                    <div style={{ width: '980px', margin: '0 auto' }}>
+                    <div style={{ margin: '0 auto' }}>
                     {property && <TitleSection property={property} propertyDetails={propertyDetails} />}
                     {property && <PropertyDescription property={property} propertyDetails={propertyDetails} />}
                     {property && <PropertyAmenities property={property} />}
                     {property && <HouseRules property={property} />}
-                    <div className='bg-white rounded-lg p-4 my-4'>
+                    <div className='bg-white rounded-lg p-4 my-4  lg:w-full'>
                         {property && <TenantPreferences property={property} />}
-                        <div className="border-b-2 border-gray-200 my-4"></div>
+                        <div className="border-b-2 border-gray-200 my-4  lg:w-full"></div>
                         {property && <PropertyServices property={property} />}
-                        <div className="border-b-2 border-gray-200 my-4"></div>
+                        <div className="border-b-2 border-gray-200 my-4   lg:w-full"></div>
                         {property && <PropertyAddress property={property} />}
-                        <div className="border-b-2 border-gray-200 my-4"></div>
+                        <div className="border-b-2 border-gray-200 my-4  lg:w-full"></div>
                         {property && <PropertyAvailability property={property} />}
-                        <div className="border-b-2 border-gray-200 my-4"></div>
+                        <div className="border-b-2 border-gray-200 my-4  lg:w-full"></div>
                         {property && <PropertyPrice property={property} />}
                     </div>
                 </div>

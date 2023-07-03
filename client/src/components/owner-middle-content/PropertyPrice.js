@@ -7,7 +7,7 @@ const PropertyPrice = ({ property }) => {
     const price = property.Price;
 
     return (
-        <div className="py-2">
+        <div className="py-2 lg:w-full">
             <h6 className="my-4 text-xl font-bold text-aqua-500">Property price</h6>
             <div className="text-sm font-semibold flex flex-row gap-4">
                 <div className="flex items-center flex-col gap-2">
