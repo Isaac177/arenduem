@@ -5,7 +5,6 @@ import api from "../utils/api";
 import { useNavigate } from 'react-router-dom';
 import {setTokenAndRole, setUserId} from "../../actions/userActions";
 import {useDispatch} from "react-redux";
-import FacebookLogin from 'react-facebook-login';
 
 const SigninSchema = object().shape({
     email: string().email('Invalid email').required('Email is required'),
