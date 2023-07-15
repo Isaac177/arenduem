@@ -1,12 +1,11 @@
 import { render, fireEvent, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
-import Signin from '../src/components/authentication/Signin';
 import { Provider } from 'react-redux';
 import { BrowserRouter } from 'react-router-dom';
-import api from '../src/utils/api';
+import Signin from "../../../../src/components/authentication/Signin";
+import api from '../../../../src/components/utils/api';
 
-
-jest.mock('../src/utils/api', () => ({
+jest.mock('../../../../src/components/utils/api', () => ({
     post: jest.fn(),
 }));
 
@@ -21,7 +20,7 @@ const renderWithRouterAndRedux = (ui, { router = '/' } = {}) => {
     };
 };
 
-describe('Signin', async () => {
+describe('Signin', () => {
     it('should render the signin page', () => {
         const {getByLabelText, getByRole} = renderWithRouterAndRedux(<Signin/>);
         expect(getByLabelText(/email/i)).toBeInTheDocument();
@@ -37,22 +36,20 @@ describe('Signin', async () => {
                 userId: 'test-userId',
             }
         });
-    });
 
-    const {getByLabelText, getByRole} = renderWithRouterAndRedux(<Signin/>);
+        const {getByLabelText, getByRole} = renderWithRouterAndRedux(<Signin/>);
 
-    userEvent.type(getByLabelText(/email/i), 'test@example.com');
-    userEvent.type(getByLabelText(/password/i), 'test-password');
-    fireEvent.click(getByRole('button', {name: /sign in/i}));
+        userEvent.type(getByLabelText(/email/i), 'test@example.com');
+        userEvent.type(getByLabelText(/password/i), 'test-password');
+        fireEvent.click(getByRole('button', {name: /sign in/i}));
 
-    await waitFor(() => {
-        expect(api.post).toHaveBeenCalledWith('/auth/signin', {
-            email: 'test@example.com',
-            password: 'test-password',
+        await waitFor(() => {
+            expect(api.post).toHaveBeenCalledWith('/auth/signin', {
+                email: 'test@example.com',
+                password: 'test-password',
+            });
         });
+
+        expect(getByRole('alert')).toHaveTextContent(/invalid email or password/i);
     });
-
-    expect(getByRole('alert')).toHaveTextContent(/invalid email or password/i);
 });
-
-

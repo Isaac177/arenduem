@@ -11,7 +11,6 @@ const SigninSchema = object().shape({
     password: string().required('Password is required'),
 });
 
-const FACEBOOK_APP_ID = process.env.REACT_APP_FACEBOOK_APP_ID;
 
 const Signin = () => {
     const [success, setSuccess] = useState(false);

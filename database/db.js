@@ -1,9 +1,14 @@
 const { Sequelize } = require('sequelize');
 
-const sequelize = new Sequelize('arenduem', 'postgres', 'francerdc1', {
-    host: 'localhost',
+const sequelize = new Sequelize(process.env.DATABASE_URL, {
     dialect: 'postgres',
-    port: 5432
+    protocol: 'postgres',
+    dialectOptions: {
+        ssl: {
+            require: true,
+            rejectUnauthorized: false,
+        },
+    },
 });
 
 module.exports = sequelize;

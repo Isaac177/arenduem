@@ -1,6 +1,4 @@
 
->
-database/db.js,7/1/71183b0970ddf175d9e9b814d08ed20f6d371b1e
 O
 utils/createTableIfNotExists.js,6/1/616bf240d275774c245b29993cbaf508c9781a63
 ;
@@ -71,8 +69,6 @@ c
 3client/src/components/ownerDashboard/ProgressBar.js,c/3/c3a7c1470954a5a2d91fbbdcb9734601dd7f94ee
 \
 ,client/src/components/headers/OwnerHeader.js,8/b/8b1701e63d248e458b9c60fa0c5db166d25ed699
-B
-config/config.json,b/4/b46af4c0cf9c68fa9c458c1219f7c1d18ec484c2
 \
 ,client/src/components/form-steps/google.scss,8/5/853d0b3c9567cbc383f08e5b9a6197de0997ee4d
 U
@@ -220,8 +216,6 @@ O
 client/src/assets/data/steps.js,e/3/e3d9152b81a6128aca4e19be543f538f8cdb7c95
 R
 "client/src/assets/data/profiles.js,5/9/59ea551c5573132bb582035577c66d02948c34c1
-R
-"client/src/reducers/userReducer.js,3/a/3af3e9d3f595ac02dfee7e96d822cc0e9c01d450
 e
 5client/src/components/OwnerProperties/PropertySide.js,7/b/7b462f805d1115d3f052907a79fb6105c0414368
 T
@@ -260,8 +254,6 @@ U
 %client/src/actions/interestActions.js,e/5/e5c60e73bace3f52e6e1569f735d8dddbdb7e1a2
 i
 9client/src/components/OwnerProperties/PropertyAnnounce.js,b/c/bc892473432b550c962407e98d8db57d1f96f685
-9
-	server.js,d/c/dc60ea9ee1ff6246bf342463277d5b914db2883d
 L
 client/src/reducers/index.js,f/d/fddb094e79d9adb9ec669c65c9511e7135f8a137
 `
@@ -284,8 +276,6 @@ Q
 ,client/src/components/profile/DeleteModal.js,3/3/33d8b836451f9d6c900f7b810e86cd83f8eb9249
 O
 controllers/openaiController.js,0/d/0d0539a0ad7c96a6641afc3749fe7e6026c1d631
-Q
-!client/src/actions/userActions.js,7/6/76643767db2d2cb617a2ec33b0b2b0ed9a6a5205
 H
 routes/propertyRoutes.js,1/9/19af69cd1f8024e189a785da4a4d0b3d0aa13fa9
 V
@@ -294,8 +284,6 @@ V
 package.json,7/0/7030d0b2f71b999ff89a343de08c414af32fc93a
 U
 %client/src/actions/propertyActions.js,7/a/7a0428ce928b984fb54096cd17e42ad50991dbc9
-?
-models/index.js,e/4/e41453b900e7c418643d34a8cb9d68efc0b0ddd6
 Y
 )client/src/components/form-steps/Step2.js,d/9/d93ffceb2cf5b5ecbe2f28f6a35cf1190e418e78
 Y
