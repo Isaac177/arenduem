@@ -87,7 +87,7 @@ app.put('/users/:userId/properties/:propertyId/description', updatePropertyDescr
 app.post('/openai/suggestions', openaiController.fetchSuggestions);
 
 
-const PORT = 8000;
+const PORT = 8000 || process.env.PORT;
 app.listen(PORT, () => {
     console.log(`Server running on port ${PORT}`);
 });
