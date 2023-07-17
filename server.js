@@ -17,6 +17,7 @@ const {createProperty, updatePropertyDescription} = require("./controllers/prope
 const propertyController = require("./controllers/propertyController");
 const {getUserInfoById, getAllUsers} = require("./controllers/userController");
 const openaiController = require("./controllers/openaiController");
+const {join} = require("path");
 require('dotenv').config();
 require('./config/passport')(passport);
 const app = express();
@@ -27,9 +28,9 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(passport.initialize());
 app.use('/uploads', express.static('uploads'));
 
-app.use(express.static(path.join(__dirname, 'client/build')));
+app.use(express.static(join(__dirname, 'client/build')));
 app.get('*', (req, res) => {
-    res.sendFile(path.join(__dirname + '/client/build/index.html'));
+    res.sendFile(join(__dirname + '/client/build/index.html'));
 });
 
 
