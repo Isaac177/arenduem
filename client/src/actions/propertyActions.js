@@ -9,7 +9,7 @@ export const DELETE_PROPERTY_SUCCESS = "DELETE_PROPERTY_SUCCESS";
 export const DELETE_PROPERTY_FAILURE = "DELETE_PROPERTY_FAILURE";
 
 
-const BASE_URL = 'http://localhost:8000';
+const BASE_URL = process.env.NODE_ENV === 'production' ? '' : 'http://localhost:8000';
 export const createProperty = (propertyData) => async (dispatch, getState) => {
     try {
         const { userId } = getState().auth;

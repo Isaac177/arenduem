@@ -117,8 +117,6 @@ f
 6migrations/20230406040621-create-phone-verification.js,2/8/28b474b927ded79a89ced1d2aec0fc72d8143992
 K
 models/phoneVerification.js,2/6/264c3270fbbf0dec87356ff0f686b0ab60678f8e
-T
-$client/src/actions/galleryActions.js,6/9/69787fc62c2a2e530637a617159a5a423f03552a
 A
 models/amenity.js,f/b/fb78172a5759449f12ce75cad971e4c5c921d01b
 K
@@ -179,8 +177,6 @@ m
 =migrations/20230505151531-add_bed_type_to_property_details.js,5/0/508313772fb0720e08ed0c6500088ba7781ba060
 ^
 .client/src/components/authentication/SignUp.js,0/9/09b886ecfc59f032f40aedaa32bcf74c4c342147
-R
-"client/src/actions/errorActions.js,0/3/03ec9054d3843cacd6e8e57a3ef20576c9562b65
 S
 #client/src/reducers/errorReducer.js,b/5/b552d50730d932f7a5c84ca93609ee905af3b586
 e
@@ -247,8 +243,6 @@ D
 routes/userRoutes.js,e/9/e9eb043515685faf25833d70ef475596fc6e333d
 F
 routes/openaiRoutes.js,f/d/fd105f6b7c1b61b6a605e1f2868dae7f5c2c0bcf
-U
-%client/src/actions/interestActions.js,e/5/e5c60e73bace3f52e6e1569f735d8dddbdb7e1a2
 i
 9client/src/components/OwnerProperties/PropertyAnnounce.js,b/c/bc892473432b550c962407e98d8db57d1f96f685
 L
@@ -277,8 +271,6 @@ H
 routes/propertyRoutes.js,1/9/19af69cd1f8024e189a785da4a4d0b3d0aa13fa9
 V
 &client/src/reducers/propertyReducer.js,8/9/89859367dc3da63825889341feacca6ff1c24b07
-U
-%client/src/actions/propertyActions.js,7/a/7a0428ce928b984fb54096cd17e42ad50991dbc9
 Y
 )client/src/components/form-steps/Step2.js,d/9/d93ffceb2cf5b5ecbe2f28f6a35cf1190e418e78
 Y

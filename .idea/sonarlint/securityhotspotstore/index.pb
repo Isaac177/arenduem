@@ -79,8 +79,6 @@ f
 6migrations/20230406040621-create-phone-verification.js,2/8/28b474b927ded79a89ced1d2aec0fc72d8143992
 K
 models/phoneVerification.js,2/6/264c3270fbbf0dec87356ff0f686b0ab60678f8e
-T
-$client/src/actions/galleryActions.js,6/9/69787fc62c2a2e530637a617159a5a423f03552a
 A
 models/amenity.js,f/b/fb78172a5759449f12ce75cad971e4c5c921d01b
 K
@@ -141,8 +139,6 @@ m
 =migrations/20230505151531-add_bed_type_to_property_details.js,5/0/508313772fb0720e08ed0c6500088ba7781ba060
 ^
 .client/src/components/authentication/SignUp.js,0/9/09b886ecfc59f032f40aedaa32bcf74c4c342147
-R
-"client/src/actions/errorActions.js,0/3/03ec9054d3843cacd6e8e57a3ef20576c9562b65
 S
 #client/src/reducers/errorReducer.js,b/5/b552d50730d932f7a5c84ca93609ee905af3b586
 e
@@ -207,8 +203,6 @@ H
 models/propertyDetail.js,e/e/eec091923df662d6ab182d62e8c85723b62da1a9
 D
 routes/userRoutes.js,e/9/e9eb043515685faf25833d70ef475596fc6e333d
-U
-%client/src/actions/interestActions.js,e/5/e5c60e73bace3f52e6e1569f735d8dddbdb7e1a2
 F
 routes/openaiRoutes.js,f/d/fd105f6b7c1b61b6a605e1f2868dae7f5c2c0bcf
 i
@@ -235,8 +229,6 @@ Q
 ,client/src/components/profile/DeleteModal.js,3/3/33d8b836451f9d6c900f7b810e86cd83f8eb9249
 O
 controllers/openaiController.js,0/d/0d0539a0ad7c96a6641afc3749fe7e6026c1d631
-U
-%client/src/actions/propertyActions.js,7/a/7a0428ce928b984fb54096cd17e42ad50991dbc9
 H
 routes/propertyRoutes.js,1/9/19af69cd1f8024e189a785da4a4d0b3d0aa13fa9
 V

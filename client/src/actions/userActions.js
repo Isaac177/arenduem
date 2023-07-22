@@ -36,7 +36,7 @@ export const logout = () => ({
 
 
 
-const BASE_URL = 'http://localhost:8000/users';
+const BASE_URL = process.env.NODE_ENV === 'production' ? '' : 'http://localhost:8000/users';
 export const fetchUserData = () => async (dispatch, getState) => {
     try {
         const { userId, token } = getState().auth;

@@ -5,7 +5,7 @@ export const REMOVE_INTEREST = "REMOVE_INTEREST";
 export const GET_INTERESTS_START = "GET_INTERESTS_START";
 export const GET_INTERESTS_SUCCESS = "GET_INTERESTS_SUCCESS";
 
-const BASE_URL = "http://localhost:8000";
+const BASE_URL = process.env.NODE_ENV === 'production' ? '' : 'http://localhost:8000';
 export const addInterest = (interest) => async (dispatch, getState) => {
     try {
         const userId = getState().auth.user.id;

@@ -64,7 +64,7 @@ export const setShowImgModal = showImgModal => ({
     payload: showImgModal,
 });
 
-const BASE_URL = 'http://localhost:8000';
+const BASE_URL = process.env.NODE_ENV === 'production' ? '' : 'http://localhost:8000';
 export const getPictureById = (id) => async (dispatch, getState) => {
     try {
         const { userId } = getState().auth;
