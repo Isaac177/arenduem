@@ -387,3 +387,15 @@ e
 5client/src/components/OwnerProperties/PropertyDash.js,b/5/b50fbf259739f673cdff6fdbfff512e3f3e8485d
 h
 8client/src/components/OwnerProperties/ProPersonalData.js,0/7/07604b56d73db0857473e191ee0ba4f2770a96fd
+A
+client/src/App.js,f/6/f6b8a135eb07bb80aa582994bcf1a8ccacd783ee
+?
+models/index.js,e/4/e41453b900e7c418643d34a8cb9d68efc0b0ddd6
+F
+client/babel.config.js,7/7/77a2dc691ec23198097021121854e50bcb689933
+E
+client/jest.config.js,8/9/89ecca882e15381d014fdab718f2576762e3ce29
+m
+=client/src/__tests__/components/authentication/Signin.test.js,4/1/41d3fd5393e1cbe1d25fde5e937fd6049e819831
+9
+	README.md,8/e/8ec9a00bfd09b3190ac6b22251dbb1aa95a0579d
